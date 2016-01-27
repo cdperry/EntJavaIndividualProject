@@ -12,6 +12,6 @@ The project needs to include a web service but at this point I'm not sure what I
 
 ## Design
 
-## [Project Plan](www.google.com)
+## [Project Plan](ProjectPlan.md)
 
-## [Development Journal](www.google.com)
+## [Development Journal](Journal.md)
