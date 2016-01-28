@@ -8,6 +8,9 @@ At this point the problem is that I don't have a project idea yet.  I'm thinking
 
 The project needs to include a web service but at this point I'm not sure what I'd integrate.  Maybe something not terribly exciting like getting weather information for the brew day so I can adjust whether or not I could brew outdoors or indoors?
 
+Maybe I can use this somehow?
+- [openbeer.db](http://openbeer.github.io)
+
 ## Project Technologies/Techniques
 
 ## Design
