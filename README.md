@@ -10,6 +10,10 @@ The project needs to include a web service but at this point I'm not sure what I
 
 Maybe I can use this somehow?
 - [openbeer.db](http://openbeer.github.io)
+- [brewerydb.com](http://www.brewerydb.com)
+
+Possible ideas for team project integration?
+- 
 
 ## Project Technologies/Techniques
 
