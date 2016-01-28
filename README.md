@@ -14,6 +14,7 @@ Maybe I can use this somehow?
 
 Possible ideas for team project integration?
 - 
+-
 
 ## Project Technologies/Techniques
 
