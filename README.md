@@ -16,11 +16,11 @@ Possible ideas for team project integration?
 - 
 
 UI templates
-- http://designmodo.com/flat#buy
-- http://designscrazed.org/free-html-css3-ui-kits/
-- http://freebiesbug.com/code-stuff/html-ui-kits/
-- http://www.opendesigns.org/design/leather-coffee/
-- http://ui-cloud.com/free-ui-elements/
+- [DesignModo.com](http://designmodo.com/flat#buy)
+- [Designscrazed.org](http://designscrazed.org/free-html-css3-ui-kits/)
+- [Freebiesbug.com](http://freebiesbug.com/code-stuff/html-ui-kits/)
+- [Opendesigns.org](http://www.opendesigns.org/design/leather-coffee/)
+- [ui-cloud.com](http://ui-cloud.com/free-ui-elements/)
 
 ## Project Technologies/Techniques
 
