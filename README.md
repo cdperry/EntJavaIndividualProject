@@ -15,6 +15,13 @@ Maybe I can use this somehow?
 Possible ideas for team project integration?
 - 
 
+UI templates
+- http://designmodo.com/flat#buy
+- http://designscrazed.org/free-html-css3-ui-kits/
+- http://freebiesbug.com/code-stuff/html-ui-kits/
+- http://www.opendesigns.org/design/leather-coffee/
+- http://ui-cloud.com/free-ui-elements/
+
 ## Project Technologies/Techniques
 
 ## Design
