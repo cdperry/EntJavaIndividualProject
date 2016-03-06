@@ -1,22 +1,22 @@
-package com.cdperry.brewday.persistence;
+package com.cdperry.brewday.entity;
 
 import java.sql.Date;
 
 /**
  * Created by cdperry on 3/6/16.
  */
-public class YeastFormEntity {
-    private int yeastFormId;
+public class UomTypeEntity {
+    private int uomId;
     private String name;
     private Date updateDate;
     private Date createDate;
 
-    public int getYeastFormId() {
-        return yeastFormId;
+    public int getUomId() {
+        return uomId;
     }
 
-    public void setYeastFormId(int yeastFormId) {
-        this.yeastFormId = yeastFormId;
+    public void setUomId(int uomId) {
+        this.uomId = uomId;
     }
 
     public String getName() {
@@ -48,9 +48,9 @@ public class YeastFormEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        YeastFormEntity that = (YeastFormEntity) o;
+        UomTypeEntity that = (UomTypeEntity) o;
 
-        if (yeastFormId != that.yeastFormId) return false;
+        if (uomId != that.uomId) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (updateDate != null ? !updateDate.equals(that.updateDate) : that.updateDate != null) return false;
         if (createDate != null ? !createDate.equals(that.createDate) : that.createDate != null) return false;
@@ -60,7 +60,7 @@ public class YeastFormEntity {
 
     @Override
     public int hashCode() {
-        int result = yeastFormId;
+        int result = uomId;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (updateDate != null ? updateDate.hashCode() : 0);
         result = 31 * result + (createDate != null ? createDate.hashCode() : 0);

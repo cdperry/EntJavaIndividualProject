@@ -1,22 +1,22 @@
-package com.cdperry.brewday.persistence;
+package com.cdperry.brewday.entity;
 
 import java.sql.Date;
 
 /**
  * Created by cdperry on 3/6/16.
  */
-public class UseTypeEntity {
-    private int useTypeId;
+public class HopFormTypeEntity {
+    private int hopFormId;
     private String name;
     private Date updateDate;
     private Date createDate;
 
-    public int getUseTypeId() {
-        return useTypeId;
+    public int getHopFormId() {
+        return hopFormId;
     }
 
-    public void setUseTypeId(int useTypeId) {
-        this.useTypeId = useTypeId;
+    public void setHopFormId(int hopFormId) {
+        this.hopFormId = hopFormId;
     }
 
     public String getName() {
@@ -48,9 +48,9 @@ public class UseTypeEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        UseTypeEntity that = (UseTypeEntity) o;
+        HopFormTypeEntity that = (HopFormTypeEntity) o;
 
-        if (useTypeId != that.useTypeId) return false;
+        if (hopFormId != that.hopFormId) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (updateDate != null ? !updateDate.equals(that.updateDate) : that.updateDate != null) return false;
         if (createDate != null ? !createDate.equals(that.createDate) : that.createDate != null) return false;
@@ -60,7 +60,7 @@ public class UseTypeEntity {
 
     @Override
     public int hashCode() {
-        int result = useTypeId;
+        int result = hopFormId;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (updateDate != null ? updateDate.hashCode() : 0);
         result = 31 * result + (createDate != null ? createDate.hashCode() : 0);

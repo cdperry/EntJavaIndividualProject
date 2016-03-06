@@ -4,8 +4,8 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="com.cdperry.brewday.persistence.UserRolesEntity" table="USER_ROLES" schema="BREWDAY">
-        <composite-id mapped="true" class="com.cdperry.brewday.persistence.UserRolesEntityPK">
+    <class name="com.cdperry.brewday.entity.UserRolesEntity" table="USER_ROLES" schema="BREWDAY">
+        <composite-id mapped="true" class="com.cdperry.brewday.entity.UserRolesEntityPK">
             <key-property name="userRoleId" column="user_role_id"/>
             <key-property name="userName" column="user_name"/>
             <key-property name="roleName" column="role_name"/>

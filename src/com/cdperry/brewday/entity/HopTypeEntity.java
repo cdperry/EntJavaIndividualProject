@@ -1,11 +1,11 @@
-package com.cdperry.brewday.persistence;
+package com.cdperry.brewday.entity;
 
 import java.sql.Date;
 
 /**
  * Created by cdperry on 3/6/16.
  */
-public class GrainTypeEntity {
+public class HopTypeEntity {
     private int hopTypeId;
     private String name;
     private Date updateDate;
@@ -48,7 +48,7 @@ public class GrainTypeEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        GrainTypeEntity that = (GrainTypeEntity) o;
+        HopTypeEntity that = (HopTypeEntity) o;
 
         if (hopTypeId != that.hopTypeId) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;

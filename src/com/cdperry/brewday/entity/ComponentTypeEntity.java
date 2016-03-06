@@ -1,22 +1,22 @@
-package com.cdperry.brewday.persistence;
+package com.cdperry.brewday.entity;
 
 import java.sql.Date;
 
 /**
  * Created by cdperry on 3/6/16.
  */
-public class YeastFlocTypeEntity {
-    private int yeastFlocTypeId;
+public class ComponentTypeEntity {
+    private int componentTypeId;
     private String name;
     private Date updateDate;
     private Date createDate;
 
-    public int getYeastFlocTypeId() {
-        return yeastFlocTypeId;
+    public int getComponentTypeId() {
+        return componentTypeId;
     }
 
-    public void setYeastFlocTypeId(int yeastFlocTypeId) {
-        this.yeastFlocTypeId = yeastFlocTypeId;
+    public void setComponentTypeId(int componentTypeId) {
+        this.componentTypeId = componentTypeId;
     }
 
     public String getName() {
@@ -48,9 +48,9 @@ public class YeastFlocTypeEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        YeastFlocTypeEntity that = (YeastFlocTypeEntity) o;
+        ComponentTypeEntity that = (ComponentTypeEntity) o;
 
-        if (yeastFlocTypeId != that.yeastFlocTypeId) return false;
+        if (componentTypeId != that.componentTypeId) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (updateDate != null ? !updateDate.equals(that.updateDate) : that.updateDate != null) return false;
         if (createDate != null ? !createDate.equals(that.createDate) : that.createDate != null) return false;
@@ -60,7 +60,7 @@ public class YeastFlocTypeEntity {
 
     @Override
     public int hashCode() {
-        int result = yeastFlocTypeId;
+        int result = componentTypeId;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (updateDate != null ? updateDate.hashCode() : 0);
         result = 31 * result + (createDate != null ? createDate.hashCode() : 0);

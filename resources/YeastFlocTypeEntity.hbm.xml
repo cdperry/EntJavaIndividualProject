@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="com.cdperry.brewday.persistence.YeastFlocTypeEntity" table="YEAST_FLOC_TYPE" schema="BREWDAY">
+    <class name="com.cdperry.brewday.entity.YeastFlocTypeEntity" table="YEAST_FLOC_TYPE" schema="BREWDAY">
         <id name="yeastFlocTypeId" column="yeast_floc_type_id"/>
         <property name="name" column="name"/>
         <property name="updateDate" column="update_date"/>

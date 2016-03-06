@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="com.cdperry.brewday.persistence.SupplierEntity" table="SUPPLIER" schema="BREWDAY">
+    <class name="com.cdperry.brewday.entity.SupplierEntity" table="SUPPLIER" schema="BREWDAY">
         <id name="supplierId" column="supplier_id"/>
         <property name="supplierTypeId" column="supplier_type_id"/>
         <property name="name" column="name"/>

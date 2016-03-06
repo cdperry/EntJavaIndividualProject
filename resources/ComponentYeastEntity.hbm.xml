@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="com.cdperry.brewday.persistence.ComponentYeastEntity" table="COMPONENT_YEAST" schema="BREWDAY">
+    <class name="com.cdperry.brewday.entity.ComponentYeastEntity" table="COMPONENT_YEAST" schema="BREWDAY">
         <id name="compYeastId" column="comp_yeast_id"/>
         <property name="name" column="name"/>
         <property name="labId" column="lab_id"/>

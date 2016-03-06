@@ -1,4 +1,4 @@
-package com.cdperry.brewday.persistence;
+package com.cdperry.brewday.entity;
 
 import java.math.BigDecimal;
 import java.sql.Date;

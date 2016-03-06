@@ -1,22 +1,22 @@
-package com.cdperry.brewday.persistence;
+package com.cdperry.brewday.entity;
 
 import java.sql.Date;
 
 /**
  * Created by cdperry on 3/6/16.
  */
-public class UomTypeEntity {
-    private int uomId;
+public class RecipeTypeEntity {
+    private int recipeTypeId;
     private String name;
     private Date updateDate;
     private Date createDate;
 
-    public int getUomId() {
-        return uomId;
+    public int getRecipeTypeId() {
+        return recipeTypeId;
     }
 
-    public void setUomId(int uomId) {
-        this.uomId = uomId;
+    public void setRecipeTypeId(int recipeTypeId) {
+        this.recipeTypeId = recipeTypeId;
     }
 
     public String getName() {
@@ -48,9 +48,9 @@ public class UomTypeEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        UomTypeEntity that = (UomTypeEntity) o;
+        RecipeTypeEntity that = (RecipeTypeEntity) o;
 
-        if (uomId != that.uomId) return false;
+        if (recipeTypeId != that.recipeTypeId) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (updateDate != null ? !updateDate.equals(that.updateDate) : that.updateDate != null) return false;
         if (createDate != null ? !createDate.equals(that.createDate) : that.createDate != null) return false;
@@ -60,7 +60,7 @@ public class UomTypeEntity {
 
     @Override
     public int hashCode() {
-        int result = uomId;
+        int result = recipeTypeId;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (updateDate != null ? updateDate.hashCode() : 0);
         result = 31 * result + (createDate != null ? createDate.hashCode() : 0);

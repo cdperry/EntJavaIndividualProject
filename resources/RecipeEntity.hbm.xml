@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="com.cdperry.brewday.persistence.RecipeEntity" table="RECIPE" schema="BREWDAY">
+    <class name="com.cdperry.brewday.entity.RecipeEntity" table="RECIPE" schema="BREWDAY">
         <id name="recipeId" column="recipe_id"/>
         <property name="recipeName" column="recipe_name"/>
         <property name="brewerName" column="brewer_name"/>

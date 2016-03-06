@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="com.cdperry.brewday.persistence.ComponentGrainEntity" table="COMPONENT_GRAIN" schema="BREWDAY">
+    <class name="com.cdperry.brewday.entity.ComponentGrainEntity" table="COMPONENT_GRAIN" schema="BREWDAY">
         <id name="compGrainId" column="comp_grain_id"/>
         <property name="name" column="name"/>
         <property name="originId" column="origin_id"/>

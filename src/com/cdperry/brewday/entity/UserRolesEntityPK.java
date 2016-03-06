@@ -1,4 +1,4 @@
-package com.cdperry.brewday.persistence;
+package com.cdperry.brewday.entity;
 
 import java.io.Serializable;
 

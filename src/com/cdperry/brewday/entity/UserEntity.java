@@ -1,4 +1,4 @@
-package com.cdperry.brewday.persistence;
+package com.cdperry.brewday.entity;
 
 /**
  * Created by cdperry on 3/6/16.
