@@ -1,0 +1,338 @@
+DROP TABLE IF EXISTS AUTHORIZATION;
+DROP TABLE IF EXISTS COMPONENT;
+DROP TABLE IF EXISTS COMPONENT_GRAIN;
+DROP TABLE IF EXISTS COMPONENT_HOP;
+DROP TABLE IF EXISTS COMPONENT_OTHER;
+DROP TABLE IF EXISTS COMPONENT_TYPE;
+DROP TABLE IF EXISTS COMPONENT_WATER;
+DROP TABLE IF EXISTS COMPONENT_YEAST;
+DROP TABLE IF EXISTS GRAIN_TYPE;
+DROP TABLE IF EXISTS HOP_FORM_TYPE;
+DROP TABLE IF EXISTS HOP_TYPE;
+DROP TABLE IF EXISTS ORIGIN;
+DROP TABLE IF EXISTS PROFILE_EQUIPMENT;
+DROP TABLE IF EXISTS RECIPE;
+DROP TABLE IF EXISTS RECIPE_COMPONENT;
+DROP TABLE IF EXISTS RECIPE_TYPE;
+DROP TABLE IF EXISTS SUPPLIER;
+DROP TABLE IF EXISTS SUPPLIER_TYPE;
+DROP TABLE IF EXISTS UOM_TYPE;
+DROP TABLE IF EXISTS USE_TYPE;
+DROP TABLE IF EXISTS USER;
+DROP TABLE IF EXISTS USER_ROLES;
+DROP TABLE IF EXISTS YEAST_FLOC_TYPE;
+DROP TABLE IF EXISTS YEAST_FORM;
+DROP TABLE IF EXISTS YEAST_TYPE;
+
+CREATE TABLE USER (
+user_id INT NOT NULL AUTO_INCREMENT,
+user_name VARCHAR(255),
+user_pass VARCHAR(255),
+primary key (user_id, user_name)
+);
+
+
+CREATE TABLE USER_ROLES (
+user_role_id INT NOT NULL AUTO_INCREMENT,
+user_name VARCHAR(255),
+role_name VARCHAR(255),
+primary key (user_role_id, user_name, role_name)
+);
+
+
+CREATE TABLE AUTHORIZATION (
+authorization_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+user_id INT,
+recipe_id INT,
+update_date DATETIME,
+create_date DATETIME
+);
+
+
+CREATE TABLE RECIPE (
+recipe_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+recipe_name VARCHAR(255),
+brewer_name VARCHAR(255),
+recipe_type_id INT,
+batch_size NUMERIC(18,2),
+batch_size_uom_id INT,
+equipment_profile_id INT,
+update_date DATETIME,
+create_date DATETIME
+);
+
+
+
+CREATE TABLE RECIPE_COMPONENT (
+recipe_component_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+recipe_id INT,
+component_id INT,
+amount NUMERIC(18,2),
+amount_uom_id INT,
+update_date DATETIME,
+create_date DATETIME
+);
+
+
+
+CREATE TABLE PROFILE_EQUIPMENT (
+profile_equipment_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(255),
+efficiency NUMERIC(18,2),
+ferm_batch_vol NUMERIC(18,2),
+batch_vol_uom_id INT,
+mash_tun_vol NUMERIC(18,2),
+mash_tun_uom_id INT,
+boil_vol NUMERIC(18,2),
+boil_vol_uom_id INT,
+boil_time NUMERIC(18,2),
+boil_time_uom_id INT,
+boil_off_per_hr_vol NUMERIC(18,2),
+boil_off_per_hr_uom_id INT,
+boil_shrinkage NUMERIC(18,2),
+boil_total_boil_off NUMERIC(18,2),
+boil_total_boil_off_uom_id INT,
+boil_post_boil_vol NUMERIC(18,2),
+boil_post_boil_vol_uom_id INT,
+ferm_loss NUMERIC(18,2),
+ferm_loss_uom_id INT,
+ferm_top_up NUMERIC(18,2),
+ferm_top_up_uom_id INT,
+ferm_loss_trub_chill NUMERIC(18,2),
+ferm_loss_trub_chill_uom_id INT,
+bottling_vol NUMERIC(18,2),
+bottling_vol_uom_id INT,
+notes VARCHAR(255),
+update_date DATETIME,
+create_date DATETIME
+);
+
+
+
+CREATE TABLE COMPONENT (
+component_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(255),
+component_type_id INT,
+comp_hop_id INT,
+comp_grain_id INT,
+comp_yeast_id INT,
+comp_water_id INT,
+comp_other_id INT,
+update_date DATETIME,
+create_date DATETIME
+);
+
+
+
+CREATE TABLE ORIGIN (
+origin_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(255),
+update_date DATETIME,
+create_date DATETIME
+);
+
+
+
+CREATE TABLE SUPPLIER (
+supplier_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+supplier_type_id INT,
+name VARCHAR(255),
+url VARCHAR(255),
+email VARCHAR(255),
+phone VARCHAR(255),
+contact_name VARCHAR(255),
+notes VARCHAR(255),
+update_date DATETIME,
+create_date DATETIME
+);
+
+
+CREATE TABLE COMPONENT_HOP (
+comp_hop_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(255),
+origin_id INT,
+supplier_id INT,
+alpha_pct NUMERIC(18,2),
+beta_pct NUMERIC(18,2),
+hop_type_id INT,
+hop_form_id INT,
+notes VARCHAR(255),
+update_date DATETIME,
+create_date DATETIME
+);
+
+
+
+CREATE TABLE COMPONENT_GRAIN (
+comp_grain_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(255),
+origin_id INT,
+supplier_id INT,
+grain_type_id INT,
+color NUMERIC(18,2),
+potential NUMERIC(18,2),
+notes VARCHAR(255),
+update_date DATETIME,
+create_date DATETIME
+);
+
+
+
+CREATE TABLE COMPONENT_YEAST (
+comp_yeast_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(255),
+lab_id INT,
+supplier_id INT,
+yeast_type_id INT,
+yeast_form_id INT,
+yeast_floc_type_id INT,
+attenuation_min NUMERIC(18,2),
+attenuation_max NUMERIC(18,2),
+temperature_min NUMERIC(18,2),
+temperature_max NUMERIC(18,2),
+cells_per_pack NUMERIC(18,2),
+notes VARCHAR(255),
+update_date DATETIME,
+create_date DATETIME
+);
+
+
+
+CREATE TABLE COMPONENT_OTHER (
+comp_other_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(255),
+use_for VARCHAR(255),
+use_type_id INT,
+time NUMERIC(18,2),
+time_uom_id INT,
+amount NUMERIC(18,2),
+amount_uom_id INT,
+batch_size NUMERIC(18,2),
+batch_size_uom_id INT,
+notes VARCHAR(255),
+update_date DATETIME,
+create_date DATETIME
+);
+
+
+
+CREATE TABLE COMPONENT_WATER (
+comp_water_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(255),
+ph NUMERIC(18,2),
+ca_ppm NUMERIC(18,2),
+mg_ppm NUMERIC(18,2),
+na_ppm NUMERIC(18,2),
+so4_ppm NUMERIC(18,2),
+cl_ppm NUMERIC(18,2),
+hco3_ppm NUMERIC(18,2),
+caso4_g NUMERIC(18,2),
+nacl_g NUMERIC(18,2),
+mgso4_g NUMERIC(18,2),
+cacl_g NUMERIC(18,2),
+nahco3_g NUMERIC(18,2),
+caco3_g NUMERIC(18,2),
+batch_size NUMERIC(18,2),
+batch_size_uom_id INT,
+notes VARCHAR(255),
+update_date DATETIME,
+create_date DATETIME
+);
+
+
+CREATE TABLE RECIPE_TYPE (
+recipe_type_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(255),
+update_date DATETIME,
+create_date DATETIME
+);
+
+
+
+CREATE TABLE UOM_TYPE (
+uom_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(255),
+update_date DATETIME,
+create_date DATETIME
+);
+
+
+
+CREATE TABLE COMPONENT_TYPE (
+component_type_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(255),
+update_date DATETIME,
+create_date DATETIME
+);
+
+
+
+CREATE TABLE HOP_TYPE (
+hop_type_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(255),
+update_date DATETIME,
+create_date DATETIME
+);
+
+
+
+CREATE TABLE HOP_FORM_TYPE (
+hop_form_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(255),
+update_date DATETIME,
+create_date DATETIME
+);
+
+
+
+CREATE TABLE GRAIN_TYPE (
+hop_type_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(255),
+update_date DATETIME,
+create_date DATETIME
+);
+
+
+
+CREATE TABLE SUPPLIER_TYPE (
+supplier_type_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(255),
+update_date DATETIME,
+create_date DATETIME
+);
+
+
+
+CREATE TABLE YEAST_TYPE (
+yeast_type_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(255),
+update_date DATETIME,
+create_date DATETIME
+);
+
+
+
+CREATE TABLE YEAST_FORM (
+yeast_form_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(255),
+update_date DATETIME,
+create_date DATETIME
+);
+
+
+
+CREATE TABLE YEAST_FLOC_TYPE (
+yeast_floc_type_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(255),
+update_date DATETIME,
+create_date DATETIME
+);
+
+
+
+CREATE TABLE USE_TYPE (
+use_type_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(255),
+update_date DATETIME,
+create_date DATETIME
+);
