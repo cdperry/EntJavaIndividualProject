@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.cdperry.brewday.persistence.ComponentHopEntity" table="COMPONENT_HOP" schema="BREWDAY">
+        <id name="compHopId" column="comp_hop_id"/>
+        <property name="name" column="name"/>
+        <property name="originId" column="origin_id"/>
+        <property name="supplierId" column="supplier_id"/>
+        <property name="alphaPct" column="alpha_pct"/>
+        <property name="betaPct" column="beta_pct"/>
+        <property name="hopTypeId" column="hop_type_id"/>
+        <property name="hopFormId" column="hop_form_id"/>
+        <property name="notes" column="notes"/>
+        <property name="updateDate" column="update_date"/>
+        <property name="createDate" column="create_date"/>
+    </class>
+</hibernate-mapping>

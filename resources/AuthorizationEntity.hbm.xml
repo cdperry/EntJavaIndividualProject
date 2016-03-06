@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.cdperry.brewday.persistence.AuthorizationEntity" table="AUTHORIZATION" schema="BREWDAY">
+        <id name="authorizationId" column="authorization_id"/>
+        <property name="userId" column="user_id"/>
+        <property name="recipeId" column="recipe_id"/>
+        <property name="updateDate" column="update_date"/>
+        <property name="createDate" column="create_date"/>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.cdperry.brewday.persistence.ComponentYeastEntity" table="COMPONENT_YEAST" schema="BREWDAY">
+        <id name="compYeastId" column="comp_yeast_id"/>
+        <property name="name" column="name"/>
+        <property name="labId" column="lab_id"/>
+        <property name="supplierId" column="supplier_id"/>
+        <property name="yeastTypeId" column="yeast_type_id"/>
+        <property name="yeastFormId" column="yeast_form_id"/>
+        <property name="yeastFlocTypeId" column="yeast_floc_type_id"/>
+        <property name="attenuationMin" column="attenuation_min"/>
+        <property name="attenuationMax" column="attenuation_max"/>
+        <property name="temperatureMin" column="temperature_min"/>
+        <property name="temperatureMax" column="temperature_max"/>
+        <property name="cellsPerPack" column="cells_per_pack"/>
+        <property name="notes" column="notes"/>
+        <property name="updateDate" column="update_date"/>
+        <property name="createDate" column="create_date"/>
+    </class>
+</hibernate-mapping>

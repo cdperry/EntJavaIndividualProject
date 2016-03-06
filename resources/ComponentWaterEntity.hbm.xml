@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.cdperry.brewday.persistence.ComponentWaterEntity" table="COMPONENT_WATER" schema="BREWDAY">
+        <id name="compWaterId" column="comp_water_id"/>
+        <property name="name" column="name"/>
+        <property name="ph" column="ph"/>
+        <property name="caPpm" column="ca_ppm"/>
+        <property name="mgPpm" column="mg_ppm"/>
+        <property name="naPpm" column="na_ppm"/>
+        <property name="so4Ppm" column="so4_ppm"/>
+        <property name="clPpm" column="cl_ppm"/>
+        <property name="hco3Ppm" column="hco3_ppm"/>
+        <property name="caso4G" column="caso4_g"/>
+        <property name="naclG" column="nacl_g"/>
+        <property name="mgso4G" column="mgso4_g"/>
+        <property name="caclG" column="cacl_g"/>
+        <property name="nahco3G" column="nahco3_g"/>
+        <property name="caco3G" column="caco3_g"/>
+        <property name="batchSize" column="batch_size"/>
+        <property name="batchSizeUomId" column="batch_size_uom_id"/>
+        <property name="notes" column="notes"/>
+        <property name="updateDate" column="update_date"/>
+        <property name="createDate" column="create_date"/>
+    </class>
+</hibernate-mapping>

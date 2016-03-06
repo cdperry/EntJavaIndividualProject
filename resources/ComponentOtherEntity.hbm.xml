@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.cdperry.brewday.persistence.ComponentOtherEntity" table="COMPONENT_OTHER" schema="BREWDAY">
+        <id name="compOtherId" column="comp_other_id"/>
+        <property name="name" column="name"/>
+        <property name="useFor" column="use_for"/>
+        <property name="useTypeId" column="use_type_id"/>
+        <property name="time" column="time"/>
+        <property name="timeUomId" column="time_uom_id"/>
+        <property name="amount" column="amount"/>
+        <property name="amountUomId" column="amount_uom_id"/>
+        <property name="batchSize" column="batch_size"/>
+        <property name="batchSizeUomId" column="batch_size_uom_id"/>
+        <property name="notes" column="notes"/>
+        <property name="updateDate" column="update_date"/>
+        <property name="createDate" column="create_date"/>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.cdperry.brewday.persistence.ProfileEquipmentEntity" table="PROFILE_EQUIPMENT" schema="BREWDAY">
+        <id name="profileEquipmentId" column="profile_equipment_id"/>
+        <property name="name" column="name"/>
+        <property name="efficiency" column="efficiency"/>
+        <property name="fermBatchVol" column="ferm_batch_vol"/>
+        <property name="batchVolUomId" column="batch_vol_uom_id"/>
+        <property name="mashTunVol" column="mash_tun_vol"/>
+        <property name="mashTunUomId" column="mash_tun_uom_id"/>
+        <property name="boilVol" column="boil_vol"/>
+        <property name="boilVolUomId" column="boil_vol_uom_id"/>
+        <property name="boilTime" column="boil_time"/>
+        <property name="boilTimeUomId" column="boil_time_uom_id"/>
+        <property name="boilOffPerHrVol" column="boil_off_per_hr_vol"/>
+        <property name="boilOffPerHrUomId" column="boil_off_per_hr_uom_id"/>
+        <property name="boilShrinkage" column="boil_shrinkage"/>
+        <property name="boilTotalBoilOff" column="boil_total_boil_off"/>
+        <property name="boilTotalBoilOffUomId" column="boil_total_boil_off_uom_id"/>
+        <property name="boilPostBoilVol" column="boil_post_boil_vol"/>
+        <property name="boilPostBoilVolUomId" column="boil_post_boil_vol_uom_id"/>
+        <property name="fermLoss" column="ferm_loss"/>
+        <property name="fermLossUomId" column="ferm_loss_uom_id"/>
+        <property name="fermTopUp" column="ferm_top_up"/>
+        <property name="fermTopUpUomId" column="ferm_top_up_uom_id"/>
+        <property name="fermLossTrubChill" column="ferm_loss_trub_chill"/>
+        <property name="fermLossTrubChillUomId" column="ferm_loss_trub_chill_uom_id"/>
+        <property name="bottlingVol" column="bottling_vol"/>
+        <property name="bottlingVolUomId" column="bottling_vol_uom_id"/>
+        <property name="notes" column="notes"/>
+        <property name="updateDate" column="update_date"/>
+        <property name="createDate" column="create_date"/>
+    </class>
+</hibernate-mapping>

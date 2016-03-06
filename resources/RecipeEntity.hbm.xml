@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.cdperry.brewday.persistence.RecipeEntity" table="RECIPE" schema="BREWDAY">
+        <id name="recipeId" column="recipe_id"/>
+        <property name="recipeName" column="recipe_name"/>
+        <property name="brewerName" column="brewer_name"/>
+        <property name="recipeTypeId" column="recipe_type_id"/>
+        <property name="batchSize" column="batch_size"/>
+        <property name="batchSizeUomId" column="batch_size_uom_id"/>
+        <property name="equipmentProfileId" column="equipment_profile_id"/>
+        <property name="updateDate" column="update_date"/>
+        <property name="createDate" column="create_date"/>
+    </class>
+</hibernate-mapping>

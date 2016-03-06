@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.cdperry.brewday.persistence.UserRolesEntity" table="USER_ROLES" schema="BREWDAY">
+        <composite-id mapped="true" class="com.cdperry.brewday.persistence.UserRolesEntityPK">
+            <key-property name="userRoleId" column="user_role_id"/>
+            <key-property name="userName" column="user_name"/>
+            <key-property name="roleName" column="role_name"/>
+        </composite-id>
+    </class>
+</hibernate-mapping>
