@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="dialect">
+            org.hibernate.dialect.MySQL5Dialect
+        </property>
+        <property name="connection.url">
+            jdbc:mysql://localhost:3306/BREWDAY
+        </property>
+        <property name="connection.driver_class">
+            com.mysql.jdbc.Driver
+        </property>
+        <property name="connection.username">
+            admin
+        </property>
+        <property name="connection.password">
+            admin
+        </property>
+        <mapping resource="AuthorizationEntity.hbm.xml" />
+        <mapping class="com.cdperry.brewday.entity.AuthorizationEntity" />
+        <mapping resource="ComponentEntity.hbm.xml" />
+        <mapping class="com.cdperry.brewday.entity.ComponentEntity" />
+        <mapping resource="ComponentGrainEntity.hbm.xml" />
+        <mapping class="com.cdperry.brewday.entity.ComponentGrainEntity" />
+        <mapping resource="ComponentHopEntity.hbm.xml" />
+        <mapping class="com.cdperry.brewday.entity.ComponentHopEntity" />
+        <mapping resource="ComponentOtherEntity.hbm.xml" />
+        <mapping class="com.cdperry.brewday.entity.ComponentOtherEntity" />
+        <mapping resource="ComponentTypeEntity.hbm.xml" />
+        <mapping class="com.cdperry.brewday.entity.ComponentTypeEntity" />
+        <mapping resource="ComponentWaterEntity.hbm.xml" />
+        <mapping class="com.cdperry.brewday.entity.ComponentWaterEntity" />
+        <mapping resource="ComponentYeastEntity.hbm.xml" />
+        <mapping class="com.cdperry.brewday.entity.ComponentYeastEntity" />
+        <mapping resource="GrainTypeEntity.hbm.xml" />
+        <mapping class="com.cdperry.brewday.entity.GrainTypeEntity" />
+        <mapping resource="HopFormTypeEntity.hbm.xml" />
+        <mapping class="com.cdperry.brewday.entity.HopFormTypeEntity" />
+        <mapping resource="HopTypeEntity.hbm.xml" />
+        <mapping class="com.cdperry.brewday.entity.HopTypeEntity" />
+        <mapping resource="OriginEntity.hbm.xml" />
+        <mapping class="com.cdperry.brewday.entity.OriginEntity" />
+        <mapping resource="ProfileEquipmentEntity.hbm.xml" />
+        <mapping class="com.cdperry.brewday.entity.ProfileEquipmentEntity" />
+        <mapping resource="RecipeComponentEntity.hbm.xml" />
+        <mapping class="com.cdperry.brewday.entity.RecipeComponentEntity" />
+        <mapping resource="RecipeEntity.hbm.xml" />
+        <mapping class="com.cdperry.brewday.entity.RecipeEntity" />
+        <mapping resource="RecipeTypeEntity.hbm.xml" />
+        <mapping class="com.cdperry.brewday.entity.RecipeTypeEntity" />
+        <mapping resource="SupplierEntity.hbm.xml" />
+        <mapping class="com.cdperry.brewday.entity.SupplierEntity" />
+        <mapping resource="SupplierTypeEntity.hbm.xml" />
+        <mapping class="com.cdperry.brewday.entity.SupplierTypeEntity" />
+        <mapping resource="UomTypeEntity.hbm.xml" />
+        <mapping class="com.cdperry.brewday.entity.UomTypeEntity" />
+        <mapping resource="UserEntity.hbm.xml" />
+        <mapping class="com.cdperry.brewday.entity.UserEntity" />
+        <mapping resource="UserRolesEntity.hbm.xml" />
+        <mapping class="com.cdperry.brewday.entity.UserRolesEntity" />
+        <mapping resource="UseTypeEntity.hbm.xml" />
+        <mapping class="com.cdperry.brewday.entity.UseTypeEntity" />
+        <mapping resource="YeastFlocTypeEntity.hbm.xml" />
+        <mapping class="com.cdperry.brewday.entity.YeastFlocTypeEntity" />
+        <mapping resource="YeastFormEntity.hbm.xml" />
+        <mapping class="com.cdperry.brewday.entity.YeastFormEntity" />
+        <mapping resource="YeastTypeEntity.hbm.xml" />
+        <mapping class="com.cdperry.brewday.entity.YeastTypeEntity" />
+    </session-factory>
+
+</hibernate-configuration>
