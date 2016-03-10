@@ -4,16 +4,16 @@ This repository will hold the content for my Spring 2016 Enteprise Java individu
 
 ## Problem Statement
 
-At this point the problem is that I don't have a project idea yet.  I'm thinking about maybe trying to build a web application that will assist with home brewing.  It could help store, retrieve and modify recipes.  It could also contain equipment profiles (kettles, fermenters, etc) and maybe provide tools for common brewing calculations.
+Home brewers face a common issue.  They're inspired to create a recipe which might originate on a notepad or the back of a bar napkin.  The recipe is then created over a weekend and some notes are scribbled on some scrap paper in the garage.  This project will involve building a web application that will assist with home brewing.  It will help store, retrieve and modify recipes.  It will also contain equipment profiles (kettles, fermenters, etc) and will provide tools for common brewing calculations.
 
-The project needs to include a web service but at this point I'm not sure what I'd integrate.  Maybe something not terribly exciting like getting weather information for the brew day so I can adjust whether or not I could brew outdoors or indoors?
+As far as web service integration goes I plan ot utilize existing brewing ingredient databases that are made accessible from the web.  
 
-Maybe I can use this somehow?
+Potential web services include: 
 - [openbeer.db](http://openbeer.github.io)
 - [brewerydb.com](http://www.brewerydb.com)
 
 Possible ideas for team project integration?
-- 
+- TBD
 
 UI templates
 - [DesignModo.com](http://designmodo.com/flat#buy)
