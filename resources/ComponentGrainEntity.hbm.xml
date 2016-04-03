@@ -5,15 +5,17 @@
 <hibernate-mapping>
 
     <class name="com.cdperry.brewday.entity.ComponentGrainEntity" table="COMPONENT_GRAIN" schema="BREWDAY">
-        <id name="compGrainId" column="comp_grain_id"/>
-        <property name="name" column="name"/>
-        <property name="originId" column="origin_id"/>
-        <property name="supplierId" column="supplier_id"/>
-        <property name="grainTypeId" column="grain_type_id"/>
-        <property name="color" column="color"/>
-        <property name="potential" column="potential"/>
-        <property name="notes" column="notes"/>
-        <property name="updateDate" column="update_date"/>
-        <property name="createDate" column="create_date"/>
+        <id name="compGrainId" column="comp_grain_id" type="int">
+            <generator class="native"/>
+        </id>
+        <property name="name" column="name" type="string"/>
+        <property name="originId" column="origin_id" type="int"/>
+        <property name="supplierId" column="supplier_id" type="int"/>
+        <property name="grainTypeId" column="grain_type_id" type="int"/>
+        <property name="color" column="color" type="big_decimal"/>
+        <property name="potential" column="potential" type="big_decimal"/>
+        <property name="notes" column="notes" type="string"/>
+        <property name="updateDate" column="update_date" type="date"/>
+        <property name="createDate" column="create_date" type="date"/>
     </class>
 </hibernate-mapping>
