@@ -5,7 +5,9 @@
 <hibernate-mapping>
 
     <class name="com.cdperry.brewday.entity.ComponentOtherEntity" table="COMPONENT_OTHER" schema="BREWDAY">
-        <id name="compOtherId" column="comp_other_id"/>
+        <id name="compOtherId" column="comp_other_id">
+            <generator class="native"/>
+        </id>
         <property name="name" column="name"/>
         <property name="useFor" column="use_for"/>
         <property name="useTypeId" column="use_type_id"/>

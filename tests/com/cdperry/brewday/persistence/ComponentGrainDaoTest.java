@@ -2,11 +2,9 @@ package com.cdperry.brewday.persistence;
 
 import com.cdperry.brewday.entity.ComponentGrainEntity;
 import org.junit.Test;
-
 import java.math.BigDecimal;
 import java.util.List;
 import java.sql.Date;
-
 import static org.junit.Assert.*;
 
 /**
@@ -196,130 +194,4 @@ public class ComponentGrainDaoTest {
 
     }
 
-    /*
-    public class EmployeeDaoWithHibernateTest {
-
-        @Test
-        public void testGetAllEmployees() throws Exception {
-            EmployeeDaoWithHibernate me = new EmployeeDaoWithHibernate();
-            List<Employee> employees = me.getAllEmployees();
-            assertTrue(employees.size() > 0);
-        }
-
-        @Test
-        public void testGetEmployee() throws Exception {
-
-            EmployeeDaoWithHibernate me = new EmployeeDaoWithHibernate();
-            Employee testEmployee = new Employee();
-            int employeeID;
-
-            // create a test employee and add them to the database
-            testEmployee.setFirstName("Chris");
-            testEmployee.setLastName("Perry");
-            testEmployee.setSocialSecurityNumber("111-11-1111");
-            testEmployee.setDepartment("IT");
-            testEmployee.setRoom("123");
-            testEmployee.setPhone("704-2052");
-
-            employeeID = me.addEmployee(testEmployee);
-
-            // confirm that a non-zero employee ID was returned (indicator of success)
-            assertTrue("Expected a non-zero employee ID, got " + employeeID, employeeID > 0);
-
-            // confirm that the employee can be retrieved from the database
-            testEmployee = me.getEmployee(employeeID);
-            assertNotNull(testEmployee);
-
-            // clean up
-            me.deleteEmployee(testEmployee);
-
-        }
-
-        @Test
-        public void testUpdateEmployee() throws Exception {
-
-            EmployeeDaoWithHibernate me = new EmployeeDaoWithHibernate();
-            Employee testEmployee = new Employee();
-            int employeeID;
-
-            // create a test employee and add them to the database
-            testEmployee.setFirstName("Chris");
-            testEmployee.setLastName("Perry");
-            testEmployee.setSocialSecurityNumber("111-11-1111");
-            testEmployee.setDepartment("IT");
-            testEmployee.setRoom("123");
-            testEmployee.setPhone("704-2052");
-
-            employeeID = me.addEmployee(testEmployee);
-
-            // retrieve the test employee from the database and change their last name
-            testEmployee = me.getEmployee(employeeID);
-            testEmployee.setLastName("THISISATEST");
-            me.updateEmployee(testEmployee);
-
-            // retrieve the updated employee and test that the update took place
-            testEmployee = me.getEmployee(employeeID);
-
-            assertEquals("Expected THISISATEST, got " + testEmployee.getLastName(),
-                    "THISISATEST", testEmployee.getLastName());
-
-            // clean up
-            me.deleteEmployee(testEmployee);
-
-        }
-
-        @Test
-        public void testDeleteEmployee() throws Exception {
-
-            EmployeeDaoWithHibernate me = new EmployeeDaoWithHibernate();
-            Employee testEmployee = new Employee();
-            int employeeID;
-
-            // create a test employee and add them to the database
-            testEmployee.setFirstName("Chris");
-            testEmployee.setLastName("Perry");
-            testEmployee.setSocialSecurityNumber("111-11-1111");
-            testEmployee.setDepartment("IT");
-            testEmployee.setRoom("123");
-            testEmployee.setPhone("704-2052");
-
-            employeeID = me.addEmployee(testEmployee);
-
-            // make sure the employee was added before proceeding
-            assertTrue("Expected a non-zero employee ID, got " + employeeID, employeeID > 0);
-
-            // delete the employee and verify that they are no longer in the database
-            me.deleteEmployee(me.getEmployee(employeeID));
-            assertNull(me.getEmployee(employeeID));
-
-        }
-
-        @Test
-        public void testAddEmployee() throws Exception {
-
-            EmployeeDaoWithHibernate me = new EmployeeDaoWithHibernate();
-            Employee testEmployee = new Employee();
-            int employeeID;
-
-            // create a test employee and add them to the database
-            testEmployee.setFirstName("Chris");
-            testEmployee.setLastName("Perry");
-            testEmployee.setSocialSecurityNumber("111-11-1111");
-            testEmployee.setDepartment("IT");
-            testEmployee.setRoom("123");
-            testEmployee.setPhone("704-2052");
-
-            employeeID = me.addEmployee(testEmployee);
-
-            // confirm that a non-zero employee ID was returned (indicator of success)
-            assertTrue("Expected a non-zero employee ID, got " + employeeID, employeeID > 0);
-
-            // clean up
-            testEmployee = me.getEmployee(employeeID);
-            me.deleteEmployee(testEmployee);
-
-        }
-
-    }
-    */
 }
