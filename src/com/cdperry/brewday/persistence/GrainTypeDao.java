@@ -5,10 +5,6 @@ import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.*;
 
 /**
@@ -22,16 +18,16 @@ public class GrainTypeDao {
      * This method returns a List of all GrainTypeEntity objects
      * @return List<GrainTypeEntity> a list of GrainTypeEntity objects
      */
-    public List<GrainTypeEntity> getAllComponentGrains() {
+    public List<GrainTypeEntity> getAllGrainTypes() {
 
-        List<GrainTypeEntity> componentGrains = new ArrayList<GrainTypeEntity>();
+        List<GrainTypeEntity> grainTypes = new ArrayList<GrainTypeEntity>();
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
         Transaction tx = null;
 
         try {
 
             tx = session.beginTransaction();
-            componentGrains = session.createQuery("FROM GrainTypeEntity ORDER BY grainTypeId").list();
+            grainTypes = session.createQuery("FROM GrainTypeEntity ORDER BY grainTypeId").list();
             tx.commit();
 
         } catch (HibernateException e) {
@@ -48,7 +44,7 @@ public class GrainTypeDao {
 
         }
 
-        return componentGrains;
+        return grainTypes;
 
     }
 
@@ -69,7 +65,7 @@ public class GrainTypeDao {
             grainTypeEntity = (GrainTypeEntity)session.get(GrainTypeEntity.class, grainTypeEntityId);
             tx.commit();
             if (grainTypeEntity != null) {
-                log.warn("Retrieved component: " + grainTypeEntity + " with id of: " + grainTypeEntity.getGrainTypeId());
+                log.warn("Retrieved grain type: " + grainTypeEntity + " with id of: " + grainTypeEntity.getGrainTypeId());
             }
         } catch (HibernateException e) {
 
@@ -103,7 +99,7 @@ public class GrainTypeDao {
             tx = session.beginTransaction();
             session.update(grainTypeEntity);
             tx.commit();
-            log.warn("Updated component: " + grainTypeEntity + " with id of: " + grainTypeEntity.getGrainTypeId());
+            log.warn("Updated grain type: " + grainTypeEntity + " with id of: " + grainTypeEntity.getGrainTypeId());
 
         } catch (HibernateException e) {
 
@@ -135,7 +131,7 @@ public class GrainTypeDao {
             tx = session.beginTransaction();
             session.delete(grainTypeEntity);
             tx.commit();
-            log.warn("Deleted component: " + grainTypeEntity + " with id of: " + grainTypeEntity.getGrainTypeId());
+            log.warn("Deleted grain type: " + grainTypeEntity + " with id of: " + grainTypeEntity.getGrainTypeId());
 
         } catch (HibernateException e) {
 
@@ -168,7 +164,7 @@ public class GrainTypeDao {
             tx = session.beginTransaction();
             grainTypeEntityId = (Integer) session.save(grainTypeEntity);
             tx.commit();
-            log.warn("Added component: " + grainTypeEntity + " with id of: " + grainTypeEntityId);
+            log.warn("Added grain type: " + grainTypeEntity + " with id of: " + grainTypeEntityId);
         } catch (HibernateException e) {
             if (tx!=null) tx.rollback();
             log.error(e);

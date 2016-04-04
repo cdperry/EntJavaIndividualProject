@@ -5,7 +5,6 @@ import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,7 +66,7 @@ public class ComponentHopDao {
             componentHopEntity = (ComponentHopEntity)session.get(ComponentHopEntity.class, componentHopEntityId);
             tx.commit();
             if (componentHopEntity != null) {
-                log.warn("Retrieved component: " + componentHopEntity + " with id of: " + componentHopEntity.getCompHopId());
+                log.warn("Retrieved hop component: " + componentHopEntity + " with id of: " + componentHopEntity.getCompHopId());
             }
         } catch (HibernateException e) {
 
@@ -101,7 +100,7 @@ public class ComponentHopDao {
             tx = session.beginTransaction();
             session.update(componentHopEntity);
             tx.commit();
-            log.warn("Updated component: " + componentHopEntity + " with id of: " + componentHopEntity.getCompHopId());
+            log.warn("Updated hop component: " + componentHopEntity + " with id of: " + componentHopEntity.getCompHopId());
 
         } catch (HibernateException e) {
 
@@ -133,7 +132,7 @@ public class ComponentHopDao {
             tx = session.beginTransaction();
             session.delete(componentHopEntity);
             tx.commit();
-            log.warn("Deleted component: " + componentHopEntity + " with id of: " + componentHopEntity.getCompHopId());
+            log.warn("Deleted hop component: " + componentHopEntity + " with id of: " + componentHopEntity.getCompHopId());
 
         } catch (HibernateException e) {
 
@@ -166,7 +165,7 @@ public class ComponentHopDao {
             tx = session.beginTransaction();
             componentHopEntityId = (Integer) session.save(componentHopEntity);
             tx.commit();
-            log.warn("Added component: " + componentHopEntity + " with id of: " + componentHopEntityId);
+            log.warn("Added hop component: " + componentHopEntity + " with id of: " + componentHopEntityId);
         } catch (HibernateException e) {
             if (tx!=null) tx.rollback();
             log.error(e);

@@ -5,10 +5,6 @@ import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.*;
 
 /**
@@ -22,16 +18,16 @@ public class ComponentTypeDao {
      * This method returns a List of all ComponentTypeEntity objects
      * @return List<ComponentTypeEntity> a list of ComponentTypeEntity objects
      */
-    public List<ComponentTypeEntity> getAllComponentGrains() {
+    public List<ComponentTypeEntity> getAllComponentTypes() {
 
-        List<ComponentTypeEntity> componentGrains = new ArrayList<ComponentTypeEntity>();
+        List<ComponentTypeEntity> componentTypes = new ArrayList<ComponentTypeEntity>();
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
         Transaction tx = null;
 
         try {
 
             tx = session.beginTransaction();
-            componentGrains = session.createQuery("FROM ComponentTypeEntity ORDER BY componentTypeId").list();
+            componentTypes = session.createQuery("FROM ComponentTypeEntity ORDER BY componentTypeId").list();
             tx.commit();
 
         } catch (HibernateException e) {
@@ -48,7 +44,7 @@ public class ComponentTypeDao {
 
         }
 
-        return componentGrains;
+        return componentTypes;
 
     }
 
@@ -69,7 +65,7 @@ public class ComponentTypeDao {
             componentTypeEntity = (ComponentTypeEntity)session.get(ComponentTypeEntity.class, componentTypeEntityId);
             tx.commit();
             if (componentTypeEntity != null) {
-                log.warn("Retrieved component: " + componentTypeEntity + " with id of: " + componentTypeEntity.getComponentTypeId());
+                log.warn("Retrieved component type: " + componentTypeEntity + " with id of: " + componentTypeEntity.getComponentTypeId());
             }
         } catch (HibernateException e) {
 
@@ -103,7 +99,7 @@ public class ComponentTypeDao {
             tx = session.beginTransaction();
             session.update(componentTypeEntity);
             tx.commit();
-            log.warn("Updated component: " + componentTypeEntity + " with id of: " + componentTypeEntity.getComponentTypeId());
+            log.warn("Updated component type: " + componentTypeEntity + " with id of: " + componentTypeEntity.getComponentTypeId());
 
         } catch (HibernateException e) {
 
@@ -135,7 +131,7 @@ public class ComponentTypeDao {
             tx = session.beginTransaction();
             session.delete(componentTypeEntity);
             tx.commit();
-            log.warn("Deleted component: " + componentTypeEntity + " with id of: " + componentTypeEntity.getComponentTypeId());
+            log.warn("Deleted component type: " + componentTypeEntity + " with id of: " + componentTypeEntity.getComponentTypeId());
 
         } catch (HibernateException e) {
 
@@ -168,7 +164,7 @@ public class ComponentTypeDao {
             tx = session.beginTransaction();
             componentTypeEntityId = (Integer) session.save(componentTypeEntity);
             tx.commit();
-            log.warn("Added component: " + componentTypeEntity + " with id of: " + componentTypeEntityId);
+            log.warn("Added component type: " + componentTypeEntity + " with id of: " + componentTypeEntityId);
         } catch (HibernateException e) {
             if (tx!=null) tx.rollback();
             log.error(e);

@@ -5,7 +5,6 @@ import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,7 +66,7 @@ public class ComponentYeastDao {
             componentYeastEntity = (ComponentYeastEntity)session.get(ComponentYeastEntity.class, componentYeastEntityId);
             tx.commit();
             if (componentYeastEntity != null) {
-                log.warn("Retrieved component: " + componentYeastEntity + " with id of: " + componentYeastEntity.getCompYeastId());
+                log.warn("Retrieved yeast component: " + componentYeastEntity + " with id of: " + componentYeastEntity.getCompYeastId());
             }
         } catch (HibernateException e) {
 
@@ -101,7 +100,7 @@ public class ComponentYeastDao {
             tx = session.beginTransaction();
             session.update(componentYeastEntity);
             tx.commit();
-            log.warn("Updated component: " + componentYeastEntity + " with id of: " + componentYeastEntity.getCompYeastId());
+            log.warn("Updated yeast component: " + componentYeastEntity + " with id of: " + componentYeastEntity.getCompYeastId());
 
         } catch (HibernateException e) {
 
@@ -133,7 +132,7 @@ public class ComponentYeastDao {
             tx = session.beginTransaction();
             session.delete(componentYeastEntity);
             tx.commit();
-            log.warn("Deleted component: " + componentYeastEntity + " with id of: " + componentYeastEntity.getCompYeastId());
+            log.warn("Deleted yeast component: " + componentYeastEntity + " with id of: " + componentYeastEntity.getCompYeastId());
 
         } catch (HibernateException e) {
 
@@ -166,7 +165,7 @@ public class ComponentYeastDao {
             tx = session.beginTransaction();
             componentYeastEntityId = (Integer) session.save(componentYeastEntity);
             tx.commit();
-            log.warn("Added component: " + componentYeastEntity + " with id of: " + componentYeastEntityId);
+            log.warn("Added yeast component: " + componentYeastEntity + " with id of: " + componentYeastEntityId);
         } catch (HibernateException e) {
             if (tx!=null) tx.rollback();
             log.error(e);

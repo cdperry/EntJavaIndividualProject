@@ -5,7 +5,6 @@ import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,7 +66,7 @@ public class ComponentOtherDao {
             componentOtherEntity = (ComponentOtherEntity)session.get(ComponentOtherEntity.class, componentOtherEntityId);
             tx.commit();
             if (componentOtherEntity != null) {
-                log.warn("Retrieved component: " + componentOtherEntity + " with id of: " + componentOtherEntity.getCompOtherId());
+                log.warn("Retrieved other component: " + componentOtherEntity + " with id of: " + componentOtherEntity.getCompOtherId());
             }
         } catch (HibernateException e) {
 
@@ -101,7 +100,7 @@ public class ComponentOtherDao {
             tx = session.beginTransaction();
             session.update(componentOtherEntity);
             tx.commit();
-            log.warn("Updated component: " + componentOtherEntity + " with id of: " + componentOtherEntity.getCompOtherId());
+            log.warn("Updated other component: " + componentOtherEntity + " with id of: " + componentOtherEntity.getCompOtherId());
 
         } catch (HibernateException e) {
 
@@ -133,7 +132,7 @@ public class ComponentOtherDao {
             tx = session.beginTransaction();
             session.delete(componentOtherEntity);
             tx.commit();
-            log.warn("Deleted component: " + componentOtherEntity + " with id of: " + componentOtherEntity.getCompOtherId());
+            log.warn("Deleted other component: " + componentOtherEntity + " with id of: " + componentOtherEntity.getCompOtherId());
 
         } catch (HibernateException e) {
 
@@ -166,7 +165,7 @@ public class ComponentOtherDao {
             tx = session.beginTransaction();
             componentOtherEntityId = (Integer) session.save(componentOtherEntity);
             tx.commit();
-            log.warn("Added component: " + componentOtherEntity + " with id of: " + componentOtherEntityId);
+            log.warn("Added other component: " + componentOtherEntity + " with id of: " + componentOtherEntityId);
         } catch (HibernateException e) {
             if (tx!=null) tx.rollback();
             log.error(e);

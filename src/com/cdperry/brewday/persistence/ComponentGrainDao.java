@@ -5,10 +5,6 @@ import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.*;
 
 /**
@@ -69,7 +65,7 @@ public class ComponentGrainDao {
             componentGrainEntity = (ComponentGrainEntity)session.get(ComponentGrainEntity.class, componentGrainEntityId);
             tx.commit();
             if (componentGrainEntity != null) {
-                log.warn("Retrieved component: " + componentGrainEntity + " with id of: " + componentGrainEntity.getCompGrainId());
+                log.warn("Retrieved grain component: " + componentGrainEntity + " with id of: " + componentGrainEntity.getCompGrainId());
             }
         } catch (HibernateException e) {
 
@@ -103,7 +99,7 @@ public class ComponentGrainDao {
             tx = session.beginTransaction();
             session.update(componentGrainEntity);
             tx.commit();
-            log.warn("Updated component: " + componentGrainEntity + " with id of: " + componentGrainEntity.getCompGrainId());
+            log.warn("Updated grain component: " + componentGrainEntity + " with id of: " + componentGrainEntity.getCompGrainId());
 
         } catch (HibernateException e) {
 
@@ -135,7 +131,7 @@ public class ComponentGrainDao {
             tx = session.beginTransaction();
             session.delete(componentGrainEntity);
             tx.commit();
-            log.warn("Deleted component: " + componentGrainEntity + " with id of: " + componentGrainEntity.getCompGrainId());
+            log.warn("Deleted grain component: " + componentGrainEntity + " with id of: " + componentGrainEntity.getCompGrainId());
 
         } catch (HibernateException e) {
 
@@ -168,7 +164,7 @@ public class ComponentGrainDao {
             tx = session.beginTransaction();
             componentGrainEntityId = (Integer) session.save(componentGrainEntity);
             tx.commit();
-            log.warn("Added component: " + componentGrainEntity + " with id of: " + componentGrainEntityId);
+            log.warn("Added grain component: " + componentGrainEntity + " with id of: " + componentGrainEntityId);
         } catch (HibernateException e) {
             if (tx!=null) tx.rollback();
             log.error(e);

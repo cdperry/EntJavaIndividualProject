@@ -5,7 +5,6 @@ import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,7 +66,7 @@ public class ComponentWaterDao {
             componentWaterEntity = (ComponentWaterEntity)session.get(ComponentWaterEntity.class, componentWaterEntityId);
             tx.commit();
             if (componentWaterEntity != null) {
-                log.warn("Retrieved component: " + componentWaterEntity + " with id of: " + componentWaterEntity.getCompWaterId());
+                log.warn("Retrieved water component: " + componentWaterEntity + " with id of: " + componentWaterEntity.getCompWaterId());
             }
         } catch (HibernateException e) {
 
@@ -101,7 +100,7 @@ public class ComponentWaterDao {
             tx = session.beginTransaction();
             session.update(componentWaterEntity);
             tx.commit();
-            log.warn("Updated component: " + componentWaterEntity + " with id of: " + componentWaterEntity.getCompWaterId());
+            log.warn("Updated water component: " + componentWaterEntity + " with id of: " + componentWaterEntity.getCompWaterId());
 
         } catch (HibernateException e) {
 
@@ -133,7 +132,7 @@ public class ComponentWaterDao {
             tx = session.beginTransaction();
             session.delete(componentWaterEntity);
             tx.commit();
-            log.warn("Deleted component: " + componentWaterEntity + " with id of: " + componentWaterEntity.getCompWaterId());
+            log.warn("Deleted water component: " + componentWaterEntity + " with id of: " + componentWaterEntity.getCompWaterId());
 
         } catch (HibernateException e) {
 
@@ -166,7 +165,7 @@ public class ComponentWaterDao {
             tx = session.beginTransaction();
             componentWaterEntityId = (Integer) session.save(componentWaterEntity);
             tx.commit();
-            log.warn("Added component: " + componentWaterEntity + " with id of: " + componentWaterEntityId);
+            log.warn("Added water component: " + componentWaterEntity + " with id of: " + componentWaterEntityId);
         } catch (HibernateException e) {
             if (tx!=null) tx.rollback();
             log.error(e);

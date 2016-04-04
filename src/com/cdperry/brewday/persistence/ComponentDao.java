@@ -5,10 +5,6 @@ import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.*;
 
 /**
@@ -22,16 +18,16 @@ public class ComponentDao {
      * This method returns a List of all ComponentEntity objects
      * @return List<ComponentEntity> a list of ComponentEntity objects
      */
-    public List<ComponentEntity> getAllComponentGrains() {
+    public List<ComponentEntity> getAllComponents() {
 
-        List<ComponentEntity> componentGrains = new ArrayList<ComponentEntity>();
+        List<ComponentEntity> components = new ArrayList<ComponentEntity>();
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
         Transaction tx = null;
 
         try {
 
             tx = session.beginTransaction();
-            componentGrains = session.createQuery("FROM ComponentEntity ORDER BY componentId").list();
+            components = session.createQuery("FROM ComponentEntity ORDER BY componentId").list();
             tx.commit();
 
         } catch (HibernateException e) {
@@ -48,7 +44,7 @@ public class ComponentDao {
 
         }
 
-        return componentGrains;
+        return components;
 
     }
 
