@@ -8,6 +8,7 @@
         <id name="compHopId" column="comp_hop_id">
             <generator class="native"/>
         </id>
+        <property name="componentId" column="component_id"/>
         <property name="name" column="name"/>
         <property name="originId" column="origin_id"/>
         <property name="supplierId" column="supplier_id"/>

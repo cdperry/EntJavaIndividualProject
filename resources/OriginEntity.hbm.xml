@@ -5,7 +5,9 @@
 <hibernate-mapping>
 
     <class name="com.cdperry.brewday.entity.OriginEntity" table="ORIGIN" schema="BREWDAY">
-        <id name="originId" column="origin_id"/>
+        <id name="originId" column="origin_id">
+            <generator class="native"/>
+        </id>
         <property name="name" column="name"/>
         <property name="updateDate" column="update_date"/>
         <property name="createDate" column="create_date"/>

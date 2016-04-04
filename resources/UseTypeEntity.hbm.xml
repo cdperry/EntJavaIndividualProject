@@ -5,7 +5,9 @@
 <hibernate-mapping>
 
     <class name="com.cdperry.brewday.entity.UseTypeEntity" table="USE_TYPE" schema="BREWDAY">
-        <id name="useTypeId" column="use_type_id"/>
+        <id name="useTypeId" column="use_type_id">
+            <generator class="native"/>
+        </id>
         <property name="name" column="name"/>
         <property name="updateDate" column="update_date"/>
         <property name="createDate" column="create_date"/>

@@ -5,7 +5,10 @@
 <hibernate-mapping>
 
     <class name="com.cdperry.brewday.entity.ComponentWaterEntity" table="COMPONENT_WATER" schema="BREWDAY">
-        <id name="compWaterId" column="comp_water_id"/>
+        <id name="compWaterId" column="comp_water_id">
+            <generator class="native"/>
+        </id>
+        <property name="componentId" column="component_id"/>
         <property name="name" column="name"/>
         <property name="ph" column="ph"/>
         <property name="caPpm" column="ca_ppm"/>

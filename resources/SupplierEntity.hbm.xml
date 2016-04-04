@@ -5,7 +5,9 @@
 <hibernate-mapping>
 
     <class name="com.cdperry.brewday.entity.SupplierEntity" table="SUPPLIER" schema="BREWDAY">
-        <id name="supplierId" column="supplier_id"/>
+        <id name="supplierId" column="supplier_id">
+            <generator class="native"/>
+        </id>
         <property name="supplierTypeId" column="supplier_type_id"/>
         <property name="name" column="name"/>
         <property name="url" column="url"/>

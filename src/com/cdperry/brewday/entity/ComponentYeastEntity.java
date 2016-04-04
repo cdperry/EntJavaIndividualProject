@@ -1,13 +1,14 @@
 package com.cdperry.brewday.entity;
 
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  * Created by cdperry on 3/6/16.
  */
 public class ComponentYeastEntity {
     private int compYeastId;
+    private Integer componentId;
     private String name;
     private Integer labId;
     private Integer supplierId;
@@ -20,8 +21,8 @@ public class ComponentYeastEntity {
     private BigDecimal temperatureMax;
     private BigDecimal cellsPerPack;
     private String notes;
-    private Date updateDate;
-    private Date createDate;
+    private Timestamp updateDate;
+    private Timestamp createDate;
 
     public int getCompYeastId() {
         return compYeastId;
@@ -29,6 +30,14 @@ public class ComponentYeastEntity {
 
     public void setCompYeastId(int compYeastId) {
         this.compYeastId = compYeastId;
+    }
+
+    public Integer getComponentId() {
+        return componentId;
+    }
+
+    public void setComponentId(Integer componentId) {
+        this.componentId = componentId;
     }
 
     public String getName() {
@@ -127,19 +136,19 @@ public class ComponentYeastEntity {
         this.notes = notes;
     }
 
-    public Date getUpdateDate() {
+    public Timestamp getUpdateDate() {
         return updateDate;
     }
 
-    public void setUpdateDate(Date updateDate) {
+    public void setUpdateDate(Timestamp updateDate) {
         this.updateDate = updateDate;
     }
 
-    public Date getCreateDate() {
+    public Timestamp getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(Timestamp createDate) {
         this.createDate = createDate;
     }
 

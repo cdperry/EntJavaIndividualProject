@@ -5,7 +5,9 @@
 <hibernate-mapping>
 
     <class name="com.cdperry.brewday.entity.YeastFlocTypeEntity" table="YEAST_FLOC_TYPE" schema="BREWDAY">
-        <id name="yeastFlocTypeId" column="yeast_floc_type_id"/>
+        <id name="yeastFlocTypeId" column="yeast_floc_type_id">
+            <generator class="native"/>
+        </id>
         <property name="name" column="name"/>
         <property name="updateDate" column="update_date"/>
         <property name="createDate" column="create_date"/>

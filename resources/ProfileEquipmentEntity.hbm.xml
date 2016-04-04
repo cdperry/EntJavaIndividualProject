@@ -5,7 +5,9 @@
 <hibernate-mapping>
 
     <class name="com.cdperry.brewday.entity.ProfileEquipmentEntity" table="PROFILE_EQUIPMENT" schema="BREWDAY">
-        <id name="profileEquipmentId" column="profile_equipment_id"/>
+        <id name="profileEquipmentId" column="profile_equipment_id">
+            <generator class="native"/>
+        </id>
         <property name="name" column="name"/>
         <property name="efficiency" column="efficiency"/>
         <property name="fermBatchVol" column="ferm_batch_vol"/>

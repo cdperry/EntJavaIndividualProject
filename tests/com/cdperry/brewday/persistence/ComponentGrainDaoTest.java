@@ -4,7 +4,8 @@ import com.cdperry.brewday.entity.ComponentGrainEntity;
 import org.junit.Test;
 import java.math.BigDecimal;
 import java.util.List;
-import java.sql.Date;
+import java.util.Date;
+import java.sql.Timestamp;
 import static org.junit.Assert.*;
 
 /**
@@ -19,34 +20,36 @@ public class ComponentGrainDaoTest {
         ComponentGrainEntity testComponent;
         List<ComponentGrainEntity> componentGrains;
         int componentGrainEntityID;
-        java.util.Date now = new java.util.Date();
-        java.sql.Date date = new java.sql.Date(now.getTime());
+        Date now = new Date();
+        Timestamp ts = new Timestamp(now.getTime());
 
         // create a test grain and add them to the database
         testComponent = new ComponentGrainEntity();
         testComponent.setName("Grain 1");
+        testComponent.setComponentId(1);
         testComponent.setOriginId(1);
         testComponent.setSupplierId(1);
         testComponent.setGrainTypeId(1);
         testComponent.setColor(new BigDecimal("1.5"));
         testComponent.setPotential(new BigDecimal("3.2"));
         testComponent.setNotes("This is a note.");
-        testComponent.setUpdateDate(date);
-        testComponent.setCreateDate(date);
+        testComponent.setUpdateDate(ts);
+        testComponent.setCreateDate(ts);
 
         componentGrainEntityID = me.addComponentGrainEntity(testComponent);
 
         // create a test grain and add them to the database
         testComponent = new ComponentGrainEntity();
         testComponent.setName("Grain 2");
+        testComponent.setComponentId(1);
         testComponent.setOriginId(1);
         testComponent.setSupplierId(1);
         testComponent.setGrainTypeId(1);
         testComponent.setColor(new BigDecimal("1.5"));
         testComponent.setPotential(new BigDecimal("3.2"));
         testComponent.setNotes("This is a note.");
-        testComponent.setUpdateDate(date);
-        testComponent.setCreateDate(date);
+        testComponent.setUpdateDate(ts);
+        testComponent.setCreateDate(ts);
 
         componentGrainEntityID = me.addComponentGrainEntity(testComponent);
 
@@ -66,19 +69,20 @@ public class ComponentGrainDaoTest {
         ComponentGrainDao me = new ComponentGrainDao();
         ComponentGrainEntity testComponent = new ComponentGrainEntity();
         int componentGrainEntityID;
-        java.util.Date now = new java.util.Date();
-        java.sql.Date date = new java.sql.Date(now.getTime());
+        Date now = new Date();
+        Timestamp ts = new Timestamp(now.getTime());
 
         // create a test grain and add them to the database
         testComponent.setName("Grain");
+        testComponent.setComponentId(1);
         testComponent.setOriginId(1);
         testComponent.setSupplierId(1);
         testComponent.setGrainTypeId(1);
         testComponent.setColor(new BigDecimal("1.5"));
         testComponent.setPotential(new BigDecimal("3.2"));
         testComponent.setNotes("This is a note.");
-        testComponent.setUpdateDate(date);
-        testComponent.setCreateDate(date);
+        testComponent.setUpdateDate(ts);
+        testComponent.setCreateDate(ts);
 
         componentGrainEntityID = me.addComponentGrainEntity(testComponent);
 
@@ -100,19 +104,20 @@ public class ComponentGrainDaoTest {
         ComponentGrainDao me = new ComponentGrainDao();
         ComponentGrainEntity testComponent = new ComponentGrainEntity();
         int componentGrainEntityID;
-        java.util.Date now = new java.util.Date();
-        java.sql.Date date = new java.sql.Date(now.getTime());
+        Date now = new Date();
+        Timestamp ts = new Timestamp(now.getTime());
 
         // create a test component and add them to the database
         testComponent.setName("Grain");
+        testComponent.setComponentId(1);
         testComponent.setOriginId(1);
         testComponent.setSupplierId(1);
         testComponent.setGrainTypeId(1);
         testComponent.setColor(new BigDecimal("1.5"));
         testComponent.setPotential(new BigDecimal("3.2"));
         testComponent.setNotes("This is a note.");
-        testComponent.setUpdateDate(date);
-        testComponent.setCreateDate(date);
+        testComponent.setUpdateDate(ts);
+        testComponent.setCreateDate(ts);
 
         componentGrainEntityID = me.addComponentGrainEntity(testComponent);
 
@@ -138,19 +143,20 @@ public class ComponentGrainDaoTest {
         ComponentGrainDao me = new ComponentGrainDao();
         ComponentGrainEntity testComponent = new ComponentGrainEntity();
         int componentGrainEntityID;
-        java.util.Date now = new java.util.Date();
-        java.sql.Date date = new java.sql.Date(now.getTime());
+        Date now = new Date();
+        Timestamp ts = new Timestamp(now.getTime());
 
         // create a test component and add them to the database
         testComponent.setName("Grain");
+        testComponent.setComponentId(1);
         testComponent.setOriginId(1);
         testComponent.setSupplierId(1);
         testComponent.setGrainTypeId(1);
         testComponent.setColor(new BigDecimal("1.5"));
         testComponent.setPotential(new BigDecimal("3.2"));
         testComponent.setNotes("This is a note.");
-        testComponent.setUpdateDate(date);
-        testComponent.setCreateDate(date);
+        testComponent.setUpdateDate(ts);
+        testComponent.setCreateDate(ts);
 
         componentGrainEntityID = me.addComponentGrainEntity(testComponent);
 
@@ -169,19 +175,20 @@ public class ComponentGrainDaoTest {
         ComponentGrainDao me = new ComponentGrainDao();
         ComponentGrainEntity testComponent = new ComponentGrainEntity();
         int componentGrainEntityID;
-        java.util.Date now = new java.util.Date();
-        java.sql.Date date = new java.sql.Date(now.getTime());
+        Date now = new Date();
+        Timestamp ts = new Timestamp(now.getTime());
 
         // create a test component and add them to the database
         testComponent.setName("Grain");
+        testComponent.setComponentId(1);
         testComponent.setOriginId(1);
         testComponent.setSupplierId(1);
         testComponent.setGrainTypeId(1);
         testComponent.setColor(new BigDecimal("1.5"));
         testComponent.setPotential(new BigDecimal("3.2"));
         testComponent.setNotes("This is a note.");
-        testComponent.setUpdateDate(date);
-        testComponent.setCreateDate(date);
+        testComponent.setUpdateDate(ts);
+        testComponent.setCreateDate(ts);
 
         componentGrainEntityID = me.addComponentGrainEntity(testComponent);
 
@@ -190,7 +197,7 @@ public class ComponentGrainDaoTest {
 
         // clean up
         testComponent = me.getComponentGrainEntity(componentGrainEntityID);
-        me.deleteComponentGrainEntity(testComponent);
+        //me.deleteComponentGrainEntity(testComponent);
 
     }
 

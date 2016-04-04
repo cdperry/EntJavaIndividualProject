@@ -3,8 +3,9 @@ package com.cdperry.brewday.persistence;
 import com.cdperry.brewday.entity.ComponentHopEntity;
 import org.junit.Test;
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
+import java.sql.Timestamp;
 import static org.junit.Assert.*;
 
 /**
@@ -19,12 +20,13 @@ public class ComponentHopDaoTest {
         ComponentHopEntity testComponent;
         List<ComponentHopEntity> componentHops;
         int componentHopEntityID;
-        java.util.Date now = new java.util.Date();
-        java.sql.Date date = new java.sql.Date(now.getTime());
+        Date now = new Date();
+        Timestamp ts = new Timestamp(now.getTime());
 
         // create a test grain and add them to the database
         testComponent = new ComponentHopEntity();
         testComponent.setName("Hop 1");
+        testComponent.setComponentId(1);
         testComponent.setOriginId(1);
         testComponent.setSupplierId(1);
         testComponent.setHopTypeId(1);
@@ -32,14 +34,15 @@ public class ComponentHopDaoTest {
         testComponent.setAlphaPct(new BigDecimal("1.5"));
         testComponent.setBetaPct(new BigDecimal("3.2"));
         testComponent.setNotes("This is a note.");
-        testComponent.setUpdateDate(date);
-        testComponent.setCreateDate(date);
+        testComponent.setUpdateDate(ts);
+        testComponent.setCreateDate(ts);
 
         componentHopEntityID = me.addComponentHopEntity(testComponent);
 
         // create a test grain and add them to the database
         testComponent = new ComponentHopEntity();
         testComponent.setName("Hop 2");
+        testComponent.setComponentId(1);
         testComponent.setOriginId(1);
         testComponent.setSupplierId(1);
         testComponent.setHopTypeId(1);
@@ -47,8 +50,8 @@ public class ComponentHopDaoTest {
         testComponent.setAlphaPct(new BigDecimal("1.5"));
         testComponent.setBetaPct(new BigDecimal("3.2"));
         testComponent.setNotes("This is a note.");
-        testComponent.setUpdateDate(date);
-        testComponent.setCreateDate(date);
+        testComponent.setUpdateDate(ts);
+        testComponent.setCreateDate(ts);
 
         componentHopEntityID = me.addComponentHopEntity(testComponent);
 
@@ -68,11 +71,12 @@ public class ComponentHopDaoTest {
         ComponentHopDao me = new ComponentHopDao();
         ComponentHopEntity testComponent = new ComponentHopEntity();
         int componentHopEntityID;
-        java.util.Date now = new java.util.Date();
-        java.sql.Date date = new java.sql.Date(now.getTime());
+        Date now = new Date();
+        Timestamp ts = new Timestamp(now.getTime());
 
         // create a test grain and add them to the database
         testComponent.setName("Hop 1");
+        testComponent.setComponentId(1);
         testComponent.setOriginId(1);
         testComponent.setSupplierId(1);
         testComponent.setHopTypeId(1);
@@ -80,8 +84,8 @@ public class ComponentHopDaoTest {
         testComponent.setAlphaPct(new BigDecimal("1.5"));
         testComponent.setBetaPct(new BigDecimal("3.2"));
         testComponent.setNotes("This is a note.");
-        testComponent.setUpdateDate(date);
-        testComponent.setCreateDate(date);
+        testComponent.setUpdateDate(ts);
+        testComponent.setCreateDate(ts);
 
         componentHopEntityID = me.addComponentHopEntity(testComponent);
 
@@ -103,11 +107,12 @@ public class ComponentHopDaoTest {
         ComponentHopDao me = new ComponentHopDao();
         ComponentHopEntity testComponent = new ComponentHopEntity();
         int componentHopEntityID;
-        java.util.Date now = new java.util.Date();
-        java.sql.Date date = new java.sql.Date(now.getTime());
+        Date now = new Date();
+        Timestamp ts = new Timestamp(now.getTime());
 
         // create a test component and add them to the database
         testComponent.setName("Hop 1");
+        testComponent.setComponentId(1);
         testComponent.setOriginId(1);
         testComponent.setSupplierId(1);
         testComponent.setHopTypeId(1);
@@ -115,8 +120,8 @@ public class ComponentHopDaoTest {
         testComponent.setAlphaPct(new BigDecimal("1.5"));
         testComponent.setBetaPct(new BigDecimal("3.2"));
         testComponent.setNotes("This is a note.");
-        testComponent.setUpdateDate(date);
-        testComponent.setCreateDate(date);
+        testComponent.setUpdateDate(ts);
+        testComponent.setCreateDate(ts);
 
         componentHopEntityID = me.addComponentHopEntity(testComponent);
 
@@ -142,11 +147,12 @@ public class ComponentHopDaoTest {
         ComponentHopDao me = new ComponentHopDao();
         ComponentHopEntity testComponent = new ComponentHopEntity();
         int componentHopEntityID;
-        java.util.Date now = new java.util.Date();
-        java.sql.Date date = new java.sql.Date(now.getTime());
+        Date now = new Date();
+        Timestamp ts = new Timestamp(now.getTime());
 
         // create a test component and add them to the database
         testComponent.setName("Hop 1");
+        testComponent.setComponentId(1);
         testComponent.setOriginId(1);
         testComponent.setSupplierId(1);
         testComponent.setHopTypeId(1);
@@ -154,8 +160,8 @@ public class ComponentHopDaoTest {
         testComponent.setAlphaPct(new BigDecimal("1.5"));
         testComponent.setBetaPct(new BigDecimal("3.2"));
         testComponent.setNotes("This is a note.");
-        testComponent.setUpdateDate(date);
-        testComponent.setCreateDate(date);
+        testComponent.setUpdateDate(ts);
+        testComponent.setCreateDate(ts);
 
         componentHopEntityID = me.addComponentHopEntity(testComponent);
 
@@ -174,11 +180,12 @@ public class ComponentHopDaoTest {
         ComponentHopDao me = new ComponentHopDao();
         ComponentHopEntity testComponent = new ComponentHopEntity();
         int componentHopEntityID;
-        java.util.Date now = new java.util.Date();
-        java.sql.Date date = new java.sql.Date(now.getTime());
+        Date now = new Date();
+        Timestamp ts = new Timestamp(now.getTime());
 
         // create a test component and add them to the database
         testComponent.setName("Hop 1");
+        testComponent.setComponentId(1);
         testComponent.setOriginId(1);
         testComponent.setSupplierId(1);
         testComponent.setHopTypeId(1);
@@ -186,8 +193,8 @@ public class ComponentHopDaoTest {
         testComponent.setAlphaPct(new BigDecimal("1.5"));
         testComponent.setBetaPct(new BigDecimal("3.2"));
         testComponent.setNotes("This is a note.");
-        testComponent.setUpdateDate(date);
-        testComponent.setCreateDate(date);
+        testComponent.setUpdateDate(ts);
+        testComponent.setCreateDate(ts);
 
         componentHopEntityID = me.addComponentHopEntity(testComponent);
 

@@ -6,17 +6,17 @@ import java.sql.Date;
  * Created by cdperry on 3/6/16.
  */
 public class GrainTypeEntity {
-    private int hopTypeId;
+    private int grainTypeId;
     private String name;
     private Date updateDate;
     private Date createDate;
 
-    public int getHopTypeId() {
-        return hopTypeId;
+    public int getGrainTypeId() {
+        return grainTypeId;
     }
 
-    public void setHopTypeId(int hopTypeId) {
-        this.hopTypeId = hopTypeId;
+    public void setGrainTypeId(int grainTypeId) {
+        this.grainTypeId = grainTypeId;
     }
 
     public String getName() {
@@ -50,7 +50,7 @@ public class GrainTypeEntity {
 
         GrainTypeEntity that = (GrainTypeEntity) o;
 
-        if (hopTypeId != that.hopTypeId) return false;
+        if (grainTypeId != that.grainTypeId) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (updateDate != null ? !updateDate.equals(that.updateDate) : that.updateDate != null) return false;
         if (createDate != null ? !createDate.equals(that.createDate) : that.createDate != null) return false;
@@ -60,7 +60,7 @@ public class GrainTypeEntity {
 
     @Override
     public int hashCode() {
-        int result = hopTypeId;
+        int result = grainTypeId;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (updateDate != null ? updateDate.hashCode() : 0);
         result = 31 * result + (createDate != null ? createDate.hashCode() : 0);

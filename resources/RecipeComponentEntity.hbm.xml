@@ -5,7 +5,9 @@
 <hibernate-mapping>
 
     <class name="com.cdperry.brewday.entity.RecipeComponentEntity" table="RECIPE_COMPONENT" schema="BREWDAY">
-        <id name="recipeComponentId" column="recipe_component_id"/>
+        <id name="recipeComponentId" column="recipe_component_id">
+            <generator class="native"/>
+        </id>
         <property name="recipeId" column="recipe_id"/>
         <property name="componentId" column="component_id"/>
         <property name="amount" column="amount"/>
