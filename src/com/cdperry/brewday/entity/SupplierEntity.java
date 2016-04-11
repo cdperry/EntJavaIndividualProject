@@ -1,6 +1,6 @@
 package com.cdperry.brewday.entity;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  * Created by cdperry on 3/6/16.
@@ -14,8 +14,8 @@ public class SupplierEntity {
     private String phone;
     private String contactName;
     private String notes;
-    private Date updateDate;
-    private Date createDate;
+    private Timestamp updateDate;
+    private Timestamp createDate;
 
     public int getSupplierId() {
         return supplierId;
@@ -81,19 +81,19 @@ public class SupplierEntity {
         this.notes = notes;
     }
 
-    public Date getUpdateDate() {
+    public Timestamp getUpdateDate() {
         return updateDate;
     }
 
-    public void setUpdateDate(Date updateDate) {
+    public void setUpdateDate(Timestamp updateDate) {
         this.updateDate = updateDate;
     }
 
-    public Date getCreateDate() {
+    public Timestamp getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(Timestamp createDate) {
         this.createDate = createDate;
     }
 

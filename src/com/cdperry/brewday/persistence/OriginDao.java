@@ -164,7 +164,7 @@ public class OriginDao {
             tx = session.beginTransaction();
             originEntityId = (Integer) session.save(originEntity);
             tx.commit();
-            log.warn("Added hop type: " + originEntity + " with id of: " + originEntityId);
+            log.warn("Added origin type: " + originEntity + " with id of: " + originEntityId);
         } catch (HibernateException e) {
             if (tx!=null) tx.rollback();
             log.error(e);

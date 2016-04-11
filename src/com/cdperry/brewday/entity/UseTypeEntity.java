@@ -1,6 +1,6 @@
 package com.cdperry.brewday.entity;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  * Created by cdperry on 3/6/16.
@@ -8,8 +8,8 @@ import java.sql.Date;
 public class UseTypeEntity {
     private int useTypeId;
     private String name;
-    private Date updateDate;
-    private Date createDate;
+    private Timestamp updateDate;
+    private Timestamp createDate;
 
     public int getUseTypeId() {
         return useTypeId;
@@ -27,19 +27,19 @@ public class UseTypeEntity {
         this.name = name;
     }
 
-    public Date getUpdateDate() {
+    public Timestamp getUpdateDate() {
         return updateDate;
     }
 
-    public void setUpdateDate(Date updateDate) {
+    public void setUpdateDate(Timestamp updateDate) {
         this.updateDate = updateDate;
     }
 
-    public Date getCreateDate() {
+    public Timestamp getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(Timestamp createDate) {
         this.createDate = createDate;
     }
 

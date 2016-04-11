@@ -18,7 +18,7 @@ public class HopFormTypeDao {
      * This method returns a List of all HopFormTypeEntity objects
      * @return List<HopFormTypeEntity> a list of HopFormTypeEntity objects
      */
-    public List<HopFormTypeEntity> getAllHopTypes() {
+    public List<HopFormTypeEntity> getAllHopFormTypes() {
 
         List<HopFormTypeEntity> hopForms = new ArrayList<HopFormTypeEntity>();
         Session session = SessionFactoryProvider.getSessionFactory().openSession();

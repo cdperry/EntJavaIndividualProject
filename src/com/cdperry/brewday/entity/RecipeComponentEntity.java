@@ -1,7 +1,7 @@
 package com.cdperry.brewday.entity;
 
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  * Created by cdperry on 3/6/16.
@@ -12,8 +12,8 @@ public class RecipeComponentEntity {
     private Integer componentId;
     private BigDecimal amount;
     private Integer amountUomId;
-    private Date updateDate;
-    private Date createDate;
+    private Timestamp updateDate;
+    private Timestamp createDate;
 
     public int getRecipeComponentId() {
         return recipeComponentId;
@@ -55,19 +55,19 @@ public class RecipeComponentEntity {
         this.amountUomId = amountUomId;
     }
 
-    public Date getUpdateDate() {
+    public Timestamp getUpdateDate() {
         return updateDate;
     }
 
-    public void setUpdateDate(Date updateDate) {
+    public void setUpdateDate(Timestamp updateDate) {
         this.updateDate = updateDate;
     }
 
-    public Date getCreateDate() {
+    public Timestamp getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(Timestamp createDate) {
         this.createDate = createDate;
     }
 
