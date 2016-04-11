@@ -26,7 +26,6 @@ public class HopTypeDaoTest {
         // create a test grain and add them to the database
         testHopType = new HopTypeEntity();
         testHopType.setName("Hop Type 1");
-
         testHopType.setUpdateDate(ts);
         testHopType.setCreateDate(ts);
 
