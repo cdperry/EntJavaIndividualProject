@@ -23,7 +23,7 @@ public class RecipeDaoTest {
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
 
-        // create a test grain and add them to the database
+        // create a test recipe and add them to the database
         testRecipe = new RecipeEntity();
         testRecipe.setRecipeName("Recipe 1");
         testRecipe.setBrewerName("Brewer 1");
@@ -36,7 +36,7 @@ public class RecipeDaoTest {
 
         recipeEntityID = me.addRecipeEntity(testRecipe);
 
-        // create a test grain and add them to the database
+        // create a test recipe and add them to the database
         testRecipe = new RecipeEntity();
         testRecipe.setRecipeName("Recipe 2");
         testRecipe.setBrewerName("Brewer 2");

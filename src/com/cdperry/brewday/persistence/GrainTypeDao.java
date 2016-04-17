@@ -150,6 +150,39 @@ public class GrainTypeDao {
     }
 
     /**
+     * This method deletes the GrainTypeEntity object from the database
+     * @param grainTypeId the ID of the grainTypeEntity to be deleted from the database
+     */
+    public void deleteGrainTypeEntityById(int grainTypeId) {
+
+        Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+
+            tx = session.beginTransaction();
+            GrainTypeEntity entityToDelete = (GrainTypeEntity)session.get(GrainTypeEntity.class, grainTypeId);
+            session.delete(entityToDelete);
+            tx.commit();
+            log.warn("Deleted grain type: " + entityToDelete + " with id of: " + grainTypeId);
+
+        } catch (HibernateException e) {
+
+            if (tx!=null) {
+                tx.rollback();
+            }
+
+            e.printStackTrace();
+
+        } finally {
+
+            session.close();
+
+        }
+
+    }
+
+    /**
      * This method adds an grainTypeEntity to the database and returns the ID associated with the new record
      * @param grainTypeEntity the grainTypeEntity to be added to the database
      * @return int the grainTypeEntity ID of the added record

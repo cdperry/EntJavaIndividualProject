@@ -55,17 +55,17 @@ public class RecipeDao {
      */
     public RecipeEntity getRecipeEntity(int recipeId) {
 
-        RecipeEntity originEntity = new RecipeEntity();
+        RecipeEntity recipeEntity = new RecipeEntity();
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
         Transaction tx = null;
 
         try {
 
             tx = session.beginTransaction();
-            originEntity = (RecipeEntity)session.get(RecipeEntity.class, recipeId);
+            recipeEntity = (RecipeEntity)session.get(RecipeEntity.class, recipeId);
             tx.commit();
-            if (originEntity != null) {
-                log.warn("Retrieved recipe: " + originEntity + " with id of: " + originEntity.getRecipeId());
+            if (recipeEntity != null) {
+                log.warn("Retrieved recipe: " + recipeEntity + " with id of: " + recipeEntity.getRecipeId());
             }
         } catch (HibernateException e) {
 
@@ -81,15 +81,15 @@ public class RecipeDao {
 
         }
 
-        return originEntity;
+        return recipeEntity;
 
     }
 
     /**
      * This method commits an updated RecipeEntity object to the database
-     * @param originEntity the originEntity object that should be updated in the databse
+     * @param recipeEntity the originEntity object that should be updated in the databse
      */
-    public void updateRecipeEntity(RecipeEntity originEntity) {
+    public void updateRecipeEntity(RecipeEntity recipeEntity) {
 
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
         Transaction tx = null;
@@ -97,9 +97,9 @@ public class RecipeDao {
         try {
 
             tx = session.beginTransaction();
-            session.update(originEntity);
+            session.update(recipeEntity);
             tx.commit();
-            log.warn("Updated recipe: " + originEntity + " with id of: " + originEntity.getRecipeId());
+            log.warn("Updated recipe: " + recipeEntity + " with id of: " + recipeEntity.getRecipeId());
 
         } catch (HibernateException e) {
 
@@ -119,9 +119,9 @@ public class RecipeDao {
 
     /**
      * This method deletes the RecipeEntity object from the database
-     * @param originEntity the originEntity to be deleted from the database
+     * @param recipeEntity the originEntity to be deleted from the database
      */
-    public void deleteRecipeEntity(RecipeEntity originEntity) {
+    public void deleteRecipeEntity(RecipeEntity recipeEntity) {
 
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
         Transaction tx = null;
@@ -129,9 +129,9 @@ public class RecipeDao {
         try {
 
             tx = session.beginTransaction();
-            session.delete(originEntity);
+            session.delete(recipeEntity);
             tx.commit();
-            log.warn("Deleted recipe: " + originEntity + " with id of: " + originEntity.getRecipeId());
+            log.warn("Deleted recipe: " + recipeEntity + " with id of: " + recipeEntity.getRecipeId());
 
         } catch (HibernateException e) {
 
@@ -151,10 +151,10 @@ public class RecipeDao {
 
     /**
      * This method adds an originEntity to the database and returns the ID associated with the new record
-     * @param originEntity the originEntity to be added to the database
+     * @param recipeEntity the originEntity to be added to the database
      * @return int the originEntity ID of the added record
      */
-    public int addRecipeEntity(RecipeEntity originEntity) {
+    public int addRecipeEntity(RecipeEntity recipeEntity) {
 
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
         Transaction tx = null;
@@ -162,9 +162,9 @@ public class RecipeDao {
 
         try {
             tx = session.beginTransaction();
-            recipeId = (Integer) session.save(originEntity);
+            recipeId = (Integer) session.save(recipeEntity);
             tx.commit();
-            log.warn("Added recipe: " + originEntity + " with id of: " + recipeId);
+            log.warn("Added recipe: " + recipeEntity + " with id of: " + recipeId);
         } catch (HibernateException e) {
             if (tx!=null) tx.rollback();
             log.error(e);

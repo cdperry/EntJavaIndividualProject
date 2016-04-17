@@ -7,6 +7,8 @@
 
     <body>
 
+        <jsp:forward page="/grainTypeController?action=list" />
+
         <div id="wrapper">
 
             <c:import url="components/main-navigation.jsp" />

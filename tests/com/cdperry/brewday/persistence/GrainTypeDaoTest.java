@@ -162,4 +162,31 @@ public class GrainTypeDaoTest {
         me.deleteGrainTypeEntity(testGrainType);
 
     }
+
+    @Test
+    public void testDeleteGrainTypeEntityById() throws Exception {
+
+        GrainTypeDao me = new GrainTypeDao();
+        GrainTypeEntity testGrainType = new GrainTypeEntity();
+        int grainTypeEntityID;
+        Date now = new Date();
+        Timestamp ts = new Timestamp(now.getTime());
+
+        // create a test component and add them to the database
+        testGrainType = new GrainTypeEntity();
+        testGrainType.setName("Grain Type 1");
+        testGrainType.setUpdateDate(ts);
+        testGrainType.setCreateDate(ts);
+
+        grainTypeEntityID = me.addGrainTypeEntity(testGrainType);
+
+        // make sure the employee was added before proceeding
+        assertTrue("Expected a non-zero grain type ID, got " + grainTypeEntityID, grainTypeEntityID > 0);
+
+        // delete the employee and verify that they are no longer in the database
+        me.deleteGrainTypeEntityById(grainTypeEntityID);
+        assertNull(me.getGrainTypeEntity(grainTypeEntityID));
+
+    }
+
 }
