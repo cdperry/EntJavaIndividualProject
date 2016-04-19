@@ -25,7 +25,7 @@ import com.cdperry.brewday.persistence.GrainTypeDao;
 )
 public class GrainTypeController extends HttpServlet {
 
-    private static String INSERT_OR_EDIT = "/pages/modifyGrainType_alt.jsp";
+    private static String INSERT_OR_EDIT = "/pages/editGrainType.jsp";
     private static String LIST_ENTRIES = "/pages/listGrainType.jsp";
     private GrainTypeDao dao;
 
@@ -47,23 +47,34 @@ public class GrainTypeController extends HttpServlet {
         String forward="";
         String action = request.getParameter("action");
 
-        if (action.equalsIgnoreCase("delete")){
+        if (action == null || action.isEmpty()) {
+            action = "list";
+        }
+
+        if (action.equalsIgnoreCase("delete")) {
+            // when the delete finishes why doens't the URL show /grainTypeController?
+            forward = LIST_ENTRIES;
             int grainTypeId = Integer.parseInt(request.getParameter("grainTypeId"));
             dao.deleteGrainTypeEntityById(grainTypeId);
-            forward = LIST_ENTRIES;
             request.setAttribute("grainTypes", dao.getAllGrainTypes());
+            request.setAttribute("actionType", "delete");
         } else if (action.equalsIgnoreCase("edit")){
             forward = INSERT_OR_EDIT;
             int grainTypeId = Integer.parseInt(request.getParameter("grainTypeId"));
             GrainTypeEntity grainType = dao.getGrainTypeEntity(grainTypeId);
             request.setAttribute("grainType", grainType);
-        } else if (action.equalsIgnoreCase("list")){
+            request.setAttribute("actionType", "edit");
+        } else if (action.equalsIgnoreCase("insert")){
+            forward = INSERT_OR_EDIT;
+            request.setAttribute("actionType", "insert");
+        } else {
             forward = LIST_ENTRIES;
             request.setAttribute("grainTypes", dao.getAllGrainTypes());
-        } else {
-            forward = INSERT_OR_EDIT;
+            request.setAttribute("actionType", "list");
         }
 
+        // do a redirect for the deletes so that the URL doesn't screw things up on a page refresh?
+        // what did I do in advanced java final project?
         RequestDispatcher view = request.getRequestDispatcher(forward);
         view.forward(request, response);
 
@@ -85,18 +96,21 @@ public class GrainTypeController extends HttpServlet {
 
         String name = request.getParameter("name");
         String grainTypeId = request.getParameter("grainTypeId");
+        String buttonAction = request.getParameter("buttonAction");
 
-        if (grainTypeId == null || grainTypeId.isEmpty()) {
-            grainType.setName(name);
-            grainType.setUpdateDate(ts);
-            grainType.setCreateDate(ts);
-            dao.addGrainTypeEntity(grainType);
-        } else {
-            grainType.setGrainTypeId(Integer.parseInt(grainTypeId));
-            grainType.setName(name);
-            grainType.setCreateDate(Timestamp.valueOf(request.getParameter("createDate")));
-            grainType.setUpdateDate(ts);
-            dao.updateGrainTypeEntity(grainType);
+        if (buttonAction.equals("submit")) {
+            if (grainTypeId == null || grainTypeId.isEmpty()) {
+                grainType.setName(name);
+                grainType.setUpdateDate(ts);
+                grainType.setCreateDate(ts);
+                dao.addGrainTypeEntity(grainType);
+            } else {
+                grainType.setGrainTypeId(Integer.parseInt(grainTypeId));
+                grainType.setName(name);
+                grainType.setCreateDate(Timestamp.valueOf(request.getParameter("createDate")));
+                grainType.setUpdateDate(ts);
+                dao.updateGrainTypeEntity(grainType);
+            }
         }
 
         RequestDispatcher view = request.getRequestDispatcher(LIST_ENTRIES);

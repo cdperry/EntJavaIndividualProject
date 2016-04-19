@@ -18,7 +18,7 @@
         <script src="../js/jquery/jquery.1.11.1.min.js"></script>
         <script src="../js/jforms/j-forms-modal.js"></script>
 
-        <title>Add New Grain Type</title>
+        <title>Boogey!</title>
     </head>
     <body>
 
