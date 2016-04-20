@@ -162,4 +162,31 @@ public class YeastFormDaoTest {
         me.deleteYeastFormEntity(testYeastForm);
 
     }
+
+    @Test
+    public void testDeleteYeastFormEntityById() throws Exception {
+
+        YeastFormDao me = new YeastFormDao();
+        YeastFormEntity testYeastForm = new YeastFormEntity();
+        int yeastFormEntityID;
+        Date now = new Date();
+        Timestamp ts = new Timestamp(now.getTime());
+
+        // create a test component and add them to the database
+        testYeastForm = new YeastFormEntity();
+        testYeastForm.setName("Yeast Type 1");
+        testYeastForm.setUpdateDate(ts);
+        testYeastForm.setCreateDate(ts);
+
+        yeastFormEntityID = me.addYeastFormEntity(testYeastForm);
+
+        // make sure the employee was added before proceeding
+        assertTrue("Expected a non-zero yeast type ID, got " + yeastFormEntityID, yeastFormEntityID > 0);
+
+        // delete the employee and verify that they are no longer in the database
+        me.deleteYeastFormEntityById(yeastFormEntityID);
+        assertNull(me.getYeastFormEntity(yeastFormEntityID));
+
+    }
+    
 }

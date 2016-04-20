@@ -150,6 +150,39 @@ public class YeastFormDao {
     }
 
     /**
+     * This method deletes the YeastFormEntity object from the database
+     * @param yeastFormId the ID of the yeastFormEntity to be deleted from the database
+     */
+    public void deleteYeastFormEntityById(int yeastFormId) {
+
+        Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+
+            tx = session.beginTransaction();
+            YeastFormEntity entityToDelete = (YeastFormEntity)session.get(YeastFormEntity.class, yeastFormId);
+            session.delete(entityToDelete);
+            tx.commit();
+            log.warn("Deleted yeast form: " + entityToDelete + " with id of: " + yeastFormId);
+
+        } catch (HibernateException e) {
+
+            if (tx!=null) {
+                tx.rollback();
+            }
+
+            e.printStackTrace();
+
+        } finally {
+
+            session.close();
+
+        }
+
+    }
+    
+    /**
      * This method adds an yeastFormEntity to the database and returns the ID associated with the new record
      * @param yeastFormEntity the yeastFormEntity to be added to the database
      * @return int the yeastFormEntity ID of the added record

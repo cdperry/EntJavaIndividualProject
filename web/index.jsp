@@ -11,8 +11,17 @@
         -->
     </head>
     <body>
-        Hello, world.
-        <br>
-        Go to <a href="pages/main.jsp">/pages/main.jsp</a>
+        <p>Hello, world.</p>
+        <p>Go to <a href="/listGrainTypes">grain types</a><p>
+        <p>Go to <a href="/listHopTypes">hop types</a><p>
+        <p>Go to <a href="/listHopFormTypes">hop form types</a><p>
+        <p>Go to <a href="/listOrigins">origins</a><p>
+        <p>Go to <a href="/listRecipeTypes">recipe types</a><p>
+        <p>Go to <a href="/listSupplierTypes">supplier types</a><p>
+        <p>Go to <a href="/listUomTypes">UOM types</a><p>
+        <p>Go to <a href="/listUseTypes">use types</a><p>
+        <p>Go to <a href="/listYeastFlocTypes">yeast flocculation types</a><p>
+        <p>Go to <a href="/listYeastForms">yeast forms</a><p>
+        <p>Go to <a href="/listYeastTypes">yeast types</a><p>
     </body>
 </html>
