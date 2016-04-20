@@ -150,6 +150,39 @@ public class UomTypeDao {
     }
 
     /**
+     * This method deletes the UomTypeEntity object from the database
+     * @param uomTypeId the ID of the uomTypeEntity to be deleted from the database
+     */
+    public void deleteUomTypeEntityById(int uomTypeId) {
+
+        Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+
+            tx = session.beginTransaction();
+            UomTypeEntity entityToDelete = (UomTypeEntity)session.get(UomTypeEntity.class, uomTypeId);
+            session.delete(entityToDelete);
+            tx.commit();
+            log.warn("Deleted uom type: " + entityToDelete + " with id of: " + uomTypeId);
+
+        } catch (HibernateException e) {
+
+            if (tx!=null) {
+                tx.rollback();
+            }
+
+            e.printStackTrace();
+
+        } finally {
+
+            session.close();
+
+        }
+
+    }
+    
+    /**
      * This method adds an uomTypeEntity to the database and returns the ID associated with the new record
      * @param uomTypeEntity the uomTypeEntity to be added to the database
      * @return int the uomTypeEntity ID of the added record

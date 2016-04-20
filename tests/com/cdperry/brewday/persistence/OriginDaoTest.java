@@ -23,7 +23,7 @@ public class OriginDaoTest {
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
 
-        // create a test grain and add them to the database
+        // create a test origin and add them to the database
         testOrigin = new OriginEntity();
         testOrigin.setName("Origin 1");
         testOrigin.setUpdateDate(ts);
@@ -31,7 +31,7 @@ public class OriginDaoTest {
 
         originEntityID = me.addOriginEntity(testOrigin);
 
-        // create a test grain and add them to the database
+        // create a test origin and add them to the database
         testOrigin = new OriginEntity();
         testOrigin.setName("Origin 2");
         testOrigin.setUpdateDate(ts);
@@ -58,7 +58,7 @@ public class OriginDaoTest {
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
 
-        // create a test grain and add them to the database
+        // create a test origin and add them to the database
         testOrigin = new OriginEntity();
         testOrigin.setName("Origin 1");
         testOrigin.setUpdateDate(ts);
@@ -162,4 +162,31 @@ public class OriginDaoTest {
         me.deleteOriginEntity(testOrigin);
 
     }
+
+    @Test
+    public void testDeleteOriginEntityById() throws Exception {
+
+        OriginDao me = new OriginDao();
+        OriginEntity testOrigin = new OriginEntity();
+        int originEntityID;
+        Date now = new Date();
+        Timestamp ts = new Timestamp(now.getTime());
+
+        // create a test component and add them to the database
+        testOrigin = new OriginEntity();
+        testOrigin.setName("Origin Type 1");
+        testOrigin.setUpdateDate(ts);
+        testOrigin.setCreateDate(ts);
+
+        originEntityID = me.addOriginEntity(testOrigin);
+
+        // make sure the employee was added before proceeding
+        assertTrue("Expected a non-zero origin type ID, got " + originEntityID, originEntityID > 0);
+
+        // delete the employee and verify that they are no longer in the database
+        me.deleteOriginEntityById(originEntityID);
+        assertNull(me.getOriginEntity(originEntityID));
+
+    }
+    
 }

@@ -150,6 +150,39 @@ public class YeastTypeDao {
     }
 
     /**
+     * This method deletes the YeastTypeEntity object from the database
+     * @param yeastTypeId the ID of the yeastTypeEntity to be deleted from the database
+     */
+    public void deleteYeastTypeEntityById(int yeastTypeId) {
+
+        Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+
+            tx = session.beginTransaction();
+            YeastTypeEntity entityToDelete = (YeastTypeEntity)session.get(YeastTypeEntity.class, yeastTypeId);
+            session.delete(entityToDelete);
+            tx.commit();
+            log.warn("Deleted yeast type: " + entityToDelete + " with id of: " + yeastTypeId);
+
+        } catch (HibernateException e) {
+
+            if (tx!=null) {
+                tx.rollback();
+            }
+
+            e.printStackTrace();
+
+        } finally {
+
+            session.close();
+
+        }
+
+    }
+
+    /**
      * This method adds an yeastTypeEntity to the database and returns the ID associated with the new record
      * @param yeastTypeEntity the yeastTypeEntity to be added to the database
      * @return int the yeastTypeEntity ID of the added record

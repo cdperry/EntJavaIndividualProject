@@ -23,7 +23,7 @@ public class HopTypeDaoTest {
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
 
-        // create a test grain and add them to the database
+        // create a test hop and add them to the database
         testHopType = new HopTypeEntity();
         testHopType.setName("Hop Type 1");
         testHopType.setUpdateDate(ts);
@@ -31,7 +31,7 @@ public class HopTypeDaoTest {
 
         hopTypeEntityID = me.addHopTypeEntity(testHopType);
 
-        // create a test grain and add them to the database
+        // create a test hop and add them to the database
         testHopType = new HopTypeEntity();
         testHopType.setName("Hop Type 2");
         testHopType.setUpdateDate(ts);
@@ -58,7 +58,7 @@ public class HopTypeDaoTest {
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
 
-        // create a test grain and add them to the database
+        // create a test hop and add them to the database
         testHopType = new HopTypeEntity();
         testHopType.setName("Hop Type 1");
         testHopType.setUpdateDate(ts);
@@ -162,4 +162,31 @@ public class HopTypeDaoTest {
         me.deleteHopTypeEntity(testHopType);
 
     }
+
+    @Test
+    public void testDeleteHopTypeEntityById() throws Exception {
+
+        HopTypeDao me = new HopTypeDao();
+        HopTypeEntity testHopType = new HopTypeEntity();
+        int hopTypeEntityID;
+        Date now = new Date();
+        Timestamp ts = new Timestamp(now.getTime());
+
+        // create a test component and add them to the database
+        testHopType = new HopTypeEntity();
+        testHopType.setName("Hop Type 1");
+        testHopType.setUpdateDate(ts);
+        testHopType.setCreateDate(ts);
+
+        hopTypeEntityID = me.addHopTypeEntity(testHopType);
+
+        // make sure the employee was added before proceeding
+        assertTrue("Expected a non-zero hop type ID, got " + hopTypeEntityID, hopTypeEntityID > 0);
+
+        // delete the employee and verify that they are no longer in the database
+        me.deleteHopTypeEntityById(hopTypeEntityID);
+        assertNull(me.getHopTypeEntity(hopTypeEntityID));
+
+    }
+
 }

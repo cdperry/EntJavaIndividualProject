@@ -10,13 +10,13 @@
         <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0" name="viewport">
 
         <!-- Stylesheets -->
-        <link rel="stylesheet" href="../css/jforms/demo.css">
-        <link rel="stylesheet" href="../css/jforms/font-awesome.min.css">
-        <link rel="stylesheet" href="../css/jforms/j-forms.css">
+        <link rel="stylesheet" href="../../css/jforms/demo.css">
+        <link rel="stylesheet" href="../../css/jforms/font-awesome.min.css">
+        <link rel="stylesheet" href="../../css/jforms/j-forms.css">
 
         <!-- Scripts -->
-        <script src="../js/jquery/jquery.1.11.1.min.js"></script>
-        <script src="../js/jforms/j-forms-modal.js"></script>
+        <script src="../../js/jquery/jquery.1.11.1.min.js"></script>
+        <script src="../../js/jforms/j-forms-modal.js"></script>
 
         <title>Boogey!</title>
     </head>

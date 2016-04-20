@@ -23,7 +23,7 @@ public class YeastTypeDaoTest {
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
 
-        // create a test grain and add them to the database
+        // create a test yeast and add them to the database
         testYeastType = new YeastTypeEntity();
         testYeastType.setName("Yeast Type 1");
         testYeastType.setUpdateDate(ts);
@@ -31,7 +31,7 @@ public class YeastTypeDaoTest {
 
         yeastTypeEntityID = me.addYeastTypeEntity(testYeastType);
 
-        // create a test grain and add them to the database
+        // create a test yeast and add them to the database
         testYeastType = new YeastTypeEntity();
         testYeastType.setName("Yeast Type 2");
         testYeastType.setUpdateDate(ts);
@@ -58,7 +58,7 @@ public class YeastTypeDaoTest {
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
 
-        // create a test grain and add them to the database
+        // create a test yeast and add them to the database
         testYeastType = new YeastTypeEntity();
         testYeastType.setName("Yeast Type 1");
         testYeastType.setUpdateDate(ts);
@@ -162,4 +162,31 @@ public class YeastTypeDaoTest {
         me.deleteYeastTypeEntity(testYeastType);
 
     }
+
+    @Test
+    public void testDeleteYeastTypeEntityById() throws Exception {
+
+        YeastTypeDao me = new YeastTypeDao();
+        YeastTypeEntity testYeastType = new YeastTypeEntity();
+        int yeastTypeEntityID;
+        Date now = new Date();
+        Timestamp ts = new Timestamp(now.getTime());
+
+        // create a test component and add them to the database
+        testYeastType = new YeastTypeEntity();
+        testYeastType.setName("Yeast Type 1");
+        testYeastType.setUpdateDate(ts);
+        testYeastType.setCreateDate(ts);
+
+        yeastTypeEntityID = me.addYeastTypeEntity(testYeastType);
+
+        // make sure the employee was added before proceeding
+        assertTrue("Expected a non-zero yeast type ID, got " + yeastTypeEntityID, yeastTypeEntityID > 0);
+
+        // delete the employee and verify that they are no longer in the database
+        me.deleteYeastTypeEntityById(yeastTypeEntityID);
+        assertNull(me.getYeastTypeEntity(yeastTypeEntityID));
+
+    }
+    
 }

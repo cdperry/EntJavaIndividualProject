@@ -162,4 +162,31 @@ public class HopFormTypeDaoTest {
         me.deleteHopFormTypeEntity(testHopFormType);
 
     }
+
+    @Test
+    public void testDeleteHopFormTypeEntityById() throws Exception {
+
+        HopFormTypeDao me = new HopFormTypeDao();
+        HopFormTypeEntity testHopFormType = new HopFormTypeEntity();
+        int hopFormTypeEntityID;
+        Date now = new Date();
+        Timestamp ts = new Timestamp(now.getTime());
+
+        // create a test component and add them to the database
+        testHopFormType = new HopFormTypeEntity();
+        testHopFormType.setName("Hop Form Type 1");
+        testHopFormType.setUpdateDate(ts);
+        testHopFormType.setCreateDate(ts);
+
+        hopFormTypeEntityID = me.addHopFormTypeEntity(testHopFormType);
+
+        // make sure the employee was added before proceeding
+        assertTrue("Expected a non-zero hop form type ID, got " + hopFormTypeEntityID, hopFormTypeEntityID > 0);
+
+        // delete the employee and verify that they are no longer in the database
+        me.deleteHopFormTypeEntityById(hopFormTypeEntityID);
+        assertNull(me.getHopFormTypeEntity(hopFormTypeEntityID));
+
+    }
+    
 }

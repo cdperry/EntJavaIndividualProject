@@ -150,6 +150,39 @@ public class HopTypeDao {
     }
 
     /**
+     * This method deletes the HopTypeEntity object from the database
+     * @param hopTypeId the ID of the hopTypeEntity to be deleted from the database
+     */
+    public void deleteHopTypeEntityById(int hopTypeId) {
+
+        Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+
+            tx = session.beginTransaction();
+            HopTypeEntity entityToDelete = (HopTypeEntity)session.get(HopTypeEntity.class, hopTypeId);
+            session.delete(entityToDelete);
+            tx.commit();
+            log.warn("Deleted hop type: " + entityToDelete + " with id of: " + hopTypeId);
+
+        } catch (HibernateException e) {
+
+            if (tx!=null) {
+                tx.rollback();
+            }
+
+            e.printStackTrace();
+
+        } finally {
+
+            session.close();
+
+        }
+
+    }
+    
+    /**
      * This method adds an hopTypeEntity to the database and returns the ID associated with the new record
      * @param hopTypeEntity the hopTypeEntity to be added to the database
      * @return int the hopTypeEntity ID of the added record

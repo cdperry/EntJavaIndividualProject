@@ -27,7 +27,7 @@ public class HopFormTypeDao {
         try {
 
             tx = session.beginTransaction();
-            hopForms = session.createQuery("FROM HopFormTypeEntity ORDER BY hopFormId").list();
+            hopForms = session.createQuery("FROM HopFormTypeEntity ORDER BY hopFormTypeId").list();
             tx.commit();
 
         } catch (HibernateException e) {
@@ -65,7 +65,7 @@ public class HopFormTypeDao {
             hopFormTypeEntity = (HopFormTypeEntity)session.get(HopFormTypeEntity.class, hopFormTypeEntityId);
             tx.commit();
             if (hopFormTypeEntity != null) {
-                log.warn("Retrieved hop form: " + hopFormTypeEntity + " with id of: " + hopFormTypeEntity.getHopFormId());
+                log.warn("Retrieved hop form: " + hopFormTypeEntity + " with id of: " + hopFormTypeEntity.getHopFormTypeId());
             }
         } catch (HibernateException e) {
 
@@ -99,7 +99,7 @@ public class HopFormTypeDao {
             tx = session.beginTransaction();
             session.update(hopFormTypeEntity);
             tx.commit();
-            log.warn("Updated hop form: " + hopFormTypeEntity + " with id of: " + hopFormTypeEntity.getHopFormId());
+            log.warn("Updated hop form: " + hopFormTypeEntity + " with id of: " + hopFormTypeEntity.getHopFormTypeId());
 
         } catch (HibernateException e) {
 
@@ -131,7 +131,7 @@ public class HopFormTypeDao {
             tx = session.beginTransaction();
             session.delete(hopFormTypeEntity);
             tx.commit();
-            log.warn("Deleted hop form: " + hopFormTypeEntity + " with id of: " + hopFormTypeEntity.getHopFormId());
+            log.warn("Deleted hop form: " + hopFormTypeEntity + " with id of: " + hopFormTypeEntity.getHopFormTypeId());
 
         } catch (HibernateException e) {
 
@@ -149,6 +149,39 @@ public class HopFormTypeDao {
 
     }
 
+    /**
+     * This method deletes the HopFormTypeEntity object from the database
+     * @param hopFormTypeId the ID of the hopFormTypeEntity to be deleted from the database
+     */
+    public void deleteHopFormTypeEntityById(int hopFormTypeId) {
+
+        Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+
+            tx = session.beginTransaction();
+            HopFormTypeEntity entityToDelete = (HopFormTypeEntity)session.get(HopFormTypeEntity.class, hopFormTypeId);
+            session.delete(entityToDelete);
+            tx.commit();
+            log.warn("Deleted grain type: " + entityToDelete + " with id of: " + hopFormTypeId);
+
+        } catch (HibernateException e) {
+
+            if (tx!=null) {
+                tx.rollback();
+            }
+
+            e.printStackTrace();
+
+        } finally {
+
+            session.close();
+
+        }
+
+    }
+    
     /**
      * This method adds an hopFormTypeEntity to the database and returns the ID associated with the new record
      * @param hopFormTypeEntity the hopFormTypeEntity to be added to the database

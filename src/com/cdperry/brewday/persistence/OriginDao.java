@@ -65,7 +65,7 @@ public class OriginDao {
             originEntity = (OriginEntity)session.get(OriginEntity.class, originEntityId);
             tx.commit();
             if (originEntity != null) {
-                log.warn("Retrieved hop type: " + originEntity + " with id of: " + originEntity.getOriginId());
+                log.warn("Retrieved origin type: " + originEntity + " with id of: " + originEntity.getOriginId());
             }
         } catch (HibernateException e) {
 
@@ -99,7 +99,7 @@ public class OriginDao {
             tx = session.beginTransaction();
             session.update(originEntity);
             tx.commit();
-            log.warn("Updated hop type: " + originEntity + " with id of: " + originEntity.getOriginId());
+            log.warn("Updated origin type: " + originEntity + " with id of: " + originEntity.getOriginId());
 
         } catch (HibernateException e) {
 
@@ -131,7 +131,7 @@ public class OriginDao {
             tx = session.beginTransaction();
             session.delete(originEntity);
             tx.commit();
-            log.warn("Deleted hop type: " + originEntity + " with id of: " + originEntity.getOriginId());
+            log.warn("Deleted origin type: " + originEntity + " with id of: " + originEntity.getOriginId());
 
         } catch (HibernateException e) {
 
@@ -149,6 +149,39 @@ public class OriginDao {
 
     }
 
+    /**
+     * This method deletes the OriginEntity object from the database
+     * @param originId the ID of the originEntity to be deleted from the database
+     */
+    public void deleteOriginEntityById(int originId) {
+
+        Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+
+            tx = session.beginTransaction();
+            OriginEntity entityToDelete = (OriginEntity)session.get(OriginEntity.class, originId);
+            session.delete(entityToDelete);
+            tx.commit();
+            log.warn("Deleted origin type: " + entityToDelete + " with id of: " + originId);
+
+        } catch (HibernateException e) {
+
+            if (tx!=null) {
+                tx.rollback();
+            }
+
+            e.printStackTrace();
+
+        } finally {
+
+            session.close();
+
+        }
+
+    }
+    
     /**
      * This method adds an originEntity to the database and returns the ID associated with the new record
      * @param originEntity the originEntity to be added to the database

@@ -23,7 +23,7 @@ public class SupplierTypeDaoTest {
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
 
-        // create a test grain and add them to the database
+        // create a test supplier and add them to the database
         testSupplierType = new SupplierTypeEntity();
         testSupplierType.setName("Supplier Type 1");
         testSupplierType.setUpdateDate(ts);
@@ -31,7 +31,7 @@ public class SupplierTypeDaoTest {
 
         supplierTypeEntityID = me.addSupplierTypeEntity(testSupplierType);
 
-        // create a test grain and add them to the database
+        // create a test supplier and add them to the database
         testSupplierType = new SupplierTypeEntity();
         testSupplierType.setName("Supplier Type 2");
         testSupplierType.setUpdateDate(ts);
@@ -58,7 +58,7 @@ public class SupplierTypeDaoTest {
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
 
-        // create a test grain and add them to the database
+        // create a test supplier and add them to the database
         testSupplierType = new SupplierTypeEntity();
         testSupplierType.setName("Supplier Type 1");
         testSupplierType.setUpdateDate(ts);
@@ -162,4 +162,31 @@ public class SupplierTypeDaoTest {
         me.deleteSupplierTypeEntity(testSupplierType);
 
     }
+
+    @Test
+    public void testDeleteSupplierTypeEntityById() throws Exception {
+
+        SupplierTypeDao me = new SupplierTypeDao();
+        SupplierTypeEntity testSupplierType = new SupplierTypeEntity();
+        int supplierTypeEntityID;
+        Date now = new Date();
+        Timestamp ts = new Timestamp(now.getTime());
+
+        // create a test component and add them to the database
+        testSupplierType = new SupplierTypeEntity();
+        testSupplierType.setName("Supplier Type 1");
+        testSupplierType.setUpdateDate(ts);
+        testSupplierType.setCreateDate(ts);
+
+        supplierTypeEntityID = me.addSupplierTypeEntity(testSupplierType);
+
+        // make sure the employee was added before proceeding
+        assertTrue("Expected a non-zero supplier type ID, got " + supplierTypeEntityID, supplierTypeEntityID > 0);
+
+        // delete the employee and verify that they are no longer in the database
+        me.deleteSupplierTypeEntityById(supplierTypeEntityID);
+        assertNull(me.getSupplierTypeEntity(supplierTypeEntityID));
+
+    }
+    
 }

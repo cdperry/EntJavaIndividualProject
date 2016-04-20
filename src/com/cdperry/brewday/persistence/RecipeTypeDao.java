@@ -150,6 +150,39 @@ public class RecipeTypeDao {
     }
 
     /**
+     * This method deletes the RecipeTypeEntity object from the database
+     * @param recipeTypeId the ID of the recipeTypeEntity to be deleted from the database
+     */
+    public void deleteRecipeTypeEntityById(int recipeTypeId) {
+
+        Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+
+            tx = session.beginTransaction();
+            RecipeTypeEntity entityToDelete = (RecipeTypeEntity)session.get(RecipeTypeEntity.class, recipeTypeId);
+            session.delete(entityToDelete);
+            tx.commit();
+            log.warn("Deleted recipe type: " + entityToDelete + " with id of: " + recipeTypeId);
+
+        } catch (HibernateException e) {
+
+            if (tx!=null) {
+                tx.rollback();
+            }
+
+            e.printStackTrace();
+
+        } finally {
+
+            session.close();
+
+        }
+
+    }
+    
+    /**
      * This method adds an recipeTypeEntity to the database and returns the ID associated with the new record
      * @param recipeTypeEntity the recipeTypeEntity to be added to the database
      * @return int the recipeTypeEntity ID of the added record

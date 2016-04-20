@@ -150,6 +150,39 @@ public class YeastFlocTypeDao {
     }
 
     /**
+     * This method deletes the YeastFlocTypeEntity object from the database
+     * @param yeastFlocTypeId the ID of the yeastFlocTypeEntity to be deleted from the database
+     */
+    public void deleteYeastFlocTypeEntityById(int yeastFlocTypeId) {
+
+        Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+
+            tx = session.beginTransaction();
+            YeastFlocTypeEntity entityToDelete = (YeastFlocTypeEntity)session.get(YeastFlocTypeEntity.class, yeastFlocTypeId);
+            session.delete(entityToDelete);
+            tx.commit();
+            log.warn("Deleted yeast flocculation type: " + entityToDelete + " with id of: " + yeastFlocTypeId);
+
+        } catch (HibernateException e) {
+
+            if (tx!=null) {
+                tx.rollback();
+            }
+
+            e.printStackTrace();
+
+        } finally {
+
+            session.close();
+
+        }
+
+    }
+    
+    /**
      * This method adds an yeastFlocTypeEntity to the database and returns the ID associated with the new record
      * @param yeastFlocTypeEntity the yeastFlocTypeEntity to be added to the database
      * @return int the yeastFlocTypeEntity ID of the added record

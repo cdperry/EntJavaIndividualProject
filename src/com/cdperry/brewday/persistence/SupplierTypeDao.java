@@ -150,6 +150,39 @@ public class SupplierTypeDao {
     }
 
     /**
+     * This method deletes the SupplierTypeEntity object from the database
+     * @param supplierTypeId the ID of the supplierTypeEntity to be deleted from the database
+     */
+    public void deleteSupplierTypeEntityById(int supplierTypeId) {
+
+        Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+
+            tx = session.beginTransaction();
+            SupplierTypeEntity entityToDelete = (SupplierTypeEntity)session.get(SupplierTypeEntity.class, supplierTypeId);
+            session.delete(entityToDelete);
+            tx.commit();
+            log.warn("Deleted supplier type: " + entityToDelete + " with id of: " + supplierTypeId);
+
+        } catch (HibernateException e) {
+
+            if (tx!=null) {
+                tx.rollback();
+            }
+
+            e.printStackTrace();
+
+        } finally {
+
+            session.close();
+
+        }
+
+    }
+    
+    /**
      * This method adds an supplierTypeEntity to the database and returns the ID associated with the new record
      * @param supplierTypeEntity the supplierTypeEntity to be added to the database
      * @return int the supplierTypeEntity ID of the added record

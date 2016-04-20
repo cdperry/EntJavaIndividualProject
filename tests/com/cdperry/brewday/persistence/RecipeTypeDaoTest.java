@@ -23,7 +23,7 @@ public class RecipeTypeDaoTest {
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
 
-        // create a test grain and add them to the database
+        // create a test recipe and add them to the database
         testRecipeType = new RecipeTypeEntity();
         testRecipeType.setName("Recipe Type 1");
 
@@ -32,7 +32,7 @@ public class RecipeTypeDaoTest {
 
         recipeTypeEntityID = me.addRecipeTypeEntity(testRecipeType);
 
-        // create a test grain and add them to the database
+        // create a test recipe and add them to the database
         testRecipeType = new RecipeTypeEntity();
         testRecipeType.setName("Recipe Type 2");
         testRecipeType.setUpdateDate(ts);
@@ -59,7 +59,7 @@ public class RecipeTypeDaoTest {
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
 
-        // create a test grain and add them to the database
+        // create a test recipe and add them to the database
         testRecipeType = new RecipeTypeEntity();
         testRecipeType.setName("Recipe Type 1");
         testRecipeType.setUpdateDate(ts);
@@ -163,4 +163,31 @@ public class RecipeTypeDaoTest {
         me.deleteRecipeTypeEntity(testRecipeType);
 
     }
+
+    @Test
+    public void testDeleteRecipeTypeEntityById() throws Exception {
+
+        RecipeTypeDao me = new RecipeTypeDao();
+        RecipeTypeEntity testRecipeType = new RecipeTypeEntity();
+        int recipeTypeEntityID;
+        Date now = new Date();
+        Timestamp ts = new Timestamp(now.getTime());
+
+        // create a test component and add them to the database
+        testRecipeType = new RecipeTypeEntity();
+        testRecipeType.setName("Recipe Type 1");
+        testRecipeType.setUpdateDate(ts);
+        testRecipeType.setCreateDate(ts);
+
+        recipeTypeEntityID = me.addRecipeTypeEntity(testRecipeType);
+
+        // make sure the employee was added before proceeding
+        assertTrue("Expected a non-zero recipe type ID, got " + recipeTypeEntityID, recipeTypeEntityID > 0);
+
+        // delete the employee and verify that they are no longer in the database
+        me.deleteRecipeTypeEntityById(recipeTypeEntityID);
+        assertNull(me.getRecipeTypeEntity(recipeTypeEntityID));
+
+    }
+    
 }

@@ -23,7 +23,7 @@ public class UomTypeDaoTest {
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
 
-        // create a test grain and add them to the database
+        // create a test uom and add them to the database
         testUomType = new UomTypeEntity();
         testUomType.setName("Uom Type 1");
         testUomType.setUpdateDate(ts);
@@ -31,7 +31,7 @@ public class UomTypeDaoTest {
 
         uomTypeEntityID = me.addUomTypeEntity(testUomType);
 
-        // create a test grain and add them to the database
+        // create a test uom and add them to the database
         testUomType = new UomTypeEntity();
         testUomType.setName("Uom Type 2");
         testUomType.setUpdateDate(ts);
@@ -58,7 +58,7 @@ public class UomTypeDaoTest {
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
 
-        // create a test grain and add them to the database
+        // create a test uom and add them to the database
         testUomType = new UomTypeEntity();
         testUomType.setName("Uom Type 1");
         testUomType.setUpdateDate(ts);
@@ -162,4 +162,31 @@ public class UomTypeDaoTest {
         me.deleteUomTypeEntity(testUomType);
 
     }
+
+    @Test
+    public void testDeleteUomTypeEntityById() throws Exception {
+
+        UomTypeDao me = new UomTypeDao();
+        UomTypeEntity testUomType = new UomTypeEntity();
+        int uomTypeEntityID;
+        Date now = new Date();
+        Timestamp ts = new Timestamp(now.getTime());
+
+        // create a test component and add them to the database
+        testUomType = new UomTypeEntity();
+        testUomType.setName("Uom Type 1");
+        testUomType.setUpdateDate(ts);
+        testUomType.setCreateDate(ts);
+
+        uomTypeEntityID = me.addUomTypeEntity(testUomType);
+
+        // make sure the employee was added before proceeding
+        assertTrue("Expected a non-zero uom type ID, got " + uomTypeEntityID, uomTypeEntityID > 0);
+
+        // delete the employee and verify that they are no longer in the database
+        me.deleteUomTypeEntityById(uomTypeEntityID);
+        assertNull(me.getUomTypeEntity(uomTypeEntityID));
+
+    }
+    
 }

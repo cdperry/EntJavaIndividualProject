@@ -150,6 +150,39 @@ public class UseTypeDao {
     }
 
     /**
+     * This method deletes the UseTypeEntity object from the database
+     * @param useTypeId the ID of the useTypeEntity to be deleted from the database
+     */
+    public void deleteUseTypeEntityById(int useTypeId) {
+
+        Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+
+            tx = session.beginTransaction();
+            UseTypeEntity entityToDelete = (UseTypeEntity)session.get(UseTypeEntity.class, useTypeId);
+            session.delete(entityToDelete);
+            tx.commit();
+            log.warn("Deleted use type: " + entityToDelete + " with id of: " + useTypeId);
+
+        } catch (HibernateException e) {
+
+            if (tx!=null) {
+                tx.rollback();
+            }
+
+            e.printStackTrace();
+
+        } finally {
+
+            session.close();
+
+        }
+
+    }
+    
+    /**
      * This method adds an useTypeEntity to the database and returns the ID associated with the new record
      * @param useTypeEntity the useTypeEntity to be added to the database
      * @return int the useTypeEntity ID of the added record
