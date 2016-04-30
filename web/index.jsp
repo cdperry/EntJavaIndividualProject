@@ -12,6 +12,7 @@
     </head>
     <body>
         <p>Hello, world.</p>
+        <p>Go to <a href="/main">main page</a></p>
         <p>Go to <a href="/listGrainTypes">grain types</a><p>
         <p>Go to <a href="/listHopTypes">hop types</a><p>
         <p>Go to <a href="/listHopFormTypes">hop form types</a><p>

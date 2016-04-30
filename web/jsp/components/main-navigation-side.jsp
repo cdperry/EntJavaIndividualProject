@@ -3,6 +3,7 @@
 <div class="navbar-default sidebar" role="navigation">
     <div class="sidebar-nav navbar-collapse">
         <ul class="nav" id="side-menu">
+            <%--
             <li class="sidebar-search">
                 <div class="input-group custom-search-form">
                     <input type="text" class="form-control" placeholder="Search...">
@@ -14,9 +15,23 @@
                 </div>
                 <!-- /input-group -->
             </li>
+            --%>
             <li>
-                <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                <a href="/main"><i class="fa fa-beer fa-fw"></i> Home</a>
             </li>
+            <li>
+                <a href="/recipes"><i class="fa fa-edit fa-fw"></i> Recipes</a>
+            </li>
+            <li>
+                <a href="/ingredients"><i class="fa fa-cutlery fa-fw"></i> Ingredients</a>
+            </li>
+            <li>
+                <a href="/equipment"><i class="fa fa-briefcase fa-fw"></i> Equipment</a>
+            </li>
+            <li>
+                <a href="/utilities"><i class="fa fa-balance-scale fa-fw"></i> Utilities</a>
+            </li>
+            <%--
             <li>
                 <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
@@ -101,6 +116,7 @@
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
+            --%>
         </ul>
     </div>
     <!-- /.sidebar-collapse -->

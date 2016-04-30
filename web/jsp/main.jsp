@@ -13,8 +13,7 @@
 
             <div id="page-wrapper">
 
-                <c:import url="components/hop-type-body.jsp" />
-                <c:import url="components/delete-modal-dialog.jsp" />
+                <c:import url="components/main-body.jsp" />
 
             </div>
 
@@ -26,7 +25,7 @@
             $('#myModal').on('show.bs.modal', function (event) {
                 var docElement = $(event.relatedTarget) // Element that triggered the modal
                 var id = docElement.data('id') // Extract info from data-* attributes
-                $("#confirmedDelete").attr('href', '/deleteHopType?hopTypeId=' + id)
+                $("#confirmedDelete").attr('href', '/deleteGrainType?grainTypeId=' + id)
             })
         </script>
 
