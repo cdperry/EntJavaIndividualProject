@@ -21,33 +21,31 @@ import java.io.IOException;
 )
 public class HopTypeDeleteActionServlet extends HttpServlet {
 
-    private HopTypeDao dao;
+    private HopTypeDao hopTypeDao;
 
     public HopTypeDeleteActionServlet() {
         super();
-        dao = new HopTypeDao();
+        hopTypeDao = new HopTypeDao();
     }
 
-    /*
-        TODO: Change the DELETE method to a doPost
-     */
-
     /**
-     *  Handles HTTP GET requests.
+     *  This method handles HTTP POST requests.
      *
-     *@param  request                   the HttpServletRequest object
-     *@param  response                   the HttpServletResponse object
-     *@exception  ServletException  if there is a Servlet failure
-     *@exception  IOException       if there is an IO failure
+     *  @param  request                   the HttpServletRequest object
+     *  @param  response                   the HttpServletResponse object
+     *  @exception  ServletException  if there is a Servlet failure
+     *  @exception  IOException       if there is an IO failure
      */
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String url = "/listHopTypes";
         int hopTypeId = Integer.parseInt(request.getParameter("hopTypeId"));
 
-        dao.deleteHopTypeEntityById(hopTypeId);
+        if (hopTypeDao.getHopTypeEntity(hopTypeId) != null) {
+            hopTypeDao.deleteHopTypeEntityById(hopTypeId);
+        }
 
-        request.setAttribute("hopTypes", dao.getAllHopTypes());
+        request.setAttribute("hopTypes", hopTypeDao.getAllHopTypes());
 
         response.sendRedirect(url);
 

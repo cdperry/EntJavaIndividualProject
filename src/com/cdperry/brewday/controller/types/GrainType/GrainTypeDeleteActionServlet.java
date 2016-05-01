@@ -19,29 +19,31 @@ import javax.servlet.annotation.*;
 )
 public class GrainTypeDeleteActionServlet extends HttpServlet {
 
-    private GrainTypeDao dao;
+    private GrainTypeDao grainTypeDao;
 
     public GrainTypeDeleteActionServlet() {
         super();
-        dao = new GrainTypeDao();
+        grainTypeDao = new GrainTypeDao();
     }
 
     /**
-     *  Handles HTTP GET requests.
+     *  This method handles HTTP POST requests.
      *
-     *@param  request                   the HttpServletRequest object
-     *@param  response                   the HttpServletResponse object
-     *@exception  ServletException  if there is a Servlet failure
-     *@exception  IOException       if there is an IO failure
+     *  @param  request                   the HttpServletRequest object
+     *  @param  response                   the HttpServletResponse object
+     *  @exception  ServletException  if there is a Servlet failure
+     *  @exception  IOException       if there is an IO failure
      */
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String url = "/listGrainTypes";
         int grainTypeId = Integer.parseInt(request.getParameter("grainTypeId"));
 
-        dao.deleteGrainTypeEntityById(grainTypeId);
+        if (grainTypeDao.getGrainTypeEntity(grainTypeId) != null) {
+            grainTypeDao.deleteGrainTypeEntityById(grainTypeId);
+        }
 
-        request.setAttribute("grainTypes", dao.getAllGrainTypes());
+        request.setAttribute("grainTypes", grainTypeDao.getAllGrainTypes());
 
         response.sendRedirect(url);
 

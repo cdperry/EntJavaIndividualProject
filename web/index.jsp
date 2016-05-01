@@ -22,7 +22,7 @@
         <p>Go to <a href="/listUomTypes">UOM types</a><p>
         <p>Go to <a href="/listUseTypes">use types</a><p>
         <p>Go to <a href="/listYeastFlocTypes">yeast flocculation types</a><p>
-        <p>Go to <a href="/listYeastForms">yeast forms</a><p>
+        <p>Go to <a href="/listYeastFormTypes">yeast forms</a><p>
         <p>Go to <a href="/listYeastTypes">yeast types</a><p>
     </body>
 </html>

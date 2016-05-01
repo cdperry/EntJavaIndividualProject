@@ -15,7 +15,7 @@
             <thead>
             <tr>
                 <%--<th>Recipe Type ID</th>--%>
-                <th>Recipe Type Name</th>
+                <th>Recipe Type</th>
                 <th>Create Date</th>
                 <th>Update Date</th>
                 <th colspan=2 class="text-center">Action</th>
@@ -24,7 +24,7 @@
             <tbody>
             <c:forEach items="${recipeTypes}" var="recipeType">
                 <tr>
-                        <%--<td><c:out value="${recipeType.recipeTypeId}" /></td>--%>
+                    <%--<td><c:out value="${recipeType.recipeTypeId}" /></td>--%>
                     <td><c:out value="${recipeType.name}" /></td>
                     <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${recipeType.createDate}" /></td>
                     <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${recipeType.updateDate}" /></td>

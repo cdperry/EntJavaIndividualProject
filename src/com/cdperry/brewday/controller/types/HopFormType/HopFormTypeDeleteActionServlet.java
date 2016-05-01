@@ -21,29 +21,31 @@ import java.io.IOException;
 )
 public class HopFormTypeDeleteActionServlet extends HttpServlet {
 
-    private HopFormTypeDao dao;
+    private HopFormTypeDao hopFormTypeDao;
 
     public HopFormTypeDeleteActionServlet() {
         super();
-        dao = new HopFormTypeDao();
+        hopFormTypeDao = new HopFormTypeDao();
     }
 
     /**
-     *  Handles HTTP GET requests.
+     *  This method handles HTTP POST requests.
      *
-     *@param  request                   the HttpServletRequest object
-     *@param  response                   the HttpServletResponse object
-     *@exception  ServletException  if there is a Servlet failure
-     *@exception  IOException       if there is an IO failure
+     *  @param  request                   the HttpServletRequest object
+     *  @param  response                   the HttpServletResponse object
+     *  @exception  ServletException  if there is a Servlet failure
+     *  @exception  IOException       if there is an IO failure
      */
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String url = "/listHopFormTypes";
         int hopFormTypeId = Integer.parseInt(request.getParameter("hopFormTypeId"));
 
-        dao.deleteHopFormTypeEntityById(hopFormTypeId);
+        if (hopFormTypeDao.getHopFormTypeEntity(hopFormTypeId) != null) {
+            hopFormTypeDao.deleteHopFormTypeEntityById(hopFormTypeId);
+        }
 
-        request.setAttribute("hopFormTypes", dao.getAllHopFormTypes());
+        request.setAttribute("hopFormTypes", hopFormTypeDao.getAllHopFormTypes());
 
         response.sendRedirect(url);
 

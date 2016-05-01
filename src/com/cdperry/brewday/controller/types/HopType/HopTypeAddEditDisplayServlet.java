@@ -42,19 +42,25 @@ public class HopTypeAddEditDisplayServlet extends HttpServlet {
 
         String url = "/jsp/editHopType.jsp";
 
-        if (request.getParameter("action").equals("insert")) {
-            request.setAttribute("actionType", "insert");
-        } else {
-            int hopTypeId = Integer.parseInt(request.getParameter("hopTypeId"));
-            HopTypeEntity hopType = hopTypeDao.getHopTypeEntity(hopTypeId);
-            request.setAttribute("hopType", hopType);
-            request.setAttribute("actionType", "edit");
-        }
-
         RequestDispatcher dispatcher
                 = getServletContext().getRequestDispatcher(url);
 
-        dispatcher.forward(request, response);
+        if (request.getParameter("action").equals("insert")) {
+            request.setAttribute("actionType", "insert");
+            dispatcher.forward(request, response);
+        } else {
+            int hopTypeId = Integer.parseInt(request.getParameter("hopTypeId"));
+            HopTypeEntity hopType = hopTypeDao.getHopTypeEntity(hopTypeId);
+            if (hopType != null) {
+                request.setAttribute("hopType", hopType);
+                request.setAttribute("actionType", "edit");
+                dispatcher.forward(request, response);
+            } else {
+                url = "/listHopTypes";
+                response.sendRedirect(url);
+            }
+        }
+
 
     }
 

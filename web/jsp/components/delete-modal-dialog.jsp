@@ -12,12 +12,21 @@
                     <div class="modal-body">
                         Are you sure you want to delete this record?  This action is irreversible.
                     </div>
+                    <%--
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         <a id="confirmedDelete" href="#"
                            type="button" class="btn btn-primary">
                             Delete
                         </a>
+                    </div>
+                    --%>
+                    <div class="modal-footer">
+                        <form class="form-horizontal" id="frmConfirmDelete" method="POST" action='#' name="frmConfirmDelete">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" name="buttonAction"
+                                    value="submit">Delete</button>
+                        </form>
                     </div>
                 </div>
             </div>

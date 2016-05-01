@@ -11,7 +11,7 @@ import java.io.IOException;
 
 /**
  *  <p>
- *  This servlet is used to delete a UOM type and then display the list of remaining UOM types
+ *  This servlet is used to delete a uom type and then display the list of remaining uom types
  *  </p>
  *  @author Chris Perry
  */
@@ -21,29 +21,31 @@ import java.io.IOException;
 )
 public class UomTypeDeleteActionServlet extends HttpServlet {
 
-    private UomTypeDao dao;
+    private UomTypeDao uomTypeDao;
 
     public UomTypeDeleteActionServlet() {
         super();
-        dao = new UomTypeDao();
+        uomTypeDao = new UomTypeDao();
     }
 
     /**
-     *  Handles HTTP GET requests.
+     *  This method handles HTTP POST requests.
      *
-     *@param  request                   the HttpServletRequest object
-     *@param  response                   the HttpServletResponse object
-     *@exception  ServletException  if there is a Servlet failure
-     *@exception  IOException       if there is an IO failure
+     *  @param  request                   the HttpServletRequest object
+     *  @param  response                   the HttpServletResponse object
+     *  @exception  ServletException  if there is a Servlet failure
+     *  @exception  IOException       if there is an IO failure
      */
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String url = "/listUomTypes";
-        int uomTypeId = Integer.parseInt(request.getParameter("uomTypeId"));
+        int uomId = Integer.parseInt(request.getParameter("uomId"));
 
-        dao.deleteUomTypeEntityById(uomTypeId);
+        if (uomTypeDao.getUomTypeEntity(uomId) != null) {
+            uomTypeDao.deleteUomTypeEntityById(uomId);
+        }
 
-        request.setAttribute("uomTypes", dao.getAllUomTypes());
+        request.setAttribute("uomTypes", uomTypeDao.getAllUomTypes());
 
         response.sendRedirect(url);
 

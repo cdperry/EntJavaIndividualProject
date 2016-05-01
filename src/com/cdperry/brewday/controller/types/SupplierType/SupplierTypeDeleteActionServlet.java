@@ -21,29 +21,31 @@ import java.io.IOException;
 )
 public class SupplierTypeDeleteActionServlet extends HttpServlet {
 
-    private SupplierTypeDao dao;
+    private SupplierTypeDao supplierTypeDao;
 
     public SupplierTypeDeleteActionServlet() {
         super();
-        dao = new SupplierTypeDao();
+        supplierTypeDao = new SupplierTypeDao();
     }
 
     /**
-     *  Handles HTTP GET requests.
+     *  This method handles HTTP POST requests.
      *
-     *@param  request                   the HttpServletRequest object
-     *@param  response                   the HttpServletResponse object
-     *@exception  ServletException  if there is a Servlet failure
-     *@exception  IOException       if there is an IO failure
+     *  @param  request                   the HttpServletRequest object
+     *  @param  response                   the HttpServletResponse object
+     *  @exception  ServletException  if there is a Servlet failure
+     *  @exception  IOException       if there is an IO failure
      */
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String url = "/listSupplierTypes";
         int supplierTypeId = Integer.parseInt(request.getParameter("supplierTypeId"));
 
-        dao.deleteSupplierTypeEntityById(supplierTypeId);
+        if (supplierTypeDao.getSupplierTypeEntity(supplierTypeId) != null) {
+            supplierTypeDao.deleteSupplierTypeEntityById(supplierTypeId);
+        }
 
-        request.setAttribute("supplierTypes", dao.getAllSupplierTypes());
+        request.setAttribute("supplierTypes", supplierTypeDao.getAllSupplierTypes());
 
         response.sendRedirect(url);
 

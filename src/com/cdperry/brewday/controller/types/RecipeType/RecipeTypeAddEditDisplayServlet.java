@@ -42,19 +42,28 @@ public class RecipeTypeAddEditDisplayServlet extends HttpServlet {
 
         String url = "/jsp/editRecipeType.jsp";
 
-        if (request.getParameter("action").equals("insert")) {
-            request.setAttribute("actionType", "insert");
-        } else {
-            int recipeTypeId = Integer.parseInt(request.getParameter("recipeTypeId"));
-            RecipeTypeEntity recipeType = recipeTypeDao.getRecipeTypeEntity(recipeTypeId);
-            request.setAttribute("recipeType", recipeType);
-            request.setAttribute("actionType", "edit");
-        }
-
         RequestDispatcher dispatcher
                 = getServletContext().getRequestDispatcher(url);
 
-        dispatcher.forward(request, response);
+        if (request.getParameter("action").equals("insert")) {
+            request.setAttribute("actionType", "insert");
+            dispatcher.forward(request, response);
+        } else {
+            int recipeTypeId = Integer.parseInt(request.getParameter("recipeTypeId"));
+            RecipeTypeEntity recipeType = recipeTypeDao.getRecipeTypeEntity(recipeTypeId);
+            if (recipeType != null) {
+                request.setAttribute("recipeType", recipeType);
+                request.setAttribute("actionType", "edit");
+                dispatcher.forward(request, response);
+            } else {
+                url = "/listRecipeTypes";
+                response.sendRedirect(url);
+            }
+        }
+
+
+
+
 
     }
 

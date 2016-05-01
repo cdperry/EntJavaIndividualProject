@@ -42,19 +42,28 @@ public class GrainTypeAddEditDisplayServlet extends HttpServlet {
 
         String url = "/jsp/editGrainType.jsp";
 
-        if (request.getParameter("action").equals("insert")) {
-            request.setAttribute("actionType", "insert");
-        } else {
-            int grainTypeId = Integer.parseInt(request.getParameter("grainTypeId"));
-            GrainTypeEntity grainType = grainTypeDao.getGrainTypeEntity(grainTypeId);
-            request.setAttribute("grainType", grainType);
-            request.setAttribute("actionType", "edit");
-        }
-
         RequestDispatcher dispatcher
                 = getServletContext().getRequestDispatcher(url);
 
-        dispatcher.forward(request, response);
+        if (request.getParameter("action").equals("insert")) {
+            request.setAttribute("actionType", "insert");
+            dispatcher.forward(request, response);
+        } else {
+            int grainTypeId = Integer.parseInt(request.getParameter("grainTypeId"));
+            GrainTypeEntity grainType = grainTypeDao.getGrainTypeEntity(grainTypeId);
+            if (grainType != null) {
+                request.setAttribute("grainType", grainType);
+                request.setAttribute("actionType", "edit");
+                dispatcher.forward(request, response);
+            } else {
+                url = "/listGrainTypes";
+                response.sendRedirect(url);
+            }
+        }
+
+
+
+
 
     }
 

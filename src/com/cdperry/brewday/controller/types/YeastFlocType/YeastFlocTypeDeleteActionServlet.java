@@ -11,8 +11,7 @@ import java.io.IOException;
 
 /**
  *  <p>
- *  This servlet is used to delete a Yeast Flocculation type and then display the list of
- *  remaining Yeast Flocculation types
+ *  This servlet is used to delete a yeastFloc type and then display the list of remaining yeastFloc types
  *  </p>
  *  @author Chris Perry
  */
@@ -22,29 +21,31 @@ import java.io.IOException;
 )
 public class YeastFlocTypeDeleteActionServlet extends HttpServlet {
 
-    private YeastFlocTypeDao dao;
+    private YeastFlocTypeDao yeastFlocTypeDao;
 
     public YeastFlocTypeDeleteActionServlet() {
         super();
-        dao = new YeastFlocTypeDao();
+        yeastFlocTypeDao = new YeastFlocTypeDao();
     }
 
     /**
-     *  Handles HTTP GET requests.
+     *  This method handles HTTP POST requests.
      *
-     *@param  request                   the HttpServletRequest object
-     *@param  response                   the HttpServletResponse object
-     *@exception  ServletException  if there is a Servlet failure
-     *@exception  IOException       if there is an IO failure
+     *  @param  request                   the HttpServletRequest object
+     *  @param  response                   the HttpServletResponse object
+     *  @exception  ServletException  if there is a Servlet failure
+     *  @exception  IOException       if there is an IO failure
      */
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String url = "/listYeastFlocTypes";
         int yeastFlocTypeId = Integer.parseInt(request.getParameter("yeastFlocTypeId"));
 
-        dao.deleteYeastFlocTypeEntityById(yeastFlocTypeId);
+        if (yeastFlocTypeDao.getYeastFlocTypeEntity(yeastFlocTypeId) != null) {
+            yeastFlocTypeDao.deleteYeastFlocTypeEntityById(yeastFlocTypeId);
+        }
 
-        request.setAttribute("yeastFlocTypes", dao.getAllYeastFlocTypes());
+        request.setAttribute("yeastFlocTypes", yeastFlocTypeDao.getAllYeastFlocTypes());
 
         response.sendRedirect(url);
 

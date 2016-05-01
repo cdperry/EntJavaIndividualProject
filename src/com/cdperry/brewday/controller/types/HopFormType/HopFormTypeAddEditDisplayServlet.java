@@ -42,19 +42,24 @@ public class HopFormTypeAddEditDisplayServlet extends HttpServlet {
 
         String url = "/jsp/editHopFormType.jsp";
 
-        if (request.getParameter("action").equals("insert")) {
-            request.setAttribute("actionType", "insert");
-        } else {
-            int hopFormTypeId = Integer.parseInt(request.getParameter("hopFormTypeId"));
-            HopFormTypeEntity hopFormType = hopFormTypeDao.getHopFormTypeEntity(hopFormTypeId);
-            request.setAttribute("hopFormType", hopFormType);
-            request.setAttribute("actionType", "edit");
-        }
-
         RequestDispatcher dispatcher
                 = getServletContext().getRequestDispatcher(url);
 
-        dispatcher.forward(request, response);
+        if (request.getParameter("action").equals("insert")) {
+            request.setAttribute("actionType", "insert");
+            dispatcher.forward(request, response);
+        } else {
+            int hopFormTypeId = Integer.parseInt(request.getParameter("hopFormTypeId"));
+            HopFormTypeEntity hopFormType = hopFormTypeDao.getHopFormTypeEntity(hopFormTypeId);
+            if (hopFormType != null) {
+                request.setAttribute("hopFormType", hopFormType);
+                request.setAttribute("actionType", "edit");
+                dispatcher.forward(request, response);
+            } else {
+                url = "/listHopFormTypes";
+                response.sendRedirect(url);
+            }
+        }
 
     }
 

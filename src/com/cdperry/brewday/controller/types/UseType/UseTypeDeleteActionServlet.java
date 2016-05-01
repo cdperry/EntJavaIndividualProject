@@ -21,29 +21,31 @@ import java.io.IOException;
 )
 public class UseTypeDeleteActionServlet extends HttpServlet {
 
-    private UseTypeDao dao;
+    private UseTypeDao useTypeDao;
 
     public UseTypeDeleteActionServlet() {
         super();
-        dao = new UseTypeDao();
+        useTypeDao = new UseTypeDao();
     }
 
     /**
-     *  Handles HTTP GET requests.
+     *  This method handles HTTP POST requests.
      *
-     *@param  request                   the HttpServletRequest object
-     *@param  response                   the HttpServletResponse object
-     *@exception  ServletException  if there is a Servlet failure
-     *@exception  IOException       if there is an IO failure
+     *  @param  request                   the HttpServletRequest object
+     *  @param  response                   the HttpServletResponse object
+     *  @exception  ServletException  if there is a Servlet failure
+     *  @exception  IOException       if there is an IO failure
      */
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String url = "/listUseTypes";
         int useTypeId = Integer.parseInt(request.getParameter("useTypeId"));
 
-        dao.deleteUseTypeEntityById(useTypeId);
+        if (useTypeDao.getUseTypeEntity(useTypeId) != null) {
+            useTypeDao.deleteUseTypeEntityById(useTypeId);
+        }
 
-        request.setAttribute("useTypes", dao.getAllUseTypes());
+        request.setAttribute("useTypes", useTypeDao.getAllUseTypes());
 
         response.sendRedirect(url);
 

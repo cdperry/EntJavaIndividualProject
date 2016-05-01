@@ -46,7 +46,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="createDate" class="col-sm-2 control-label">ID</label>
+                <label for="createDate" class="col-sm-2 control-label">Create Date</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" readonly="readonly" id="createDate"
                            name="createDate"
@@ -55,7 +55,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="updateDate" class="col-sm-2 control-label">ID</label>
+                <label for="updateDate" class="col-sm-2 control-label">Update Date</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" readonly="readonly" id="updateDate"
                            name="updateDate"
@@ -75,9 +75,9 @@
                     </c:choose>
                     <%--<button type="submit" class="btn btn-default" name="button">${buttonText}</button>--%>
                     <button type="submit" class="btn btn-default" name="buttonAction"
-                            value="submit">${buttonText}</button>
-                    <button type="submit" class="btn btn-default" name="buttonAction"
                             value="cancel">Cancel</button>
+                    <button type="submit" class="btn btn-primary" name="buttonAction"
+                            value="submit">${buttonText}</button>
                 </div>
             </div>
         </form>

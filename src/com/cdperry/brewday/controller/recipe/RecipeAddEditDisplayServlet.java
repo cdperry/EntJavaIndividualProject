@@ -55,15 +55,6 @@ public class RecipeAddEditDisplayServlet extends HttpServlet {
         int recipeId;
         RecipeEntity recipe;
 
-        if (request.getParameter("action").equals("insert")) {
-            request.setAttribute("actionType", "insert");
-        } else {
-            recipeId = Integer.parseInt(request.getParameter("recipeId"));
-            recipe = recipeDao.getRecipeEntity(recipeId);
-            request.setAttribute("recipe", recipe);
-            request.setAttribute("actionType", "edit");
-        }
-
         recipeTypes = recipeTypeDao.getAllRecipeTypes();
         request.setAttribute("recipeTypes", recipeTypes);
 
@@ -73,7 +64,25 @@ public class RecipeAddEditDisplayServlet extends HttpServlet {
         RequestDispatcher dispatcher
                 = getServletContext().getRequestDispatcher(url);
 
-        dispatcher.forward(request, response);
+        if (request.getParameter("action").equals("insert")) {
+            request.setAttribute("actionType", "insert");
+            dispatcher.forward(request, response);
+        } else {
+            recipeId = Integer.parseInt(request.getParameter("recipeId"));
+            recipe = recipeDao.getRecipeEntity(recipeId);
+            if (recipe != null) {
+                request.setAttribute("recipe", recipe);
+                request.setAttribute("actionType", "edit");
+                dispatcher.forward(request, response);
+            } else {
+                url = "/recipes";
+                response.sendRedirect(url);
+            }
+        }
+
+
+
+
 
     }
 

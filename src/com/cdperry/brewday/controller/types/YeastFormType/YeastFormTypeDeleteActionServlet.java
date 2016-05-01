@@ -11,39 +11,41 @@ import java.io.IOException;
 
 /**
  *  <p>
- *  This servlet is used to delete a yeast form and then display the list of remaining yeast forms
+ *  This servlet is used to delete a grain type and then display the list of remaining grain types
  *  </p>
  *  @author Chris Perry
  */
 @WebServlet(
-        name = "YeastFormDeleteActionServlet",
-        urlPatterns = { "/deleteYeastForm" }
+        name = "YeastFormTypeDeleteActionServlet",
+        urlPatterns = { "/deleteYeastFormType" }
 )
 public class YeastFormTypeDeleteActionServlet extends HttpServlet {
 
-    private YeastFormDao dao;
+    private YeastFormDao yeastFormDao;
 
     public YeastFormTypeDeleteActionServlet() {
         super();
-        dao = new YeastFormDao();
+        yeastFormDao = new YeastFormDao();
     }
 
     /**
-     *  Handles HTTP GET requests.
+     *  This method handles HTTP POST requests.
      *
-     *@param  request                   the HttpServletRequest object
-     *@param  response                   the HttpServletResponse object
-     *@exception  ServletException  if there is a Servlet failure
-     *@exception  IOException       if there is an IO failure
+     *  @param  request                   the HttpServletRequest object
+     *  @param  response                   the HttpServletResponse object
+     *  @exception  ServletException  if there is a Servlet failure
+     *  @exception  IOException       if there is an IO failure
      */
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String url = "/listYeastForms";
+        String url = "/listYeastFormTypes";
         int yeastFormId = Integer.parseInt(request.getParameter("yeastFormId"));
 
-        dao.deleteYeastFormEntityById(yeastFormId);
+        if (yeastFormDao.getYeastFormEntity(yeastFormId) != null) {
+            yeastFormDao.deleteYeastFormEntityById(yeastFormId);
+        }
 
-        request.setAttribute("yeastForms", dao.getAllYeastForms());
+        request.setAttribute("yeastForms", yeastFormDao.getAllYeastForms());
 
         response.sendRedirect(url);
 

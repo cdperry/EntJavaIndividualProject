@@ -26,7 +26,8 @@
             $('#myModal').on('show.bs.modal', function (event) {
                 var docElement = $(event.relatedTarget) // Element that triggered the modal
                 var id = docElement.data('id') // Extract info from data-* attributes
-                $("#confirmedDelete").attr('href', '/deleteHopType?hopTypeId=' + id)
+                <%--$("#confirmedDelete").attr('href', '/deleteHopType?hopTypeId=' + id)--%>
+                $("#frmConfirmDelete").attr("action", "/deleteHopType?hopTypeId=" + id)
             })
         </script>
 

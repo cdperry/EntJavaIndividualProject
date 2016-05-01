@@ -39,7 +39,7 @@ public class RecipeListDisplayServlet extends HttpServlet {
      */
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String url = "/jsp/recipes.jsp";
+        String url = "/jsp/listRecipes.jsp";
 
         request.setAttribute("recipes", dao.getAllRecipes());
         request.setAttribute("actionType", "list");

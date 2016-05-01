@@ -15,7 +15,7 @@
             <thead>
             <tr>
                 <%--<th>Hop Form Type ID</th>--%>
-                <th>Hop Form Type Name</th>
+                <th>Hop Form</th>
                 <th>Create Date</th>
                 <th>Update Date</th>
                 <th colspan=2 class="text-center">Action</th>
@@ -24,7 +24,7 @@
             <tbody>
             <c:forEach items="${hopFormTypes}" var="hopFormType">
                 <tr>
-                        <%--<td><c:out value="${hopFormType.hopFormTypeId}" /></td>--%>
+                    <%--<td><c:out value="${hopFormType.hopFormTypeId}" /></td>--%>
                     <td><c:out value="${hopFormType.name}" /></td>
                     <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${hopFormType.createDate}" /></td>
                     <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${hopFormType.updateDate}" /></td>

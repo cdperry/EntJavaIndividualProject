@@ -19,29 +19,31 @@ import javax.servlet.annotation.*;
 )
 public class RecipeDeleteActionServlet extends HttpServlet {
 
-    private RecipeDao dao;
+    private RecipeDao recipeDao;
 
     public RecipeDeleteActionServlet() {
         super();
-        dao = new RecipeDao();
+        recipeDao = new RecipeDao();
     }
 
     /**
-     *  Handles HTTP GET requests.
+     *  This method handles HTTP POST requests.
      *
-     *@param  request                   the HttpServletRequest object
-     *@param  response                   the HttpServletResponse object
-     *@exception  ServletException  if there is a Servlet failure
-     *@exception  IOException       if there is an IO failure
+     *  @param  request                   the HttpServletRequest object
+     *  @param  response                   the HttpServletResponse object
+     *  @exception  ServletException  if there is a Servlet failure
+     *  @exception  IOException       if there is an IO failure
      */
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String url = "/recipes";
-        int grainTypeId = Integer.parseInt(request.getParameter("recipeId"));
+        int recipeId = Integer.parseInt(request.getParameter("recipeId"));
 
-        dao.deleteRecipeEntityById(grainTypeId);
+        if (recipeDao.getRecipeEntity(recipeId) != null) {
+            recipeDao.deleteRecipeEntityById(recipeId);
+        }
 
-        request.setAttribute("recipes", dao.getAllRecipes());
+        request.setAttribute("recipes", recipeDao.getAllRecipes());
 
         response.sendRedirect(url);
 

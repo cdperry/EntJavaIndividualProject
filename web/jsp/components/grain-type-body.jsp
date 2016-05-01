@@ -15,7 +15,7 @@
             <thead>
             <tr>
                 <%--<th>Grain Type ID</th>--%>
-                <th>Grain Type Name</th>
+                <th>Grain Type</th>
                 <th>Create Date</th>
                 <th>Update Date</th>
                 <th colspan=2 class="text-center">Action</th>
@@ -24,7 +24,7 @@
             <tbody>
             <c:forEach items="${grainTypes}" var="grainType">
                 <tr>
-                        <%--<td><c:out value="${grainType.grainTypeId}" /></td>--%>
+                    <%--<td><c:out value="${grainType.grainTypeId}" /></td>--%>
                     <td><c:out value="${grainType.name}" /></td>
                     <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${grainType.createDate}" /></td>
                     <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${grainType.updateDate}" /></td>
