@@ -58,10 +58,10 @@ public class RecipeComponentOneToManyTest {
         // create a test component and add them to the database
         testRecipe.setRecipeName("Recipe 1");
         testRecipe.setBrewerName("Brewer 1");
-        testRecipe.setRecipeTypeId(1);
+        //testRecipe.setRecipeTypeId(1);
         testRecipe.setBatchSize(new BigDecimal("1.0"));
-        testRecipe.setBatchSizeUomId(1);
-        testRecipe.setEquipmentProfileId(1);
+        //testRecipe.setBatchSizeUomId(1);
+        //testRecipe.setEquipmentProfileId(1);
         testRecipe.setUpdateDate(ts);
         testRecipe.setCreateDate(ts);
         testRecipe.setRecipeComponents(set1);

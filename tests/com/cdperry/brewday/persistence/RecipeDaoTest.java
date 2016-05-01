@@ -27,10 +27,10 @@ public class RecipeDaoTest {
         testRecipe = new RecipeEntity();
         testRecipe.setRecipeName("Recipe 1");
         testRecipe.setBrewerName("Brewer 1");
-        testRecipe.setRecipeTypeId(1);
+        //testRecipe.setRecipeTypeId(1);
         testRecipe.setBatchSize(new BigDecimal("1.0"));
-        testRecipe.setBatchSizeUomId(1);
-        testRecipe.setEquipmentProfileId(1);
+        //testRecipe.setBatchSizeUomId(1);
+        //testRecipe.setEquipmentProfileId(1);
         testRecipe.setUpdateDate(ts);
         testRecipe.setCreateDate(ts);
 
@@ -40,10 +40,10 @@ public class RecipeDaoTest {
         testRecipe = new RecipeEntity();
         testRecipe.setRecipeName("Recipe 2");
         testRecipe.setBrewerName("Brewer 2");
-        testRecipe.setRecipeTypeId(1);
+        //testRecipe.setRecipeTypeId(1);
         testRecipe.setBatchSize(new BigDecimal("1.0"));
-        testRecipe.setBatchSizeUomId(1);
-        testRecipe.setEquipmentProfileId(1);
+        //testRecipe.setBatchSizeUomId(1);
+        //testRecipe.setEquipmentProfileId(1);
         testRecipe.setUpdateDate(ts);
         testRecipe.setCreateDate(ts);
 
@@ -72,10 +72,10 @@ public class RecipeDaoTest {
         testRecipe = new RecipeEntity();
         testRecipe.setRecipeName("Recipe 1");
         testRecipe.setBrewerName("Brewer 1");
-        testRecipe.setRecipeTypeId(1);
+        //testRecipe.setRecipeTypeId(1);
         testRecipe.setBatchSize(new BigDecimal("1.0"));
-        testRecipe.setBatchSizeUomId(1);
-        testRecipe.setEquipmentProfileId(1);
+        //testRecipe.setBatchSizeUomId(1);
+        //testRecipe.setEquipmentProfileId(1);
         testRecipe.setUpdateDate(ts);
         testRecipe.setCreateDate(ts);
 
@@ -106,10 +106,10 @@ public class RecipeDaoTest {
         testRecipe = new RecipeEntity();
         testRecipe.setRecipeName("Recipe 1");
         testRecipe.setBrewerName("Brewer 1");
-        testRecipe.setRecipeTypeId(1);
+        //testRecipe.setRecipeTypeId(1);
         testRecipe.setBatchSize(new BigDecimal("1.0"));
-        testRecipe.setBatchSizeUomId(1);
-        testRecipe.setEquipmentProfileId(1);
+        //testRecipe.setBatchSizeUomId(1);
+        //testRecipe.setEquipmentProfileId(1);
         testRecipe.setUpdateDate(ts);
         testRecipe.setCreateDate(ts);
 
@@ -140,25 +140,56 @@ public class RecipeDaoTest {
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
 
-        // create a test component and add them to the database
+        // create a test recipe and add it to the database
         testRecipe = new RecipeEntity();
         testRecipe.setRecipeName("Recipe 1");
         testRecipe.setBrewerName("Brewer 1");
-        testRecipe.setRecipeTypeId(1);
+        //testRecipe.setRecipeTypeId(1);
         testRecipe.setBatchSize(new BigDecimal("1.0"));
-        testRecipe.setBatchSizeUomId(1);
-        testRecipe.setEquipmentProfileId(1);
+        //testRecipe.setBatchSizeUomId(1);
+        //testRecipe.setEquipmentProfileId(1);
         testRecipe.setUpdateDate(ts);
         testRecipe.setCreateDate(ts);
 
         recipeEntityID = me.addRecipeEntity(testRecipe);
 
-        // make sure the employee was added before proceeding
+        // make sure the recipe was added before proceeding
         assertTrue("Expected a non-zero recipe ID, got " + recipeEntityID, recipeEntityID > 0);
 
-        // delete the employee and verify that they are no longer in the database
+        // delete the recipe and verify that it is no longer in the database
         me.deleteRecipeEntity(me.getRecipeEntity(recipeEntityID));
         assertNull(me.getRecipeEntity(recipeEntityID));
+
+    }
+
+    @Test
+    public void testDeleteGrainTypeEntityById() throws Exception {
+
+        RecipeDao me = new RecipeDao();
+        RecipeEntity testRecipe = new RecipeEntity();
+        int recipeID;
+        Date now = new Date();
+        Timestamp ts = new Timestamp(now.getTime());
+
+        // create a test recipe and add it to the database
+        testRecipe = new RecipeEntity();
+        testRecipe.setRecipeName("Recipe 1");
+        testRecipe.setBrewerName("Brewer 1");
+        //testRecipe.setRecipeTypeId(1);
+        testRecipe.setBatchSize(new BigDecimal("1.0"));
+        //testRecipe.setBatchSizeUomId(1);
+        //testRecipe.setEquipmentProfileId(1);
+        testRecipe.setUpdateDate(ts);
+        testRecipe.setCreateDate(ts);
+
+        recipeID = me.addRecipeEntity(testRecipe);
+
+        // make sure the recipe was added before proceeding
+        assertTrue("Expected a non-zero recipe ID, got " + recipeID, recipeID > 0);
+
+        // delete the recipe and verify that it is no longer in the database
+        me.deleteRecipeEntityById(recipeID);
+        assertNull(me.getRecipeEntity(recipeID));
 
     }
 
@@ -175,10 +206,10 @@ public class RecipeDaoTest {
         testRecipe = new RecipeEntity();
         testRecipe.setRecipeName("Recipe 1");
         testRecipe.setBrewerName("Brewer 1");
-        testRecipe.setRecipeTypeId(1);
+        //testRecipe.setRecipeTypeId(1);
         testRecipe.setBatchSize(new BigDecimal("1.0"));
-        testRecipe.setBatchSizeUomId(1);
-        testRecipe.setEquipmentProfileId(1);
+        //testRecipe.setBatchSizeUomId(1);
+        //testRecipe.setEquipmentProfileId(1);
         testRecipe.setUpdateDate(ts);
         testRecipe.setCreateDate(ts);
 

@@ -11,13 +11,17 @@ public class RecipeEntity {
     private int recipeId;
     private String recipeName;
     private String brewerName;
-    private Integer recipeTypeId;
+    //private Integer recipeTypeId;
     private BigDecimal batchSize;
-    private Integer batchSizeUomId;
-    private Integer equipmentProfileId;
+    //private Integer batchSizeUomId;
+    //private Integer equipmentProfileId;
     private Timestamp updateDate;
     private Timestamp createDate;
     private Set recipeComponents;
+
+    private UomTypeEntity batchSizeUom;
+    private RecipeTypeEntity recipeType;
+    private ProfileEquipmentEntity profileEquipment;
 
     public int getRecipeId() {
         return recipeId;
@@ -43,6 +47,7 @@ public class RecipeEntity {
         this.brewerName = brewerName;
     }
 
+    /*
     public Integer getRecipeTypeId() {
         return recipeTypeId;
     }
@@ -50,6 +55,7 @@ public class RecipeEntity {
     public void setRecipeTypeId(Integer recipeTypeId) {
         this.recipeTypeId = recipeTypeId;
     }
+    */
 
     public BigDecimal getBatchSize() {
         return batchSize;
@@ -59,6 +65,7 @@ public class RecipeEntity {
         this.batchSize = batchSize;
     }
 
+    /*
     public Integer getBatchSizeUomId() {
         return batchSizeUomId;
     }
@@ -66,7 +73,9 @@ public class RecipeEntity {
     public void setBatchSizeUomId(Integer batchSizeUomId) {
         this.batchSizeUomId = batchSizeUomId;
     }
+    */
 
+    /*
     public Integer getEquipmentProfileId() {
         return equipmentProfileId;
     }
@@ -74,6 +83,7 @@ public class RecipeEntity {
     public void setEquipmentProfileId(Integer equipmentProfileId) {
         this.equipmentProfileId = equipmentProfileId;
     }
+    */
 
     public Timestamp getUpdateDate() {
         return updateDate;
@@ -99,6 +109,30 @@ public class RecipeEntity {
         this.recipeComponents = recipeComponents;
     }
 
+    public UomTypeEntity getBatchSizeUom() {
+        return batchSizeUom;
+    }
+
+    public void setBatchSizeUom(UomTypeEntity batchSizeUom) {
+        this.batchSizeUom = batchSizeUom;
+    }
+
+    public RecipeTypeEntity getRecipeType() {
+        return recipeType;
+    }
+
+    public void setRecipeType(RecipeTypeEntity recipeType) {
+        this.recipeType = recipeType;
+    }
+
+    public ProfileEquipmentEntity getProfileEquipment() {
+        return profileEquipment;
+    }
+
+    public void setProfileEquipment(ProfileEquipmentEntity profileEquipment) {
+        this.profileEquipment = profileEquipment;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -109,12 +143,12 @@ public class RecipeEntity {
         if (recipeId != that.recipeId) return false;
         if (recipeName != null ? !recipeName.equals(that.recipeName) : that.recipeName != null) return false;
         if (brewerName != null ? !brewerName.equals(that.brewerName) : that.brewerName != null) return false;
-        if (recipeTypeId != null ? !recipeTypeId.equals(that.recipeTypeId) : that.recipeTypeId != null) return false;
+        //if (recipeTypeId != null ? !recipeTypeId.equals(that.recipeTypeId) : that.recipeTypeId != null) return false;
         if (batchSize != null ? !batchSize.equals(that.batchSize) : that.batchSize != null) return false;
-        if (batchSizeUomId != null ? !batchSizeUomId.equals(that.batchSizeUomId) : that.batchSizeUomId != null)
-            return false;
-        if (equipmentProfileId != null ? !equipmentProfileId.equals(that.equipmentProfileId) : that.equipmentProfileId != null)
-            return false;
+        //if (batchSizeUomId != null ? !batchSizeUomId.equals(that.batchSizeUomId) : that.batchSizeUomId != null)
+        //    return false;
+        //if (equipmentProfileId != null ? !equipmentProfileId.equals(that.equipmentProfileId) : that.equipmentProfileId != null)
+        //    return false;
         if (updateDate != null ? !updateDate.equals(that.updateDate) : that.updateDate != null) return false;
         if (createDate != null ? !createDate.equals(that.createDate) : that.createDate != null) return false;
 
@@ -126,10 +160,10 @@ public class RecipeEntity {
         int result = recipeId;
         result = 31 * result + (recipeName != null ? recipeName.hashCode() : 0);
         result = 31 * result + (brewerName != null ? brewerName.hashCode() : 0);
-        result = 31 * result + (recipeTypeId != null ? recipeTypeId.hashCode() : 0);
+        //result = 31 * result + (recipeTypeId != null ? recipeTypeId.hashCode() : 0);
         result = 31 * result + (batchSize != null ? batchSize.hashCode() : 0);
-        result = 31 * result + (batchSizeUomId != null ? batchSizeUomId.hashCode() : 0);
-        result = 31 * result + (equipmentProfileId != null ? equipmentProfileId.hashCode() : 0);
+        //result = 31 * result + (batchSizeUomId != null ? batchSizeUomId.hashCode() : 0);
+        //result = 31 * result + (equipmentProfileId != null ? equipmentProfileId.hashCode() : 0);
         result = 31 * result + (updateDate != null ? updateDate.hashCode() : 0);
         result = 31 * result + (createDate != null ? createDate.hashCode() : 0);
         return result;
