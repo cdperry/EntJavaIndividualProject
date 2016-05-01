@@ -29,7 +29,7 @@
                     <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${grainType.createDate}" /></td>
                     <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${grainType.updateDate}" /></td>
                     <td class="text-center">
-                        <a href="/editGrainType?grainTypeId=<c:out value="${grainType.grainTypeId}"/>">
+                        <a href="/editGrainType?action=edit&grainTypeId=<c:out value="${grainType.grainTypeId}"/>">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </a>
                     </td>

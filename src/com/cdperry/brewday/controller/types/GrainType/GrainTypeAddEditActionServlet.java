@@ -18,14 +18,14 @@ import javax.servlet.annotation.*;
  *  @author Chris Perry
  */
 @WebServlet(
-        name = "GrainTypeEditActionServlet",
+        name = "GrainTypeAddEditActionServlet",
         urlPatterns = { "/doEditGrainType" }
 )
-public class GrainTypeEditActionServlet extends HttpServlet {
+public class GrainTypeAddEditActionServlet extends HttpServlet {
 
     private GrainTypeDao dao;
 
-    public GrainTypeEditActionServlet() {
+    public GrainTypeAddEditActionServlet() {
         super();
         dao = new GrainTypeDao();
     }
@@ -49,17 +49,16 @@ public class GrainTypeEditActionServlet extends HttpServlet {
         String grainTypeId = request.getParameter("grainTypeId");
         String buttonAction = request.getParameter("buttonAction");
 
+        grainType.setName(name);
+        grainType.setUpdateDate(ts);
+
         if (buttonAction.equals("submit")) {
             if (grainTypeId == null || grainTypeId.isEmpty()) {
-                grainType.setName(name);
-                grainType.setUpdateDate(ts);
                 grainType.setCreateDate(ts);
                 dao.addGrainTypeEntity(grainType);
             } else {
                 grainType.setGrainTypeId(Integer.parseInt(grainTypeId));
-                grainType.setName(name);
                 grainType.setCreateDate(Timestamp.valueOf(request.getParameter("createDate")));
-                grainType.setUpdateDate(ts);
                 dao.updateGrainTypeEntity(grainType);
             }
         }

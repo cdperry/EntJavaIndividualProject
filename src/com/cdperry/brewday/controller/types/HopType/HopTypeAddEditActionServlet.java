@@ -20,14 +20,14 @@ import java.util.Date;
  *  @author Chris Perry
  */
 @WebServlet(
-        name = "HopTypeEditActionServlet",
+        name = "HopTypeAddEditActionServlet",
         urlPatterns = { "/doEditHopType" }
 )
-public class HopTypeEditActionServlet extends HttpServlet {
+public class HopTypeAddEditActionServlet extends HttpServlet {
 
     private HopTypeDao dao;
 
-    public HopTypeEditActionServlet() {
+    public HopTypeAddEditActionServlet() {
         super();
         dao = new HopTypeDao();
     }
@@ -51,17 +51,16 @@ public class HopTypeEditActionServlet extends HttpServlet {
         String hopTypeId = request.getParameter("hopTypeId");
         String buttonAction = request.getParameter("buttonAction");
 
+        hopType.setName(name);
+        hopType.setUpdateDate(ts);
+
         if (buttonAction.equals("submit")) {
             if (hopTypeId == null || hopTypeId.isEmpty()) {
-                hopType.setName(name);
-                hopType.setUpdateDate(ts);
                 hopType.setCreateDate(ts);
                 dao.addHopTypeEntity(hopType);
             } else {
                 hopType.setHopTypeId(Integer.parseInt(hopTypeId));
-                hopType.setName(name);
                 hopType.setCreateDate(Timestamp.valueOf(request.getParameter("createDate")));
-                hopType.setUpdateDate(ts);
                 dao.updateHopTypeEntity(hopType);
             }
         }

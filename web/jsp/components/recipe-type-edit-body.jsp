@@ -3,7 +3,7 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Add/Edit Recipe</h1>
+        <h1 class="page-header">Add/Edit Recipe Type</h1>
     </div>
 </div>
 
@@ -11,38 +11,20 @@
 
     <div class="col-lg-12">
 
-        <form class="form-horizontal" method="POST" action='/doEditRecipe' name="frmAddEditRecipe">
+        <form class="form-horizontal" method="POST" action='/doEditRecipeType' name="frmAddRecipeType">
             <div class="form-group">
-                <label for="recipeId" class="col-sm-2 control-label">ID</label>
+                <label for="recipeTypeId" class="col-sm-2 control-label">ID</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" readonly="readonly" id="recipeId"
-                           name="recipeId"
-                           value="<c:out value="${recipe.recipeId}" />" />
+                    <input type="text" class="form-control" readonly="readonly" id="recipeTypeId"
+                           name="recipeTypeId"
+                           value="<c:out value="${recipeType.recipeTypeId}" />" />
                 </div>
             </div>
             <div class="form-group">
-                <label for="recipeName" class="col-sm-2 control-label">Recipe Name</label>
-                <div class="col-sm-4">
-                    <input type="text" class="form-control" id="recipeName" name="recipeName"
-                           value="<c:out value="${recipe.recipeName}" />" />
-                </div>
-                <label for="recipeTypeId" class="col-sm-2 control-label">Recipe Type</label>
-                <div class="col-sm-4">
-                    <select class="form-control" id="recipeTypeId" name="recipeTypeId">
-                        <c:forEach items="${recipeTypes}" var="recipeType">
-                            <option value="${recipeType.recipeTypeId}"
-                                    ${recipeType.recipeTypeId == recipe.recipeType.recipeTypeId ? 'selected' : ''}>
-                                <c:out value="${recipeType.name}" />
-                            </option>
-                        </c:forEach>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="brewerName" class="col-sm-2 control-label">Brewer Name</label>
+                <label for="name" class="col-sm-2 control-label">Name</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="brewerName" name="brewerName"
-                           value="<c:out value="${recipe.brewerName}" />" />
+                    <input type="text" class="form-control" id="name" name="name"
+                           value="<c:out value="${recipeType.name}" />" />
                 </div>
             </div>
             <div class="form-group">
@@ -51,7 +33,7 @@
                     <input type="text" class="form-control" readonly="readonly" id="createDate"
                            name="createDate"
                            value="<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss"
-                                                    value="${recipe.createDate}" />" />
+                                                    value="${recipeType.createDate}" />" />
                 </div>
             </div>
             <div class="form-group">
@@ -60,17 +42,17 @@
                     <input type="text" class="form-control" readonly="readonly" id="updateDate"
                            name="updateDate"
                            value="<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss"
-                                                    value="${recipe.updateDate}" />" />
+                                                    value="${recipeType.updateDate}" />" />
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <c:choose>
                         <c:when test="${actionType == 'edit'}">
-                            <c:set var="buttonText" scope="request" value="Update Recipe"/>
+                            <c:set var="buttonText" scope="request" value="Update Recipe Type"/>
                         </c:when>
                         <c:otherwise>
-                            <c:set var="buttonText" scope="request" value="Add Recipe"/>
+                            <c:set var="buttonText" scope="request" value="Add Recipe Type"/>
                         </c:otherwise>
                     </c:choose>
                     <%--<button type="submit" class="btn btn-default" name="button">${buttonText}</button>--%>

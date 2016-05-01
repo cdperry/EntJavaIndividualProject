@@ -1,4 +1,7 @@
-package com.cdperry.brewday.controller.recipe;
+package com.cdperry.brewday.controller.types.GrainType;
+
+import com.cdperry.brewday.entity.GrainTypeEntity;
+import com.cdperry.brewday.persistence.GrainTypeDao;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,10 +18,17 @@ import java.io.IOException;
  *  @author Chris Perry
  */
 @WebServlet(
-        name = "RecipeAddDisplayServlet",
-        urlPatterns = { "/addRecipe" }
+        name = "GrainTypeAddEditDisplayServlet",
+        urlPatterns = { "/addGrainType", "/editGrainType" }
 )
-public class RecipeAddDisplayServlet extends HttpServlet {
+public class GrainTypeAddEditDisplayServlet extends HttpServlet {
+
+    private GrainTypeDao grainTypeDao;
+
+    public GrainTypeAddEditDisplayServlet() {
+        super();
+        grainTypeDao = new GrainTypeDao();
+    }
 
     /**
      *  This method handles HTTP GET requests.
@@ -30,9 +40,16 @@ public class RecipeAddDisplayServlet extends HttpServlet {
      */
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String url = "/jsp/editRecipe.jsp";
+        String url = "/jsp/editGrainType.jsp";
 
-        request.setAttribute("actionType", "insert");
+        if (request.getParameter("action").equals("insert")) {
+            request.setAttribute("actionType", "insert");
+        } else {
+            int grainTypeId = Integer.parseInt(request.getParameter("grainTypeId"));
+            GrainTypeEntity grainType = grainTypeDao.getGrainTypeEntity(grainTypeId);
+            request.setAttribute("grainType", grainType);
+            request.setAttribute("actionType", "edit");
+        }
 
         RequestDispatcher dispatcher
                 = getServletContext().getRequestDispatcher(url);

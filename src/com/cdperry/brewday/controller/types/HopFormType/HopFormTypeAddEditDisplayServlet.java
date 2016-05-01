@@ -1,5 +1,8 @@
 package com.cdperry.brewday.controller.types.HopFormType;
 
+import com.cdperry.brewday.entity.HopFormTypeEntity;
+import com.cdperry.brewday.persistence.HopFormTypeDao;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,10 +18,17 @@ import java.io.IOException;
  *  @author Chris Perry
  */
 @WebServlet(
-        name = "HopFormTypeAddDisplayServlet",
-        urlPatterns = { "/addHopFormType" }
+        name = "HopFormTypeAddEditDisplayServlet",
+        urlPatterns = { "/addHopFormType", "/editHopFormType" }
 )
-public class HopFormTypeAddDisplayServlet extends HttpServlet {
+public class HopFormTypeAddEditDisplayServlet extends HttpServlet {
+
+    private HopFormTypeDao hopFormTypeDao;
+
+    public HopFormTypeAddEditDisplayServlet() {
+        super();
+        hopFormTypeDao = new HopFormTypeDao();
+    }
 
     /**
      *  This method handles HTTP GET requests.
@@ -32,7 +42,14 @@ public class HopFormTypeAddDisplayServlet extends HttpServlet {
 
         String url = "/jsp/editHopFormType.jsp";
 
-        request.setAttribute("actionType", "insert");
+        if (request.getParameter("action").equals("insert")) {
+            request.setAttribute("actionType", "insert");
+        } else {
+            int hopFormTypeId = Integer.parseInt(request.getParameter("hopFormTypeId"));
+            HopFormTypeEntity hopFormType = hopFormTypeDao.getHopFormTypeEntity(hopFormTypeId);
+            request.setAttribute("hopFormType", hopFormType);
+            request.setAttribute("actionType", "edit");
+        }
 
         RequestDispatcher dispatcher
                 = getServletContext().getRequestDispatcher(url);

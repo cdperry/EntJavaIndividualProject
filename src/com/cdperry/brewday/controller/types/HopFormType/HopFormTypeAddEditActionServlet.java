@@ -20,14 +20,14 @@ import java.util.Date;
  *  @author Chris Perry
  */
 @WebServlet(
-        name = "HopFormTypeEditActionServlet",
+        name = "HopFormTypeAddEditActionServlet",
         urlPatterns = { "/doEditHopFormType" }
 )
-public class HopFormTypeEditActionServlet extends HttpServlet {
+public class HopFormTypeAddEditActionServlet extends HttpServlet {
 
     private HopFormTypeDao dao;
 
-    public HopFormTypeEditActionServlet() {
+    public HopFormTypeAddEditActionServlet() {
         super();
         dao = new HopFormTypeDao();
     }
@@ -51,17 +51,16 @@ public class HopFormTypeEditActionServlet extends HttpServlet {
         String hopFormTypeId = request.getParameter("hopFormTypeId");
         String buttonAction = request.getParameter("buttonAction");
 
+        hopFormType.setName(name);
+        hopFormType.setUpdateDate(ts);
+
         if (buttonAction.equals("submit")) {
             if (hopFormTypeId == null || hopFormTypeId.isEmpty()) {
-                hopFormType.setName(name);
-                hopFormType.setUpdateDate(ts);
                 hopFormType.setCreateDate(ts);
                 dao.addHopFormTypeEntity(hopFormType);
             } else {
                 hopFormType.setHopFormTypeId(Integer.parseInt(hopFormTypeId));
-                hopFormType.setName(name);
                 hopFormType.setCreateDate(Timestamp.valueOf(request.getParameter("createDate")));
-                hopFormType.setUpdateDate(ts);
                 dao.updateHopFormTypeEntity(hopFormType);
             }
         }

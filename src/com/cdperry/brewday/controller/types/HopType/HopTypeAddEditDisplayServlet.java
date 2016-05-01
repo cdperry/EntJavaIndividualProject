@@ -1,5 +1,8 @@
 package com.cdperry.brewday.controller.types.HopType;
 
+import com.cdperry.brewday.entity.HopTypeEntity;
+import com.cdperry.brewday.persistence.HopTypeDao;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,10 +18,17 @@ import java.io.IOException;
  *  @author Chris Perry
  */
 @WebServlet(
-        name = "HopTypeAddDisplayServlet",
-        urlPatterns = { "/addHopType" }
+        name = "HopTypeAddEditDisplayServlet",
+        urlPatterns = { "/addHopType", "/editHopType" }
 )
-public class HopTypeAddDisplayServlet extends HttpServlet {
+public class HopTypeAddEditDisplayServlet extends HttpServlet {
+
+    private HopTypeDao hopTypeDao;
+
+    public HopTypeAddEditDisplayServlet() {
+        super();
+        hopTypeDao = new HopTypeDao();
+    }
 
     /**
      *  This method handles HTTP GET requests.
@@ -32,7 +42,14 @@ public class HopTypeAddDisplayServlet extends HttpServlet {
 
         String url = "/jsp/editHopType.jsp";
 
-        request.setAttribute("actionType", "insert");
+        if (request.getParameter("action").equals("insert")) {
+            request.setAttribute("actionType", "insert");
+        } else {
+            int hopTypeId = Integer.parseInt(request.getParameter("hopTypeId"));
+            HopTypeEntity hopType = hopTypeDao.getHopTypeEntity(hopTypeId);
+            request.setAttribute("hopType", hopType);
+            request.setAttribute("actionType", "edit");
+        }
 
         RequestDispatcher dispatcher
                 = getServletContext().getRequestDispatcher(url);

@@ -2,6 +2,7 @@ package com.cdperry.brewday.controller.recipe;
 
 import com.cdperry.brewday.entity.RecipeEntity;
 import com.cdperry.brewday.persistence.RecipeDao;
+import com.cdperry.brewday.persistence.RecipeTypeDao;
 
 import java.io.*;
 import java.sql.Timestamp;
@@ -18,16 +19,18 @@ import javax.servlet.annotation.*;
  *  @author Chris Perry
  */
 @WebServlet(
-        name = "RecipeEditActionServlet",
+        name = "RecipeAddEditActionServlet",
         urlPatterns = { "/doEditRecipe" }
 )
-public class RecipeEditActionServlet extends HttpServlet {
+public class RecipeAddEditActionServlet extends HttpServlet {
 
-    private RecipeDao dao;
+    private RecipeDao recipeDao;
+    private RecipeTypeDao recipeTypeDao;
 
-    public RecipeEditActionServlet() {
+    public RecipeAddEditActionServlet() {
         super();
-        dao = new RecipeDao();
+        recipeDao = new RecipeDao();
+        recipeTypeDao = new RecipeTypeDao();
     }
 
     /**
@@ -49,23 +52,25 @@ public class RecipeEditActionServlet extends HttpServlet {
         String brewerName = request.getParameter("brewerName");
         String recipeId = request.getParameter("recipeId");
         String buttonAction = request.getParameter("buttonAction");
+        String recipeTypeId = request.getParameter("recipeTypeId");
 
         recipe.setRecipeName(recipeName);
         recipe.setBrewerName(brewerName);
         recipe.setUpdateDate(ts);
+        recipe.setRecipeType(recipeTypeDao.getRecipeTypeEntity(Integer.parseInt(recipeTypeId)));
 
         if (buttonAction.equals("submit")) {
             if (recipeId == null || recipeId.isEmpty()) {
                 recipe.setCreateDate(ts);
-                dao.addRecipeEntity(recipe);
+                recipeDao.addRecipeEntity(recipe);
             } else {
                 recipe.setRecipeId(Integer.parseInt(recipeId));
                 recipe.setCreateDate(Timestamp.valueOf(request.getParameter("createDate")));
-                dao.updateRecipeEntity(recipe);
+                recipeDao.updateRecipeEntity(recipe);
             }
         }
 
-        request.setAttribute("recipes", dao.getAllRecipes());
+        request.setAttribute("recipes", recipeDao.getAllRecipes());
         response.sendRedirect(url);
 
     }

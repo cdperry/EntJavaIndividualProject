@@ -28,6 +28,10 @@ public class HopTypeDeleteActionServlet extends HttpServlet {
         dao = new HopTypeDao();
     }
 
+    /*
+        TODO: Change the DELETE method to a doPost
+     */
+
     /**
      *  Handles HTTP GET requests.
      *

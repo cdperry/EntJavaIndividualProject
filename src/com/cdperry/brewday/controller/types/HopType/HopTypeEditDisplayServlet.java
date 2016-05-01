@@ -19,7 +19,7 @@ import java.io.IOException;
  */
 @WebServlet(
         name = "HopTypeEditDisplayServlet",
-        urlPatterns = { "/editHopType" }
+        urlPatterns = { "/editHopTypez" }
 )
 public class HopTypeEditDisplayServlet extends HttpServlet {
 

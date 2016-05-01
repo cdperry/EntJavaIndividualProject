@@ -1,5 +1,8 @@
 package com.cdperry.brewday.controller.types.RecipeType;
 
+import com.cdperry.brewday.entity.RecipeTypeEntity;
+import com.cdperry.brewday.persistence.RecipeTypeDao;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,10 +18,17 @@ import java.io.IOException;
  *  @author Chris Perry
  */
 @WebServlet(
-        name = "RecipeTypeAddDisplayServlet",
-        urlPatterns = { "/addRecipeType" }
+        name = "RecipeTypeAddEditDisplayServlet",
+        urlPatterns = { "/addRecipeType", "/editRecipeType" }
 )
-public class RecipeTypeAddDisplayServlet extends HttpServlet {
+public class RecipeTypeAddEditDisplayServlet extends HttpServlet {
+
+    private RecipeTypeDao recipeTypeDao;
+
+    public RecipeTypeAddEditDisplayServlet() {
+        super();
+        recipeTypeDao = new RecipeTypeDao();
+    }
 
     /**
      *  This method handles HTTP GET requests.
@@ -32,7 +42,14 @@ public class RecipeTypeAddDisplayServlet extends HttpServlet {
 
         String url = "/jsp/editRecipeType.jsp";
 
-        request.setAttribute("actionType", "insert");
+        if (request.getParameter("action").equals("insert")) {
+            request.setAttribute("actionType", "insert");
+        } else {
+            int recipeTypeId = Integer.parseInt(request.getParameter("recipeTypeId"));
+            RecipeTypeEntity recipeType = recipeTypeDao.getRecipeTypeEntity(recipeTypeId);
+            request.setAttribute("recipeType", recipeType);
+            request.setAttribute("actionType", "edit");
+        }
 
         RequestDispatcher dispatcher
                 = getServletContext().getRequestDispatcher(url);

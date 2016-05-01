@@ -20,14 +20,14 @@ import java.util.Date;
  *  @author Chris Perry
  */
 @WebServlet(
-        name = "RecipeTypeEditActionServlet",
+        name = "RecipeTypeAddEditActionServlet",
         urlPatterns = { "/doEditRecipeType" }
 )
-public class RecipeTypeEditActionServlet extends HttpServlet {
+public class RecipeTypeAddEditActionServlet extends HttpServlet {
 
     private RecipeTypeDao dao;
 
-    public RecipeTypeEditActionServlet() {
+    public RecipeTypeAddEditActionServlet() {
         super();
         dao = new RecipeTypeDao();
     }
@@ -51,17 +51,16 @@ public class RecipeTypeEditActionServlet extends HttpServlet {
         String recipeTypeId = request.getParameter("recipeTypeId");
         String buttonAction = request.getParameter("buttonAction");
 
+        recipeType.setName(name);
+        recipeType.setUpdateDate(ts);
+
         if (buttonAction.equals("submit")) {
             if (recipeTypeId == null || recipeTypeId.isEmpty()) {
-                recipeType.setName(name);
-                recipeType.setUpdateDate(ts);
                 recipeType.setCreateDate(ts);
                 dao.addRecipeTypeEntity(recipeType);
             } else {
                 recipeType.setRecipeTypeId(Integer.parseInt(recipeTypeId));
-                recipeType.setName(name);
                 recipeType.setCreateDate(Timestamp.valueOf(request.getParameter("createDate")));
-                recipeType.setUpdateDate(ts);
                 dao.updateRecipeTypeEntity(recipeType);
             }
         }

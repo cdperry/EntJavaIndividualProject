@@ -29,7 +29,7 @@
                     <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${hopFormType.createDate}" /></td>
                     <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${hopFormType.updateDate}" /></td>
                     <td class="text-center">
-                        <a href="/editHopFormType?hopFormTypeId=<c:out value="${hopFormType.hopFormTypeId}"/>">
+                        <a href="/editHopFormType?action=edit&hopFormTypeId=<c:out value="${hopFormType.hopFormTypeId}"/>">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </a>
                     </td>
