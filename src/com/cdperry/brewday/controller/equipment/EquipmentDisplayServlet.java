@@ -1,5 +1,7 @@
 package com.cdperry.brewday.controller.equipment;
 
+import com.cdperry.brewday.persistence.ProfileEquipmentDao;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,6 +22,13 @@ import java.io.IOException;
 )
 public class EquipmentDisplayServlet extends HttpServlet {
 
+    private ProfileEquipmentDao profileEquipmentDao;
+
+    public EquipmentDisplayServlet() {
+        super();
+        profileEquipmentDao = new ProfileEquipmentDao();
+    }
+
     /**
      *  This method handles HTTP GET requests.
      *
@@ -30,7 +39,10 @@ public class EquipmentDisplayServlet extends HttpServlet {
      */
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String url = "/jsp/equipment.jsp";
+        String url = "/jsp/listEquipmentProfiles.jsp";
+
+        request.setAttribute("equipmentProfiles", profileEquipmentDao.getAllProfileEquipment());
+        request.setAttribute("actionType", "list");
 
         RequestDispatcher dispatcher
                 = getServletContext().getRequestDispatcher(url);

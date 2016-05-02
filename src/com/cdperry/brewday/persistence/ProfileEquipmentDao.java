@@ -9,6 +9,8 @@ import java.util.*;
 
 /**
  * Created by cdperry on 4/3/16.
+ *
+ * TODO: Add 'deleteById' method to all DAOs and add tests to all DAO testers
  */
 public class ProfileEquipmentDao {
 
@@ -132,6 +134,39 @@ public class ProfileEquipmentDao {
             session.delete(profileEquipmentEntity);
             tx.commit();
             log.warn("Deleted equipment profile: " + profileEquipmentEntity + " with id of: " + profileEquipmentEntity.getProfileEquipmentId());
+
+        } catch (HibernateException e) {
+
+            if (tx!=null) {
+                tx.rollback();
+            }
+
+            e.printStackTrace();
+
+        } finally {
+
+            session.close();
+
+        }
+
+    }
+
+    /**
+     * This method deletes the ProfileEquipmentEntity object from the database
+     * @param profileEquipmentId the ID of the ProfileEquipmentEntity to be deleted from the database
+     */
+    public void deleteProfileEquipmentEntityById(int profileEquipmentId) {
+
+        Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+
+            tx = session.beginTransaction();
+            ProfileEquipmentEntity entityToDelete = (ProfileEquipmentEntity)session.get(ProfileEquipmentEntity.class, profileEquipmentId);
+            session.delete(entityToDelete);
+            tx.commit();
+            log.warn("Deleted profileEquipment: " + entityToDelete + " with id of: " + profileEquipmentId);
 
         } catch (HibernateException e) {
 

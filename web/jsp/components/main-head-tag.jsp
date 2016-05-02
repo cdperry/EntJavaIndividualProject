@@ -15,7 +15,8 @@
           crossorigin="anonymous">
 
     <!-- MetisMenu CSS -->
-    <link href="../../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <!--<link href="../../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/metisMenu/2.5.0/metisMenu.css">
 
     <!-- Timeline CSS -->
     <link href="../../dist/css/timeline.css" rel="stylesheet">
@@ -24,7 +25,7 @@
     <link href="../../dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="../../bower_components/morrisjs/morris.css" rel="stylesheet">
+    <!--<link href="../../bower_components/morrisjs/morris.css" rel="stylesheet">-->
 
     <!-- Custom Fonts -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">

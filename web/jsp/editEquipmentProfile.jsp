@@ -13,7 +13,7 @@
 
             <div id="page-wrapper">
 
-                <c:import url="components/equipment-body.jsp" />
+                <c:import url="components/equipment-profile-edit-body.jsp" />
 
             </div>
 

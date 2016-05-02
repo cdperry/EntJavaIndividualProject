@@ -17,6 +17,7 @@
                 <th>Recipe Name</th>
                 <th>Batch Size</th>
                 <th>Last Updated</th>
+                <th colspan=2 class="text-center">Action</th>
             </tr>
             </thead>
             <tbody>

@@ -22,11 +22,11 @@ import java.io.IOException;
 )
 public class RecipeListDisplayServlet extends HttpServlet {
 
-    private RecipeDao dao;
+    private RecipeDao recipeDao;
 
     public RecipeListDisplayServlet() {
         super();
-        dao = new RecipeDao();
+        recipeDao = new RecipeDao();
     }
 
     /**
@@ -41,7 +41,7 @@ public class RecipeListDisplayServlet extends HttpServlet {
 
         String url = "/jsp/listRecipes.jsp";
 
-        request.setAttribute("recipes", dao.getAllRecipes());
+        request.setAttribute("recipes", recipeDao.getAllRecipes());
         request.setAttribute("actionType", "list");
 
         RequestDispatcher dispatcher

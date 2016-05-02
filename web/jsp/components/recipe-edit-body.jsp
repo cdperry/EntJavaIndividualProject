@@ -46,6 +46,38 @@
                 </div>
             </div>
             <div class="form-group">
+
+                <label for="equipmentProfileId" class="col-sm-2 control-label">Equipment</label>
+                <div class="col-sm-4">
+                    <select class="form-control" id="equipmentProfileId" name="equipmentProfileId">
+                        <c:forEach items="${equipmentProfiles}" var="equipmentProfile">
+                            <option value="${equipmentProfile.profileEquipmentId}"
+                                ${equipmentProfile.profileEquipmentId == recipe.profileEquipment.profileEquipmentId ? 'selected' : ''}>
+                                <c:out value="${equipmentProfile.name}" />
+                            </option>
+                        </c:forEach>
+                    </select>
+                </div>
+
+                <label for="batchSize" class="col-sm-2 control-label">Batch Size</label>
+                <div class="col-sm-2">
+                    <input type="number" class="form-control" id="batchSize" name="batchSize"
+                           value="<c:out value="${recipe.batchSize}" />" />
+                </div>
+
+                <div class="col-sm-2">
+                    <select class="form-control" id="batchSizeUomId" name="batchSizeUomId">
+                        <c:forEach items="${uomTypes}" var="uomType">
+                            <option value="${uomType.uomId}"
+                                ${uomType.uomId == recipe.batchSizeUom.uomId ? 'selected' : ''}>
+                                <c:out value="${uomType.name}" />
+                            </option>
+                        </c:forEach>
+                    </select>
+                </div>
+
+            </div>
+            <div class="form-group">
                 <label for="createDate" class="col-sm-2 control-label">Create Date</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" readonly="readonly" id="createDate"

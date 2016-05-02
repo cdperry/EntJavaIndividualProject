@@ -188,5 +188,23 @@ public class UomTypeDaoTest {
         assertNull(me.getUomTypeEntity(uomTypeEntityID));
 
     }
-    
+
+    @Test
+    public void testGetUomTypeEntityByName() throws Exception {
+
+        UomTypeDao me = new UomTypeDao();
+        List<UomTypeEntity> uomTypes;
+        UomTypeEntity uomType = null;
+        String uomName = null;
+
+        uomTypes = me.getUomTypeEntityByName("gal");
+        assertTrue("Expected non zero-length list, got zero results", uomTypes.size() > 0);
+
+        uomType = uomTypes.get(0);
+        assertNotNull("Expected a non-null object, got a null", uomType);
+
+        uomName = uomType.getName();
+        assertEquals("Expected gal, got " + uomName, "gal", uomName);
+
+    }
 }

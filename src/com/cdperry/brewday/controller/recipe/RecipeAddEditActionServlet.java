@@ -1,12 +1,15 @@
 package com.cdperry.brewday.controller.recipe;
 
 import com.cdperry.brewday.entity.RecipeEntity;
+import com.cdperry.brewday.persistence.ProfileEquipmentDao;
 import com.cdperry.brewday.persistence.RecipeDao;
 import com.cdperry.brewday.persistence.RecipeTypeDao;
+import com.cdperry.brewday.persistence.UomTypeDao;
 
 import java.io.*;
 import java.sql.Timestamp;
 import java.util.*;
+import java.math.BigDecimal;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -26,10 +29,14 @@ public class RecipeAddEditActionServlet extends HttpServlet {
 
     private RecipeDao recipeDao;
     private RecipeTypeDao recipeTypeDao;
+    private UomTypeDao uomTypeDao;
+    private ProfileEquipmentDao profileEquipmentDao;
 
     public RecipeAddEditActionServlet() {
         super();
         recipeDao = new RecipeDao();
+        uomTypeDao = new UomTypeDao();
+        profileEquipmentDao = new ProfileEquipmentDao();
         recipeTypeDao = new RecipeTypeDao();
     }
 
@@ -53,11 +60,17 @@ public class RecipeAddEditActionServlet extends HttpServlet {
         String recipeId = request.getParameter("recipeId");
         String buttonAction = request.getParameter("buttonAction");
         String recipeTypeId = request.getParameter("recipeTypeId");
+        String batchSize = request.getParameter("batchSize");
+        String batchSizeUomId = request.getParameter("batchSizeUomId");
+        String equipmentProfileId = request.getParameter("equipmentProfileId");
 
         recipe.setRecipeName(recipeName);
         recipe.setBrewerName(brewerName);
         recipe.setUpdateDate(ts);
         recipe.setRecipeType(recipeTypeDao.getRecipeTypeEntity(Integer.parseInt(recipeTypeId)));
+        recipe.setBatchSize(new BigDecimal(batchSize));
+        recipe.setBatchSizeUom(uomTypeDao.getUomTypeEntity(Integer.parseInt(batchSizeUomId)));
+        recipe.setProfileEquipment(profileEquipmentDao.getProfileEquipmentEntity(Integer.parseInt(equipmentProfileId)));
 
         if (buttonAction.equals("submit")) {
             if (recipeId == null || recipeId.isEmpty()) {

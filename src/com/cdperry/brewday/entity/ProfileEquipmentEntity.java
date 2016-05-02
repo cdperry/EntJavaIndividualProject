@@ -5,6 +5,9 @@ import java.sql.Timestamp;
 
 /**
  * Created by cdperry on 3/6/16.
+ *
+ * TODO: Make sure when an equipment profile is deleted that other objects that reference it have their
+ * profiles set to null; make sure that things that reference non-existant profiles ignore nulls
  */
 public class ProfileEquipmentEntity {
     private int profileEquipmentId;

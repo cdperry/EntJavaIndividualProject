@@ -1,8 +1,10 @@
 package com.cdperry.brewday.controller.recipe;
 
+import com.cdperry.brewday.entity.ProfileEquipmentEntity;
 import com.cdperry.brewday.entity.RecipeEntity;
 import com.cdperry.brewday.entity.RecipeTypeEntity;
 import com.cdperry.brewday.entity.UomTypeEntity;
+import com.cdperry.brewday.persistence.ProfileEquipmentDao;
 import com.cdperry.brewday.persistence.RecipeDao;
 import com.cdperry.brewday.persistence.RecipeTypeDao;
 import com.cdperry.brewday.persistence.UomTypeDao;
@@ -31,12 +33,14 @@ public class RecipeAddEditDisplayServlet extends HttpServlet {
     private RecipeDao recipeDao;
     private RecipeTypeDao recipeTypeDao;
     private UomTypeDao uomTypeDao;
+    private ProfileEquipmentDao profileEquipmentDao;
 
     public RecipeAddEditDisplayServlet() {
         super();
         recipeDao = new RecipeDao();
         recipeTypeDao = new RecipeTypeDao();
         uomTypeDao = new UomTypeDao();
+        profileEquipmentDao = new ProfileEquipmentDao();
     }
 
     /**
@@ -52,13 +56,21 @@ public class RecipeAddEditDisplayServlet extends HttpServlet {
         String url = "/jsp/editRecipe.jsp";
         List<RecipeTypeEntity> recipeTypes;
         List<UomTypeEntity> uomTypes;
+        List<ProfileEquipmentEntity> equipmentProfiles;
         int recipeId;
         RecipeEntity recipe;
 
+        // get all potential recipe types and attach them to the request
         recipeTypes = recipeTypeDao.getAllRecipeTypes();
         request.setAttribute("recipeTypes", recipeTypes);
 
-        uomTypes = uomTypeDao.getAllUomTypes();
+        // get all equipment profiles and attach them to the request
+        equipmentProfiles = profileEquipmentDao.getAllProfileEquipment();
+        request.setAttribute("equipmentProfiles", equipmentProfiles);
+
+        // get any unit of measure types named "gal" and attach the first
+        // one to the request
+        uomTypes = uomTypeDao.getUomTypeEntityByName("gal");
         request.setAttribute("uomTypes", uomTypes);
 
         RequestDispatcher dispatcher

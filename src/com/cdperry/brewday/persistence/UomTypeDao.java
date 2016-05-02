@@ -5,6 +5,9 @@ import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
+
 import java.util.*;
 
 /**
@@ -47,6 +50,47 @@ public class UomTypeDao {
         return uomTypes;
 
     }
+
+    /**
+     * This method returns an entity give its name.  If there are multiple entities with the same name all of those
+     * entities are returned.
+     * @param name The name of the entity that should be returned
+     * @return a list of UomTypeEntity objects that match the name parameter
+     */
+    public List<UomTypeEntity>  getUomTypeEntityByName(String name) {
+
+        List<UomTypeEntity> uomTypes = new ArrayList<>();
+
+        Session session = SessionFactoryProvider.getSessionFactory().openSession();
+
+        Criteria criteria = session.createCriteria(UomTypeEntity.class);
+        criteria.add(Restrictions.eq("name", name));
+
+        // Language lang = (Language)super.findByCriteria(criteria).get(0);
+
+        Transaction tx = null;
+
+        try {
+
+            tx = session.beginTransaction();
+            uomTypes = criteria.list();
+
+        } catch (HibernateException e) {
+
+            if (tx != null) {
+                tx.rollback();
+            }
+
+            log.error(e.getStackTrace());
+
+        } finally {
+            session.close();
+        }
+
+        return uomTypes;
+
+    }
+
 
     /**
      * This method returns a uomTypeEntity from the database when passed an appropriate uomTypeEntity ID
