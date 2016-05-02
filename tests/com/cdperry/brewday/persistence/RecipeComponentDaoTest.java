@@ -1,5 +1,6 @@
 package com.cdperry.brewday.persistence;
 
+import com.cdperry.brewday.entity.ComponentEntity;
 import com.cdperry.brewday.entity.RecipeComponentEntity;
 import org.junit.Test;
 import java.math.BigDecimal;
@@ -26,7 +27,7 @@ public class RecipeComponentDaoTest {
         // create a test grain and add them to the database
         testRecipeComponent = new RecipeComponentEntity();
         testRecipeComponent.setRecipeId(1);
-        testRecipeComponent.setComponentId(1);
+        testRecipeComponent.setComponent(new ComponentEntity());
         testRecipeComponent.setAmount(new BigDecimal("1.0"));
         testRecipeComponent.setAmountUomId(1);
         testRecipeComponent.setUpdateDate(ts);
@@ -37,7 +38,7 @@ public class RecipeComponentDaoTest {
         // create a test grain and add them to the database
         testRecipeComponent = new RecipeComponentEntity();
         testRecipeComponent.setRecipeId(2);
-        testRecipeComponent.setComponentId(2);
+        testRecipeComponent.setComponent(new ComponentEntity());
         testRecipeComponent.setAmount(new BigDecimal("2.0"));
         testRecipeComponent.setAmountUomId(2);
         testRecipeComponent.setUpdateDate(ts);
@@ -67,7 +68,7 @@ public class RecipeComponentDaoTest {
         // create a test grain and add them to the database
         testRecipeComponent = new RecipeComponentEntity();
         testRecipeComponent.setRecipeId(1);
-        testRecipeComponent.setComponentId(1);
+        testRecipeComponent.setComponent(new ComponentEntity());
         testRecipeComponent.setAmount(new BigDecimal("1.0"));
         testRecipeComponent.setAmountUomId(1);
         testRecipeComponent.setUpdateDate(ts);
@@ -99,7 +100,7 @@ public class RecipeComponentDaoTest {
         // create a test component and add them to the database
         testRecipeComponent = new RecipeComponentEntity();
         testRecipeComponent.setRecipeId(1);
-        testRecipeComponent.setComponentId(1);
+        testRecipeComponent.setComponent(new ComponentEntity());
         testRecipeComponent.setAmount(new BigDecimal("1.0"));
         testRecipeComponent.setAmountUomId(1);
         testRecipeComponent.setUpdateDate(ts);
@@ -135,7 +136,7 @@ public class RecipeComponentDaoTest {
         // create a test component and add them to the database
         testRecipeComponent = new RecipeComponentEntity();
         testRecipeComponent.setRecipeId(1);
-        testRecipeComponent.setComponentId(1);
+        testRecipeComponent.setComponent(new ComponentEntity());
         testRecipeComponent.setAmount(new BigDecimal("1.0"));
         testRecipeComponent.setAmountUomId(1);
         testRecipeComponent.setUpdateDate(ts);
@@ -164,7 +165,7 @@ public class RecipeComponentDaoTest {
         // create a test component and add them to the database
         testRecipeComponent = new RecipeComponentEntity();
         testRecipeComponent.setRecipeId(1);
-        testRecipeComponent.setComponentId(1);
+        testRecipeComponent.setComponent(new ComponentEntity());
         testRecipeComponent.setAmount(new BigDecimal("1.0"));
         testRecipeComponent.setAmountUomId(1);
         testRecipeComponent.setUpdateDate(ts);

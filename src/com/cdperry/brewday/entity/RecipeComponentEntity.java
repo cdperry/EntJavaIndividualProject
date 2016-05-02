@@ -9,7 +9,8 @@ import java.sql.Timestamp;
 public class RecipeComponentEntity {
     private int recipeComponentId;
     private Integer recipeId;
-    private Integer componentId;
+    //private Integer componentId;
+    private ComponentEntity component;
     private BigDecimal amount;
     private Integer amountUomId;
     private Timestamp updateDate;
@@ -31,12 +32,22 @@ public class RecipeComponentEntity {
         this.recipeId = recipeId;
     }
 
+    /*
     public Integer getComponentId() {
         return componentId;
     }
 
     public void setComponentId(Integer componentId) {
         this.componentId = componentId;
+    }
+    */
+
+    public ComponentEntity getComponent() {
+        return component;
+    }
+
+    public void setComponent(ComponentEntity component) {
+        this.component = component;
     }
 
     public BigDecimal getAmount() {
@@ -80,7 +91,7 @@ public class RecipeComponentEntity {
 
         if (recipeComponentId != that.recipeComponentId) return false;
         if (recipeId != null ? !recipeId.equals(that.recipeId) : that.recipeId != null) return false;
-        if (componentId != null ? !componentId.equals(that.componentId) : that.componentId != null) return false;
+        //if (componentId != null ? !componentId.equals(that.componentId) : that.componentId != null) return false;
         if (amount != null ? !amount.equals(that.amount) : that.amount != null) return false;
         if (amountUomId != null ? !amountUomId.equals(that.amountUomId) : that.amountUomId != null) return false;
         if (updateDate != null ? !updateDate.equals(that.updateDate) : that.updateDate != null) return false;
@@ -93,7 +104,7 @@ public class RecipeComponentEntity {
     public int hashCode() {
         int result = recipeComponentId;
         result = 31 * result + (recipeId != null ? recipeId.hashCode() : 0);
-        result = 31 * result + (componentId != null ? componentId.hashCode() : 0);
+        //result = 31 * result + (componentId != null ? componentId.hashCode() : 0);
         result = 31 * result + (amount != null ? amount.hashCode() : 0);
         result = 31 * result + (amountUomId != null ? amountUomId.hashCode() : 0);
         result = 31 * result + (updateDate != null ? updateDate.hashCode() : 0);

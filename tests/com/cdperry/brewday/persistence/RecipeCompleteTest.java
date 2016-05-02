@@ -1,10 +1,6 @@
 package com.cdperry.brewday.persistence;
 
-import com.cdperry.brewday.entity.RecipeComponentEntity;
-import com.cdperry.brewday.entity.RecipeEntity;
-import com.cdperry.brewday.entity.UomTypeEntity;
-import com.cdperry.brewday.entity.RecipeTypeEntity;
-import com.cdperry.brewday.entity.ProfileEquipmentEntity;
+import com.cdperry.brewday.entity.*;
 import com.sun.tools.javac.jvm.Profile;
 import org.junit.Test;
 
@@ -19,6 +15,9 @@ import static org.junit.Assert.assertTrue;
 
 /**
  * Created by cdperry on 4/17/16.
+ *
+ * TODO: Fix test so that it only works with records it created.  Failing due to test recipes created outside
+ * TODO: the testing framework
  */
 public class RecipeCompleteTest {
 
@@ -47,21 +46,21 @@ public class RecipeCompleteTest {
         Timestamp ts = new Timestamp(now.getTime());
 
         // create a UOM
-        uom.setName("gal");
+        uom.setName("zgal");
         uom.setCreateDate(ts);
         uom.setUpdateDate(ts);
         id = uomTypeDao.addUomTypeEntity(uom);
         uom = uomTypeDao.getUomTypeEntity(id);
 
         // create a recipe type
-        recipeType.setName("All Grain");
+        recipeType.setName("zAll Grain");
         recipeType.setCreateDate(ts);
         recipeType.setUpdateDate(ts);
         id = recipeTypeDao.addRecipeTypeEntity(recipeType);
         recipeType = recipeTypeDao.getRecipeTypeEntity(id);
 
         // create an equipment profile
-        profileEquipment.setName("Pot and Cooler (10G)");
+        profileEquipment.setName("zPot and Cooler (10G)");
         id = profileEquipmentDao.addProfileEquipmentEntity(profileEquipment);
         profileEquipment = profileEquipmentDao.getProfileEquipmentEntity(id);
 
@@ -82,7 +81,7 @@ public class RecipeCompleteTest {
         set1 = new HashSet();
         component = new RecipeComponentEntity();
         component.setRecipeId(id);
-        component.setComponentId(1);
+        component.setComponent(new ComponentEntity());
         component.setAmount(new BigDecimal("1.0"));
         component.setAmountUomId(1);
         component.setUpdateDate(ts);
@@ -91,7 +90,7 @@ public class RecipeCompleteTest {
 
         component = new RecipeComponentEntity();
         component.setRecipeId(id);
-        component.setComponentId(2);
+        component.setComponent(new ComponentEntity());
         component.setAmount(new BigDecimal("2.0"));
         component.setAmountUomId(2);
         component.setUpdateDate(ts);
@@ -100,7 +99,7 @@ public class RecipeCompleteTest {
 
         component = new RecipeComponentEntity();
         component.setRecipeId(id);
-        component.setComponentId(3);
+        component.setComponent(new ComponentEntity());
         component.setAmount(new BigDecimal("3.0"));
         component.setAmountUomId(3);
         component.setUpdateDate(ts);
@@ -128,7 +127,7 @@ public class RecipeCompleteTest {
         set1 = new HashSet();
         component = new RecipeComponentEntity();
         component.setRecipeId(id);
-        component.setComponentId(1);
+        component.setComponent(new ComponentEntity());
         component.setAmount(new BigDecimal("1.0"));
         component.setAmountUomId(1);
         component.setUpdateDate(ts);
@@ -137,7 +136,7 @@ public class RecipeCompleteTest {
 
         component = new RecipeComponentEntity();
         component.setRecipeId(id);
-        component.setComponentId(2);
+        component.setComponent(new ComponentEntity());
         component.setAmount(new BigDecimal("2.0"));
         component.setAmountUomId(2);
         component.setUpdateDate(ts);
@@ -146,7 +145,7 @@ public class RecipeCompleteTest {
 
         component = new RecipeComponentEntity();
         component.setRecipeId(id);
-        component.setComponentId(3);
+        component.setComponent(new ComponentEntity());
         component.setAmount(new BigDecimal("3.0"));
         component.setAmountUomId(3);
         component.setUpdateDate(ts);
@@ -159,27 +158,29 @@ public class RecipeCompleteTest {
 
         // run tests
         recipes = me.getAllRecipes();
-        assertTrue(recipes.size() > 0);
+        assertTrue("recipes size failure", recipes.size() > 0);
 
         testRecipe = recipes.get(0);
+        System.out.println(testRecipe.getRecipeName());
         set2 = testRecipe.getRecipeComponents();
-        assertTrue(set2.size() == 3);
+        System.out.println(set2.size());
+        assertTrue("recipes component size failure", set2.size() == 3);
 
         uom = null;
         uom = testRecipe.getBatchSizeUom();
-        assertTrue(uom.getName().equals("gal"));
+        assertTrue("uom name failure", uom.getName().equals("zgal"));
 
         recipeType = null;
         recipeType = testRecipe.getRecipeType();
-        assertTrue(recipeType.getName().equals("All Grain"));
+        assertTrue("recipe type name failure", recipeType.getName().equals("zAll Grain"));
 
         profileEquipment = null;
         profileEquipment = testRecipe.getProfileEquipment();
-        assertTrue(profileEquipment.getName().equals("Pot and Cooler (10G)"));
+        assertTrue("equip profile name failure", profileEquipment.getName().equals("zPot and Cooler (10G)"));
 
         // clean up
         for (RecipeEntity recipe : recipes) {
-            me.deleteRecipeEntity(recipe);
+            //me.deleteRecipeEntity(recipe);
         }
 
     }

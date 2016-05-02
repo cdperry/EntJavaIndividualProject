@@ -3,7 +3,7 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Add/Edit Recipe</h1>
+        <p></p>
     </div>
 </div>
 
@@ -113,6 +113,34 @@
                 </div>
             </div>
         </form>
+
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Amount</th>
+                <th colspan=2 class="text-center">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${recipeComponents}" var="recipeComponent">
+                <tr>
+                    <td><c:out value="${recipeComponent.amount}" /></td>
+                    <td class="text-center">
+                        <a href="/editRecipeComponent?action=edit&recipeComponentId=
+                                <c:out value="${recipeComponent.componentId}"/>">
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        </a>
+                    </td>
+                    <td class="text-center">
+                        <a href="#" data-id="<c:out value="${recipeComponent.componentId}"/>"
+                           data-toggle="modal" data-target="#myModal">
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        </a>
+                    </td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
 
     </div>
 

@@ -23,7 +23,24 @@
                 <a href="/recipes"><i class="fa fa-edit fa-fw"></i> Recipes</a>
             </li>
             <li>
-                <a href="/ingredients"><i class="fa fa-cutlery fa-fw"></i> Ingredients</a>
+                <a href="#"><i class="fa fa-cutlery fa-fw"></i> Ingredients<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="/listHops">Hops</a>
+                    </li>
+                    <li>
+                        <a href="/listGrain">Grain</a>
+                    </li>
+                    <li>
+                        <a href="/listYeast">Yeast</a>
+                    </li>
+                    <li>
+                        <a href="/listWater">Water</a>
+                    </li>
+                    <li>
+                        <a href="/listMisc">Miscellaneous</a>
+                    </li>
+                </ul>
             </li>
             <li>
                 <a href="/equipment"><i class="fa fa-briefcase fa-fw"></i> Equipment</a>

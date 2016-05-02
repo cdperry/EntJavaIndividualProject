@@ -9,7 +9,10 @@
             <generator class="native"/>
         </id>
         <property name="recipeId" column="recipe_id"/>
-        <property name="componentId" column="component_id"/>
+        <!--<property name="componentId" column="component_id"/>-->
+        <many-to-one name="component" class="com.cdperry.brewday.entity.ComponentEntity"
+                     column="component_id" unique="true" not-null="false" lazy="false"
+                     not-found="ignore" cascade="all"/>
         <property name="amount" column="amount"/>
         <property name="amountUomId" column="amount_uom_id"/>
         <property name="updateDate" column="update_date"/>

@@ -1,9 +1,6 @@
 package com.cdperry.brewday.controller.recipe;
 
-import com.cdperry.brewday.entity.ProfileEquipmentEntity;
-import com.cdperry.brewday.entity.RecipeEntity;
-import com.cdperry.brewday.entity.RecipeTypeEntity;
-import com.cdperry.brewday.entity.UomTypeEntity;
+import com.cdperry.brewday.entity.*;
 import com.cdperry.brewday.persistence.ProfileEquipmentDao;
 import com.cdperry.brewday.persistence.RecipeDao;
 import com.cdperry.brewday.persistence.RecipeTypeDao;
@@ -16,7 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
+import java.util.*;
 
 /**
  *  <p>
@@ -57,6 +54,7 @@ public class RecipeAddEditDisplayServlet extends HttpServlet {
         List<RecipeTypeEntity> recipeTypes;
         List<UomTypeEntity> uomTypes;
         List<ProfileEquipmentEntity> equipmentProfiles;
+        Set<RecipeComponentEntity> recipeComponents;
         int recipeId;
         RecipeEntity recipe;
 
@@ -82,6 +80,8 @@ public class RecipeAddEditDisplayServlet extends HttpServlet {
         } else {
             recipeId = Integer.parseInt(request.getParameter("recipeId"));
             recipe = recipeDao.getRecipeEntity(recipeId);
+            recipeComponents = recipe.getRecipeComponents();
+            request.setAttribute("recipeComponents", recipeComponents);
             if (recipe != null) {
                 request.setAttribute("recipe", recipe);
                 request.setAttribute("actionType", "edit");

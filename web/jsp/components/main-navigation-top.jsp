@@ -3,6 +3,48 @@
 <ul class="nav navbar-top-links navbar-right">
     <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="fa fa-gear fa-fw"></i>
+            <i class="fa fa-caret-down"></i>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+                <a href="/listGrainTypes">Grain Types</a>
+            </li>
+            <li>
+                <a href="/listHopTypes">Hop Types</a>
+            </li>
+            <li>
+                <a href="/listHopFormTypes">Hop Forms</a>
+            </li>
+            <li>
+                <a href="/listOrigins">Origins</a>
+            </li>
+            <li>
+                <a href="/listRecipeTypes">Recipe Types</a>
+            </li>
+            <li>
+                <a href="/listSupplierTypes">Supplier Types</a>
+            </li>
+            <li>
+                <a href="/listUomTypes">Units of Measure</a>
+            </li>
+            <li>
+                <a href="/listUseTypes">Use Types</a>
+            </li>
+            <li>
+                <a href="/listYeastFlocTypes">Flocculation Types</a>
+            </li>
+            <li>
+                <a href="/listYeastFormTypes">Yeast Forms</a>
+            </li>
+            <li>
+                <a href="/listYeastTypes">Yeast Types</a>
+            </li>
+        </ul>
+    </li>
+    <%--
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
             <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
         </a>
         <ul class="dropdown-menu dropdown-messages">
@@ -191,6 +233,7 @@
         <!-- /.dropdown-alerts -->
     </li>
     <!-- /.dropdown -->
+    --%>
     <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
             <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>

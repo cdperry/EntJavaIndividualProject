@@ -8,27 +8,23 @@
         <table class="table table-hover">
             <thead>
             <tr>
-                <%--<th>Origin Type ID</th>--%>
-                <th>Origin</th>
-                <th>Create Date</th>
-                <th>Update Date</th>
+                <th>Yeast</th>
+                <th>Last Updated</th>
                 <th colspan=2 class="text-center">Action</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${origins}" var="origin">
+            <c:forEach items="${yeastIngredients}" var="yeast">
                 <tr>
-                    <%--<td><c:out value="${origin.originId}" /></td>--%>
-                    <td><c:out value="${origin.name}" /></td>
-                    <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${origin.createDate}" /></td>
-                    <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${origin.updateDate}" /></td>
+                    <td><c:out value="${yeast.yeastName}" /></td>
+                    <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${yeast.updateDate}" /></td>
                     <td class="text-center">
-                        <a href="/editOrigin?action=edit&originId=<c:out value="${origin.originId}"/>">
+                        <a href="/editYeast?action=edit&yeastId=<c:out value="${yeast.yeastId}"/>">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </a>
                     </td>
                     <td class="text-center">
-                        <a href="#" data-id="<c:out value="${origin.originId}"/>"
+                        <a href="#" data-id="<c:out value="${yeast.yeastId}"/>"
                            data-toggle="modal" data-target="#myModal">
                             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                         </a>
@@ -37,7 +33,9 @@
             </c:forEach>
             </tbody>
         </table>
-        <p><a href="/addOrigin?action=insert">Add Origin</a></p>
+
+        <p><a href="/addYeast?action=insert">Add Yeast</a></p>
+
     </div>
 
 </div>

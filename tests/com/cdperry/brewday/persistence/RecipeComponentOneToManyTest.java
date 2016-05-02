@@ -1,5 +1,6 @@
 package com.cdperry.brewday.persistence;
 
+import com.cdperry.brewday.entity.ComponentEntity;
 import com.cdperry.brewday.entity.RecipeEntity;
 import com.cdperry.brewday.entity.RecipeComponentEntity;
 import com.cdperry.brewday.persistence.RecipeDao;
@@ -28,7 +29,7 @@ public class RecipeComponentOneToManyTest {
 
         RecipeComponentEntity component = new RecipeComponentEntity();
         component.setRecipeId(1);
-        component.setComponentId(1);
+        component.setComponent(new ComponentEntity());
         component.setAmount(new BigDecimal("1.0"));
         component.setAmountUomId(1);
         component.setUpdateDate(ts);
@@ -37,7 +38,7 @@ public class RecipeComponentOneToManyTest {
 
         component = new RecipeComponentEntity();
         component.setRecipeId(1);
-        component.setComponentId(2);
+        component.setComponent(new ComponentEntity());
         component.setAmount(new BigDecimal("2.0"));
         component.setAmountUomId(2);
         component.setUpdateDate(ts);
@@ -46,7 +47,7 @@ public class RecipeComponentOneToManyTest {
 
         component = new RecipeComponentEntity();
         component.setRecipeId(1);
-        component.setComponentId(3);
+        component.setComponent(new ComponentEntity());
         component.setAmount(new BigDecimal("3.0"));
         component.setAmountUomId(3);
         component.setUpdateDate(ts);

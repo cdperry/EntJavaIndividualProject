@@ -1,4 +1,4 @@
-package com.cdperry.brewday.controller.ingredients;
+package com.cdperry.brewday.controller.ingredients.yeast;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,15 +10,15 @@ import java.io.IOException;
 
 /**
  *  <p>
- *  This servlet is used to display the main page of the application
+ *  This servlet is used to display the yeast available for recipes
  *  </p>
  *  @author Chris Perry
  */
 @WebServlet(
-        name = "IngredientsDisplayServlet",
-        urlPatterns = { "/ingredients" }
+        name = "YeastDisplayServlet",
+        urlPatterns = { "/listYeast" }
 )
-public class IngredientsDisplayServlet extends HttpServlet {
+public class YeastDisplayServlet extends HttpServlet {
 
     /**
      *  This method handles HTTP GET requests.
@@ -30,7 +30,7 @@ public class IngredientsDisplayServlet extends HttpServlet {
      */
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String url = "/jsp/ingredients.jsp";
+        String url = "/jsp/listYeast.jsp";
 
         RequestDispatcher dispatcher
                 = getServletContext().getRequestDispatcher(url);
