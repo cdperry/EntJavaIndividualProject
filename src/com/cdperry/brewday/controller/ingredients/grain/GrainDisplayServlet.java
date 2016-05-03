@@ -16,7 +16,7 @@ import java.io.IOException;
  */
 @WebServlet(
         name = "GrainDisplayServlet",
-        urlPatterns = { "/listGrain" }
+        urlPatterns = { "/listAllGrain" }
 )
 public class GrainDisplayServlet extends HttpServlet {
 

@@ -26,7 +26,7 @@ public class SupplierDaoTest {
         // create a test grain and add them to the database
         testSupplier = new SupplierEntity();
         testSupplier.setName("Supplier 1");
-        testSupplier.setSupplierTypeId(1);
+//        testSupplier.setSupplierTypeId(1);
         testSupplier.setUrl("http://www.google.com");
         testSupplier.setEmail("a@a.com");
         testSupplier.setPhone("414-555-5555");
@@ -40,7 +40,7 @@ public class SupplierDaoTest {
         // create a test grain and add them to the database
         testSupplier = new SupplierEntity();
         testSupplier.setName("Supplier 2");
-        testSupplier.setSupplierTypeId(1);
+//        testSupplier.setSupplierTypeId(1);
         testSupplier.setUrl("http://www.bing.com");
         testSupplier.setEmail("b@b.com");
         testSupplier.setPhone("262-555-5555");
@@ -73,7 +73,7 @@ public class SupplierDaoTest {
         // create a test grain and add them to the database
         testSupplier = new SupplierEntity();
         testSupplier.setName("Supplier 1");
-        testSupplier.setSupplierTypeId(1);
+//        testSupplier.setSupplierTypeId(1);
         testSupplier.setUrl("http://www.google.com");
         testSupplier.setEmail("a@a.com");
         testSupplier.setPhone("414-555-5555");
@@ -108,7 +108,7 @@ public class SupplierDaoTest {
         // create a test component and add them to the database
         testSupplier = new SupplierEntity();
         testSupplier.setName("Supplier 1");
-        testSupplier.setSupplierTypeId(1);
+//        testSupplier.setSupplierTypeId(1);
         testSupplier.setUrl("http://www.google.com");
         testSupplier.setEmail("a@a.com");
         testSupplier.setPhone("414-555-5555");
@@ -147,7 +147,7 @@ public class SupplierDaoTest {
         // create a test component and add them to the database
         testSupplier = new SupplierEntity();
         testSupplier.setName("Supplier 1");
-        testSupplier.setSupplierTypeId(1);
+//        testSupplier.setSupplierTypeId(1);
         testSupplier.setUrl("http://www.google.com");
         testSupplier.setEmail("a@a.com");
         testSupplier.setPhone("414-555-5555");
@@ -179,7 +179,7 @@ public class SupplierDaoTest {
         // create a test component and add them to the database
         testSupplier = new SupplierEntity();
         testSupplier.setName("Supplier 1");
-        testSupplier.setSupplierTypeId(1);
+//        testSupplier.setSupplierTypeId(1);
         testSupplier.setUrl("http://www.google.com");
         testSupplier.setEmail("a@a.com");
         testSupplier.setPhone("414-555-5555");

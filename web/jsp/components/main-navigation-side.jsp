@@ -26,19 +26,19 @@
                 <a href="#"><i class="fa fa-cutlery fa-fw"></i> Ingredients<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="/listHops">Hops</a>
+                        <a href="/listAllHops">Hops</a>
                     </li>
                     <li>
-                        <a href="/listGrain">Grain</a>
+                        <a href="/listAllGrain">Grain</a>
                     </li>
                     <li>
-                        <a href="/listYeast">Yeast</a>
+                        <a href="/listAllYeast">Yeast</a>
                     </li>
                     <li>
-                        <a href="/listWater">Water</a>
+                        <a href="/listAllWater">Water</a>
                     </li>
                     <li>
-                        <a href="/listMisc">Miscellaneous</a>
+                        <a href="/listAllMisc">Miscellaneous</a>
                     </li>
                 </ul>
             </li>

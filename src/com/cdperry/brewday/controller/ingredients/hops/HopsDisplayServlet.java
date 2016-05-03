@@ -16,7 +16,7 @@ import java.io.IOException;
  */
 @WebServlet(
         name = "HopsDisplayServlet",
-        urlPatterns = { "/listHops" }
+        urlPatterns = { "/listAllHops" }
 )
 public class HopsDisplayServlet extends HttpServlet {
 

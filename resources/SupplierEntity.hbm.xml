@@ -8,7 +8,10 @@
         <id name="supplierId" column="supplier_id">
             <generator class="native"/>
         </id>
-        <property name="supplierTypeId" column="supplier_type_id"/>
+        <!--<property name="supplierTypeId" column="supplier_type_id"/>-->
+        <many-to-one name="supplierType" class="com.cdperry.brewday.entity.SupplierTypeEntity"
+                     column="supplier_type_id" unique="true" not-null="false" lazy="false"
+                     not-found="ignore" />
         <property name="name" column="name"/>
         <property name="url" column="url"/>
         <property name="email" column="email"/>
