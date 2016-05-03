@@ -10,11 +10,17 @@ public class ComponentYeastEntity {
     private int compYeastId;
     private Integer componentId;
     private String name;
-    private Integer labId;
-    private Integer supplierId;
-    private Integer yeastTypeId;
-    private Integer yeastFormId;
-    private Integer yeastFlocTypeId;
+//    private Integer labId;
+//    private Integer supplierId;
+//    private Integer yeastTypeId;
+//    private Integer yeastFormId;
+//    private Integer yeastFlocTypeId;
+    private SupplierEntity lab;
+    private SupplierEntity supplier;
+    private YeastTypeEntity yeastType;
+    private YeastFormEntity yeastForm;
+    private YeastFlocTypeEntity yeastFlocType;
+
     private BigDecimal attenuationMin;
     private BigDecimal attenuationMax;
     private BigDecimal temperatureMin;
@@ -23,6 +29,14 @@ public class ComponentYeastEntity {
     private String notes;
     private Timestamp updateDate;
     private Timestamp createDate;
+
+    public ComponentYeastEntity() {}
+
+    public ComponentYeastEntity(Integer componentId, Timestamp createDate, Timestamp updateDate) {
+        this.componentId = componentId;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
+    }
 
     public int getCompYeastId() {
         return compYeastId;
@@ -48,6 +62,7 @@ public class ComponentYeastEntity {
         this.name = name;
     }
 
+    /*
     public Integer getLabId() {
         return labId;
     }
@@ -86,6 +101,47 @@ public class ComponentYeastEntity {
 
     public void setYeastFlocTypeId(Integer yeastFlocTypeId) {
         this.yeastFlocTypeId = yeastFlocTypeId;
+    }
+    */
+
+    public SupplierEntity getLab() {
+        return lab;
+    }
+
+    public void setLab(SupplierEntity lab) {
+        this.lab = lab;
+    }
+
+    public SupplierEntity getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(SupplierEntity supplier) {
+        this.supplier = supplier;
+    }
+
+    public YeastTypeEntity getYeastType() {
+        return yeastType;
+    }
+
+    public void setYeastType(YeastTypeEntity yeastType) {
+        this.yeastType = yeastType;
+    }
+
+    public YeastFormEntity getYeastForm() {
+        return yeastForm;
+    }
+
+    public void setYeastForm(YeastFormEntity yeastForm) {
+        this.yeastForm = yeastForm;
+    }
+
+    public YeastFlocTypeEntity getYeastFlocType() {
+        return yeastFlocType;
+    }
+
+    public void setYeastFlocType(YeastFlocTypeEntity yeastFlocType) {
+        this.yeastFlocType = yeastFlocType;
     }
 
     public BigDecimal getAttenuationMin() {
@@ -161,12 +217,12 @@ public class ComponentYeastEntity {
 
         if (compYeastId != that.compYeastId) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (labId != null ? !labId.equals(that.labId) : that.labId != null) return false;
-        if (supplierId != null ? !supplierId.equals(that.supplierId) : that.supplierId != null) return false;
-        if (yeastTypeId != null ? !yeastTypeId.equals(that.yeastTypeId) : that.yeastTypeId != null) return false;
-        if (yeastFormId != null ? !yeastFormId.equals(that.yeastFormId) : that.yeastFormId != null) return false;
-        if (yeastFlocTypeId != null ? !yeastFlocTypeId.equals(that.yeastFlocTypeId) : that.yeastFlocTypeId != null)
-            return false;
+//        if (labId != null ? !labId.equals(that.labId) : that.labId != null) return false;
+//        if (supplierId != null ? !supplierId.equals(that.supplierId) : that.supplierId != null) return false;
+//        if (yeastTypeId != null ? !yeastTypeId.equals(that.yeastTypeId) : that.yeastTypeId != null) return false;
+//        if (yeastFormId != null ? !yeastFormId.equals(that.yeastFormId) : that.yeastFormId != null) return false;
+//        if (yeastFlocTypeId != null ? !yeastFlocTypeId.equals(that.yeastFlocTypeId) : that.yeastFlocTypeId != null)
+//            return false;
         if (attenuationMin != null ? !attenuationMin.equals(that.attenuationMin) : that.attenuationMin != null)
             return false;
         if (attenuationMax != null ? !attenuationMax.equals(that.attenuationMax) : that.attenuationMax != null)
@@ -187,11 +243,11 @@ public class ComponentYeastEntity {
     public int hashCode() {
         int result = compYeastId;
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (labId != null ? labId.hashCode() : 0);
-        result = 31 * result + (supplierId != null ? supplierId.hashCode() : 0);
-        result = 31 * result + (yeastTypeId != null ? yeastTypeId.hashCode() : 0);
-        result = 31 * result + (yeastFormId != null ? yeastFormId.hashCode() : 0);
-        result = 31 * result + (yeastFlocTypeId != null ? yeastFlocTypeId.hashCode() : 0);
+//        result = 31 * result + (labId != null ? labId.hashCode() : 0);
+//        result = 31 * result + (supplierId != null ? supplierId.hashCode() : 0);
+//        result = 31 * result + (yeastTypeId != null ? yeastTypeId.hashCode() : 0);
+//        result = 31 * result + (yeastFormId != null ? yeastFormId.hashCode() : 0);
+//        result = 31 * result + (yeastFlocTypeId != null ? yeastFlocTypeId.hashCode() : 0);
         result = 31 * result + (attenuationMin != null ? attenuationMin.hashCode() : 0);
         result = 31 * result + (attenuationMax != null ? attenuationMax.hashCode() : 0);
         result = 31 * result + (temperatureMin != null ? temperatureMin.hashCode() : 0);

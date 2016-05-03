@@ -27,10 +27,10 @@ public class ComponentHopDaoTest {
         testComponent = new ComponentHopEntity();
         testComponent.setName("Hop 1");
         testComponent.setComponentId(1);
-        testComponent.setOriginId(1);
-        testComponent.setSupplierId(1);
-        testComponent.setHopTypeId(1);
-        testComponent.setHopFormId(1);
+//        testComponent.setOriginId(1);
+//        testComponent.setSupplierId(1);
+//        testComponent.setHopTypeId(1);
+//        testComponent.setHopFormId(1);
         testComponent.setAlphaPct(new BigDecimal("1.5"));
         testComponent.setBetaPct(new BigDecimal("3.2"));
         testComponent.setNotes("This is a note.");
@@ -43,10 +43,10 @@ public class ComponentHopDaoTest {
         testComponent = new ComponentHopEntity();
         testComponent.setName("Hop 2");
         testComponent.setComponentId(1);
-        testComponent.setOriginId(1);
-        testComponent.setSupplierId(1);
-        testComponent.setHopTypeId(1);
-        testComponent.setHopFormId(1);
+//        testComponent.setOriginId(1);
+//        testComponent.setSupplierId(1);
+//        testComponent.setHopTypeId(1);
+//        testComponent.setHopFormId(1);
         testComponent.setAlphaPct(new BigDecimal("1.5"));
         testComponent.setBetaPct(new BigDecimal("3.2"));
         testComponent.setNotes("This is a note.");
@@ -77,10 +77,10 @@ public class ComponentHopDaoTest {
         // create a test grain and add them to the database
         testComponent.setName("Hop 1");
         testComponent.setComponentId(1);
-        testComponent.setOriginId(1);
-        testComponent.setSupplierId(1);
-        testComponent.setHopTypeId(1);
-        testComponent.setHopFormId(1);
+//        testComponent.setOriginId(1);
+//        testComponent.setSupplierId(1);
+//        testComponent.setHopTypeId(1);
+//        testComponent.setHopFormId(1);
         testComponent.setAlphaPct(new BigDecimal("1.5"));
         testComponent.setBetaPct(new BigDecimal("3.2"));
         testComponent.setNotes("This is a note.");
@@ -113,10 +113,10 @@ public class ComponentHopDaoTest {
         // create a test component and add them to the database
         testComponent.setName("Hop 1");
         testComponent.setComponentId(1);
-        testComponent.setOriginId(1);
-        testComponent.setSupplierId(1);
-        testComponent.setHopTypeId(1);
-        testComponent.setHopFormId(1);
+//        testComponent.setOriginId(1);
+//        testComponent.setSupplierId(1);
+//        testComponent.setHopTypeId(1);
+//        testComponent.setHopFormId(1);
         testComponent.setAlphaPct(new BigDecimal("1.5"));
         testComponent.setBetaPct(new BigDecimal("3.2"));
         testComponent.setNotes("This is a note.");
@@ -153,10 +153,10 @@ public class ComponentHopDaoTest {
         // create a test component and add them to the database
         testComponent.setName("Hop 1");
         testComponent.setComponentId(1);
-        testComponent.setOriginId(1);
-        testComponent.setSupplierId(1);
-        testComponent.setHopTypeId(1);
-        testComponent.setHopFormId(1);
+//        testComponent.setOriginId(1);
+//        testComponent.setSupplierId(1);
+//        testComponent.setHopTypeId(1);
+//        testComponent.setHopFormId(1);
         testComponent.setAlphaPct(new BigDecimal("1.5"));
         testComponent.setBetaPct(new BigDecimal("3.2"));
         testComponent.setNotes("This is a note.");
@@ -186,10 +186,10 @@ public class ComponentHopDaoTest {
         // create a test component and add them to the database
         testComponent.setName("Hop 1");
         testComponent.setComponentId(1);
-        testComponent.setOriginId(1);
-        testComponent.setSupplierId(1);
-        testComponent.setHopTypeId(1);
-        testComponent.setHopFormId(1);
+//        testComponent.setOriginId(1);
+//        testComponent.setSupplierId(1);
+//        testComponent.setHopTypeId(1);
+//        testComponent.setHopFormId(1);
         testComponent.setAlphaPct(new BigDecimal("1.5"));
         testComponent.setBetaPct(new BigDecimal("3.2"));
         testComponent.setNotes("This is a note.");

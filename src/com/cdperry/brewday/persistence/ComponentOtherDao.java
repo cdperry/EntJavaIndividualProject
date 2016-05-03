@@ -151,6 +151,39 @@ public class ComponentOtherDao {
     }
 
     /**
+     * This method deletes the ComponentOtherEntity object from the database
+     * @param componentOtherId the ID of the componentOtherEntity to be deleted from the database
+     */
+    public void deleteComponentOtherEntityById(int componentOtherId) {
+
+        Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+
+            tx = session.beginTransaction();
+            ComponentOtherEntity entityToDelete = (ComponentOtherEntity)session.get(ComponentOtherEntity.class, componentOtherId);
+            session.delete(entityToDelete);
+            tx.commit();
+            log.warn("Deleted other type: " + entityToDelete + " with id of: " + componentOtherId);
+
+        } catch (HibernateException e) {
+
+            if (tx!=null) {
+                tx.rollback();
+            }
+
+            e.printStackTrace();
+
+        } finally {
+
+            session.close();
+
+        }
+
+    }
+
+    /**
      * This method adds an componentOtherEntity to the database and returns the ID associated with the new record
      * @param componentOtherEntity the componentOtherEntity to be added to the database
      * @return int the componentOtherEntity ID of the added record

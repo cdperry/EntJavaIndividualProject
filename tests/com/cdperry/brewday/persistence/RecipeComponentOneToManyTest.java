@@ -31,7 +31,7 @@ public class RecipeComponentOneToManyTest {
         component.setRecipeId(1);
         component.setComponent(new ComponentEntity());
         component.setAmount(new BigDecimal("1.0"));
-        component.setAmountUomId(1);
+        //component.setAmountUomId(1);
         component.setUpdateDate(ts);
         component.setCreateDate(ts);
         set1.add(component);
@@ -40,7 +40,7 @@ public class RecipeComponentOneToManyTest {
         component.setRecipeId(1);
         component.setComponent(new ComponentEntity());
         component.setAmount(new BigDecimal("2.0"));
-        component.setAmountUomId(2);
+        //component.setAmountUomId(2);
         component.setUpdateDate(ts);
         component.setCreateDate(ts);
         set1.add(component);
@@ -49,7 +49,7 @@ public class RecipeComponentOneToManyTest {
         component.setRecipeId(1);
         component.setComponent(new ComponentEntity());
         component.setAmount(new BigDecimal("3.0"));
-        component.setAmountUomId(3);
+        //component.setAmountUomId(3);
         component.setUpdateDate(ts);
         component.setCreateDate(ts);
         set1.add(component);

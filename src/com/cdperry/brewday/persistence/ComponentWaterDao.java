@@ -151,6 +151,39 @@ public class ComponentWaterDao {
     }
 
     /**
+     * This method deletes the ComponentWaterEntity object from the database
+     * @param componentWaterId the ID of the componentWaterEntity to be deleted from the database
+     */
+    public void deleteComponentWaterEntityById(int componentWaterId) {
+
+        Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+
+            tx = session.beginTransaction();
+            ComponentWaterEntity entityToDelete = (ComponentWaterEntity)session.get(ComponentWaterEntity.class, componentWaterId);
+            session.delete(entityToDelete);
+            tx.commit();
+            log.warn("Deleted water type: " + entityToDelete + " with id of: " + componentWaterId);
+
+        } catch (HibernateException e) {
+
+            if (tx!=null) {
+                tx.rollback();
+            }
+
+            e.printStackTrace();
+
+        } finally {
+
+            session.close();
+
+        }
+
+    }
+
+    /**
      * This method adds an componentWaterEntity to the database and returns the ID associated with the new record
      * @param componentWaterEntity the componentWaterEntity to be added to the database
      * @return int the componentWaterEntity ID of the added record

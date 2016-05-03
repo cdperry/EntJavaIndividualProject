@@ -27,9 +27,9 @@ public class ComponentGrainDaoTest {
         testComponent = new ComponentGrainEntity();
         testComponent.setName("Grain 1");
         testComponent.setComponentId(1);
-        testComponent.setOriginId(1);
-        testComponent.setSupplierId(1);
-        testComponent.setGrainTypeId(1);
+//        testComponent.setOriginId(1);
+//        testComponent.setSupplierId(1);
+//        testComponent.setGrainTypeId(1);
         testComponent.setColor(new BigDecimal("1.5"));
         testComponent.setPotential(new BigDecimal("3.2"));
         testComponent.setNotes("This is a note.");
@@ -42,9 +42,9 @@ public class ComponentGrainDaoTest {
         testComponent = new ComponentGrainEntity();
         testComponent.setName("Grain 2");
         testComponent.setComponentId(1);
-        testComponent.setOriginId(1);
-        testComponent.setSupplierId(1);
-        testComponent.setGrainTypeId(1);
+//        testComponent.setOriginId(1);
+//        testComponent.setSupplierId(1);
+//        testComponent.setGrainTypeId(1);
         testComponent.setColor(new BigDecimal("1.5"));
         testComponent.setPotential(new BigDecimal("3.2"));
         testComponent.setNotes("This is a note.");
@@ -75,9 +75,9 @@ public class ComponentGrainDaoTest {
         // create a test grain and add them to the database
         testComponent.setName("Grain");
         testComponent.setComponentId(1);
-        testComponent.setOriginId(1);
-        testComponent.setSupplierId(1);
-        testComponent.setGrainTypeId(1);
+//        testComponent.setOriginId(1);
+//        testComponent.setSupplierId(1);
+//        testComponent.setGrainTypeId(1);
         testComponent.setColor(new BigDecimal("1.5"));
         testComponent.setPotential(new BigDecimal("3.2"));
         testComponent.setNotes("This is a note.");
@@ -110,9 +110,9 @@ public class ComponentGrainDaoTest {
         // create a test component and add them to the database
         testComponent.setName("Grain");
         testComponent.setComponentId(1);
-        testComponent.setOriginId(1);
-        testComponent.setSupplierId(1);
-        testComponent.setGrainTypeId(1);
+//        testComponent.setOriginId(1);
+//        testComponent.setSupplierId(1);
+//        testComponent.setGrainTypeId(1);
         testComponent.setColor(new BigDecimal("1.5"));
         testComponent.setPotential(new BigDecimal("3.2"));
         testComponent.setNotes("This is a note.");
@@ -149,9 +149,9 @@ public class ComponentGrainDaoTest {
         // create a test component and add them to the database
         testComponent.setName("Grain");
         testComponent.setComponentId(1);
-        testComponent.setOriginId(1);
-        testComponent.setSupplierId(1);
-        testComponent.setGrainTypeId(1);
+//        testComponent.setOriginId(1);
+//        testComponent.setSupplierId(1);
+//        testComponent.setGrainTypeId(1);
         testComponent.setColor(new BigDecimal("1.5"));
         testComponent.setPotential(new BigDecimal("3.2"));
         testComponent.setNotes("This is a note.");
@@ -181,9 +181,9 @@ public class ComponentGrainDaoTest {
         // create a test component and add them to the database
         testComponent.setName("Grain");
         testComponent.setComponentId(1);
-        testComponent.setOriginId(1);
-        testComponent.setSupplierId(1);
-        testComponent.setGrainTypeId(1);
+//        testComponent.setOriginId(1);
+//        testComponent.setSupplierId(1);
+//        testComponent.setGrainTypeId(1);
         testComponent.setColor(new BigDecimal("1.5"));
         testComponent.setPotential(new BigDecimal("3.2"));
         testComponent.setNotes("This is a note.");
@@ -197,7 +197,7 @@ public class ComponentGrainDaoTest {
 
         // clean up
         testComponent = me.getComponentGrainEntity(componentGrainEntityID);
-        //me.deleteComponentGrainEntity(testComponent);
+        me.deleteComponentGrainEntity(testComponent);
 
     }
 

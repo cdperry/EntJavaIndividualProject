@@ -8,12 +8,18 @@ import java.sql.Timestamp;
 public class ComponentEntity {
     private int componentId;
     private String name;
-    private Integer componentTypeId;
-    private Integer compHopId;
-    private Integer compGrainId;
-    private Integer compYeastId;
-    private Integer compWaterId;
-    private Integer compOtherId;
+    //private Integer componentTypeId;
+    //private Integer compHopId;
+    //private Integer compGrainId;
+    //private Integer compYeastId;
+    //private Integer compWaterId;
+    //private Integer compOtherId;
+    private ComponentTypeEntity componentType;
+    private ComponentHopEntity componentHop;
+    private ComponentGrainEntity componentGrain;
+    private ComponentYeastEntity componentYeast;
+    private ComponentWaterEntity componentWater;
+    private ComponentOtherEntity componentOther;
     private Timestamp updateDate;
     private Timestamp createDate;
 
@@ -33,6 +39,7 @@ public class ComponentEntity {
         this.name = name;
     }
 
+    /*
     public Integer getComponentTypeId() {
         return componentTypeId;
     }
@@ -80,6 +87,55 @@ public class ComponentEntity {
     public void setCompOtherId(Integer compOtherId) {
         this.compOtherId = compOtherId;
     }
+    */
+
+    public ComponentTypeEntity getComponentType() {
+        return componentType;
+    }
+
+    public void setComponentType(ComponentTypeEntity componentType) {
+        this.componentType = componentType;
+    }
+
+    public ComponentHopEntity getComponentHop() {
+        return componentHop;
+    }
+
+    public void setComponentHop(ComponentHopEntity compHop) {
+        this.componentHop = compHop;
+    }
+
+    public ComponentGrainEntity getComponentGrain() {
+        return componentGrain;
+    }
+
+    public void setComponentGrain(ComponentGrainEntity compGrain) {
+        this.componentGrain = compGrain;
+    }
+
+    public ComponentYeastEntity getComponentYeast() {
+        return componentYeast;
+    }
+
+    public void setComponentYeast(ComponentYeastEntity compYeast) {
+        this.componentYeast = compYeast;
+    }
+
+    public ComponentWaterEntity getComponentWater() {
+        return componentWater;
+    }
+
+    public void setComponentWater(ComponentWaterEntity compWater) {
+        this.componentWater = compWater;
+    }
+
+    public ComponentOtherEntity getComponentOther() {
+        return componentOther;
+    }
+
+    public void setComponentOther(ComponentOtherEntity compOther) {
+        this.componentOther = compOther;
+    }
 
     public Timestamp getUpdateDate() {
         return updateDate;
@@ -106,13 +162,13 @@ public class ComponentEntity {
 
         if (componentId != that.componentId) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (componentTypeId != null ? !componentTypeId.equals(that.componentTypeId) : that.componentTypeId != null)
-            return false;
-        if (compHopId != null ? !compHopId.equals(that.compHopId) : that.compHopId != null) return false;
-        if (compGrainId != null ? !compGrainId.equals(that.compGrainId) : that.compGrainId != null) return false;
-        if (compYeastId != null ? !compYeastId.equals(that.compYeastId) : that.compYeastId != null) return false;
-        if (compWaterId != null ? !compWaterId.equals(that.compWaterId) : that.compWaterId != null) return false;
-        if (compOtherId != null ? !compOtherId.equals(that.compOtherId) : that.compOtherId != null) return false;
+        //if (componentTypeId != null ? !componentTypeId.equals(that.componentTypeId) : that.componentTypeId != null)
+        //    return false;
+        //if (compHopId != null ? !compHopId.equals(that.compHopId) : that.compHopId != null) return false;
+        //if (compGrainId != null ? !compGrainId.equals(that.compGrainId) : that.compGrainId != null) return false;
+        //if (compYeastId != null ? !compYeastId.equals(that.compYeastId) : that.compYeastId != null) return false;
+        //if (compWaterId != null ? !compWaterId.equals(that.compWaterId) : that.compWaterId != null) return false;
+        //if (compOtherId != null ? !compOtherId.equals(that.compOtherId) : that.compOtherId != null) return false;
         if (updateDate != null ? !updateDate.equals(that.updateDate) : that.updateDate != null) return false;
         if (createDate != null ? !createDate.equals(that.createDate) : that.createDate != null) return false;
 
@@ -123,14 +179,14 @@ public class ComponentEntity {
     public int hashCode() {
         int result = componentId;
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (componentTypeId != null ? componentTypeId.hashCode() : 0);
-        result = 31 * result + (compHopId != null ? compHopId.hashCode() : 0);
-        result = 31 * result + (compGrainId != null ? compGrainId.hashCode() : 0);
-        result = 31 * result + (compYeastId != null ? compYeastId.hashCode() : 0);
-        result = 31 * result + (compWaterId != null ? compWaterId.hashCode() : 0);
-        result = 31 * result + (compOtherId != null ? compOtherId.hashCode() : 0);
-        result = 31 * result + (updateDate != null ? updateDate.hashCode() : 0);
-        result = 31 * result + (createDate != null ? createDate.hashCode() : 0);
+        //result = 31 * result + (componentTypeId != null ? componentTypeId.hashCode() : 0);
+        //result = 31 * result + (compHopId != null ? compHopId.hashCode() : 0);
+        //result = 31 * result + (compGrainId != null ? compGrainId.hashCode() : 0);
+        //result = 31 * result + (compYeastId != null ? compYeastId.hashCode() : 0);
+        //result = 31 * result + (compWaterId != null ? compWaterId.hashCode() : 0);
+        //result = 31 * result + (compOtherId != null ? compOtherId.hashCode() : 0);
+        //result = 31 * result + (updateDate != null ? updateDate.hashCode() : 0);
+        //result = 31 * result + (createDate != null ? createDate.hashCode() : 0);
         return result;
     }
 }

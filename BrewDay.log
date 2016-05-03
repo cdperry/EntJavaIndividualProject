@@ -1626,3 +1626,247 @@
 2016-05-01 23:39:48,348 121  [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Added recipe: com.cdperry.brewday.entity.RecipeEntity@33b5df34 with id of: 91
 2016-05-01 23:39:48,353 126  [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Retrieved recipe: com.cdperry.brewday.entity.RecipeEntity@3482ceb3 with id of: 91
 2016-05-01 23:39:48,370 143  [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Updated recipe: com.cdperry.brewday.entity.RecipeEntity@3482ceb3 with id of: 91
+2016-05-02 19:41:28,589 0    [main] WARN  com.cdperry.brewday.persistence.UomTypeDao  - Added uom type: com.cdperry.brewday.entity.UomTypeEntity@581bfcec with id of: 44
+2016-05-02 19:41:28,640 51   [main] WARN  com.cdperry.brewday.persistence.UomTypeDao  - Retrieved uom type: com.cdperry.brewday.entity.UomTypeEntity@581c52ec with id of: 44
+2016-05-02 19:41:28,644 55   [main] WARN  com.cdperry.brewday.persistence.RecipeTypeDao  - Added recipe type: com.cdperry.brewday.entity.RecipeTypeEntity@6b6da3b with id of: 39
+2016-05-02 19:41:28,647 58   [main] WARN  com.cdperry.brewday.persistence.RecipeTypeDao  - Retrieved recipe type: com.cdperry.brewday.entity.RecipeTypeEntity@6b7303b with id of: 39
+2016-05-02 19:41:28,654 65   [main] WARN  com.cdperry.brewday.persistence.ProfileEquipmentDao  - Added equipment profile: com.cdperry.brewday.entity.ProfileEquipmentEntity@7deb5acd with id of: 26
+2016-05-02 19:41:28,658 69   [main] WARN  com.cdperry.brewday.persistence.ProfileEquipmentDao  - Retrieved equipment profile: com.cdperry.brewday.entity.ProfileEquipmentEntity@7deb5acd with id of: 26
+2016-05-02 19:41:28,664 75   [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Added recipe: com.cdperry.brewday.entity.RecipeEntity@becf8c3a with id of: 92
+2016-05-02 19:41:28,691 102  [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Retrieved recipe: com.cdperry.brewday.entity.RecipeEntity@bef8cf61 with id of: 92
+2016-05-02 19:41:28,730 141  [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Updated recipe: com.cdperry.brewday.entity.RecipeEntity@bef8cf61 with id of: 92
+2016-05-02 19:41:28,733 144  [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Added recipe: com.cdperry.brewday.entity.RecipeEntity@c0a4ab32 with id of: 93
+2016-05-02 19:41:28,742 153  [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Retrieved recipe: com.cdperry.brewday.entity.RecipeEntity@c17193f1 with id of: 93
+2016-05-02 19:41:28,757 168  [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Updated recipe: com.cdperry.brewday.entity.RecipeEntity@c17193f1 with id of: 93
+2016-05-02 19:51:22,634 0    [main] WARN  com.cdperry.brewday.persistence.UomTypeDao  - Added uom type: com.cdperry.brewday.entity.UomTypeEntity@593f0f6b with id of: 45
+2016-05-02 19:51:22,666 32   [main] WARN  com.cdperry.brewday.persistence.UomTypeDao  - Retrieved uom type: com.cdperry.brewday.entity.UomTypeEntity@593e954b with id of: 45
+2016-05-02 19:51:22,670 36   [main] WARN  com.cdperry.brewday.persistence.RecipeTypeDao  - Added recipe type: com.cdperry.brewday.entity.RecipeTypeEntity@7d9ecba with id of: 40
+2016-05-02 19:51:22,672 38   [main] WARN  com.cdperry.brewday.persistence.RecipeTypeDao  - Retrieved recipe type: com.cdperry.brewday.entity.RecipeTypeEntity@7d9729a with id of: 40
+2016-05-02 19:51:22,678 44   [main] WARN  com.cdperry.brewday.persistence.ProfileEquipmentDao  - Added equipment profile: com.cdperry.brewday.entity.ProfileEquipmentEntity@a73b3f4e with id of: 27
+2016-05-02 19:51:22,684 50   [main] WARN  com.cdperry.brewday.persistence.ProfileEquipmentDao  - Retrieved equipment profile: com.cdperry.brewday.entity.ProfileEquipmentEntity@a73b3f4e with id of: 27
+2016-05-02 19:51:22,691 57   [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Added recipe: com.cdperry.brewday.entity.RecipeEntity@c35bdb98 with id of: 94
+2016-05-02 19:51:22,712 78   [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Retrieved recipe: com.cdperry.brewday.entity.RecipeEntity@c3844e9f with id of: 94
+2016-05-02 19:51:22,744 110  [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Updated recipe: com.cdperry.brewday.entity.RecipeEntity@c3844e9f with id of: 94
+2016-05-02 19:51:22,749 115  [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Added recipe: com.cdperry.brewday.entity.RecipeEntity@c530fa90 with id of: 95
+2016-05-02 19:51:22,755 121  [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Retrieved recipe: com.cdperry.brewday.entity.RecipeEntity@c5fd132f with id of: 95
+2016-05-02 19:51:22,769 135  [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Updated recipe: com.cdperry.brewday.entity.RecipeEntity@c5fd132f with id of: 95
+2016-05-02 19:51:22,780 146  [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Retrieved recipe: com.cdperry.brewday.entity.RecipeEntity@c5fd132f with id of: 95
+2016-05-02 19:51:22,794 160  [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Retrieved recipe: com.cdperry.brewday.entity.RecipeEntity@c3844e9f with id of: 94
+2016-05-02 19:51:22,818 184  [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Deleted recipe: com.cdperry.brewday.entity.RecipeEntity@c3844e9f with id of: 94
+2016-05-02 19:51:22,842 208  [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Deleted recipe: com.cdperry.brewday.entity.RecipeEntity@c5fd132f with id of: 95
+2016-05-02 19:51:22,848 214  [main] WARN  com.cdperry.brewday.persistence.ProfileEquipmentDao  - Deleted profileEquipment: com.cdperry.brewday.entity.ProfileEquipmentEntity@a73b3f4e with id of: 27
+2016-05-02 19:51:22,854 220  [main] WARN  com.cdperry.brewday.persistence.UomTypeDao  - Deleted uom type: com.cdperry.brewday.entity.UomTypeEntity@593e954b with id of: 45
+2016-05-02 19:51:22,858 224  [main] WARN  com.cdperry.brewday.persistence.RecipeTypeDao  - Deleted recipe type: com.cdperry.brewday.entity.RecipeTypeEntity@7d9729a with id of: 40
+2016-05-02 20:58:41,303 0    [main] WARN  com.cdperry.brewday.persistence.UomTypeDao  - Added uom type: com.cdperry.brewday.entity.UomTypeEntity@60f374ca with id of: 46
+2016-05-02 20:58:41,334 31   [main] WARN  com.cdperry.brewday.persistence.UomTypeDao  - Retrieved uom type: com.cdperry.brewday.entity.UomTypeEntity@60f380aa with id of: 46
+2016-05-02 20:58:41,338 35   [main] WARN  com.cdperry.brewday.persistence.RecipeTypeDao  - Added recipe type: com.cdperry.brewday.entity.RecipeTypeEntity@f8e5219 with id of: 41
+2016-05-02 20:58:41,341 38   [main] WARN  com.cdperry.brewday.persistence.RecipeTypeDao  - Retrieved recipe type: com.cdperry.brewday.entity.RecipeTypeEntity@f8e5df9 with id of: 41
+2016-05-02 20:58:41,353 50   [main] WARN  com.cdperry.brewday.persistence.ProfileEquipmentDao  - Added equipment profile: com.cdperry.brewday.entity.ProfileEquipmentEntity@d08b23cf with id of: 28
+2016-05-02 20:58:41,357 54   [main] WARN  com.cdperry.brewday.persistence.ProfileEquipmentDao  - Retrieved equipment profile: com.cdperry.brewday.entity.ProfileEquipmentEntity@d08b23cf with id of: 28
+2016-05-02 20:58:41,364 61   [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Added recipe: com.cdperry.brewday.entity.RecipeEntity@ce797dd6 with id of: 96
+2016-05-02 20:58:41,383 80   [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Retrieved recipe: com.cdperry.brewday.entity.RecipeEntity@cea276dd with id of: 96
+2016-05-02 20:58:41,415 112  [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Updated recipe: com.cdperry.brewday.entity.RecipeEntity@cea276dd with id of: 96
+2016-05-02 20:58:41,419 116  [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Added recipe: com.cdperry.brewday.entity.RecipeEntity@d04e9cce with id of: 97
+2016-05-02 20:58:41,428 125  [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Retrieved recipe: com.cdperry.brewday.entity.RecipeEntity@d11b3b6d with id of: 97
+2016-05-02 20:58:41,455 152  [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Updated recipe: com.cdperry.brewday.entity.RecipeEntity@d11b3b6d with id of: 97
+2016-05-02 20:58:41,473 170  [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Retrieved recipe: com.cdperry.brewday.entity.RecipeEntity@d11b3b6d with id of: 97
+2016-05-02 20:58:41,503 200  [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Retrieved recipe: com.cdperry.brewday.entity.RecipeEntity@cea276dd with id of: 96
+2016-05-02 20:58:41,555 252  [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Deleted recipe: com.cdperry.brewday.entity.RecipeEntity@cea276dd with id of: 96
+2016-05-02 20:58:41,592 289  [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Deleted recipe: com.cdperry.brewday.entity.RecipeEntity@d11b3b6d with id of: 97
+2016-05-02 20:58:41,596 293  [main] WARN  com.cdperry.brewday.persistence.ProfileEquipmentDao  - Deleted profileEquipment: com.cdperry.brewday.entity.ProfileEquipmentEntity@d08b23cf with id of: 28
+2016-05-02 20:58:41,599 296  [main] WARN  com.cdperry.brewday.persistence.UomTypeDao  - Deleted uom type: com.cdperry.brewday.entity.UomTypeEntity@60f380aa with id of: 46
+2016-05-02 20:58:41,603 300  [main] WARN  com.cdperry.brewday.persistence.RecipeTypeDao  - Deleted recipe type: com.cdperry.brewday.entity.RecipeTypeEntity@f8e5df9 with id of: 41
+2016-05-02 21:35:30,358 0    [main] WARN  org.hibernate.engine.jdbc.spi.SqlExceptionHelper  - SQL Error: 1048, SQLState: 23000
+2016-05-02 21:35:30,360 2    [main] ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper  - Column 'component_id' cannot be null
+2016-05-02 21:35:30,374 16   [main] ERROR com.cdperry.brewday.persistence.ComponentDao  - org.hibernate.exception.ConstraintViolationException: could not execute statement
+2016-05-02 21:35:30,384 26   [main] WARN  org.hibernate.engine.jdbc.spi.SqlExceptionHelper  - SQL Error: 1048, SQLState: 23000
+2016-05-02 21:35:30,384 26   [main] ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper  - Column 'component_id' cannot be null
+2016-05-02 21:35:30,385 27   [main] ERROR com.cdperry.brewday.persistence.ComponentDao  - org.hibernate.exception.ConstraintViolationException: could not execute statement
+2016-05-02 21:35:30,392 34   [main] WARN  org.hibernate.engine.jdbc.spi.SqlExceptionHelper  - SQL Error: 1048, SQLState: 23000
+2016-05-02 21:35:30,392 34   [main] ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper  - Column 'component_id' cannot be null
+2016-05-02 21:35:30,394 36   [main] ERROR com.cdperry.brewday.persistence.ComponentDao  - org.hibernate.exception.ConstraintViolationException: could not execute statement
+2016-05-02 21:35:30,411 53   [main] WARN  org.hibernate.engine.jdbc.spi.SqlExceptionHelper  - SQL Error: 1048, SQLState: 23000
+2016-05-02 21:35:30,412 54   [main] ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper  - Column 'component_id' cannot be null
+2016-05-02 21:35:30,413 55   [main] ERROR com.cdperry.brewday.persistence.ComponentDao  - org.hibernate.exception.ConstraintViolationException: could not execute statement
+2016-05-02 21:35:30,419 61   [main] WARN  org.hibernate.engine.jdbc.spi.SqlExceptionHelper  - SQL Error: 1048, SQLState: 23000
+2016-05-02 21:35:30,419 61   [main] ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper  - Column 'component_id' cannot be null
+2016-05-02 21:35:30,420 62   [main] ERROR com.cdperry.brewday.persistence.ComponentDao  - org.hibernate.exception.ConstraintViolationException: could not execute statement
+2016-05-02 21:37:37,933 0    [main] WARN  org.hibernate.engine.jdbc.spi.SqlExceptionHelper  - SQL Error: 1048, SQLState: 23000
+2016-05-02 21:37:37,949 16   [main] ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper  - Column 'component_id' cannot be null
+2016-05-02 21:37:37,952 19   [main] ERROR com.cdperry.brewday.persistence.ComponentDao  - org.hibernate.exception.ConstraintViolationException: could not execute statement
+2016-05-02 21:39:48,292 0    [main] WARN  com.cdperry.brewday.persistence.ComponentDao  - Added component: com.cdperry.brewday.entity.ComponentEntity@28a58229 with id of: 37
+2016-05-02 21:39:48,317 25   [main] WARN  com.cdperry.brewday.persistence.ComponentDao  - Retrieved component: com.cdperry.brewday.entity.ComponentEntity@28a58229 with id of: 37
+2016-05-02 21:39:48,331 39   [main] WARN  com.cdperry.brewday.persistence.ComponentDao  - Deleted component: com.cdperry.brewday.entity.ComponentEntity@28a58229 with id of: 37
+2016-05-02 21:40:04,116 0    [main] WARN  org.hibernate.engine.jdbc.spi.SqlExceptionHelper  - SQL Error: 1048, SQLState: 23000
+2016-05-02 21:40:04,117 1    [main] ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper  - Column 'component_id' cannot be null
+2016-05-02 21:40:04,134 18   [main] ERROR com.cdperry.brewday.persistence.ComponentDao  - org.hibernate.exception.ConstraintViolationException: could not execute statement
+2016-05-02 21:43:12,108 0    [main] WARN  com.cdperry.brewday.persistence.ComponentDao  - Added component: com.cdperry.brewday.entity.ComponentEntity@28a58248 with id of: 38
+2016-05-02 21:43:12,127 19   [main] WARN  com.cdperry.brewday.persistence.ComponentDao  - Retrieved component: com.cdperry.brewday.entity.ComponentEntity@28a58248 with id of: 38
+2016-05-02 21:43:12,140 32   [main] WARN  com.cdperry.brewday.persistence.ComponentDao  - Deleted component: com.cdperry.brewday.entity.ComponentEntity@28a58248 with id of: 38
+2016-05-02 21:43:53,565 0    [main] WARN  com.cdperry.brewday.persistence.ComponentDao  - Added component: com.cdperry.brewday.entity.ComponentEntity@28a58267 with id of: 39
+2016-05-02 21:43:53,587 22   [main] WARN  com.cdperry.brewday.persistence.ComponentDao  - Updated component: com.cdperry.brewday.entity.ComponentEntity@28a58267 with id of: 39
+2016-05-02 21:43:53,606 41   [main] WARN  com.cdperry.brewday.persistence.ComponentDao  - Retrieved component: com.cdperry.brewday.entity.ComponentEntity@28a58267 with id of: 39
+2016-05-02 21:43:53,614 49   [main] WARN  com.cdperry.brewday.persistence.ComponentDao  - Deleted component: com.cdperry.brewday.entity.ComponentEntity@28a58267 with id of: 39
+2016-05-02 21:44:16,876 0    [main] WARN  com.cdperry.brewday.persistence.ComponentDao  - Added component: com.cdperry.brewday.entity.ComponentEntity@28a58286 with id of: 40
+2016-05-02 21:44:16,895 19   [main] WARN  com.cdperry.brewday.persistence.ComponentDao  - Updated component: com.cdperry.brewday.entity.ComponentEntity@28a58286 with id of: 40
+2016-05-02 21:44:16,940 64   [main] WARN  com.cdperry.brewday.persistence.ComponentDao  - Retrieved component: com.cdperry.brewday.entity.ComponentEntity@28a58286 with id of: 40
+2016-05-02 21:45:01,245 0    [main] WARN  com.cdperry.brewday.persistence.ComponentDao  - Added component: com.cdperry.brewday.entity.ComponentEntity@28a582a5 with id of: 41
+2016-05-02 21:45:01,276 31   [main] WARN  com.cdperry.brewday.persistence.ComponentDao  - Updated component: com.cdperry.brewday.entity.ComponentEntity@28a582a5 with id of: 41
+2016-05-02 21:45:01,302 57   [main] WARN  com.cdperry.brewday.persistence.ComponentDao  - Retrieved component: com.cdperry.brewday.entity.ComponentEntity@28a582a5 with id of: 41
+2016-05-02 21:45:01,309 64   [main] WARN  com.cdperry.brewday.persistence.ComponentDao  - Deleted component: com.cdperry.brewday.entity.ComponentEntity@28a582a5 with id of: 41
+2016-05-02 21:45:09,961 0    [main] WARN  com.cdperry.brewday.persistence.ComponentDao  - Added component: com.cdperry.brewday.entity.ComponentEntity@28a582c4 with id of: 42
+2016-05-02 21:45:09,988 27   [main] WARN  com.cdperry.brewday.persistence.ComponentDao  - Updated component: com.cdperry.brewday.entity.ComponentEntity@28a582c4 with id of: 42
+2016-05-02 21:45:10,006 45   [main] WARN  com.cdperry.brewday.persistence.ComponentDao  - Retrieved component: com.cdperry.brewday.entity.ComponentEntity@28a582c4 with id of: 42
+2016-05-02 21:45:10,013 52   [main] WARN  com.cdperry.brewday.persistence.ComponentDao  - Deleted component: com.cdperry.brewday.entity.ComponentEntity@28a582c4 with id of: 42
+2016-05-02 22:01:15,123 0    [main] WARN  com.cdperry.brewday.persistence.UomTypeDao  - Added uom type: com.cdperry.brewday.entity.UomTypeEntity@681c9b69 with id of: 47
+2016-05-02 22:01:15,139 16   [main] WARN  com.cdperry.brewday.persistence.UomTypeDao  - Retrieved uom type: com.cdperry.brewday.entity.UomTypeEntity@681cfb09 with id of: 47
+2016-05-02 22:01:15,146 23   [main] WARN  com.cdperry.brewday.persistence.RecipeTypeDao  - Added recipe type: com.cdperry.brewday.entity.RecipeTypeEntity@16b778b8 with id of: 42
+2016-05-02 22:01:15,148 25   [main] WARN  com.cdperry.brewday.persistence.RecipeTypeDao  - Retrieved recipe type: com.cdperry.brewday.entity.RecipeTypeEntity@16b7d858 with id of: 42
+2016-05-02 22:01:15,154 31   [main] WARN  com.cdperry.brewday.persistence.ProfileEquipmentDao  - Added equipment profile: com.cdperry.brewday.entity.ProfileEquipmentEntity@f9db0850 with id of: 29
+2016-05-02 22:01:15,160 37   [main] WARN  com.cdperry.brewday.persistence.ProfileEquipmentDao  - Retrieved equipment profile: com.cdperry.brewday.entity.ProfileEquipmentEntity@f9db0850 with id of: 29
+2016-05-02 22:01:15,167 44   [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Added recipe: com.cdperry.brewday.entity.RecipeEntity@d90be154 with id of: 98
+2016-05-02 22:01:15,174 51   [main] WARN  com.cdperry.brewday.persistence.ComponentDao  - Added component: com.cdperry.brewday.entity.ComponentEntity@28a582e3 with id of: 43
+2016-05-02 22:01:15,188 65   [main] WARN  com.cdperry.brewday.persistence.ComponentDao  - Updated component: com.cdperry.brewday.entity.ComponentEntity@28a582e3 with id of: 43
+2016-05-02 22:01:15,199 76   [main] WARN  com.cdperry.brewday.persistence.ProfileEquipmentDao  - Deleted profileEquipment: com.cdperry.brewday.entity.ProfileEquipmentEntity@f9db0850 with id of: 29
+2016-05-02 22:01:15,203 80   [main] WARN  com.cdperry.brewday.persistence.UomTypeDao  - Deleted uom type: com.cdperry.brewday.entity.UomTypeEntity@681cfb09 with id of: 47
+2016-05-02 22:01:15,208 85   [main] WARN  com.cdperry.brewday.persistence.RecipeTypeDao  - Deleted recipe type: com.cdperry.brewday.entity.RecipeTypeEntity@16b7d858 with id of: 42
+2016-05-02 22:05:36,569 0    [main] WARN  com.cdperry.brewday.persistence.UomTypeDao  - Added uom type: com.cdperry.brewday.entity.UomTypeEntity@689cd448 with id of: 48
+2016-05-02 22:05:36,586 17   [main] WARN  com.cdperry.brewday.persistence.UomTypeDao  - Retrieved uom type: com.cdperry.brewday.entity.UomTypeEntity@689cdc68 with id of: 48
+2016-05-02 22:05:36,591 22   [main] WARN  com.cdperry.brewday.persistence.RecipeTypeDao  - Added recipe type: com.cdperry.brewday.entity.RecipeTypeEntity@1737b197 with id of: 43
+2016-05-02 22:05:36,593 24   [main] WARN  com.cdperry.brewday.persistence.RecipeTypeDao  - Retrieved recipe type: com.cdperry.brewday.entity.RecipeTypeEntity@1737b9b7 with id of: 43
+2016-05-02 22:05:36,605 36   [main] WARN  com.cdperry.brewday.persistence.ProfileEquipmentDao  - Added equipment profile: com.cdperry.brewday.entity.ProfileEquipmentEntity@232aecd1 with id of: 30
+2016-05-02 22:05:36,610 41   [main] WARN  com.cdperry.brewday.persistence.ProfileEquipmentDao  - Retrieved equipment profile: com.cdperry.brewday.entity.ProfileEquipmentEntity@232aecd1 with id of: 30
+2016-05-02 22:05:36,619 50   [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Added recipe: com.cdperry.brewday.entity.RecipeEntity@db407e73 with id of: 99
+2016-05-02 22:05:36,624 55   [main] WARN  com.cdperry.brewday.persistence.RecipeComponentDao  - Added recipe component type: com.cdperry.brewday.entity.RecipeComponentEntity@9ad13bb1 with id of: 148
+2016-05-02 22:05:36,628 59   [main] WARN  com.cdperry.brewday.persistence.ComponentDao  - Added component: com.cdperry.brewday.entity.ComponentEntity@28a58302 with id of: 44
+2016-05-02 22:05:36,643 74   [main] WARN  com.cdperry.brewday.persistence.ComponentDao  - Updated component: com.cdperry.brewday.entity.ComponentEntity@28a58302 with id of: 44
+2016-05-02 22:05:36,649 80   [main] WARN  com.cdperry.brewday.persistence.RecipeComponentDao  - Updated recipe component: com.cdperry.brewday.entity.RecipeComponentEntity@9ad13bb1 with id of: 148
+2016-05-02 22:05:36,657 88   [main] WARN  com.cdperry.brewday.persistence.ProfileEquipmentDao  - Deleted profileEquipment: com.cdperry.brewday.entity.ProfileEquipmentEntity@232aecd1 with id of: 30
+2016-05-02 22:05:36,661 92   [main] WARN  com.cdperry.brewday.persistence.UomTypeDao  - Deleted uom type: com.cdperry.brewday.entity.UomTypeEntity@689cdc68 with id of: 48
+2016-05-02 22:05:36,664 95   [main] WARN  com.cdperry.brewday.persistence.RecipeTypeDao  - Deleted recipe type: com.cdperry.brewday.entity.RecipeTypeEntity@1737b9b7 with id of: 43
+2016-05-02 22:11:50,192 0    [main] WARN  com.cdperry.brewday.persistence.UomTypeDao  - Added uom type: com.cdperry.brewday.entity.UomTypeEntity@6953c907 with id of: 49
+2016-05-02 22:11:50,206 14   [main] WARN  com.cdperry.brewday.persistence.UomTypeDao  - Retrieved uom type: com.cdperry.brewday.entity.UomTypeEntity@6953b2c7 with id of: 49
+2016-05-02 22:11:50,209 17   [main] WARN  com.cdperry.brewday.persistence.RecipeTypeDao  - Added recipe type: com.cdperry.brewday.entity.RecipeTypeEntity@17eea656 with id of: 44
+2016-05-02 22:11:50,212 20   [main] WARN  com.cdperry.brewday.persistence.RecipeTypeDao  - Retrieved recipe type: com.cdperry.brewday.entity.RecipeTypeEntity@17ee9016 with id of: 44
+2016-05-02 22:11:50,218 26   [main] WARN  com.cdperry.brewday.persistence.ProfileEquipmentDao  - Added equipment profile: com.cdperry.brewday.entity.ProfileEquipmentEntity@4c7ad152 with id of: 31
+2016-05-02 22:11:50,222 30   [main] WARN  com.cdperry.brewday.persistence.ProfileEquipmentDao  - Retrieved equipment profile: com.cdperry.brewday.entity.ProfileEquipmentEntity@4c7ad152 with id of: 31
+2016-05-02 22:11:50,230 38   [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Added recipe: com.cdperry.brewday.entity.RecipeEntity@ddabd772 with id of: 100
+2016-05-02 22:11:50,236 44   [main] WARN  com.cdperry.brewday.persistence.RecipeComponentDao  - Added recipe component type: com.cdperry.brewday.entity.RecipeComponentEntity@9b9647f1 with id of: 149
+2016-05-02 22:11:50,244 52   [main] WARN  com.cdperry.brewday.persistence.ComponentDao  - Added component: com.cdperry.brewday.entity.ComponentEntity@28a58321 with id of: 45
+2016-05-02 22:11:50,262 70   [main] WARN  com.cdperry.brewday.persistence.ComponentDao  - Updated component: com.cdperry.brewday.entity.ComponentEntity@28a58321 with id of: 45
+2016-05-02 22:11:50,270 78   [main] WARN  com.cdperry.brewday.persistence.RecipeComponentDao  - Updated recipe component: com.cdperry.brewday.entity.RecipeComponentEntity@9b9647f1 with id of: 149
+2016-05-02 22:11:50,279 87   [main] WARN  com.cdperry.brewday.persistence.ProfileEquipmentDao  - Deleted profileEquipment: com.cdperry.brewday.entity.ProfileEquipmentEntity@4c7ad152 with id of: 31
+2016-05-02 22:11:50,284 92   [main] WARN  com.cdperry.brewday.persistence.UomTypeDao  - Deleted uom type: com.cdperry.brewday.entity.UomTypeEntity@6953b2c7 with id of: 49
+2016-05-02 22:11:50,289 97   [main] WARN  com.cdperry.brewday.persistence.RecipeTypeDao  - Deleted recipe type: com.cdperry.brewday.entity.RecipeTypeEntity@17ee9016 with id of: 44
+2016-05-02 22:12:07,283 0    [main] WARN  com.cdperry.brewday.persistence.UomTypeDao  - Added uom type: com.cdperry.brewday.entity.UomTypeEntity@695c6386 with id of: 50
+2016-05-02 22:12:07,301 18   [main] WARN  com.cdperry.brewday.persistence.UomTypeDao  - Retrieved uom type: com.cdperry.brewday.entity.UomTypeEntity@695c7426 with id of: 50
+2016-05-02 22:12:07,307 24   [main] WARN  com.cdperry.brewday.persistence.RecipeTypeDao  - Added recipe type: com.cdperry.brewday.entity.RecipeTypeEntity@17f740d5 with id of: 45
+2016-05-02 22:12:07,314 31   [main] WARN  com.cdperry.brewday.persistence.RecipeTypeDao  - Retrieved recipe type: com.cdperry.brewday.entity.RecipeTypeEntity@17f75175 with id of: 45
+2016-05-02 22:12:07,320 37   [main] WARN  com.cdperry.brewday.persistence.ProfileEquipmentDao  - Added equipment profile: com.cdperry.brewday.entity.ProfileEquipmentEntity@75cab5d3 with id of: 32
+2016-05-02 22:12:07,325 42   [main] WARN  com.cdperry.brewday.persistence.ProfileEquipmentDao  - Retrieved equipment profile: com.cdperry.brewday.entity.ProfileEquipmentEntity@75cab5d3 with id of: 32
+2016-05-02 22:12:07,335 52   [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Added recipe: com.cdperry.brewday.entity.RecipeEntity@df68d631 with id of: 101
+2016-05-02 22:12:07,340 57   [main] WARN  com.cdperry.brewday.persistence.RecipeComponentDao  - Added recipe component type: com.cdperry.brewday.entity.RecipeComponentEntity@9bacf9f1 with id of: 150
+2016-05-02 22:12:07,343 60   [main] WARN  com.cdperry.brewday.persistence.ComponentDao  - Added component: com.cdperry.brewday.entity.ComponentEntity@28a58340 with id of: 46
+2016-05-02 22:12:07,355 72   [main] WARN  com.cdperry.brewday.persistence.ComponentDao  - Updated component: com.cdperry.brewday.entity.ComponentEntity@28a58340 with id of: 46
+2016-05-02 22:12:07,361 78   [main] WARN  com.cdperry.brewday.persistence.RecipeComponentDao  - Updated recipe component: com.cdperry.brewday.entity.RecipeComponentEntity@9bacf9f1 with id of: 150
+2016-05-02 22:12:07,367 84   [main] WARN  com.cdperry.brewday.persistence.ProfileEquipmentDao  - Deleted profileEquipment: com.cdperry.brewday.entity.ProfileEquipmentEntity@75cab5d3 with id of: 32
+2016-05-02 22:12:07,370 87   [main] WARN  com.cdperry.brewday.persistence.UomTypeDao  - Deleted uom type: com.cdperry.brewday.entity.UomTypeEntity@695c7426 with id of: 50
+2016-05-02 22:12:07,374 91   [main] WARN  com.cdperry.brewday.persistence.RecipeTypeDao  - Deleted recipe type: com.cdperry.brewday.entity.RecipeTypeEntity@17f75175 with id of: 45
+2016-05-02 22:15:20,005 0    [main] WARN  com.cdperry.brewday.persistence.UomTypeDao  - Added uom type: com.cdperry.brewday.entity.UomTypeEntity@69baddc5 with id of: 51
+2016-05-02 22:15:20,026 21   [main] WARN  com.cdperry.brewday.persistence.UomTypeDao  - Retrieved uom type: com.cdperry.brewday.entity.UomTypeEntity@69bb1185 with id of: 51
+2016-05-02 22:15:20,040 35   [main] WARN  com.cdperry.brewday.persistence.RecipeTypeDao  - Added recipe type: com.cdperry.brewday.entity.RecipeTypeEntity@1855bb14 with id of: 46
+2016-05-02 22:15:20,053 48   [main] WARN  com.cdperry.brewday.persistence.RecipeTypeDao  - Retrieved recipe type: com.cdperry.brewday.entity.RecipeTypeEntity@1855eed4 with id of: 46
+2016-05-02 22:15:20,061 56   [main] WARN  com.cdperry.brewday.persistence.ProfileEquipmentDao  - Added equipment profile: com.cdperry.brewday.entity.ProfileEquipmentEntity@9f1a9a54 with id of: 33
+2016-05-02 22:15:20,067 62   [main] WARN  com.cdperry.brewday.persistence.ProfileEquipmentDao  - Retrieved equipment profile: com.cdperry.brewday.entity.ProfileEquipmentEntity@9f1a9a54 with id of: 33
+2016-05-02 22:15:20,076 71   [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Added recipe: com.cdperry.brewday.entity.RecipeEntity@e17bb4b0 with id of: 102
+2016-05-02 22:15:20,082 77   [main] WARN  com.cdperry.brewday.persistence.RecipeComponentDao  - Added recipe component type: com.cdperry.brewday.entity.RecipeComponentEntity@9c198bb1 with id of: 151
+2016-05-02 22:15:20,086 81   [main] WARN  com.cdperry.brewday.persistence.ComponentDao  - Added component: com.cdperry.brewday.entity.ComponentEntity@28a5835f with id of: 47
+2016-05-02 22:15:20,100 95   [main] WARN  com.cdperry.brewday.persistence.ComponentDao  - Updated component: com.cdperry.brewday.entity.ComponentEntity@28a5835f with id of: 47
+2016-05-02 22:15:20,107 102  [main] WARN  com.cdperry.brewday.persistence.RecipeComponentDao  - Updated recipe component: com.cdperry.brewday.entity.RecipeComponentEntity@9c198bb1 with id of: 151
+2016-05-02 22:15:20,113 108  [main] WARN  com.cdperry.brewday.persistence.ProfileEquipmentDao  - Deleted profileEquipment: com.cdperry.brewday.entity.ProfileEquipmentEntity@9f1a9a54 with id of: 33
+2016-05-02 22:15:20,117 112  [main] WARN  com.cdperry.brewday.persistence.UomTypeDao  - Deleted uom type: com.cdperry.brewday.entity.UomTypeEntity@69bb1185 with id of: 51
+2016-05-02 22:15:20,121 116  [main] WARN  com.cdperry.brewday.persistence.RecipeTypeDao  - Deleted recipe type: com.cdperry.brewday.entity.RecipeTypeEntity@1855eed4 with id of: 46
+2016-05-02 22:30:55,607 0    [main] WARN  com.cdperry.brewday.persistence.UomTypeDao  - Added uom type: com.cdperry.brewday.entity.UomTypeEntity@6b841304 with id of: 52
+2016-05-02 22:30:55,622 15   [main] WARN  com.cdperry.brewday.persistence.UomTypeDao  - Retrieved uom type: com.cdperry.brewday.entity.UomTypeEntity@6b8414e4 with id of: 52
+2016-05-02 22:30:55,627 20   [main] WARN  com.cdperry.brewday.persistence.RecipeTypeDao  - Added recipe type: com.cdperry.brewday.entity.RecipeTypeEntity@1a1ef053 with id of: 47
+2016-05-02 22:30:55,631 24   [main] WARN  com.cdperry.brewday.persistence.RecipeTypeDao  - Retrieved recipe type: com.cdperry.brewday.entity.RecipeTypeEntity@1a1ef233 with id of: 47
+2016-05-02 22:30:55,639 32   [main] WARN  com.cdperry.brewday.persistence.ProfileEquipmentDao  - Added equipment profile: com.cdperry.brewday.entity.ProfileEquipmentEntity@c86a7ed5 with id of: 34
+2016-05-02 22:30:55,644 37   [main] WARN  com.cdperry.brewday.persistence.ProfileEquipmentDao  - Retrieved equipment profile: com.cdperry.brewday.entity.ProfileEquipmentEntity@c86a7ed5 with id of: 34
+2016-05-02 22:30:55,650 43   [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Added recipe: com.cdperry.brewday.entity.RecipeEntity@e4f94e2f with id of: 103
+2016-05-02 22:30:55,656 49   [main] WARN  com.cdperry.brewday.persistence.RecipeComponentDao  - Added recipe component type: com.cdperry.brewday.entity.RecipeComponentEntity@9df0d871 with id of: 152
+2016-05-02 22:30:55,662 55   [main] WARN  com.cdperry.brewday.persistence.ComponentDao  - Added component: com.cdperry.brewday.entity.ComponentEntity@28a5837e with id of: 48
+2016-05-02 22:30:55,676 69   [main] WARN  com.cdperry.brewday.persistence.ComponentDao  - Updated component: com.cdperry.brewday.entity.ComponentEntity@28a5837e with id of: 48
+2016-05-02 22:30:55,682 75   [main] WARN  com.cdperry.brewday.persistence.RecipeComponentDao  - Updated recipe component: com.cdperry.brewday.entity.RecipeComponentEntity@9df0d871 with id of: 152
+2016-05-02 22:30:55,688 81   [main] WARN  com.cdperry.brewday.persistence.ProfileEquipmentDao  - Deleted profileEquipment: com.cdperry.brewday.entity.ProfileEquipmentEntity@c86a7ed5 with id of: 34
+2016-05-02 22:30:55,692 85   [main] WARN  com.cdperry.brewday.persistence.UomTypeDao  - Deleted uom type: com.cdperry.brewday.entity.UomTypeEntity@6b8414e4 with id of: 52
+2016-05-02 22:30:55,695 88   [main] WARN  com.cdperry.brewday.persistence.RecipeTypeDao  - Deleted recipe type: com.cdperry.brewday.entity.RecipeTypeEntity@1a1ef233 with id of: 47
+2016-05-02 22:40:53,635 0    [main] WARN  com.cdperry.brewday.persistence.UomTypeDao  - Added uom type: com.cdperry.brewday.entity.UomTypeEntity@6ca8f063 with id of: 53
+2016-05-02 22:40:53,660 25   [main] WARN  com.cdperry.brewday.persistence.UomTypeDao  - Retrieved uom type: com.cdperry.brewday.entity.UomTypeEntity@6ca89343 with id of: 53
+2016-05-02 22:40:53,669 34   [main] WARN  com.cdperry.brewday.persistence.RecipeTypeDao  - Added recipe type: com.cdperry.brewday.entity.RecipeTypeEntity@1b43cdb2 with id of: 48
+2016-05-02 22:40:53,679 44   [main] WARN  com.cdperry.brewday.persistence.RecipeTypeDao  - Retrieved recipe type: com.cdperry.brewday.entity.RecipeTypeEntity@1b437092 with id of: 48
+2016-05-02 22:40:53,686 51   [main] WARN  com.cdperry.brewday.persistence.ProfileEquipmentDao  - Added equipment profile: com.cdperry.brewday.entity.ProfileEquipmentEntity@f1ba6356 with id of: 35
+2016-05-02 22:40:53,691 56   [main] WARN  com.cdperry.brewday.persistence.ProfileEquipmentDao  - Retrieved equipment profile: com.cdperry.brewday.entity.ProfileEquipmentEntity@f1ba6356 with id of: 35
+2016-05-02 22:40:53,702 67   [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Added recipe: com.cdperry.brewday.entity.RecipeEntity@e7d28fce with id of: 104
+2016-05-02 22:40:53,706 71   [main] WARN  com.cdperry.brewday.persistence.RecipeComponentDao  - Added recipe component type: com.cdperry.brewday.entity.RecipeComponentEntity@9f23cd51 with id of: 153
+2016-05-02 22:40:53,708 73   [main] WARN  com.cdperry.brewday.persistence.ComponentTypeDao  - Retrieved component type: com.cdperry.brewday.entity.ComponentTypeEntity@9a3a5fc8 with id of: 1
+2016-05-02 22:40:53,722 87   [main] WARN  com.cdperry.brewday.persistence.ComponentDao  - Added component: com.cdperry.brewday.entity.ComponentEntity@28a5839d with id of: 49
+2016-05-02 22:40:53,729 94   [main] WARN  com.cdperry.brewday.persistence.ComponentDao  - Updated component: com.cdperry.brewday.entity.ComponentEntity@28a5839d with id of: 49
+2016-05-02 22:40:53,736 101  [main] WARN  com.cdperry.brewday.persistence.RecipeComponentDao  - Updated recipe component: com.cdperry.brewday.entity.RecipeComponentEntity@9f23cd51 with id of: 153
+2016-05-02 22:40:53,742 107  [main] WARN  com.cdperry.brewday.persistence.ProfileEquipmentDao  - Deleted profileEquipment: com.cdperry.brewday.entity.ProfileEquipmentEntity@f1ba6356 with id of: 35
+2016-05-02 22:40:53,746 111  [main] WARN  com.cdperry.brewday.persistence.UomTypeDao  - Deleted uom type: com.cdperry.brewday.entity.UomTypeEntity@6ca89343 with id of: 53
+2016-05-02 22:40:53,749 114  [main] WARN  com.cdperry.brewday.persistence.RecipeTypeDao  - Deleted recipe type: com.cdperry.brewday.entity.RecipeTypeEntity@1b437092 with id of: 48
+2016-05-02 22:45:11,993 0    [main] WARN  com.cdperry.brewday.persistence.UomTypeDao  - Added uom type: com.cdperry.brewday.entity.UomTypeEntity@6d274422 with id of: 54
+2016-05-02 22:45:12,010 17   [main] WARN  com.cdperry.brewday.persistence.UomTypeDao  - Retrieved uom type: com.cdperry.brewday.entity.UomTypeEntity@6d276ea2 with id of: 54
+2016-05-02 22:45:12,014 21   [main] WARN  com.cdperry.brewday.persistence.RecipeTypeDao  - Added recipe type: com.cdperry.brewday.entity.RecipeTypeEntity@1bc22171 with id of: 49
+2016-05-02 22:45:12,017 24   [main] WARN  com.cdperry.brewday.persistence.RecipeTypeDao  - Retrieved recipe type: com.cdperry.brewday.entity.RecipeTypeEntity@1bc24bf1 with id of: 49
+2016-05-02 22:45:12,027 34   [main] WARN  com.cdperry.brewday.persistence.ProfileEquipmentDao  - Added equipment profile: com.cdperry.brewday.entity.ProfileEquipmentEntity@1b0a47d7 with id of: 36
+2016-05-02 22:45:12,032 39   [main] WARN  com.cdperry.brewday.persistence.ProfileEquipmentDao  - Retrieved equipment profile: com.cdperry.brewday.entity.ProfileEquipmentEntity@1b0a47d7 with id of: 36
+2016-05-02 22:45:12,040 47   [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Added recipe: com.cdperry.brewday.entity.RecipeEntity@ea0547cd with id of: 105
+2016-05-02 22:45:12,045 52   [main] WARN  com.cdperry.brewday.persistence.RecipeComponentDao  - Added recipe component type: com.cdperry.brewday.entity.RecipeComponentEntity@9fb03891 with id of: 154
+2016-05-02 22:45:12,047 54   [main] WARN  com.cdperry.brewday.persistence.ComponentTypeDao  - Retrieved component type: com.cdperry.brewday.entity.ComponentTypeEntity@9a3a5fc8 with id of: 1
+2016-05-02 22:45:12,061 68   [main] WARN  com.cdperry.brewday.persistence.ComponentDao  - Added component: com.cdperry.brewday.entity.ComponentEntity@28a583bc with id of: 50
+2016-05-02 22:45:12,067 74   [main] WARN  com.cdperry.brewday.persistence.ComponentDao  - Updated component: com.cdperry.brewday.entity.ComponentEntity@28a583bc with id of: 50
+2016-05-02 22:45:12,074 81   [main] WARN  com.cdperry.brewday.persistence.RecipeComponentDao  - Updated recipe component: com.cdperry.brewday.entity.RecipeComponentEntity@9fb03891 with id of: 154
+2016-05-02 22:45:12,117 124  [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Deleted recipe: com.cdperry.brewday.entity.RecipeEntity@ea2e5f74 with id of: 105
+2016-05-02 22:45:12,122 129  [main] WARN  com.cdperry.brewday.persistence.ProfileEquipmentDao  - Deleted profileEquipment: com.cdperry.brewday.entity.ProfileEquipmentEntity@1b0a47d7 with id of: 36
+2016-05-02 22:45:12,126 133  [main] WARN  com.cdperry.brewday.persistence.UomTypeDao  - Deleted uom type: com.cdperry.brewday.entity.UomTypeEntity@6d276ea2 with id of: 54
+2016-05-02 22:45:12,129 136  [main] WARN  com.cdperry.brewday.persistence.RecipeTypeDao  - Deleted recipe type: com.cdperry.brewday.entity.RecipeTypeEntity@1bc24bf1 with id of: 49
+2016-05-02 23:22:26,773 0    [main] WARN  com.cdperry.brewday.persistence.ComponentGrainDao  - Added grain component: com.cdperry.brewday.entity.ComponentGrainEntity@f6aa9ac0 with id of: 1
+2016-05-02 23:22:26,792 19   [main] WARN  com.cdperry.brewday.persistence.ComponentGrainDao  - Retrieved grain component: com.cdperry.brewday.entity.ComponentGrainEntity@ecf1fdd9 with id of: 1
+2016-05-02 23:27:35,674 0    [main] WARN  com.cdperry.brewday.persistence.ComponentGrainDao  - Added grain component: com.cdperry.brewday.entity.ComponentGrainEntity@2c27bb41 with id of: 2
+2016-05-02 23:27:35,692 18   [main] WARN  com.cdperry.brewday.persistence.ComponentGrainDao  - Retrieved grain component: com.cdperry.brewday.entity.ComponentGrainEntity@226eda1a with id of: 2
+2016-05-02 23:27:35,709 35   [main] WARN  com.cdperry.brewday.persistence.ComponentGrainDao  - Deleted grain component: com.cdperry.brewday.entity.ComponentGrainEntity@226eda1a with id of: 2
+2016-05-02 23:27:35,744 70   [main] WARN  com.cdperry.brewday.persistence.ComponentGrainDao  - Added grain component: com.cdperry.brewday.entity.ComponentGrainEntity@610f2a42 with id of: 3
+2016-05-02 23:27:35,748 74   [main] WARN  com.cdperry.brewday.persistence.ComponentGrainDao  - Retrieved grain component: com.cdperry.brewday.entity.ComponentGrainEntity@5756bc5b with id of: 3
+2016-05-02 23:27:35,752 78   [main] WARN  com.cdperry.brewday.persistence.ComponentGrainDao  - Deleted grain component: com.cdperry.brewday.entity.ComponentGrainEntity@5756bc5b with id of: 3
+2016-05-02 23:27:35,761 87   [main] WARN  com.cdperry.brewday.persistence.ComponentGrainDao  - Added grain component: com.cdperry.brewday.entity.ComponentGrainEntity@95f55fe3 with id of: 4
+2016-05-02 23:27:35,771 97   [main] WARN  com.cdperry.brewday.persistence.ComponentGrainDao  - Retrieved grain component: com.cdperry.brewday.entity.ComponentGrainEntity@8c3cf79c with id of: 4
+2016-05-02 23:27:35,780 106  [main] WARN  com.cdperry.brewday.persistence.ComponentGrainDao  - Updated grain component: com.cdperry.brewday.entity.ComponentGrainEntity@2afbc0ac with id of: 4
+2016-05-02 23:27:35,786 112  [main] WARN  com.cdperry.brewday.persistence.ComponentGrainDao  - Retrieved grain component: com.cdperry.brewday.entity.ComponentGrainEntity@2afbc0ac with id of: 4
+2016-05-02 23:27:35,789 115  [main] WARN  com.cdperry.brewday.persistence.ComponentGrainDao  - Deleted grain component: com.cdperry.brewday.entity.ComponentGrainEntity@2afbc0ac with id of: 4
+2016-05-02 23:27:35,793 119  [main] WARN  com.cdperry.brewday.persistence.ComponentGrainDao  - Added grain component: com.cdperry.brewday.entity.ComponentGrainEntity@cadb9ea4 with id of: 5
+2016-05-02 23:27:35,796 122  [main] WARN  com.cdperry.brewday.persistence.ComponentGrainDao  - Retrieved grain component: com.cdperry.brewday.entity.ComponentGrainEntity@c12332dd with id of: 5
+2016-05-02 23:27:35,801 127  [main] WARN  com.cdperry.brewday.persistence.ComponentGrainDao  - Deleted grain component: com.cdperry.brewday.entity.ComponentGrainEntity@c12332dd with id of: 5
+2016-05-02 23:27:35,818 144  [main] WARN  com.cdperry.brewday.persistence.ComponentGrainDao  - Added grain component: com.cdperry.brewday.entity.ComponentGrainEntity@d19cfeb4 with id of: 6
+2016-05-02 23:27:35,823 149  [main] WARN  com.cdperry.brewday.persistence.ComponentGrainDao  - Added grain component: com.cdperry.brewday.entity.ComponentGrainEntity@8381294 with id of: 7
+2016-05-02 23:27:35,987 313  [main] WARN  com.cdperry.brewday.persistence.ComponentGrainDao  - Deleted grain component: com.cdperry.brewday.entity.ComponentGrainEntity@c7e43f6d with id of: 6
+2016-05-02 23:27:35,990 316  [main] WARN  com.cdperry.brewday.persistence.ComponentGrainDao  - Deleted grain component: com.cdperry.brewday.entity.ComponentGrainEntity@fe7f534d with id of: 7
+2016-05-02 23:28:51,586 0    [main] WARN  com.cdperry.brewday.persistence.ComponentGrainDao  - Added grain component: com.cdperry.brewday.entity.ComponentGrainEntity@69b273a7 with id of: 8
+2016-05-02 23:28:51,604 18   [main] WARN  com.cdperry.brewday.persistence.ComponentGrainDao  - Retrieved grain component: com.cdperry.brewday.entity.ComponentGrainEntity@5ff949a0 with id of: 8
+2016-05-02 23:28:51,625 39   [main] WARN  com.cdperry.brewday.persistence.ComponentGrainDao  - Deleted grain component: com.cdperry.brewday.entity.ComponentGrainEntity@5ff949a0 with id of: 8
+2016-05-02 23:29:35,887 0    [main] WARN  com.cdperry.brewday.persistence.UomTypeDao  - Added uom type: com.cdperry.brewday.entity.UomTypeEntity@723c7d21 with id of: 55
+2016-05-02 23:29:35,903 16   [main] WARN  com.cdperry.brewday.persistence.UomTypeDao  - Retrieved uom type: com.cdperry.brewday.entity.UomTypeEntity@723c3201 with id of: 55
+2016-05-02 23:29:35,907 20   [main] WARN  com.cdperry.brewday.persistence.RecipeTypeDao  - Added recipe type: com.cdperry.brewday.entity.RecipeTypeEntity@20d75a70 with id of: 50
+2016-05-02 23:29:35,912 25   [main] WARN  com.cdperry.brewday.persistence.RecipeTypeDao  - Retrieved recipe type: com.cdperry.brewday.entity.RecipeTypeEntity@20d70f50 with id of: 50
+2016-05-02 23:29:35,921 34   [main] WARN  com.cdperry.brewday.persistence.ProfileEquipmentDao  - Added equipment profile: com.cdperry.brewday.entity.ProfileEquipmentEntity@445a2c58 with id of: 37
+2016-05-02 23:29:35,925 38   [main] WARN  com.cdperry.brewday.persistence.ProfileEquipmentDao  - Retrieved equipment profile: com.cdperry.brewday.entity.ProfileEquipmentEntity@445a2c58 with id of: 37
+2016-05-02 23:29:35,938 51   [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Added recipe: com.cdperry.brewday.entity.RecipeEntity@f0cee50c with id of: 106
+2016-05-02 23:29:35,944 57   [main] WARN  com.cdperry.brewday.persistence.RecipeComponentDao  - Added recipe component type: com.cdperry.brewday.entity.RecipeComponentEntity@a4d38911 with id of: 155
+2016-05-02 23:29:35,949 62   [main] WARN  com.cdperry.brewday.persistence.ComponentTypeDao  - Retrieved component type: com.cdperry.brewday.entity.ComponentTypeEntity@9a3ce4c8 with id of: 1
+2016-05-02 23:29:35,953 66   [main] WARN  com.cdperry.brewday.persistence.ComponentDao  - Added component: com.cdperry.brewday.entity.ComponentEntity@28a583db with id of: 51
+2016-05-02 23:29:35,966 79   [main] WARN  com.cdperry.brewday.persistence.ComponentDao  - Updated component: com.cdperry.brewday.entity.ComponentEntity@28a583db with id of: 51
+2016-05-02 23:29:35,973 86   [main] WARN  com.cdperry.brewday.persistence.RecipeComponentDao  - Updated recipe component: com.cdperry.brewday.entity.RecipeComponentEntity@a4d38911 with id of: 155
+2016-05-02 23:29:36,002 115  [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Deleted recipe: com.cdperry.brewday.entity.RecipeEntity@f0f78713 with id of: 106
+2016-05-02 23:29:36,007 120  [main] WARN  com.cdperry.brewday.persistence.ProfileEquipmentDao  - Deleted profileEquipment: com.cdperry.brewday.entity.ProfileEquipmentEntity@445a2c58 with id of: 37
+2016-05-02 23:29:36,010 123  [main] WARN  com.cdperry.brewday.persistence.UomTypeDao  - Deleted uom type: com.cdperry.brewday.entity.UomTypeEntity@723c3201 with id of: 55
+2016-05-02 23:29:36,014 127  [main] WARN  com.cdperry.brewday.persistence.RecipeTypeDao  - Deleted recipe type: com.cdperry.brewday.entity.RecipeTypeEntity@20d70f50 with id of: 50

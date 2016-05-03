@@ -10,11 +10,26 @@
         </id>
         <property name="componentId" column="component_id"/>
         <property name="name" column="name"/>
-        <property name="labId" column="lab_id"/>
-        <property name="supplierId" column="supplier_id"/>
-        <property name="yeastTypeId" column="yeast_type_id"/>
-        <property name="yeastFormId" column="yeast_form_id"/>
-        <property name="yeastFlocTypeId" column="yeast_floc_type_id"/>
+        <!--<property name="labId" column="lab_id"/>-->
+        <!--<property name="supplierId" column="supplier_id"/>-->
+        <!--<property name="yeastTypeId" column="yeast_type_id"/>-->
+        <!--<property name="yeastFormId" column="yeast_form_id"/>-->
+        <!--<property name="yeastFlocTypeId" column="yeast_floc_type_id"/>-->
+        <many-to-one name="lab" class="com.cdperry.brewday.entity.SupplierEntity"
+                     column="lab_id" unique="true" not-null="false" lazy="false"
+                     not-found="ignore" />
+        <many-to-one name="supplier" class="com.cdperry.brewday.entity.SupplierEntity"
+                     column="supplier_id" unique="true" not-null="false" lazy="false"
+                     not-found="ignore" />
+        <many-to-one name="yeastType" class="com.cdperry.brewday.entity.YeastTypeEntity"
+                     column="yeast_type_id" unique="true" not-null="false" lazy="false"
+                     not-found="ignore" />
+        <many-to-one name="yeastForm" class="com.cdperry.brewday.entity.YeastFormEntity"
+                     column="yeast_form_id" unique="true" not-null="false" lazy="false"
+                     not-found="ignore" />
+        <many-to-one name="yeastFlocType" class="com.cdperry.brewday.entity.YeastFlocTypeEntity"
+                     column="yeast_floc_type_id" unique="true" not-null="false" lazy="false"
+                     not-found="ignore" />
         <property name="attenuationMin" column="attenuation_min"/>
         <property name="attenuationMax" column="attenuation_max"/>
         <property name="temperatureMin" column="temperature_min"/>

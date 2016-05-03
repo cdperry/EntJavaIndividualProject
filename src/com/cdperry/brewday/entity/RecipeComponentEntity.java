@@ -12,9 +12,18 @@ public class RecipeComponentEntity {
     //private Integer componentId;
     private ComponentEntity component;
     private BigDecimal amount;
-    private Integer amountUomId;
+    //private Integer amountUomId;
+    private UomTypeEntity amountUom;
     private Timestamp updateDate;
     private Timestamp createDate;
+
+    public RecipeComponentEntity() {}
+
+    public RecipeComponentEntity(Integer recipeId, Timestamp createDate, Timestamp updateDate) {
+        this.recipeId = recipeId;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
+    }
 
     public int getRecipeComponentId() {
         return recipeComponentId;
@@ -58,12 +67,21 @@ public class RecipeComponentEntity {
         this.amount = amount;
     }
 
+    /*
     public Integer getAmountUomId() {
         return amountUomId;
     }
 
     public void setAmountUomId(Integer amountUomId) {
         this.amountUomId = amountUomId;
+    }
+    */
+    public UomTypeEntity getAmountUom() {
+        return amountUom;
+    }
+
+    public void setAmountUom(UomTypeEntity amountUom) {
+        this.amountUom = amountUom;
     }
 
     public Timestamp getUpdateDate() {
@@ -93,7 +111,7 @@ public class RecipeComponentEntity {
         if (recipeId != null ? !recipeId.equals(that.recipeId) : that.recipeId != null) return false;
         //if (componentId != null ? !componentId.equals(that.componentId) : that.componentId != null) return false;
         if (amount != null ? !amount.equals(that.amount) : that.amount != null) return false;
-        if (amountUomId != null ? !amountUomId.equals(that.amountUomId) : that.amountUomId != null) return false;
+        //if (amountUomId != null ? !amountUomId.equals(that.amountUomId) : that.amountUomId != null) return false;
         if (updateDate != null ? !updateDate.equals(that.updateDate) : that.updateDate != null) return false;
         if (createDate != null ? !createDate.equals(that.createDate) : that.createDate != null) return false;
 
@@ -106,7 +124,7 @@ public class RecipeComponentEntity {
         result = 31 * result + (recipeId != null ? recipeId.hashCode() : 0);
         //result = 31 * result + (componentId != null ? componentId.hashCode() : 0);
         result = 31 * result + (amount != null ? amount.hashCode() : 0);
-        result = 31 * result + (amountUomId != null ? amountUomId.hashCode() : 0);
+        //result = 31 * result + (amountUomId != null ? amountUomId.hashCode() : 0);
         result = 31 * result + (updateDate != null ? updateDate.hashCode() : 0);
         result = 31 * result + (createDate != null ? createDate.hashCode() : 0);
         return result;

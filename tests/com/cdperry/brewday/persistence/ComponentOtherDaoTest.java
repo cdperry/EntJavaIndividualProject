@@ -10,6 +10,8 @@ import static org.junit.Assert.*;
 
 /**
  * Created by cdperry on 4/3/16.
+ *
+ * TODO: Update DAO tests to use @Before annotations
  */
 public class ComponentOtherDaoTest {
 
@@ -28,13 +30,13 @@ public class ComponentOtherDaoTest {
         testComponent.setComponentId(1);
         testComponent.setName("Other 1");
         testComponent.setUseFor("Use this for ...");
-        testComponent.setUseTypeId(1);
+//        testComponent.setUseTypeId(1);
         testComponent.setTime(new BigDecimal("10"));
-        testComponent.setTimeUomId(1);
+//        testComponent.setTimeUomId(1);
         testComponent.setAmount(new BigDecimal("10"));
-        testComponent.setAmountUomId(1);
+//        testComponent.setAmountUomId(1);
         testComponent.setBatchSize(new BigDecimal("10"));
-        testComponent.setBatchSizeUomId(1);
+//        testComponent.setBatchSizeUomId(1);
         testComponent.setNotes("This is a note.");
         testComponent.setUpdateDate(ts);
         testComponent.setCreateDate(ts);
@@ -46,13 +48,13 @@ public class ComponentOtherDaoTest {
         testComponent.setComponentId(1);
         testComponent.setName("Other 2");
         testComponent.setUseFor("Use this for ...");
-        testComponent.setUseTypeId(1);
+//        testComponent.setUseTypeId(1);
         testComponent.setTime(new BigDecimal("10"));
-        testComponent.setTimeUomId(1);
+//        testComponent.setTimeUomId(1);
         testComponent.setAmount(new BigDecimal("10"));
-        testComponent.setAmountUomId(1);
+//        testComponent.setAmountUomId(1);
         testComponent.setBatchSize(new BigDecimal("10"));
-        testComponent.setBatchSizeUomId(1);
+//        testComponent.setBatchSizeUomId(1);
         testComponent.setNotes("This is a note.");
         testComponent.setUpdateDate(ts);
         testComponent.setCreateDate(ts);
@@ -82,13 +84,13 @@ public class ComponentOtherDaoTest {
         testComponent.setComponentId(1);
         testComponent.setName("Other 1");
         testComponent.setUseFor("Use this for ...");
-        testComponent.setUseTypeId(1);
+//        testComponent.setUseTypeId(1);
         testComponent.setTime(new BigDecimal("10"));
-        testComponent.setTimeUomId(1);
+//        testComponent.setTimeUomId(1);
         testComponent.setAmount(new BigDecimal("10"));
-        testComponent.setAmountUomId(1);
+//        testComponent.setAmountUomId(1);
         testComponent.setBatchSize(new BigDecimal("10"));
-        testComponent.setBatchSizeUomId(1);
+//        testComponent.setBatchSizeUomId(1);
         testComponent.setNotes("This is a note.");
         testComponent.setUpdateDate(ts);
         testComponent.setCreateDate(ts);
@@ -120,13 +122,13 @@ public class ComponentOtherDaoTest {
         testComponent.setComponentId(1);
         testComponent.setName("Other 1");
         testComponent.setUseFor("Use this for ...");
-        testComponent.setUseTypeId(1);
+//        testComponent.setUseTypeId(1);
         testComponent.setTime(new BigDecimal("10"));
-        testComponent.setTimeUomId(1);
+//        testComponent.setTimeUomId(1);
         testComponent.setAmount(new BigDecimal("10"));
-        testComponent.setAmountUomId(1);
+//        testComponent.setAmountUomId(1);
         testComponent.setBatchSize(new BigDecimal("10"));
-        testComponent.setBatchSizeUomId(1);
+//        testComponent.setBatchSizeUomId(1);
         testComponent.setNotes("This is a note.");
         testComponent.setUpdateDate(ts);
         testComponent.setCreateDate(ts);
@@ -161,13 +163,13 @@ public class ComponentOtherDaoTest {
         testComponent.setComponentId(1);
         testComponent.setName("Other 1");
         testComponent.setUseFor("Use this for ...");
-        testComponent.setUseTypeId(1);
+//        testComponent.setUseTypeId(1);
         testComponent.setTime(new BigDecimal("10"));
-        testComponent.setTimeUomId(1);
+//        testComponent.setTimeUomId(1);
         testComponent.setAmount(new BigDecimal("10"));
-        testComponent.setAmountUomId(1);
+//        testComponent.setAmountUomId(1);
         testComponent.setBatchSize(new BigDecimal("10"));
-        testComponent.setBatchSizeUomId(1);
+//        testComponent.setBatchSizeUomId(1);
         testComponent.setNotes("This is a note.");
         testComponent.setUpdateDate(ts);
         testComponent.setCreateDate(ts);
@@ -196,13 +198,13 @@ public class ComponentOtherDaoTest {
         testComponent.setComponentId(1);
         testComponent.setName("Other 1");
         testComponent.setUseFor("Use this for ...");
-        testComponent.setUseTypeId(1);
+//        testComponent.setUseTypeId(1);
         testComponent.setTime(new BigDecimal("10"));
-        testComponent.setTimeUomId(1);
+//        testComponent.setTimeUomId(1);
         testComponent.setAmount(new BigDecimal("10"));
-        testComponent.setAmountUomId(1);
+//        testComponent.setAmountUomId(1);
         testComponent.setBatchSize(new BigDecimal("10"));
-        testComponent.setBatchSizeUomId(1);
+//        testComponent.setBatchSizeUomId(1);
         testComponent.setNotes("This is a note.");
         testComponent.setUpdateDate(ts);
         testComponent.setCreateDate(ts);

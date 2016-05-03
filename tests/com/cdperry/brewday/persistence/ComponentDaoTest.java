@@ -1,8 +1,8 @@
 package com.cdperry.brewday.persistence;
 
-import com.cdperry.brewday.entity.ComponentEntity;
+import com.cdperry.brewday.entity.*;
 import org.junit.Test;
-import java.math.BigDecimal;
+
 import java.util.Date;
 import java.util.List;
 import java.sql.Timestamp;
@@ -19,37 +19,37 @@ public class ComponentDaoTest {
         ComponentDao me = new ComponentDao();
         ComponentEntity testComponent;
         List<ComponentEntity> hopTypes;
-        int hopTypeEntityID;
+        int componentEntityId;
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
 
         // create a test grain and add them to the database
         testComponent = new ComponentEntity();
         testComponent.setName("Component 1");
-        testComponent.setComponentTypeId(1);
-        testComponent.setCompHopId(1);
-        testComponent.setCompGrainId(1);
-        testComponent.setCompYeastId(1);
-        testComponent.setCompWaterId(1);
-        testComponent.setCompOtherId(1);
+        testComponent.setComponentType(null);
+        testComponent.setComponentHop(new ComponentHopEntity());
+        testComponent.setComponentGrain(new ComponentGrainEntity());
+        testComponent.setComponentYeast(new ComponentYeastEntity());
+        testComponent.setComponentWater(new ComponentWaterEntity());
+        testComponent.setComponentOther(new ComponentOtherEntity());
         testComponent.setUpdateDate(ts);
         testComponent.setCreateDate(ts);
 
-        hopTypeEntityID = me.addComponentEntity(testComponent);
+        componentEntityId = me.addComponentEntity(testComponent);
 
         // create a test grain and add them to the database
         testComponent = new ComponentEntity();
         testComponent.setName("Component 2");
-        testComponent.setComponentTypeId(2);
-        testComponent.setCompHopId(2);
-        testComponent.setCompGrainId(2);
-        testComponent.setCompYeastId(2);
-        testComponent.setCompWaterId(2);
-        testComponent.setCompOtherId(2);
+        testComponent.setComponentType(null);
+        testComponent.setComponentHop(new ComponentHopEntity());
+        testComponent.setComponentGrain(new ComponentGrainEntity());
+        testComponent.setComponentYeast(new ComponentYeastEntity());
+        testComponent.setComponentWater(new ComponentWaterEntity());
+        testComponent.setComponentOther(new ComponentOtherEntity());
         testComponent.setUpdateDate(ts);
         testComponent.setCreateDate(ts);
 
-        hopTypeEntityID = me.addComponentEntity(testComponent);
+        componentEntityId = me.addComponentEntity(testComponent);
 
         hopTypes = me.getAllComponents();
         assertTrue(hopTypes.size() > 0);
@@ -66,29 +66,29 @@ public class ComponentDaoTest {
 
         ComponentDao me = new ComponentDao();
         ComponentEntity testComponent = new ComponentEntity();
-        int hopTypeEntityID;
+        int componentEntityId;
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
 
         // create a test grain and add them to the database
         testComponent = new ComponentEntity();
         testComponent.setName("Component 1");
-        testComponent.setComponentTypeId(1);
-        testComponent.setCompHopId(1);
-        testComponent.setCompGrainId(1);
-        testComponent.setCompYeastId(1);
-        testComponent.setCompWaterId(1);
-        testComponent.setCompOtherId(1);
+        testComponent.setComponentType(null);
+        testComponent.setComponentHop(new ComponentHopEntity());
+        testComponent.setComponentGrain(new ComponentGrainEntity());
+        testComponent.setComponentYeast(new ComponentYeastEntity());
+        testComponent.setComponentWater(new ComponentWaterEntity());
+        testComponent.setComponentOther(new ComponentOtherEntity());
         testComponent.setUpdateDate(ts);
         testComponent.setCreateDate(ts);
 
-        hopTypeEntityID = me.addComponentEntity(testComponent);
+        componentEntityId = me.addComponentEntity(testComponent);
 
         // confirm that a non-zero component ID was returned (indicator of success)
-        assertTrue("Expected a non-zero component ID, got " + hopTypeEntityID, hopTypeEntityID > 0);
+        assertTrue("Expected a non-zero component ID, got " + componentEntityId, componentEntityId > 0);
 
         // confirm that the component can be retrieved from the database
-        testComponent = me.getComponentEntity(hopTypeEntityID);
+        testComponent = me.getComponentEntity(componentEntityId);
         assertNotNull(testComponent);
 
         // clean up
@@ -101,31 +101,31 @@ public class ComponentDaoTest {
 
         ComponentDao me = new ComponentDao();
         ComponentEntity testComponent = new ComponentEntity();
-        int hopTypeEntityID;
+        int componentEntityId;
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
 
         // create a test component and add them to the database
         testComponent = new ComponentEntity();
         testComponent.setName("Component 1");
-        testComponent.setComponentTypeId(1);
-        testComponent.setCompHopId(1);
-        testComponent.setCompGrainId(1);
-        testComponent.setCompYeastId(1);
-        testComponent.setCompWaterId(1);
-        testComponent.setCompOtherId(1);
+        testComponent.setComponentType(null);
+        testComponent.setComponentHop(new ComponentHopEntity());
+        testComponent.setComponentGrain(new ComponentGrainEntity());
+        testComponent.setComponentYeast(new ComponentYeastEntity());
+        testComponent.setComponentWater(new ComponentWaterEntity());
+        testComponent.setComponentOther(new ComponentOtherEntity());
         testComponent.setUpdateDate(ts);
         testComponent.setCreateDate(ts);
 
-        hopTypeEntityID = me.addComponentEntity(testComponent);
+        componentEntityId = me.addComponentEntity(testComponent);
 
         // retrieve the test component from the database and change its name
-        testComponent = me.getComponentEntity(hopTypeEntityID);
+        testComponent = me.getComponentEntity(componentEntityId);
         testComponent.setName("New Name");
         me.updateComponentEntity(testComponent);
 
         // retrieve the updated employee and test that the update took place
-        testComponent = me.getComponentEntity(hopTypeEntityID);
+        testComponent = me.getComponentEntity(componentEntityId);
 
         assertEquals("Expected New Name, got " + testComponent.getName(),
                 "New Name", testComponent.getName());
@@ -140,30 +140,30 @@ public class ComponentDaoTest {
 
         ComponentDao me = new ComponentDao();
         ComponentEntity testComponent = new ComponentEntity();
-        int hopTypeEntityID;
+        int componentEntityId;
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
 
         // create a test component and add them to the database
         testComponent = new ComponentEntity();
         testComponent.setName("Component 1");
-        testComponent.setComponentTypeId(1);
-        testComponent.setCompHopId(1);
-        testComponent.setCompGrainId(1);
-        testComponent.setCompYeastId(1);
-        testComponent.setCompWaterId(1);
-        testComponent.setCompOtherId(1);
+        testComponent.setComponentType(null);
+        testComponent.setComponentHop(new ComponentHopEntity());
+        testComponent.setComponentGrain(new ComponentGrainEntity());
+        testComponent.setComponentYeast(new ComponentYeastEntity());
+        testComponent.setComponentWater(new ComponentWaterEntity());
+        testComponent.setComponentOther(new ComponentOtherEntity());
         testComponent.setUpdateDate(ts);
         testComponent.setCreateDate(ts);
 
-        hopTypeEntityID = me.addComponentEntity(testComponent);
+        componentEntityId = me.addComponentEntity(testComponent);
 
         // make sure the employee was added before proceeding
-        assertTrue("Expected a non-zero component ID, got " + hopTypeEntityID, hopTypeEntityID > 0);
+        assertTrue("Expected a non-zero component ID, got " + componentEntityId, componentEntityId > 0);
 
         // delete the employee and verify that they are no longer in the database
-        me.deleteComponentEntity(me.getComponentEntity(hopTypeEntityID));
-        assertNull(me.getComponentEntity(hopTypeEntityID));
+        me.deleteComponentEntity(me.getComponentEntity(componentEntityId));
+        assertNull(me.getComponentEntity(componentEntityId));
 
     }
 
@@ -172,29 +172,32 @@ public class ComponentDaoTest {
 
         ComponentDao me = new ComponentDao();
         ComponentEntity testComponent = new ComponentEntity();
-        int hopTypeEntityID;
+        int componentEntityId;
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
 
         // create a test component and add them to the database
         testComponent = new ComponentEntity();
         testComponent.setName("Component 1");
-        testComponent.setComponentTypeId(1);
-        testComponent.setCompHopId(1);
-        testComponent.setCompGrainId(1);
-        testComponent.setCompYeastId(1);
-        testComponent.setCompWaterId(1);
-        testComponent.setCompOtherId(1);
+//        testComponent.setComponentType(null);
         testComponent.setUpdateDate(ts);
         testComponent.setCreateDate(ts);
 
-        hopTypeEntityID = me.addComponentEntity(testComponent);
+        componentEntityId = me.addComponentEntity(testComponent);
+
+        testComponent.setComponentHop(new ComponentHopEntity(componentEntityId, ts, ts));
+        me.updateComponentEntity(testComponent);
+//        testComponent.setComponentGrain(new ComponentGrainEntity());
+//        testComponent.setComponentYeast(new ComponentYeastEntity());
+//        testComponent.setComponentWater(new ComponentWaterEntity());
+//        testComponent.setComponentOther(new ComponentOtherEntity());
+
 
         // confirm that a non-zero employee ID was returned (indicator of success)
-        assertTrue("Expected a non-zero component ID, got " + hopTypeEntityID, hopTypeEntityID > 0);
+        assertTrue("Expected a non-zero component ID, got " + componentEntityId, componentEntityId > 0);
 
         // clean up
-        testComponent = me.getComponentEntity(hopTypeEntityID);
+        testComponent = me.getComponentEntity(componentEntityId);
         me.deleteComponentEntity(testComponent);
 
     }

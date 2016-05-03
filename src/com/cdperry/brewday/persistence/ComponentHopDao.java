@@ -151,6 +151,39 @@ public class ComponentHopDao {
     }
 
     /**
+     * This method deletes the ComponentHopEntity object from the database
+     * @param componentHopId the ID of the componentHopEntity to be deleted from the database
+     */
+    public void deleteComponentHopEntityById(int componentHopId) {
+
+        Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+
+            tx = session.beginTransaction();
+            ComponentHopEntity entityToDelete = (ComponentHopEntity)session.get(ComponentHopEntity.class, componentHopId);
+            session.delete(entityToDelete);
+            tx.commit();
+            log.warn("Deleted hop type: " + entityToDelete + " with id of: " + componentHopId);
+
+        } catch (HibernateException e) {
+
+            if (tx!=null) {
+                tx.rollback();
+            }
+
+            e.printStackTrace();
+
+        } finally {
+
+            session.close();
+
+        }
+
+    }
+
+    /**
      * This method adds an componentHopEntity to the database and returns the ID associated with the new record
      * @param componentHopEntity the componentHopEntity to be added to the database
      * @return int the componentHopEntity ID of the added record

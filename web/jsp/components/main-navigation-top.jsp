@@ -8,6 +8,9 @@
         </a>
         <ul class="dropdown-menu">
             <li>
+                <a href="/listComponentTypes">Component Types</a>
+            </li>
+            <li>
                 <a href="/listGrainTypes">Grain Types</a>
             </li>
             <li>

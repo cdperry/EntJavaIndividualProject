@@ -150,6 +150,39 @@ public class ComponentTypeDao {
     }
 
     /**
+     * This method deletes the ComponentTypeEntity object from the database
+     * @param componentTypeId the ID of the componentTypeEntity to be deleted from the database
+     */
+    public void deleteComponentTypeEntityById(int componentTypeId) {
+
+        Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+
+            tx = session.beginTransaction();
+            ComponentTypeEntity entityToDelete = (ComponentTypeEntity)session.get(ComponentTypeEntity.class, componentTypeId);
+            session.delete(entityToDelete);
+            tx.commit();
+            log.warn("Deleted component type: " + entityToDelete + " with id of: " + componentTypeId);
+
+        } catch (HibernateException e) {
+
+            if (tx!=null) {
+                tx.rollback();
+            }
+
+            e.printStackTrace();
+
+        } finally {
+
+            session.close();
+
+        }
+
+    }
+
+    /**
      * This method adds an componentTypeEntity to the database and returns the ID associated with the new record
      * @param componentTypeEntity the componentTypeEntity to be added to the database
      * @return int the componentTypeEntity ID of the added record

@@ -29,7 +29,7 @@ public class RecipeComponentDaoTest {
         testRecipeComponent.setRecipeId(1);
         testRecipeComponent.setComponent(new ComponentEntity());
         testRecipeComponent.setAmount(new BigDecimal("1.0"));
-        testRecipeComponent.setAmountUomId(1);
+        //testRecipeComponent.setAmountUomId(1);
         testRecipeComponent.setUpdateDate(ts);
         testRecipeComponent.setCreateDate(ts);
 
@@ -40,7 +40,7 @@ public class RecipeComponentDaoTest {
         testRecipeComponent.setRecipeId(2);
         testRecipeComponent.setComponent(new ComponentEntity());
         testRecipeComponent.setAmount(new BigDecimal("2.0"));
-        testRecipeComponent.setAmountUomId(2);
+        //testRecipeComponent.setAmountUomId(2);
         testRecipeComponent.setUpdateDate(ts);
         testRecipeComponent.setCreateDate(ts);
 
@@ -70,7 +70,7 @@ public class RecipeComponentDaoTest {
         testRecipeComponent.setRecipeId(1);
         testRecipeComponent.setComponent(new ComponentEntity());
         testRecipeComponent.setAmount(new BigDecimal("1.0"));
-        testRecipeComponent.setAmountUomId(1);
+        //testRecipeComponent.setAmountUomId(1);
         testRecipeComponent.setUpdateDate(ts);
         testRecipeComponent.setCreateDate(ts);
 
@@ -102,7 +102,7 @@ public class RecipeComponentDaoTest {
         testRecipeComponent.setRecipeId(1);
         testRecipeComponent.setComponent(new ComponentEntity());
         testRecipeComponent.setAmount(new BigDecimal("1.0"));
-        testRecipeComponent.setAmountUomId(1);
+        //testRecipeComponent.setAmountUomId(1);
         testRecipeComponent.setUpdateDate(ts);
         testRecipeComponent.setCreateDate(ts);
 
@@ -138,7 +138,7 @@ public class RecipeComponentDaoTest {
         testRecipeComponent.setRecipeId(1);
         testRecipeComponent.setComponent(new ComponentEntity());
         testRecipeComponent.setAmount(new BigDecimal("1.0"));
-        testRecipeComponent.setAmountUomId(1);
+        //testRecipeComponent.setAmountUomId(1);
         testRecipeComponent.setUpdateDate(ts);
         testRecipeComponent.setCreateDate(ts);
 
@@ -167,7 +167,7 @@ public class RecipeComponentDaoTest {
         testRecipeComponent.setRecipeId(1);
         testRecipeComponent.setComponent(new ComponentEntity());
         testRecipeComponent.setAmount(new BigDecimal("1.0"));
-        testRecipeComponent.setAmountUomId(1);
+        //testRecipeComponent.setAmountUomId(1);
         testRecipeComponent.setUpdateDate(ts);
         testRecipeComponent.setCreateDate(ts);
 

@@ -19,6 +19,9 @@
         <property name="connection.password">
             admin
         </property>
+        <property name="show_sql">
+            false
+        </property>
         <mapping resource="AuthorizationEntity.hbm.xml" />
         <mapping class="com.cdperry.brewday.entity.AuthorizationEntity" />
         <mapping resource="ComponentEntity.hbm.xml" />

@@ -14,7 +14,10 @@
                      column="component_id" unique="true" not-null="false" lazy="false"
                      not-found="ignore" cascade="all"/>
         <property name="amount" column="amount"/>
-        <property name="amountUomId" column="amount_uom_id"/>
+        <!--<property name="amountUomId" column="amount_uom_id"/>-->
+        <many-to-one name="amountUom" class="com.cdperry.brewday.entity.UomTypeEntity"
+                     column="amount_uom_id" unique="true" not-null="false" lazy="false"
+                     not-found="ignore" />
         <property name="updateDate" column="update_date"/>
         <property name="createDate" column="create_date"/>
     </class>

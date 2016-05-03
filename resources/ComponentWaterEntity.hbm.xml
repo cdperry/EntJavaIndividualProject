@@ -24,7 +24,10 @@
         <property name="nahco3G" column="nahco3_g"/>
         <property name="caco3G" column="caco3_g"/>
         <property name="batchSize" column="batch_size"/>
-        <property name="batchSizeUomId" column="batch_size_uom_id"/>
+        <!--<property name="batchSizeUomId" column="batch_size_uom_id"/>-->
+        <many-to-one name="batchSizeUom" class="com.cdperry.brewday.entity.UomTypeEntity"
+                     column="batch_size_uom_id" unique="true" not-null="false" lazy="false"
+                     not-found="ignore" />
         <property name="notes" column="notes"/>
         <property name="updateDate" column="update_date"/>
         <property name="createDate" column="create_date"/>

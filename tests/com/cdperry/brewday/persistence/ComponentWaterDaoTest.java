@@ -41,7 +41,7 @@ public class ComponentWaterDaoTest {
         testComponent.setNahco3G(new BigDecimal("1.0"));
         testComponent.setCaco3G(new BigDecimal("1.0"));
         testComponent.setBatchSize(new BigDecimal("10"));
-        testComponent.setBatchSizeUomId(1);
+//        testComponent.setBatchSizeUomId(1);
         testComponent.setNotes("This is a note.");
         testComponent.setUpdateDate(ts);
         testComponent.setCreateDate(ts);
@@ -66,7 +66,7 @@ public class ComponentWaterDaoTest {
         testComponent.setNahco3G(new BigDecimal("1.0"));
         testComponent.setCaco3G(new BigDecimal("1.0"));
         testComponent.setBatchSize(new BigDecimal("10"));
-        testComponent.setBatchSizeUomId(1);
+//        testComponent.setBatchSizeUomId(1);
         testComponent.setNotes("This is a note.");
         testComponent.setUpdateDate(ts);
         testComponent.setCreateDate(ts);
@@ -109,7 +109,7 @@ public class ComponentWaterDaoTest {
         testComponent.setNahco3G(new BigDecimal("1.0"));
         testComponent.setCaco3G(new BigDecimal("1.0"));
         testComponent.setBatchSize(new BigDecimal("10"));
-        testComponent.setBatchSizeUomId(1);
+//        testComponent.setBatchSizeUomId(1);
         testComponent.setNotes("This is a note.");
         testComponent.setUpdateDate(ts);
         testComponent.setCreateDate(ts);
@@ -154,7 +154,7 @@ public class ComponentWaterDaoTest {
         testComponent.setNahco3G(new BigDecimal("1.0"));
         testComponent.setCaco3G(new BigDecimal("1.0"));
         testComponent.setBatchSize(new BigDecimal("10"));
-        testComponent.setBatchSizeUomId(1);
+//        testComponent.setBatchSizeUomId(1);
         testComponent.setNotes("This is a note.");
         testComponent.setUpdateDate(ts);
         testComponent.setCreateDate(ts);
@@ -203,7 +203,7 @@ public class ComponentWaterDaoTest {
         testComponent.setNahco3G(new BigDecimal("1.0"));
         testComponent.setCaco3G(new BigDecimal("1.0"));
         testComponent.setBatchSize(new BigDecimal("10"));
-        testComponent.setBatchSizeUomId(1);
+//        testComponent.setBatchSizeUomId(1);
         testComponent.setNotes("This is a note.");
         testComponent.setUpdateDate(ts);
         testComponent.setCreateDate(ts);
@@ -245,7 +245,7 @@ public class ComponentWaterDaoTest {
         testComponent.setNahco3G(new BigDecimal("1.0"));
         testComponent.setCaco3G(new BigDecimal("1.0"));
         testComponent.setBatchSize(new BigDecimal("10"));
-        testComponent.setBatchSizeUomId(1);
+//        testComponent.setBatchSizeUomId(1);
         testComponent.setNotes("This is a note.");
         testComponent.setUpdateDate(ts);
         testComponent.setCreateDate(ts);

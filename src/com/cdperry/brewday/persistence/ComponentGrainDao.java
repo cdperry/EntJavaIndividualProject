@@ -150,6 +150,39 @@ public class ComponentGrainDao {
     }
 
     /**
+     * This method deletes the ComponentGrainEntity object from the database
+     * @param componentGrainId the ID of the componentGrainEntity to be deleted from the database
+     */
+    public void deleteComponentGrainEntityById(int componentGrainId) {
+
+        Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+
+            tx = session.beginTransaction();
+            ComponentGrainEntity entityToDelete = (ComponentGrainEntity)session.get(ComponentGrainEntity.class, componentGrainId);
+            session.delete(entityToDelete);
+            tx.commit();
+            log.warn("Deleted grain type: " + entityToDelete + " with id of: " + componentGrainId);
+
+        } catch (HibernateException e) {
+
+            if (tx!=null) {
+                tx.rollback();
+            }
+
+            e.printStackTrace();
+
+        } finally {
+
+            session.close();
+
+        }
+
+    }
+
+    /**
      * This method adds an componentGrainEntity to the database and returns the ID associated with the new record
      * @param componentGrainEntity the componentGrainEntity to be added to the database
      * @return int the componentGrainEntity ID of the added record

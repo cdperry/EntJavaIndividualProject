@@ -27,11 +27,11 @@ public class ComponentYeastDaoTest {
         testComponent = new ComponentYeastEntity();
         testComponent.setComponentId(1);
         testComponent.setName("Yeast 1");
-        testComponent.setLabId(1);
-        testComponent.setSupplierId(1);
-        testComponent.setYeastTypeId(1);
-        testComponent.setYeastFormId(1);
-        testComponent.setYeastFlocTypeId(1);
+//        testComponent.setLabId(1);
+//        testComponent.setSupplierId(1);
+//        testComponent.setYeastTypeId(1);
+//        testComponent.setYeastFormId(1);
+//        testComponent.setYeastFlocTypeId(1);
         testComponent.setAttenuationMin(new BigDecimal("1.0"));
         testComponent.setAttenuationMax(new BigDecimal("1.0"));
         testComponent.setTemperatureMin(new BigDecimal("1.0"));
@@ -47,11 +47,11 @@ public class ComponentYeastDaoTest {
         testComponent = new ComponentYeastEntity();
         testComponent.setComponentId(1);
         testComponent.setName("Yeast 2");
-        testComponent.setLabId(1);
-        testComponent.setSupplierId(1);
-        testComponent.setYeastTypeId(1);
-        testComponent.setYeastFormId(1);
-        testComponent.setYeastFlocTypeId(1);
+//        testComponent.setLabId(1);
+//        testComponent.setSupplierId(1);
+//        testComponent.setYeastTypeId(1);
+//        testComponent.setYeastFormId(1);
+//        testComponent.setYeastFlocTypeId(1);
         testComponent.setAttenuationMin(new BigDecimal("1.0"));
         testComponent.setAttenuationMax(new BigDecimal("1.0"));
         testComponent.setTemperatureMin(new BigDecimal("1.0"));
@@ -85,11 +85,11 @@ public class ComponentYeastDaoTest {
         // create a test grain and add them to the database
         testComponent.setComponentId(1);
         testComponent.setName("Yeast 1");
-        testComponent.setLabId(1);
-        testComponent.setSupplierId(1);
-        testComponent.setYeastTypeId(1);
-        testComponent.setYeastFormId(1);
-        testComponent.setYeastFlocTypeId(1);
+//        testComponent.setLabId(1);
+//        testComponent.setSupplierId(1);
+//        testComponent.setYeastTypeId(1);
+//        testComponent.setYeastFormId(1);
+//        testComponent.setYeastFlocTypeId(1);
         testComponent.setAttenuationMin(new BigDecimal("1.0"));
         testComponent.setAttenuationMax(new BigDecimal("1.0"));
         testComponent.setTemperatureMin(new BigDecimal("1.0"));
@@ -125,11 +125,11 @@ public class ComponentYeastDaoTest {
         // create a test component and add them to the database
         testComponent.setComponentId(1);
         testComponent.setName("Yeast 1");
-        testComponent.setLabId(1);
-        testComponent.setSupplierId(1);
-        testComponent.setYeastTypeId(1);
-        testComponent.setYeastFormId(1);
-        testComponent.setYeastFlocTypeId(1);
+//        testComponent.setLabId(1);
+//        testComponent.setSupplierId(1);
+//        testComponent.setYeastTypeId(1);
+//        testComponent.setYeastFormId(1);
+//        testComponent.setYeastFlocTypeId(1);
         testComponent.setAttenuationMin(new BigDecimal("1.0"));
         testComponent.setAttenuationMax(new BigDecimal("1.0"));
         testComponent.setTemperatureMin(new BigDecimal("1.0"));
@@ -169,11 +169,11 @@ public class ComponentYeastDaoTest {
         // create a test component and add them to the database
         testComponent.setComponentId(1);
         testComponent.setName("Yeast 1");
-        testComponent.setLabId(1);
-        testComponent.setSupplierId(1);
-        testComponent.setYeastTypeId(1);
-        testComponent.setYeastFormId(1);
-        testComponent.setYeastFlocTypeId(1);
+//        testComponent.setLabId(1);
+//        testComponent.setSupplierId(1);
+//        testComponent.setYeastTypeId(1);
+//        testComponent.setYeastFormId(1);
+//        testComponent.setYeastFlocTypeId(1);
         testComponent.setAttenuationMin(new BigDecimal("1.0"));
         testComponent.setAttenuationMax(new BigDecimal("1.0"));
         testComponent.setTemperatureMin(new BigDecimal("1.0"));
@@ -206,11 +206,11 @@ public class ComponentYeastDaoTest {
         // create a test component and add them to the database
         testComponent.setComponentId(1);
         testComponent.setName("Yeast 1");
-        testComponent.setLabId(1);
-        testComponent.setSupplierId(1);
-        testComponent.setYeastTypeId(1);
-        testComponent.setYeastFormId(1);
-        testComponent.setYeastFlocTypeId(1);
+//        testComponent.setLabId(1);
+//        testComponent.setSupplierId(1);
+//        testComponent.setYeastTypeId(1);
+//        testComponent.setYeastFormId(1);
+//        testComponent.setYeastFlocTypeId(1);
         testComponent.setAttenuationMin(new BigDecimal("1.0"));
         testComponent.setAttenuationMax(new BigDecimal("1.0"));
         testComponent.setTemperatureMin(new BigDecimal("1.0"));

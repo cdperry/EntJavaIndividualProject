@@ -10,9 +10,18 @@
         </id>
         <property name="componentId" column="component_id"/>
         <property name="name" column="name"/>
-        <property name="originId" column="origin_id"/>
-        <property name="supplierId" column="supplier_id"/>
-        <property name="grainTypeId" column="grain_type_id"/>
+        <!--<property name="originId" column="origin_id"/>-->
+        <!--<property name="supplierId" column="supplier_id"/>-->
+        <!--<property name="grainTypeId" column="grain_type_id"/>-->
+        <many-to-one name="origin" class="com.cdperry.brewday.entity.OriginEntity"
+                     column="origin_id" unique="true" not-null="false" lazy="false"
+                     not-found="ignore" />
+        <many-to-one name="supplier" class="com.cdperry.brewday.entity.SupplierEntity"
+                     column="supplier_id" unique="true" not-null="false" lazy="false"
+                     not-found="ignore" />
+        <many-to-one name="grainType" class="com.cdperry.brewday.entity.GrainTypeEntity"
+                     column="grain_type_id" unique="true" not-null="false" lazy="false"
+                     not-found="ignore" />
         <property name="color" column="color"/>
         <property name="potential" column="potential"/>
         <property name="notes" column="notes"/>

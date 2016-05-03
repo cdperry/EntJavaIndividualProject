@@ -10,12 +10,24 @@
         </id>
         <property name="componentId" column="component_id"/>
         <property name="name" column="name"/>
-        <property name="originId" column="origin_id"/>
-        <property name="supplierId" column="supplier_id"/>
+        <!--<property name="originId" column="origin_id"/>-->
+        <!--<property name="supplierId" column="supplier_id"/>-->
+        <many-to-one name="origin" class="com.cdperry.brewday.entity.OriginEntity"
+                     column="origin_id" unique="true" not-null="false" lazy="false"
+                     not-found="ignore" />
+        <many-to-one name="supplier" class="com.cdperry.brewday.entity.SupplierEntity"
+                     column="supplier_id" unique="true" not-null="false" lazy="false"
+                     not-found="ignore" />
         <property name="alphaPct" column="alpha_pct"/>
         <property name="betaPct" column="beta_pct"/>
-        <property name="hopTypeId" column="hop_type_id"/>
-        <property name="hopFormId" column="hop_form_id"/>
+        <!--<property name="hopTypeId" column="hop_type_id"/>-->
+        <!--<property name="hopFormId" column="hop_form_id"/>-->
+        <many-to-one name="hopType" class="com.cdperry.brewday.entity.HopTypeEntity"
+                     column="hop_type_id" unique="true" not-null="false" lazy="false"
+                     not-found="ignore" />
+        <many-to-one name="hopForm" class="com.cdperry.brewday.entity.HopFormTypeEntity"
+                     column="hop_form_id" unique="true" not-null="false" lazy="false"
+                     not-found="ignore" />
         <property name="notes" column="notes"/>
         <property name="updateDate" column="update_date"/>
         <property name="createDate" column="create_date"/>

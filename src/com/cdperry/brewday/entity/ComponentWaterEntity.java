@@ -24,10 +24,19 @@ public class ComponentWaterEntity {
     private BigDecimal nahco3G;
     private BigDecimal caco3G;
     private BigDecimal batchSize;
-    private Integer batchSizeUomId;
+//    private Integer batchSizeUomId;
+    private UomTypeEntity batchSizeUom;
     private String notes;
     private Timestamp updateDate;
     private Timestamp createDate;
+
+    public ComponentWaterEntity() {}
+
+    public ComponentWaterEntity(Integer componentId, Timestamp createDate, Timestamp updateDate) {
+        this.componentId = componentId;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
+    }
 
     public int getCompWaterId() {
         return compWaterId;
@@ -165,12 +174,22 @@ public class ComponentWaterEntity {
         this.batchSize = batchSize;
     }
 
+    /*
     public Integer getBatchSizeUomId() {
         return batchSizeUomId;
     }
 
     public void setBatchSizeUomId(Integer batchSizeUomId) {
         this.batchSizeUomId = batchSizeUomId;
+    }
+    */
+
+    public UomTypeEntity getBatchSizeUom() {
+        return batchSizeUom;
+    }
+
+    public void setBatchSizeUom(UomTypeEntity batchSizeUom) {
+        this.batchSizeUom = batchSizeUom;
     }
 
     public String getNotes() {
@@ -220,8 +239,8 @@ public class ComponentWaterEntity {
         if (nahco3G != null ? !nahco3G.equals(that.nahco3G) : that.nahco3G != null) return false;
         if (caco3G != null ? !caco3G.equals(that.caco3G) : that.caco3G != null) return false;
         if (batchSize != null ? !batchSize.equals(that.batchSize) : that.batchSize != null) return false;
-        if (batchSizeUomId != null ? !batchSizeUomId.equals(that.batchSizeUomId) : that.batchSizeUomId != null)
-            return false;
+//        if (batchSizeUomId != null ? !batchSizeUomId.equals(that.batchSizeUomId) : that.batchSizeUomId != null)
+//            return false;
         if (notes != null ? !notes.equals(that.notes) : that.notes != null) return false;
         if (updateDate != null ? !updateDate.equals(that.updateDate) : that.updateDate != null) return false;
         if (createDate != null ? !createDate.equals(that.createDate) : that.createDate != null) return false;
@@ -247,7 +266,7 @@ public class ComponentWaterEntity {
         result = 31 * result + (nahco3G != null ? nahco3G.hashCode() : 0);
         result = 31 * result + (caco3G != null ? caco3G.hashCode() : 0);
         result = 31 * result + (batchSize != null ? batchSize.hashCode() : 0);
-        result = 31 * result + (batchSizeUomId != null ? batchSizeUomId.hashCode() : 0);
+//        result = 31 * result + (batchSizeUomId != null ? batchSizeUomId.hashCode() : 0);
         result = 31 * result + (notes != null ? notes.hashCode() : 0);
         result = 31 * result + (updateDate != null ? updateDate.hashCode() : 0);
         result = 31 * result + (createDate != null ? createDate.hashCode() : 0);

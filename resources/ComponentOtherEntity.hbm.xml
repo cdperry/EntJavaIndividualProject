@@ -11,13 +11,25 @@
         <property name="componentId" column="component_id"/>
         <property name="name" column="name"/>
         <property name="useFor" column="use_for"/>
-        <property name="useTypeId" column="use_type_id"/>
+        <!--<property name="useTypeId" column="use_type_id"/>-->
+        <many-to-one name="useType" class="com.cdperry.brewday.entity.UseTypeEntity"
+                     column="use_type_id" unique="true" not-null="false" lazy="false"
+                     not-found="ignore" />
         <property name="time" column="time"/>
-        <property name="timeUomId" column="time_uom_id"/>
+        <!--<property name="timeUomId" column="time_uom_id"/>-->
+        <many-to-one name="timeUom" class="com.cdperry.brewday.entity.UomTypeEntity"
+                     column="time_uom_id" unique="true" not-null="false" lazy="false"
+                     not-found="ignore" />
         <property name="amount" column="amount"/>
-        <property name="amountUomId" column="amount_uom_id"/>
+        <!--<property name="amountUomId" column="amount_uom_id"/>-->
+        <many-to-one name="amountUom" class="com.cdperry.brewday.entity.UomTypeEntity"
+                     column="amount_uom_id" unique="true" not-null="false" lazy="false"
+                     not-found="ignore" />
         <property name="batchSize" column="batch_size"/>
-        <property name="batchSizeUomId" column="batch_size_uom_id"/>
+        <!--<property name="batchSizeUomId" column="batch_size_uom_id"/>-->
+        <many-to-one name="batchSizeUom" class="com.cdperry.brewday.entity.UomTypeEntity"
+                     column="batch_size_uom_id" unique="true" not-null="false" lazy="false"
+                     not-found="ignore" />
         <property name="notes" column="notes"/>
         <property name="updateDate" column="update_date"/>
         <property name="createDate" column="create_date"/>

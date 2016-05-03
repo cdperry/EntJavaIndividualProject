@@ -7,18 +7,31 @@ import java.sql.Timestamp;
  * Created by cdperry on 3/6/16.
  */
 public class ComponentHopEntity {
+
     private int compHopId;
     private Integer componentId;
     private String name;
-    private Integer originId;
-    private Integer supplierId;
+    //private Integer originId;
+    //private Integer supplierId;
+    private OriginEntity origin;
+    private SupplierEntity supplier;
     private BigDecimal alphaPct;
     private BigDecimal betaPct;
-    private Integer hopTypeId;
-    private Integer hopFormId;
+    //private Integer hopTypeId;
+    //private Integer hopFormId;
+    private HopTypeEntity hopType;
+    private HopFormTypeEntity hopForm;
     private String notes;
     private Timestamp updateDate;
     private Timestamp createDate;
+
+    public ComponentHopEntity() {}
+
+    public ComponentHopEntity(Integer componentId, Timestamp createDate, Timestamp updateDate) {
+        this.componentId = componentId;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
+    }
 
     public int getCompHopId() {
         return compHopId;
@@ -44,6 +57,7 @@ public class ComponentHopEntity {
         this.name = name;
     }
 
+    /*
     public Integer getOriginId() {
         return originId;
     }
@@ -58,6 +72,23 @@ public class ComponentHopEntity {
 
     public void setSupplierId(Integer supplierId) {
         this.supplierId = supplierId;
+    }
+    */
+
+    public OriginEntity getOrigin() {
+        return origin;
+    }
+
+    public void setOrigin(OriginEntity origin) {
+        this.origin = origin;
+    }
+
+    public SupplierEntity getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(SupplierEntity supplier) {
+        this.supplier = supplier;
     }
 
     public BigDecimal getAlphaPct() {
@@ -76,6 +107,7 @@ public class ComponentHopEntity {
         this.betaPct = betaPct;
     }
 
+    /*
     public Integer getHopTypeId() {
         return hopTypeId;
     }
@@ -90,6 +122,23 @@ public class ComponentHopEntity {
 
     public void setHopFormId(Integer hopFormId) {
         this.hopFormId = hopFormId;
+    }
+    */
+
+    public HopTypeEntity getHopType() {
+        return hopType;
+    }
+
+    public void setHopType(HopTypeEntity hopType) {
+        this.hopType = hopType;
+    }
+
+    public HopFormTypeEntity getHopForm() {
+        return hopForm;
+    }
+
+    public void setHopForm(HopFormTypeEntity hopForm) {
+        this.hopForm = hopForm;
     }
 
     public String getNotes() {
@@ -125,12 +174,12 @@ public class ComponentHopEntity {
 
         if (compHopId != that.compHopId) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (originId != null ? !originId.equals(that.originId) : that.originId != null) return false;
-        if (supplierId != null ? !supplierId.equals(that.supplierId) : that.supplierId != null) return false;
+        //if (originId != null ? !originId.equals(that.originId) : that.originId != null) return false;
+        //if (supplierId != null ? !supplierId.equals(that.supplierId) : that.supplierId != null) return false;
         if (alphaPct != null ? !alphaPct.equals(that.alphaPct) : that.alphaPct != null) return false;
         if (betaPct != null ? !betaPct.equals(that.betaPct) : that.betaPct != null) return false;
-        if (hopTypeId != null ? !hopTypeId.equals(that.hopTypeId) : that.hopTypeId != null) return false;
-        if (hopFormId != null ? !hopFormId.equals(that.hopFormId) : that.hopFormId != null) return false;
+        //if (hopTypeId != null ? !hopTypeId.equals(that.hopTypeId) : that.hopTypeId != null) return false;
+        //if (hopFormId != null ? !hopFormId.equals(that.hopFormId) : that.hopFormId != null) return false;
         if (notes != null ? !notes.equals(that.notes) : that.notes != null) return false;
         if (updateDate != null ? !updateDate.equals(that.updateDate) : that.updateDate != null) return false;
         if (createDate != null ? !createDate.equals(that.createDate) : that.createDate != null) return false;
@@ -142,12 +191,12 @@ public class ComponentHopEntity {
     public int hashCode() {
         int result = compHopId;
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (originId != null ? originId.hashCode() : 0);
-        result = 31 * result + (supplierId != null ? supplierId.hashCode() : 0);
+        //result = 31 * result + (originId != null ? originId.hashCode() : 0);
+        //result = 31 * result + (supplierId != null ? supplierId.hashCode() : 0);
         result = 31 * result + (alphaPct != null ? alphaPct.hashCode() : 0);
         result = 31 * result + (betaPct != null ? betaPct.hashCode() : 0);
-        result = 31 * result + (hopTypeId != null ? hopTypeId.hashCode() : 0);
-        result = 31 * result + (hopFormId != null ? hopFormId.hashCode() : 0);
+        //result = 31 * result + (hopTypeId != null ? hopTypeId.hashCode() : 0);
+        //result = 31 * result + (hopFormId != null ? hopFormId.hashCode() : 0);
         result = 31 * result + (notes != null ? notes.hashCode() : 0);
         result = 31 * result + (updateDate != null ? updateDate.hashCode() : 0);
         result = 31 * result + (createDate != null ? createDate.hashCode() : 0);

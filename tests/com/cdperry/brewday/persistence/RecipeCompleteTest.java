@@ -6,11 +6,9 @@ import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -24,21 +22,31 @@ public class RecipeCompleteTest {
     @Test
     public void testCompleteRecipe() throws Exception {
 
+        ArrayList<Integer> recipeIds = new ArrayList<Integer>();
+        int uomId;
+        int equipmentProfileId;
+        int recipeTypeId;
+        int recipeId;
+        int componentId;
+
         // create entities
         RecipeEntity testRecipe;
-        RecipeComponentEntity component;
+        RecipeComponentEntity recipeComponentEntity;
+        ComponentEntity componentEntity;
         UomTypeEntity uom = new UomTypeEntity();
         RecipeTypeEntity recipeType = new RecipeTypeEntity();
         ProfileEquipmentEntity profileEquipment = new ProfileEquipmentEntity();
 
         // create DAOs
         RecipeDao me = new RecipeDao();
+        RecipeComponentDao recipeComponentDao = new RecipeComponentDao();
+        ComponentDao componentDao = new ComponentDao();
+        ComponentTypeDao componentTypeDao = new ComponentTypeDao();
         ProfileEquipmentDao profileEquipmentDao = new ProfileEquipmentDao();
         UomTypeDao uomTypeDao = new UomTypeDao();
         RecipeTypeDao recipeTypeDao = new RecipeTypeDao();
 
         // create other variables
-        int id;
         List<RecipeEntity> recipes;
         HashSet set1;
         Set set2;
@@ -49,20 +57,20 @@ public class RecipeCompleteTest {
         uom.setName("zgal");
         uom.setCreateDate(ts);
         uom.setUpdateDate(ts);
-        id = uomTypeDao.addUomTypeEntity(uom);
-        uom = uomTypeDao.getUomTypeEntity(id);
+        uomId = uomTypeDao.addUomTypeEntity(uom);
+        uom = uomTypeDao.getUomTypeEntity(uomId);
 
         // create a recipe type
         recipeType.setName("zAll Grain");
         recipeType.setCreateDate(ts);
         recipeType.setUpdateDate(ts);
-        id = recipeTypeDao.addRecipeTypeEntity(recipeType);
-        recipeType = recipeTypeDao.getRecipeTypeEntity(id);
+        recipeTypeId = recipeTypeDao.addRecipeTypeEntity(recipeType);
+        recipeType = recipeTypeDao.getRecipeTypeEntity(recipeTypeId);
 
         // create an equipment profile
         profileEquipment.setName("zPot and Cooler (10G)");
-        id = profileEquipmentDao.addProfileEquipmentEntity(profileEquipment);
-        profileEquipment = profileEquipmentDao.getProfileEquipmentEntity(id);
+        equipmentProfileId = profileEquipmentDao.addProfileEquipmentEntity(profileEquipment);
+        profileEquipment = profileEquipmentDao.getProfileEquipmentEntity(equipmentProfileId);
 
         // create a test recipe and add it to the database
         testRecipe = new RecipeEntity();
@@ -75,38 +83,62 @@ public class RecipeCompleteTest {
         testRecipe.setUpdateDate(ts);
         testRecipe.setCreateDate(ts);
 
-        id = me.addRecipeEntity(testRecipe);
+        recipeId = me.addRecipeEntity(testRecipe);
+        recipeIds.add(recipeId);
 
+        // add a recipe-component relationship
+        recipeComponentEntity = new RecipeComponentEntity(recipeId, ts, ts);
+        recipeComponentEntity.setRecipeId(recipeId);
+        recipeComponentDao.addRecipeComponentEntity(recipeComponentEntity);
+
+        // create a component and add it to the database
+        componentEntity = new ComponentEntity();
+        componentEntity.setName("Component 1");
+        componentEntity.setComponentType(componentTypeDao.getComponentTypeEntity(1));
+        componentEntity.setUpdateDate(ts);
+        componentEntity.setCreateDate(ts);
+
+        componentId = componentDao.addComponentEntity(componentEntity);
+
+        // associate this component with a hop component entity
+        componentEntity.setComponentHop(new ComponentHopEntity(componentId, ts, ts));
+        componentDao.updateComponentEntity(componentEntity);
+
+        // associate the component with the recipe-component relationship
+        recipeComponentEntity.setComponent(componentEntity);
+        recipeComponentDao.updateRecipeComponentEntity(recipeComponentEntity);
+
+/*
         // create recipe components and attach them to the recipe
         set1 = new HashSet();
-        component = new RecipeComponentEntity();
-        component.setRecipeId(id);
-        component.setComponent(new ComponentEntity());
-        component.setAmount(new BigDecimal("1.0"));
-        component.setAmountUomId(1);
-        component.setUpdateDate(ts);
-        component.setCreateDate(ts);
-        set1.add(component);
+        recipeComponentEntity = new RecipeComponentEntity();
+        recipeComponentEntity.setRecipeId(recipeId);
+        recipeComponentEntity.setComponent(new ComponentEntity());
+        recipeComponentEntity.setAmount(new BigDecimal("1.0"));
+        recipeComponentEntity.setAmountUom(uom);
+        recipeComponentEntity.setUpdateDate(ts);
+        recipeComponentEntity.setCreateDate(ts);
+        set1.add(recipeComponentEntity);
 
-        component = new RecipeComponentEntity();
-        component.setRecipeId(id);
-        component.setComponent(new ComponentEntity());
-        component.setAmount(new BigDecimal("2.0"));
-        component.setAmountUomId(2);
-        component.setUpdateDate(ts);
-        component.setCreateDate(ts);
-        set1.add(component);
+        recipeComponentEntity = new RecipeComponentEntity();
+        recipeComponentEntity.setRecipeId(recipeId);
+        recipeComponentEntity.setComponent(new ComponentEntity());
+        recipeComponentEntity.setAmount(new BigDecimal("2.0"));
+        recipeComponentEntity.setAmountUom(uom);
+        recipeComponentEntity.setUpdateDate(ts);
+        recipeComponentEntity.setCreateDate(ts);
+        set1.add(recipeComponentEntity);
 
-        component = new RecipeComponentEntity();
-        component.setRecipeId(id);
-        component.setComponent(new ComponentEntity());
-        component.setAmount(new BigDecimal("3.0"));
-        component.setAmountUomId(3);
-        component.setUpdateDate(ts);
-        component.setCreateDate(ts);
-        set1.add(component);
+        recipeComponentEntity = new RecipeComponentEntity();
+        recipeComponentEntity.setRecipeId(recipeId);
+        recipeComponentEntity.setComponent(new ComponentEntity());
+        recipeComponentEntity.setAmount(new BigDecimal("3.0"));
+        recipeComponentEntity.setAmountUom(uom);
+        recipeComponentEntity.setUpdateDate(ts);
+        recipeComponentEntity.setCreateDate(ts);
+        set1.add(recipeComponentEntity);
 
-        testRecipe = me.getRecipeEntity(id);
+        testRecipe = me.getRecipeEntity(recipeId);
         testRecipe.setRecipeComponents(set1);
         me.updateRecipeEntity(testRecipe);
 
@@ -121,49 +153,52 @@ public class RecipeCompleteTest {
         testRecipe.setUpdateDate(ts);
         testRecipe.setCreateDate(ts);
 
-        id = me.addRecipeEntity(testRecipe);
+        recipeId = me.addRecipeEntity(testRecipe);
+        recipeIds.add(recipeId);
 
         // create recipe components and attach them to the recipe
         set1 = new HashSet();
-        component = new RecipeComponentEntity();
-        component.setRecipeId(id);
-        component.setComponent(new ComponentEntity());
-        component.setAmount(new BigDecimal("1.0"));
-        component.setAmountUomId(1);
-        component.setUpdateDate(ts);
-        component.setCreateDate(ts);
-        set1.add(component);
+        recipeComponentEntity = new RecipeComponentEntity();
+        recipeComponentEntity.setRecipeId(recipeId);
+        recipeComponentEntity.setComponent(new ComponentEntity());
+        recipeComponentEntity.setAmount(new BigDecimal("1.0"));
+        recipeComponentEntity.setAmountUom(uom);
+        recipeComponentEntity.setUpdateDate(ts);
+        recipeComponentEntity.setCreateDate(ts);
+        set1.add(recipeComponentEntity);
 
-        component = new RecipeComponentEntity();
-        component.setRecipeId(id);
-        component.setComponent(new ComponentEntity());
-        component.setAmount(new BigDecimal("2.0"));
-        component.setAmountUomId(2);
-        component.setUpdateDate(ts);
-        component.setCreateDate(ts);
-        set1.add(component);
+        recipeComponentEntity = new RecipeComponentEntity();
+        recipeComponentEntity.setRecipeId(recipeId);
+        recipeComponentEntity.setComponent(new ComponentEntity());
+        recipeComponentEntity.setAmount(new BigDecimal("2.0"));
+        recipeComponentEntity.setAmountUom(uom);
+        recipeComponentEntity.setUpdateDate(ts);
+        recipeComponentEntity.setCreateDate(ts);
+        set1.add(recipeComponentEntity);
 
-        component = new RecipeComponentEntity();
-        component.setRecipeId(id);
-        component.setComponent(new ComponentEntity());
-        component.setAmount(new BigDecimal("3.0"));
-        component.setAmountUomId(3);
-        component.setUpdateDate(ts);
-        component.setCreateDate(ts);
-        set1.add(component);
+        recipeComponentEntity = new RecipeComponentEntity();
+        recipeComponentEntity.setRecipeId(recipeId);
+        recipeComponentEntity.setComponent(new ComponentEntity());
+        recipeComponentEntity.setAmount(new BigDecimal("3.0"));
+        recipeComponentEntity.setAmountUom(uom);
+        recipeComponentEntity.setUpdateDate(ts);
+        recipeComponentEntity.setCreateDate(ts);
+        set1.add(recipeComponentEntity);
 
-        testRecipe = me.getRecipeEntity(id);
+        testRecipe = me.getRecipeEntity(recipeId);
         testRecipe.setRecipeComponents(set1);
         me.updateRecipeEntity(testRecipe);
 
         // run tests
-        recipes = me.getAllRecipes();
-        assertTrue("recipes size failure", recipes.size() > 0);
+        testRecipe = null;
+        testRecipe = me.getRecipeEntity(recipeIds.get(1));
+        assertNotNull("expected recipe, got null", testRecipe);
+        testRecipe = null;
+        testRecipe = me.getRecipeEntity(recipeIds.get(0));
+        assertNotNull("expected recipe, got null", testRecipe);
 
-        testRecipe = recipes.get(0);
-        System.out.println(testRecipe.getRecipeName());
+        // get the first recipe that was created in the test
         set2 = testRecipe.getRecipeComponents();
-        System.out.println(set2.size());
         assertTrue("recipes component size failure", set2.size() == 3);
 
         uom = null;
@@ -177,11 +212,16 @@ public class RecipeCompleteTest {
         profileEquipment = null;
         profileEquipment = testRecipe.getProfileEquipment();
         assertTrue("equip profile name failure", profileEquipment.getName().equals("zPot and Cooler (10G)"));
-
+*/
         // clean up
-        for (RecipeEntity recipe : recipes) {
-            //me.deleteRecipeEntity(recipe);
+        for (int thisId : recipeIds) {
+            me.deleteRecipeEntityById(thisId);
         }
+
+        profileEquipmentDao.deleteProfileEquipmentEntityById(equipmentProfileId);
+        uomTypeDao.deleteUomTypeEntityById(uomId);
+        recipeTypeDao.deleteRecipeTypeEntityById(recipeTypeId);
+
 
     }
 }

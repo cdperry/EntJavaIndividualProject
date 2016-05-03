@@ -151,6 +151,39 @@ public class ComponentYeastDao {
     }
 
     /**
+     * This method deletes the ComponentYeastEntity object from the database
+     * @param componentYeastId the ID of the componentYeastEntity to be deleted from the database
+     */
+    public void deleteComponentYeastEntityById(int componentYeastId) {
+
+        Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+
+            tx = session.beginTransaction();
+            ComponentYeastEntity entityToDelete = (ComponentYeastEntity)session.get(ComponentYeastEntity.class, componentYeastId);
+            session.delete(entityToDelete);
+            tx.commit();
+            log.warn("Deleted yeast type: " + entityToDelete + " with id of: " + componentYeastId);
+
+        } catch (HibernateException e) {
+
+            if (tx!=null) {
+                tx.rollback();
+            }
+
+            e.printStackTrace();
+
+        } finally {
+
+            session.close();
+
+        }
+
+    }
+
+    /**
      * This method adds an componentYeastEntity to the database and returns the ID associated with the new record
      * @param componentYeastEntity the componentYeastEntity to be added to the database
      * @return int the componentYeastEntity ID of the added record
