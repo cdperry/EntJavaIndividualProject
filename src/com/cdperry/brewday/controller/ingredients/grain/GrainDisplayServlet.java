@@ -1,5 +1,8 @@
 package com.cdperry.brewday.controller.ingredients.grain;
 
+import com.cdperry.brewday.persistence.*;
+import com.cdperry.brewday.entity.*;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,6 +23,13 @@ import java.io.IOException;
 )
 public class GrainDisplayServlet extends HttpServlet {
 
+    private ComponentGrainDao componentGrainDao;
+
+    public GrainDisplayServlet() {
+        super();
+        componentGrainDao = new ComponentGrainDao();
+    }
+
     /**
      *  This method handles HTTP GET requests.
      *
@@ -31,6 +41,9 @@ public class GrainDisplayServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String url = "/jsp/listGrain.jsp";
+
+        request.setAttribute("recipes", componentGrainDao.getAllComponentGrains());
+        request.setAttribute("actionType", "list");
 
         RequestDispatcher dispatcher
                 = getServletContext().getRequestDispatcher(url);

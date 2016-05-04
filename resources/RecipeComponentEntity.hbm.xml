@@ -12,7 +12,7 @@
         <!--<property name="componentId" column="component_id"/>-->
         <many-to-one name="component" class="com.cdperry.brewday.entity.ComponentEntity"
                      column="component_id" unique="true" not-null="false" lazy="false"
-                     not-found="ignore" cascade="all"/>
+                     not-found="ignore" />
         <property name="amount" column="amount"/>
         <!--<property name="amountUomId" column="amount_uom_id"/>-->
         <many-to-one name="amountUom" class="com.cdperry.brewday.entity.UomTypeEntity"

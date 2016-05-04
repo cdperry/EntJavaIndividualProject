@@ -33,6 +33,7 @@ public class RecipeCompleteTest {
         RecipeEntity testRecipe;
         RecipeComponentEntity recipeComponentEntity;
         ComponentEntity componentEntity;
+        ComponentHopEntity componentHopEntity;
         UomTypeEntity uom = new UomTypeEntity();
         RecipeTypeEntity recipeType = new RecipeTypeEntity();
         ProfileEquipmentEntity profileEquipment = new ProfileEquipmentEntity();
@@ -72,6 +73,30 @@ public class RecipeCompleteTest {
         equipmentProfileId = profileEquipmentDao.addProfileEquipmentEntity(profileEquipment);
         profileEquipment = profileEquipmentDao.getProfileEquipmentEntity(equipmentProfileId);
 
+        // CREATE A HOP COMPONENT
+        // create a component and add it to the database
+        componentEntity = new ComponentEntity();
+        componentEntity.setName("Cascade");
+        componentEntity.setComponentType(componentTypeDao.getComponentTypeEntity(1));
+        componentEntity.setUpdateDate(ts);
+        componentEntity.setCreateDate(ts);
+
+        // if cascading works properly we can do this add at the end instead of an add-update
+        //componentId = componentDao.addComponentEntity(componentEntity);
+
+        // TODO: need to set up a one-to-one relationship here so that we don't need to know the
+        // componentId foreign key
+        componentHopEntity = new ComponentHopEntity(componentId, ts, ts);
+        // ... set some other hop attributes here
+
+        // associate this component with a hop component entity
+        componentEntity.setComponentHop(componentHopEntity);
+
+        // shouldn't need this update, do an add instead
+        //componentDao.updateComponentEntity(componentEntity);
+
+        componentId = componentDao.addComponentEntity(componentEntity);
+
         // create a test recipe and add it to the database
         testRecipe = new RecipeEntity();
         testRecipe.setRecipeName("Recipe 1");
@@ -90,19 +115,6 @@ public class RecipeCompleteTest {
         recipeComponentEntity = new RecipeComponentEntity(recipeId, ts, ts);
         recipeComponentEntity.setRecipeId(recipeId);
         recipeComponentDao.addRecipeComponentEntity(recipeComponentEntity);
-
-        // create a component and add it to the database
-        componentEntity = new ComponentEntity();
-        componentEntity.setName("Component 1");
-        componentEntity.setComponentType(componentTypeDao.getComponentTypeEntity(1));
-        componentEntity.setUpdateDate(ts);
-        componentEntity.setCreateDate(ts);
-
-        componentId = componentDao.addComponentEntity(componentEntity);
-
-        // associate this component with a hop component entity
-        componentEntity.setComponentHop(new ComponentHopEntity(componentId, ts, ts));
-        componentDao.updateComponentEntity(componentEntity);
 
         // associate the component with the recipe-component relationship
         recipeComponentEntity.setComponent(componentEntity);

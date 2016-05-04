@@ -113,6 +113,12 @@
                 </div>
             </div>
         </form>
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-lg-10">
 
         <table class="table table-hover">
             <thead>
@@ -144,4 +150,15 @@
 
     </div>
 
+    <div class="col-lg-2">
+
+        <div class="btn-group-vertical" role="group">
+            <button type="button" class="btn btn-default"><a href="/editRecipeAddGrain">Add Grain</a></button>
+            <button type="button" class="btn btn-default"><a href="/editRecipeAddHop">Add Hops</a></button>
+            <button type="button" class="btn btn-default"><a href="/editRecipeAddMisc">Add Misc</a></button>
+            <button type="button" class="btn btn-default"><a href="/editRecipeAddYeast">Add Yeast</a></button>
+            <button type="button" class="btn btn-default"><a href="/editRecipeAddWater">Add Water</a></button>
+        </div>
+
+    </div>
 </div>
