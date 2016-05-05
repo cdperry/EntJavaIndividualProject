@@ -9,6 +9,7 @@ import java.sql.Timestamp;
 public class ComponentHopEntity {
 
     private int compHopId;
+    private ComponentEntity componentEntity;
     private Integer componentId;
     private String name;
     //private Integer originId;
@@ -27,7 +28,7 @@ public class ComponentHopEntity {
 
     public ComponentHopEntity() {}
 
-    public ComponentHopEntity(Integer componentId, Timestamp createDate, Timestamp updateDate) {
+    public ComponentHopEntity(Timestamp createDate, Timestamp updateDate) {
         this.componentId = componentId;
         this.createDate = createDate;
         this.updateDate = updateDate;
@@ -39,6 +40,14 @@ public class ComponentHopEntity {
 
     public void setCompHopId(int compHopId) {
         this.compHopId = compHopId;
+    }
+
+    public ComponentEntity getComponentEntity() {
+        return componentEntity;
+    }
+
+    public void setComponentEntity(ComponentEntity componentEntity) {
+        this.componentEntity = componentEntity;
     }
 
     public Integer getComponentId() {

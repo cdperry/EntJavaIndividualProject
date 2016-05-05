@@ -1,10 +1,11 @@
 package com.cdperry.brewday.persistence;
 
-import com.cdperry.brewday.entity.ComponentGrainEntity;
+import com.cdperry.brewday.entity.*;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.Date;
+import java.util.*;
 import java.sql.Timestamp;
 import static org.junit.Assert.*;
 
@@ -13,191 +14,124 @@ import static org.junit.Assert.*;
  */
 public class ComponentGrainDaoTest {
 
+    private ComponentDao componentDao;
+    private ComponentEntity componentEntity;
+    private ComponentGrainDao componentGrainDao;
+    private ComponentGrainEntity componentGrainEntity;
+    private List<ComponentEntity> componentEntities;
+
+    @Before
+    public void setup() {
+
+        int componentEntityId;
+        Date now = new Date();
+        Timestamp ts = new Timestamp(now.getTime());
+        componentDao = new ComponentDao();
+        componentGrainDao = new ComponentGrainDao();
+        componentEntities = new ArrayList<ComponentEntity>();
+
+        for (int componentNumber = 1; componentNumber < 4; componentNumber++) {
+
+            componentEntity = new ComponentEntity();
+            componentGrainEntity = new ComponentGrainEntity();
+
+            componentEntity.setName("Test ComponentGrainEntity " + componentNumber);
+
+            componentGrainEntity.setName("Test ComponentEntity " + componentNumber);
+            componentGrainEntity.setColor(new BigDecimal("1.5"));
+            componentGrainEntity.setPotential(new BigDecimal("3.2"));
+            componentGrainEntity.setNotes("This is a note.");
+            componentGrainEntity.setUpdateDate(ts);
+            componentGrainEntity.setCreateDate(ts);
+
+            /*
+              ComponentEntity and ComponentGrainEntity have a one-to-one relationship with a foreign key
+              from ComponentEntity.ComponentGrainEntity to ComponentGrainEntity.compGrainId.  Therefore to test
+              this DAO we need to create a parent ComponentEntity and let Hibernate create the keys on both
+              sides of the relationship.
+            */
+            componentEntity.setComponentGrain(componentGrainEntity);
+            componentGrainEntity.setComponentEntity(componentEntity);
+
+            componentEntityId = componentDao.addComponentEntity(componentEntity);
+            assertTrue("Expected non-zero ID, got a zero", componentEntityId > 0);
+            componentEntities.add(componentEntity);
+
+        }
+
+    }
+
+    @After
+    public void teardown() {
+
+        // delete the ComponentEntity entities which will cascade and delete the ComponentGrainEntity entities
+        for (ComponentEntity thisEntity : componentEntities) {
+            componentDao.deleteComponentEntity(thisEntity);
+        }
+
+        // clean up
+        componentDao = null;
+        componentEntity = null;
+        componentEntities = null;
+        componentGrainDao = null;
+        componentGrainEntity = null;
+
+    }
+
     @Test
     public void testGetAllComponentGrains() throws Exception {
 
-        ComponentGrainDao me = new ComponentGrainDao();
-        ComponentGrainEntity testComponent;
         List<ComponentGrainEntity> componentGrains;
-        int componentGrainEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
 
-        // create a test grain and add them to the database
-        testComponent = new ComponentGrainEntity();
-        testComponent.setName("Grain 1");
-        testComponent.setComponentId(1);
-//        testComponent.setOriginId(1);
-//        testComponent.setSupplierId(1);
-//        testComponent.setGrainTypeId(1);
-        testComponent.setColor(new BigDecimal("1.5"));
-        testComponent.setPotential(new BigDecimal("3.2"));
-        testComponent.setNotes("This is a note.");
-        testComponent.setUpdateDate(ts);
-        testComponent.setCreateDate(ts);
-
-        componentGrainEntityID = me.addComponentGrainEntity(testComponent);
-
-        // create a test grain and add them to the database
-        testComponent = new ComponentGrainEntity();
-        testComponent.setName("Grain 2");
-        testComponent.setComponentId(1);
-//        testComponent.setOriginId(1);
-//        testComponent.setSupplierId(1);
-//        testComponent.setGrainTypeId(1);
-        testComponent.setColor(new BigDecimal("1.5"));
-        testComponent.setPotential(new BigDecimal("3.2"));
-        testComponent.setNotes("This is a note.");
-        testComponent.setUpdateDate(ts);
-        testComponent.setCreateDate(ts);
-
-        componentGrainEntityID = me.addComponentGrainEntity(testComponent);
-
-        componentGrains = me.getAllComponentGrains();
-        assertTrue(componentGrains.size() > 0);
-
-        // clean up
-        for (ComponentGrainEntity component : componentGrains) {
-            me.deleteComponentGrainEntity(component);
-        }
+        componentGrains = componentGrainDao.getAllComponentGrains();
+        assertTrue("Expected more than zero entities, got zero", componentGrains.size() > 0);
 
     }
 
     @Test
     public void testGetComponentGrainEntity() throws Exception {
 
-        ComponentGrainDao me = new ComponentGrainDao();
-        ComponentGrainEntity testComponent = new ComponentGrainEntity();
-        int componentGrainEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
+        int componentId = componentEntities.get(0).getComponentId();
 
-        // create a test grain and add them to the database
-        testComponent.setName("Grain");
-        testComponent.setComponentId(1);
-//        testComponent.setOriginId(1);
-//        testComponent.setSupplierId(1);
-//        testComponent.setGrainTypeId(1);
-        testComponent.setColor(new BigDecimal("1.5"));
-        testComponent.setPotential(new BigDecimal("3.2"));
-        testComponent.setNotes("This is a note.");
-        testComponent.setUpdateDate(ts);
-        testComponent.setCreateDate(ts);
-
-        componentGrainEntityID = me.addComponentGrainEntity(testComponent);
-
-        // confirm that a non-zero component ID was returned (indicator of success)
-        assertTrue("Expected a non-zero component ID, got " + componentGrainEntityID, componentGrainEntityID > 0);
-
-        // confirm that the component can be retrieved from the database
-        testComponent = me.getComponentGrainEntity(componentGrainEntityID);
-        assertNotNull(testComponent);
-
-        // clean up
-        me.deleteComponentGrainEntity(testComponent);
+        // confirm that the ComponentGrainEntity can be retrieved from the database
+        componentGrainEntity = null;
+        componentGrainEntity = componentGrainDao.getComponentGrainEntity(componentId);
+        assertNotNull("Expected non-null entity, got null", componentGrainEntity);
 
     }
 
     @Test
     public void testUpdateComponentGrainEntity() throws Exception {
 
-        ComponentGrainDao me = new ComponentGrainDao();
-        ComponentGrainEntity testComponent = new ComponentGrainEntity();
-        int componentGrainEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
+        int componentId = componentEntities.get(0).getComponentId();
 
-        // create a test component and add them to the database
-        testComponent.setName("Grain");
-        testComponent.setComponentId(1);
-//        testComponent.setOriginId(1);
-//        testComponent.setSupplierId(1);
-//        testComponent.setGrainTypeId(1);
-        testComponent.setColor(new BigDecimal("1.5"));
-        testComponent.setPotential(new BigDecimal("3.2"));
-        testComponent.setNotes("This is a note.");
-        testComponent.setUpdateDate(ts);
-        testComponent.setCreateDate(ts);
+        // retrieve the test ComponentGrainEntity from the database and change its name
+        componentGrainEntity = null;
+        componentGrainEntity = componentGrainDao.getComponentGrainEntity(componentId);
+        componentGrainEntity.setName("New Name");
+        componentGrainDao.updateComponentGrainEntity(componentGrainEntity);
 
-        componentGrainEntityID = me.addComponentGrainEntity(testComponent);
+        // retrieve the updated ComponentGrainEntity and test that the update took place
+        componentGrainEntity = null;
+        componentGrainEntity = componentGrainDao.getComponentGrainEntity(componentId);
 
-        // retrieve the test component from the database and change its name
-        testComponent = me.getComponentGrainEntity(componentGrainEntityID);
-        testComponent.setName("New Name");
-        me.updateComponentGrainEntity(testComponent);
-
-        // retrieve the updated employee and test that the update took place
-        testComponent = me.getComponentGrainEntity(componentGrainEntityID);
-
-        assertEquals("Expected New Name, got " + testComponent.getName(),
-                "New Name", testComponent.getName());
-
-        // clean up
-        me.deleteComponentGrainEntity(testComponent);
+        assertEquals("Expected New Name, got " + componentGrainEntity.getName(),
+                "New Name", componentGrainEntity.getName());
 
     }
 
     @Test
     public void testDeleteComponentGrainEntity() throws Exception {
 
-        ComponentGrainDao me = new ComponentGrainDao();
-        ComponentGrainEntity testComponent = new ComponentGrainEntity();
-        int componentGrainEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
+        int componentId = componentEntities.get(0).getComponentId();
 
-        // create a test component and add them to the database
-        testComponent.setName("Grain");
-        testComponent.setComponentId(1);
-//        testComponent.setOriginId(1);
-//        testComponent.setSupplierId(1);
-//        testComponent.setGrainTypeId(1);
-        testComponent.setColor(new BigDecimal("1.5"));
-        testComponent.setPotential(new BigDecimal("3.2"));
-        testComponent.setNotes("This is a note.");
-        testComponent.setUpdateDate(ts);
-        testComponent.setCreateDate(ts);
+        // delete the ComponentGrainEntity and verify that it is no longer in the database
+        componentGrainDao.deleteComponentGrainEntity(componentGrainDao.getComponentGrainEntity(componentId));
+        assertNull("Expected a null entity, got a real entity", componentGrainDao.getComponentGrainEntity(componentId));
 
-        componentGrainEntityID = me.addComponentGrainEntity(testComponent);
-
-        // make sure the employee was added before proceeding
-        assertTrue("Expected a non-zero component ID, got " + componentGrainEntityID, componentGrainEntityID > 0);
-
-        // delete the employee and verify that they are no longer in the database
-        me.deleteComponentGrainEntity(me.getComponentGrainEntity(componentGrainEntityID));
-        assertNull(me.getComponentGrainEntity(componentGrainEntityID));
-
-    }
-
-    @Test
-    public void testAddComponentGrainEntity() throws Exception {
-
-        ComponentGrainDao me = new ComponentGrainDao();
-        ComponentGrainEntity testComponent = new ComponentGrainEntity();
-        int componentGrainEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
-
-        // create a test component and add them to the database
-        testComponent.setName("Grain");
-        testComponent.setComponentId(1);
-//        testComponent.setOriginId(1);
-//        testComponent.setSupplierId(1);
-//        testComponent.setGrainTypeId(1);
-        testComponent.setColor(new BigDecimal("1.5"));
-        testComponent.setPotential(new BigDecimal("3.2"));
-        testComponent.setNotes("This is a note.");
-        testComponent.setUpdateDate(ts);
-        testComponent.setCreateDate(ts);
-
-        componentGrainEntityID = me.addComponentGrainEntity(testComponent);
-
-        // confirm that a non-zero employee ID was returned (indicator of success)
-        assertTrue("Expected a non-zero component ID, got " + componentGrainEntityID, componentGrainEntityID > 0);
-
-        // clean up
-        testComponent = me.getComponentGrainEntity(componentGrainEntityID);
-        me.deleteComponentGrainEntity(testComponent);
+        // remove the deleted ComponentGrainEntity from the ArrayList so that Hibernate doesn't get sad
+        // during the teardown() method
+        componentEntities.remove(0);
 
     }
 

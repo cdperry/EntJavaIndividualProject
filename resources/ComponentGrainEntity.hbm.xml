@@ -5,9 +5,17 @@
 <hibernate-mapping>
 
     <class name="com.cdperry.brewday.entity.ComponentGrainEntity" table="COMPONENT_GRAIN" schema="BREWDAY">
-        <id name="compGrainId" column="comp_grain_id" type="int">
+        <!--<id name="compGrainId" column="comp_grain_id" type="int">
             <generator class="native"/>
+        </id>-->
+        <id name="compGrainId">
+            <column name="comp_grain_id" />
+            <generator class="foreign">
+                <param name="property">componentEntity</param>
+            </generator>
         </id>
+        <one-to-one name="componentEntity" class="com.cdperry.brewday.entity.ComponentEntity"
+                    constrained="true" cascade="all" />
         <property name="componentId" column="component_id"/>
         <property name="name" column="name"/>
         <!--<property name="originId" column="origin_id"/>-->

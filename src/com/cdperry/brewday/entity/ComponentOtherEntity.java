@@ -11,6 +11,7 @@ import java.sql.Timestamp;
  */
 public class ComponentOtherEntity {
     private int compOtherId;
+    private ComponentEntity componentEntity;
     private Integer componentId;
     private String name;
     private String useFor;
@@ -31,7 +32,7 @@ public class ComponentOtherEntity {
 
     public ComponentOtherEntity() {}
 
-    public ComponentOtherEntity(Integer componentId, Timestamp createDate, Timestamp updateDate) {
+    public ComponentOtherEntity(Timestamp createDate, Timestamp updateDate) {
         this.componentId = componentId;
         this.createDate = createDate;
         this.updateDate = updateDate;
@@ -51,6 +52,14 @@ public class ComponentOtherEntity {
 
     public void setComponentId(Integer componentId) {
         this.componentId = componentId;
+    }
+
+    public ComponentEntity getComponentEntity() {
+        return componentEntity;
+    }
+
+    public void setComponentEntity(ComponentEntity componentEntity) {
+        this.componentEntity = componentEntity;
     }
 
     public String getName() {

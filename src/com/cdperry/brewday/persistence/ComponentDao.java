@@ -150,6 +150,39 @@ public class ComponentDao {
     }
 
     /**
+     * This method deletes the ComponentEntity object from the database
+     * @param componentHopId the ID of the ComponentEntity to be deleted from the database
+     */
+    public void deleteComponentEntityById(int componentHopId) {
+
+        Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+
+            tx = session.beginTransaction();
+            ComponentEntity entityToDelete = (ComponentEntity)session.get(ComponentEntity.class, componentHopId);
+            session.delete(entityToDelete);
+            tx.commit();
+            log.warn("Deleted component : " + entityToDelete + " with id of: " + componentHopId);
+
+        } catch (HibernateException e) {
+
+            if (tx!=null) {
+                tx.rollback();
+            }
+
+            e.printStackTrace();
+
+        } finally {
+
+            session.close();
+
+        }
+
+    }
+
+    /**
      * This method adds an componentEntity to the database and returns the ID associated with the new record
      * @param componentEntity the componentEntity to be added to the database
      * @return int the componentEntity ID of the added record

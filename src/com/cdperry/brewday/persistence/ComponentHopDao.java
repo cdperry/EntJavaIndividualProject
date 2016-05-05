@@ -165,7 +165,7 @@ public class ComponentHopDao {
             ComponentHopEntity entityToDelete = (ComponentHopEntity)session.get(ComponentHopEntity.class, componentHopId);
             session.delete(entityToDelete);
             tx.commit();
-            log.warn("Deleted hop type: " + entityToDelete + " with id of: " + componentHopId);
+            log.warn("Deleted hop component: " + entityToDelete + " with id of: " + componentHopId);
 
         } catch (HibernateException e) {
 

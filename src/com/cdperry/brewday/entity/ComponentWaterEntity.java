@@ -8,6 +8,7 @@ import java.sql.Timestamp;
  */
 public class ComponentWaterEntity {
     private int compWaterId;
+    private ComponentEntity componentEntity;
     private Integer componentId;
     private String name;
     private BigDecimal ph;
@@ -32,7 +33,7 @@ public class ComponentWaterEntity {
 
     public ComponentWaterEntity() {}
 
-    public ComponentWaterEntity(Integer componentId, Timestamp createDate, Timestamp updateDate) {
+    public ComponentWaterEntity(Timestamp createDate, Timestamp updateDate) {
         this.componentId = componentId;
         this.createDate = createDate;
         this.updateDate = updateDate;
@@ -52,6 +53,14 @@ public class ComponentWaterEntity {
 
     public void setComponentId(Integer componentId) {
         this.componentId = componentId;
+    }
+
+    public ComponentEntity getComponentEntity() {
+        return componentEntity;
+    }
+
+    public void setComponentEntity(ComponentEntity componentEntity) {
+        this.componentEntity = componentEntity;
     }
 
     public String getName() {

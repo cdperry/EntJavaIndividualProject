@@ -117,17 +117,18 @@ CREATE TABLE PROFILE_EQUIPMENT (
 
 
 
-CREATE TABLE COMPONENT (
-  component_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(255),
-  component_type_id INT,
-  comp_hop_id INT,
-  comp_grain_id INT,
-  comp_yeast_id INT,
-  comp_water_id INT,
-  comp_other_id INT,
-  update_date DATETIME,
-  create_date DATETIME
+CREATE TABLE COMPONENT
+(
+    component_id INT(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255),
+    component_type_id INT(11),
+    comp_hop_id INT(11),
+    comp_grain_id INT(11),
+    comp_yeast_id INT(11),
+    comp_water_id INT(11),
+    comp_other_id INT(11),
+    update_date DATETIME,
+    create_date DATETIME
 );
 
 
@@ -156,18 +157,18 @@ CREATE TABLE SUPPLIER (
 
 
 CREATE TABLE COMPONENT_HOP (
-  comp_hop_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  component_id INT NOT NULL,
-  name VARCHAR(255),
-  origin_id INT,
-  supplier_id INT,
-  alpha_pct NUMERIC(18,2),
-  beta_pct NUMERIC(18,2),
-  hop_type_id INT,
-  hop_form_id INT,
-  notes VARCHAR(255),
-  update_date DATETIME,
-  create_date DATETIME
+    comp_hop_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    component_id INT,
+    name VARCHAR(255),
+    origin_id INT,
+    supplier_id INT,
+    alpha_pct NUMERIC(18,2),
+    beta_pct NUMERIC(18,2),
+    hop_type_id INT,
+    hop_form_id INT,
+    notes VARCHAR(255),
+    update_date DATETIME,
+    create_date DATETIME
 );
 
 
@@ -350,6 +351,43 @@ CREATE TABLE USE_TYPE (
   create_date DATETIME
 );
 
+COMMIT;
+
+/* SET UP FOREIGN KEY CONSTRAINTS */
+
+ALTER TABLE COMPONENT
+ADD CONSTRAINT FK_COMPONENT_HOP
+FOREIGN KEY (comp_hop_id)
+REFERENCES COMPONENT_HOP(comp_hop_id)
+    ON DELETE CASCADE;
+COMMIT;
+
+ALTER TABLE COMPONENT
+ADD CONSTRAINT FK_COMPONENT_GRAIN
+FOREIGN KEY (comp_grain_id)
+REFERENCES COMPONENT_GRAIN(comp_grain_id)
+    ON DELETE CASCADE;
+COMMIT;
+
+ALTER TABLE COMPONENT
+ADD CONSTRAINT FK_COMPONENT_WATER
+FOREIGN KEY (comp_water_id)
+REFERENCES COMPONENT_WATER(comp_water_id)
+    ON DELETE CASCADE;
+COMMIT;
+
+ALTER TABLE COMPONENT
+ADD CONSTRAINT FK_COMPONENT_YEAST
+FOREIGN KEY (comp_yeast_id)
+REFERENCES COMPONENT_YEAST(comp_yeast_id)
+    ON DELETE CASCADE;
+COMMIT;
+
+ALTER TABLE COMPONENT
+ADD CONSTRAINT FK_COMPONENT_OTHER
+FOREIGN KEY (comp_other_id)
+REFERENCES COMPONENT_OTHER(comp_other_id)
+    ON DELETE CASCADE;
 COMMIT;
 
 GRANT ALL PRIVILEGES ON BREWDAY.* TO 'admin'@'localhost';

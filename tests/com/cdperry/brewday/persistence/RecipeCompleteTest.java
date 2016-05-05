@@ -34,6 +34,10 @@ public class RecipeCompleteTest {
         RecipeComponentEntity recipeComponentEntity;
         ComponentEntity componentEntity;
         ComponentHopEntity componentHopEntity;
+        ComponentGrainEntity componentGrainEntity;
+        ComponentYeastEntity componentYeastEntity;
+        ComponentWaterEntity componentWaterEntity;
+        ComponentOtherEntity componentOtherEntity;
         UomTypeEntity uom = new UomTypeEntity();
         RecipeTypeEntity recipeType = new RecipeTypeEntity();
         ProfileEquipmentEntity profileEquipment = new ProfileEquipmentEntity();
@@ -81,22 +85,40 @@ public class RecipeCompleteTest {
         componentEntity.setUpdateDate(ts);
         componentEntity.setCreateDate(ts);
 
-        // if cascading works properly we can do this add at the end instead of an add-update
-        //componentId = componentDao.addComponentEntity(componentEntity);
+        componentHopEntity = new ComponentHopEntity(ts, ts);
+        componentGrainEntity = new ComponentGrainEntity(ts, ts);
+        componentYeastEntity = new ComponentYeastEntity(ts, ts);
+        componentWaterEntity = new ComponentWaterEntity(ts, ts);
+        componentOtherEntity = new ComponentOtherEntity(ts, ts);
 
-        // TODO: need to set up a one-to-one relationship here so that we don't need to know the
-        // componentId foreign key
-        componentHopEntity = new ComponentHopEntity(componentId, ts, ts);
         // ... set some other hop attributes here
 
         // associate this component with a hop component entity
+        // and associate the hop component entity with the component
+        // this will allow Hibernate to correctly insert the ID from component
+        // into component_hop
         componentEntity.setComponentHop(componentHopEntity);
+        componentHopEntity.setComponentEntity(componentEntity);
 
-        // shouldn't need this update, do an add instead
-        //componentDao.updateComponentEntity(componentEntity);
+        componentEntity.setComponentGrain(componentGrainEntity);
+        componentGrainEntity.setComponentEntity(componentEntity);
+
+        componentEntity.setComponentYeast(componentYeastEntity);
+        componentYeastEntity.setComponentEntity(componentEntity);
+
+        componentEntity.setComponentWater(componentWaterEntity);
+        componentWaterEntity.setComponentEntity(componentEntity);
+
+        componentEntity.setComponentOther(componentOtherEntity);
+        componentOtherEntity.setComponentEntity(componentEntity);
 
         componentId = componentDao.addComponentEntity(componentEntity);
 
+        Thread.sleep(15000);
+
+        componentDao.deleteComponentEntity(componentEntity);
+
+/*
         // create a test recipe and add it to the database
         testRecipe = new RecipeEntity();
         testRecipe.setRecipeName("Recipe 1");
@@ -119,6 +141,7 @@ public class RecipeCompleteTest {
         // associate the component with the recipe-component relationship
         recipeComponentEntity.setComponent(componentEntity);
         recipeComponentDao.updateRecipeComponentEntity(recipeComponentEntity);
+*/
 
 /*
         // create recipe components and attach them to the recipe
@@ -225,11 +248,13 @@ public class RecipeCompleteTest {
         profileEquipment = testRecipe.getProfileEquipment();
         assertTrue("equip profile name failure", profileEquipment.getName().equals("zPot and Cooler (10G)"));
 */
+
+/*
         // clean up
         for (int thisId : recipeIds) {
             me.deleteRecipeEntityById(thisId);
         }
-
+*/
         profileEquipmentDao.deleteProfileEquipmentEntityById(equipmentProfileId);
         uomTypeDao.deleteUomTypeEntityById(uomId);
         recipeTypeDao.deleteRecipeTypeEntityById(recipeTypeId);

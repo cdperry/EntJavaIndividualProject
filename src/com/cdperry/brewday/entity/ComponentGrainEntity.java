@@ -8,6 +8,7 @@ import java.sql.Timestamp;
  */
 public class ComponentGrainEntity {
     private int compGrainId;
+    private ComponentEntity componentEntity;
     private Integer componentId;
     private String name;
 //    private Integer originId;
@@ -24,7 +25,7 @@ public class ComponentGrainEntity {
 
     public ComponentGrainEntity() {}
 
-    public ComponentGrainEntity(Integer componentId, Timestamp createDate, Timestamp updateDate) {
+    public ComponentGrainEntity(Timestamp createDate, Timestamp updateDate) {
         this.componentId = componentId;
         this.createDate = createDate;
         this.updateDate = updateDate;
@@ -40,6 +41,14 @@ public class ComponentGrainEntity {
 
     public Integer getComponentId() {
         return componentId;
+    }
+
+    public ComponentEntity getComponentEntity() {
+        return componentEntity;
+    }
+
+    public void setComponentEntity(ComponentEntity componentEntity) {
+        this.componentEntity = componentEntity;
     }
 
     public void setComponentId(Integer componentId) {

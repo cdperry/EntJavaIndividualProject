@@ -8,6 +8,7 @@ import java.sql.Timestamp;
  */
 public class ComponentYeastEntity {
     private int compYeastId;
+    private ComponentEntity componentEntity;
     private Integer componentId;
     private String name;
 //    private Integer labId;
@@ -32,7 +33,7 @@ public class ComponentYeastEntity {
 
     public ComponentYeastEntity() {}
 
-    public ComponentYeastEntity(Integer componentId, Timestamp createDate, Timestamp updateDate) {
+    public ComponentYeastEntity(Timestamp createDate, Timestamp updateDate) {
         this.componentId = componentId;
         this.createDate = createDate;
         this.updateDate = updateDate;
@@ -44,6 +45,14 @@ public class ComponentYeastEntity {
 
     public void setCompYeastId(int compYeastId) {
         this.compYeastId = compYeastId;
+    }
+
+    public ComponentEntity getComponentEntity() {
+        return componentEntity;
+    }
+
+    public void setComponentEntity(ComponentEntity componentEntity) {
+        this.componentEntity = componentEntity;
     }
 
     public Integer getComponentId() {
