@@ -13,12 +13,20 @@
             <generator class="identity" />
         </id>
         <property name="name" column="name"/>
+        <property name="updateDate" column="update_date"/>
+        <property name="createDate" column="create_date"/>
         <!--<property name="componentTypeId" column="component_type_id"/>-->
         <!--<property name="compHopId" column="comp_hop_id"/>-->
         <!--<property name="compGrainId" column="comp_grain_id"/>-->
         <!--<property name="compYeastId" column="comp_yeast_id"/>-->
         <!--<property name="compWaterId" column="comp_water_id"/>-->
         <!--<property name="compOtherId" column="comp_other_id"/>-->
+        <set name="recipeComponents" table="RECIPE_COMPONENT"
+             inverse="true" lazy="true" fetch="select"
+             cascade="all,delete-orphan" >
+            <key column="component_id" not-null="true" />
+            <one-to-many class="com.cdperry.brewday.entity.RecipeComponentEntity"/>
+        </set>
         <many-to-one name="componentType" class="com.cdperry.brewday.entity.ComponentTypeEntity"
                      column="component_type_id" unique="true" not-null="false" lazy="false"
                      not-found="ignore" />
@@ -35,7 +43,5 @@
         <!--<many-to-one name="componentOther" class="com.cdperry.brewday.entity.ComponentOtherEntity"
                      column="comp_other_id" unique="true" not-null="false" lazy="false"
                      not-found="ignore" cascade="all"/>-->
-        <property name="updateDate" column="update_date"/>
-        <property name="createDate" column="create_date"/>
     </class>
 </hibernate-mapping>

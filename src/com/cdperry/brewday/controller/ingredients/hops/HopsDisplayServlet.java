@@ -1,5 +1,8 @@
 package com.cdperry.brewday.controller.ingredients.hops;
 
+import com.cdperry.brewday.persistence.*;
+import com.cdperry.brewday.entity.*;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,6 +23,13 @@ import java.io.IOException;
 )
 public class HopsDisplayServlet extends HttpServlet {
 
+    private ComponentHopDao componentHopDao;
+
+    public HopsDisplayServlet() {
+        super();
+        componentHopDao = new ComponentHopDao();
+    }
+
     /**
      *  This method handles HTTP GET requests.
      *
@@ -31,6 +41,9 @@ public class HopsDisplayServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String url = "/jsp/listHops.jsp";
+
+        request.setAttribute("hopIngredients", componentHopDao.getAllComponentHops());
+        request.setAttribute("actionType", "list");
 
         RequestDispatcher dispatcher
                 = getServletContext().getRequestDispatcher(url);

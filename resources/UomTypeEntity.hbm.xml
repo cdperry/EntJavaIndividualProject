@@ -11,5 +11,108 @@
         <property name="name" column="name"/>
         <property name="updateDate" column="update_date"/>
         <property name="createDate" column="create_date"/>
+        <set name="recipeBatchSizes" table="RECIPE"
+             inverse="true" lazy="true" fetch="select"
+             cascade="save-update,refresh,replicate,persist,merge,lock,evict" >
+            <key column="batch_size_uom_id" not-null="true" />
+            <one-to-many class="com.cdperry.brewday.entity.RecipeEntity"/>
+        </set>
+        <set name="recipeComponentAmountUoms" table="RECIPE_COMPONENT"
+             inverse="true" lazy="true" fetch="select"
+             cascade="save-update,refresh,replicate,persist,merge,lock,evict" >
+            <key column="amount_uom_id" not-null="true" />
+            <one-to-many class="com.cdperry.brewday.entity.RecipeComponentEntity"/>
+        </set>
+        <set name="otherComponentBatchSizeUoms" table="COMPONENT_OTHER"
+             inverse="true" lazy="true" fetch="select"
+             cascade="save-update,refresh,replicate,persist,merge,lock,evict" >
+            <key column="batch_size_uom_id" not-null="true" />
+            <one-to-many class="com.cdperry.brewday.entity.ComponentOtherEntity"/>
+        </set>
+        <set name="otherComponentAmountUoms" table="COMPONENT_OTHER"
+             inverse="true" lazy="true" fetch="select"
+             cascade="save-update,refresh,replicate,persist,merge,lock,evict" >
+            <key column="amount_uom_id" not-null="true" />
+            <one-to-many class="com.cdperry.brewday.entity.ComponentOtherEntity"/>
+        </set>
+        <set name="otherComponentTimeUoms" table="COMPONENT_OTHER"
+             inverse="true" lazy="true" fetch="select"
+             cascade="save-update,refresh,replicate,persist,merge,lock,evict" >
+            <key column="time_uom_id" not-null="true" />
+            <one-to-many class="com.cdperry.brewday.entity.ComponentOtherEntity"/>
+        </set>
+        <set name="waterComponentBatchSizeUoms" table="COMPONENT_WATER"
+             inverse="true" lazy="true" fetch="select"
+             cascade="save-update,refresh,replicate,persist,merge,lock,evict" >
+            <key column="batch_size_uom_id" not-null="true" />
+            <one-to-many class="com.cdperry.brewday.entity.ComponentWaterEntity"/>
+        </set>
+        <set name="equipmentProfileBatchVolUoms" table="PROFILE_EQUIPMENT"
+             inverse="true" lazy="true" fetch="select"
+             cascade="save-update,refresh,replicate,persist,merge,lock,evict" >
+            <key column="batch_vol_uom_id" not-null="true" />
+            <one-to-many class="com.cdperry.brewday.entity.ProfileEquipmentEntity"/>
+        </set>
+        <set name="equipmentProfileMashTunVolUoms" table="PROFILE_EQUIPMENT"
+             inverse="true" lazy="true" fetch="select"
+             cascade="save-update,refresh,replicate,persist,merge,lock,evict" >
+            <key column="mash_tun_uom_id" not-null="true" />
+            <one-to-many class="com.cdperry.brewday.entity.ProfileEquipmentEntity"/>
+        </set>
+        <set name="equipmentProfileBoilVolUoms" table="PROFILE_EQUIPMENT"
+             inverse="true" lazy="true" fetch="select"
+             cascade="save-update,refresh,replicate,persist,merge,lock,evict" >
+            <key column="boil_vol_uom_id" not-null="true" />
+            <one-to-many class="com.cdperry.brewday.entity.ProfileEquipmentEntity"/>
+        </set>
+        <set name="equipmentProfileBoilTimeUoms" table="PROFILE_EQUIPMENT"
+             inverse="true" lazy="true" fetch="select"
+             cascade="save-update,refresh,replicate,persist,merge,lock,evict" >
+            <key column="boil_time_uom_id" not-null="true" />
+            <one-to-many class="com.cdperry.brewday.entity.ProfileEquipmentEntity"/>
+        </set>
+        <set name="equipmentProfileBoilOffPerHrUoms" table="PROFILE_EQUIPMENT"
+             inverse="true" lazy="true" fetch="select"
+             cascade="save-update,refresh,replicate,persist,merge,lock,evict" >
+            <key column="boil_off_per_hr_uom_id" not-null="true" />
+            <one-to-many class="com.cdperry.brewday.entity.ProfileEquipmentEntity"/>
+        </set>
+        <set name="equipmentProfileBoilTotalBoilOffUoms" table="PROFILE_EQUIPMENT"
+             inverse="true" lazy="true" fetch="select"
+             cascade="save-update,refresh,replicate,persist,merge,lock,evict" >
+            <key column="boil_total_boil_off_uom_id" not-null="true" />
+            <one-to-many class="com.cdperry.brewday.entity.ProfileEquipmentEntity"/>
+        </set>
+        <set name="equipmentProfileBoilPostBoilVolUoms" table="PROFILE_EQUIPMENT"
+             inverse="true" lazy="true" fetch="select"
+             cascade="save-update,refresh,replicate,persist,merge,lock,evict" >
+            <key column="boil_post_boil_vol_uom_id" not-null="true" />
+            <one-to-many class="com.cdperry.brewday.entity.ProfileEquipmentEntity"/>
+        </set>
+        <set name="equipmentProfileFermLossUoms" table="PROFILE_EQUIPMENT"
+             inverse="true" lazy="true" fetch="select"
+             cascade="save-update,refresh,replicate,persist,merge,lock,evict" >
+            <key column="ferm_loss_uom_id" not-null="true" />
+            <one-to-many class="com.cdperry.brewday.entity.ProfileEquipmentEntity"/>
+        </set>
+        <set name="equipmentProfileFermTopUpUoms" table="PROFILE_EQUIPMENT"
+             inverse="true" lazy="true" fetch="select"
+             cascade="save-update,refresh,replicate,persist,merge,lock,evict" >
+            <key column="ferm_top_up_uom_id" not-null="true" />
+            <one-to-many class="com.cdperry.brewday.entity.ProfileEquipmentEntity"/>
+        </set>
+        <set name="equipmentProfileFermLossTrubLossChillUoms" table="PROFILE_EQUIPMENT"
+             inverse="true" lazy="true" fetch="select"
+             cascade="save-update,refresh,replicate,persist,merge,lock,evict" >
+            <key column="ferm_loss_trub_chill_uom_id" not-null="true" />
+            <one-to-many class="com.cdperry.brewday.entity.ProfileEquipmentEntity"/>
+        </set>
+        <set name="equipmentProfileBottlingVolUoms" table="PROFILE_EQUIPMENT"
+             inverse="true" lazy="true" fetch="select"
+             cascade="save-update,refresh,replicate,persist,merge,lock,evict" >
+            <key column="bottling_vol_uom_id" not-null="true" />
+            <one-to-many class="com.cdperry.brewday.entity.ProfileEquipmentEntity"/>
+        </set>
     </class>
+
 </hibernate-mapping>

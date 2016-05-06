@@ -36,5 +36,11 @@
         <property name="notes" column="notes"/>
         <property name="updateDate" column="update_date"/>
         <property name="createDate" column="create_date"/>
+        <set name="recipes" table="RECIPE"
+             inverse="true" lazy="true" fetch="select"
+             cascade="save-update,refresh,replicate,persist,merge,lock,evict" >
+            <key column="equipment_profile_id" not-null="true" />
+            <one-to-many class="com.cdperry.brewday.entity.RecipeEntity"/>
+        </set>
     </class>
 </hibernate-mapping>

@@ -7,20 +7,30 @@ import java.sql.Timestamp;
  * Created by cdperry on 3/6/16.
  */
 public class RecipeComponentEntity {
+
     private int recipeComponentId;
     private Integer recipeId;
     //private Integer componentId;
-    private ComponentEntity component;
     private BigDecimal amount;
     //private Integer amountUomId;
-    private UomTypeEntity amountUom;
     private Timestamp updateDate;
     private Timestamp createDate;
 
+    // a many-to-one relationship; many RecipeComponentEntity objects can be related to a single
+    // UomTypeEntity object
+    private UomTypeEntity amountUom;
+
+    // a many-to-one relationship; many RecipeComponentEntity objects can be related to a single
+    // ComponentEntity object
+    private ComponentEntity component;
+
+    // a many-to-one relationship; many RecipeComponentEntity objects can be related to a single
+    // RecipeEntity object
+    private RecipeEntity recipeEntity;
+
     public RecipeComponentEntity() {}
 
-    public RecipeComponentEntity(Integer recipeId, Timestamp createDate, Timestamp updateDate) {
-        this.recipeId = recipeId;
+    public RecipeComponentEntity(Timestamp createDate, Timestamp updateDate) {
         this.createDate = createDate;
         this.updateDate = updateDate;
     }
@@ -100,6 +110,14 @@ public class RecipeComponentEntity {
         this.createDate = createDate;
     }
 
+    public RecipeEntity getRecipeEntity() {
+        return recipeEntity;
+    }
+
+    public void setRecipeEntity(RecipeEntity recipeEntity) {
+        this.recipeEntity = recipeEntity;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -129,4 +147,6 @@ public class RecipeComponentEntity {
         result = 31 * result + (createDate != null ? createDate.hashCode() : 0);
         return result;
     }
+
+
 }

@@ -16,15 +16,15 @@
             <tbody>
             <c:forEach items="${hopIngredients}" var="hop">
                 <tr>
-                    <td><c:out value="${hop.hopName}" /></td>
+                    <td><c:out value="${hop.name}" /></td>
                     <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${hop.updateDate}" /></td>
                     <td class="text-center">
-                        <a href="/editHop?action=edit&hopId=<c:out value="${hop.hopId}"/>">
+                        <a href="/editHop?action=edit&componentId=<c:out value="${hop.compHopId}"/>">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </a>
                     </td>
                     <td class="text-center">
-                        <a href="#" data-id="<c:out value="${hop.hopId}"/>"
+                        <a href="#" data-id="<c:out value="${hop.compHopId}"/>"
                            data-toggle="modal" data-target="#myModal">
                             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                         </a>

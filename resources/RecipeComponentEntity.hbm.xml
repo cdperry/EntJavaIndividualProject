@@ -8,17 +8,23 @@
         <id name="recipeComponentId" column="recipe_component_id">
             <generator class="native"/>
         </id>
-        <property name="recipeId" column="recipe_id"/>
-        <!--<property name="componentId" column="component_id"/>-->
-        <many-to-one name="component" class="com.cdperry.brewday.entity.ComponentEntity"
-                     column="component_id" unique="true" not-null="false" lazy="false"
-                     not-found="ignore" />
         <property name="amount" column="amount"/>
+        <property name="updateDate" column="update_date"/>
+        <property name="createDate" column="create_date"/>
+        <!--<property name="recipeId" column="recipe_id"/>-->
+        <!--<property name="componentId" column="component_id"/>-->
         <!--<property name="amountUomId" column="amount_uom_id"/>-->
+        <many-to-one name="recipeEntity" class="com.cdperry.brewday.entity.RecipeEntity" fetch="select">
+            <column name="recipe_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="component" class="com.cdperry.brewday.entity.ComponentEntity" fetch="select">
+            <column name="component_id" not-null="true" />
+        </many-to-one>
+        <!--<many-to-one name="component" class="com.cdperry.brewday.entity.ComponentEntity"
+                     column="component_id" unique="true" not-null="false" lazy="false"
+                     not-found="ignore" />-->
         <many-to-one name="amountUom" class="com.cdperry.brewday.entity.UomTypeEntity"
                      column="amount_uom_id" unique="true" not-null="false" lazy="false"
                      not-found="ignore" />
-        <property name="updateDate" column="update_date"/>
-        <property name="createDate" column="create_date"/>
     </class>
 </hibernate-mapping>

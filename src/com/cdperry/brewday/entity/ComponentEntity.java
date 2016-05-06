@@ -1,6 +1,7 @@
 package com.cdperry.brewday.entity;
 
 import java.sql.Timestamp;
+import java.util.*;
 
 /**
  * Created by cdperry on 3/6/16.
@@ -20,6 +21,7 @@ public class ComponentEntity {
     private ComponentYeastEntity componentYeast;
     private ComponentWaterEntity componentWater;
     private ComponentOtherEntity componentOther;
+    private Set recipeComponents;
     private Timestamp updateDate;
     private Timestamp createDate;
 
@@ -151,6 +153,14 @@ public class ComponentEntity {
 
     public void setCreateDate(Timestamp createDate) {
         this.createDate = createDate;
+    }
+
+    public Set getRecipeComponents() {
+        return recipeComponents;
+    }
+
+    public void setRecipeComponents(Set recipeComponents) {
+        this.recipeComponents = recipeComponents;
     }
 
     @Override

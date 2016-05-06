@@ -2,12 +2,14 @@ package com.cdperry.brewday.entity;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.*;
 
 /**
  * Created by cdperry on 3/6/16.
  *
+ * TODO: Add a one-to-many relationship between this object and RecipeEntity object
  * TODO: Make sure when an equipment profile is deleted that other objects that reference it have their
- * profiles set to null; make sure that things that reference non-existant profiles ignore nulls
+ * TODO: profiles set to null; make sure that things that reference non-existant profiles ignore nulls
  */
 public class ProfileEquipmentEntity {
     private int profileEquipmentId;
@@ -39,6 +41,12 @@ public class ProfileEquipmentEntity {
     private String notes;
     private Timestamp updateDate;
     private Timestamp createDate;
+
+    private Set recipes;
+
+    public ProfileEquipmentEntity() {
+        this.recipes = new HashSet<RecipeEntity>(0);
+    }
 
     public int getProfileEquipmentId() {
         return profileEquipmentId;
@@ -270,6 +278,14 @@ public class ProfileEquipmentEntity {
 
     public void setCreateDate(Timestamp createDate) {
         this.createDate = createDate;
+    }
+
+    public Set getRecipes() {
+        return recipes;
+    }
+
+    public void setRecipes(Set recipes) {
+        this.recipes = recipes;
     }
 
     @Override

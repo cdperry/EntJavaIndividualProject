@@ -6,6 +6,8 @@ import java.util.*;
 
 /**
  * Created by cdperry on 3/6/16.
+ *
+ * TODO: proper one-to-many mapping to RecipeComponentEntity, see mkyong
  */
 public class RecipeEntity {
     private int recipeId;
@@ -19,9 +21,21 @@ public class RecipeEntity {
     private Timestamp createDate;
     private Set recipeComponents;
 
+    // a many-to-one relationship; many RecipeEntity objects can be related to a single
+    // UomTypeEntity object
     private UomTypeEntity batchSizeUom;
+
+    // a many-to-one relationship; many RecipeEntity objects can be related to a single
+    // RecipeTypeEntity object
     private RecipeTypeEntity recipeType;
+
+    // a many-to-one relationship; many RecipeEntity objects can be related to a single
+    // ProfileEquipmentEntity object
     private ProfileEquipmentEntity profileEquipment;
+
+    public RecipeEntity() {
+        this.recipeComponents = new HashSet<RecipeComponentEntity>(0);
+    }
 
     public int getRecipeId() {
         return recipeId;
@@ -132,6 +146,7 @@ public class RecipeEntity {
     public void setProfileEquipment(ProfileEquipmentEntity profileEquipment) {
         this.profileEquipment = profileEquipment;
     }
+
 
     @Override
     public boolean equals(Object o) {

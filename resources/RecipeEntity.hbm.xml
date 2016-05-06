@@ -8,26 +8,32 @@
         <id name="recipeId" column="recipe_id">
             <generator class="native"/>
         </id>
-        <set name="recipeComponents" cascade="all,delete-orphan" lazy="false">
-            <key column="recipe_id"/>
-            <one-to-many class="com.cdperry.brewday.entity.RecipeComponentEntity"/>
-        </set>
         <property name="recipeName" column="recipe_name"/>
         <property name="brewerName" column="brewer_name"/>
-        <!--<property name="recipeTypeId" column="recipe_type_id"/>-->
         <property name="batchSize" column="batch_size"/>
+        <!--<property name="recipeTypeId" column="recipe_type_id"/>-->
         <!--<property name="batchSizeUomId" column="batch_size_uom_id"/>-->
         <!--<property name="equipmentProfileId" column="equipment_profile_id"/>-->
         <property name="updateDate" column="update_date"/>
         <property name="createDate" column="create_date"/>
-        <many-to-one name="batchSizeUom" class="com.cdperry.brewday.entity.UomTypeEntity"
-                     column="batch_size_uom_id" unique="true" not-null="false" lazy="false"
-                     not-found="ignore" />
-        <many-to-one name="recipeType" class="com.cdperry.brewday.entity.RecipeTypeEntity"
-                     column="recipe_type_id" unique="true" not-null="false" lazy="false"
-                     not-found="ignore" />
+        <set name="recipeComponents" table="RECIPE_COMPONENT"
+             inverse="true" lazy="true" fetch="select"
+             cascade="all,delete-orphan" >
+            <key column="recipe_id" not-null="true" />
+            <one-to-many class="com.cdperry.brewday.entity.RecipeComponentEntity"/>
+        </set>
+        <many-to-one name="batchSizeUom" class="com.cdperry.brewday.entity.UomTypeEntity" fetch="select">
+            <column name="batch_size_uom_id" not-null="false" />
+        </many-to-one>
+        <many-to-one name="recipeType" class="com.cdperry.brewday.entity.RecipeTypeEntity" fetch="select">
+            <column name="recipe_type_id" not-null="false" />
+        </many-to-one>
+        <many-to-one name="profileEquipment" class="com.cdperry.brewday.entity.ProfileEquipmentEntity" fetch="select">
+            <column name="equipment_profile_id" not-null="false" />
+        </many-to-one>
+        <!--
         <many-to-one name="profileEquipment" class="com.cdperry.brewday.entity.ProfileEquipmentEntity"
                      column="equipment_profile_id" unique="true" not-null="false" lazy="false"
-                     not-found="ignore" />
+                     not-found="ignore" />-->
     </class>
 </hibernate-mapping>

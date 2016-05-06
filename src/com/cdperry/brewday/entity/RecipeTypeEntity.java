@@ -1,15 +1,24 @@
 package com.cdperry.brewday.entity;
 
 import java.sql.Timestamp;
+import java.util.*;
 
 /**
  * Created by cdperry on 3/6/16.
+ *
+ * TODO: Add one-to-many relationship between this object and the RecipeEntity object
  */
 public class RecipeTypeEntity {
     private int recipeTypeId;
     private String name;
     private Timestamp updateDate;
     private Timestamp createDate;
+
+    private Set recipes;
+
+    public RecipeTypeEntity() {
+        this.recipes = new HashSet<RecipeEntity>(0);
+    }
 
     public int getRecipeTypeId() {
         return recipeTypeId;
@@ -41,6 +50,14 @@ public class RecipeTypeEntity {
 
     public void setCreateDate(Timestamp createDate) {
         this.createDate = createDate;
+    }
+
+    public Set getRecipes() {
+        return recipes;
+    }
+
+    public void setRecipes(Set recipes) {
+        this.recipes = recipes;
     }
 
     @Override

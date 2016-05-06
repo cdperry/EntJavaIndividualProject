@@ -30,7 +30,7 @@ public class RecipeCompleteTest {
         int componentId;
 
         // create entities
-        RecipeEntity testRecipe;
+        RecipeEntity recipeEntity;
         RecipeComponentEntity recipeComponentEntity;
         ComponentEntity componentEntity;
         ComponentHopEntity componentHopEntity;
@@ -43,7 +43,7 @@ public class RecipeCompleteTest {
         ProfileEquipmentEntity profileEquipment = new ProfileEquipmentEntity();
 
         // create DAOs
-        RecipeDao me = new RecipeDao();
+        RecipeDao recipeDao = new RecipeDao();
         RecipeComponentDao recipeComponentDao = new RecipeComponentDao();
         ComponentDao componentDao = new ComponentDao();
         ComponentTypeDao componentTypeDao = new ComponentTypeDao();
@@ -77,7 +77,7 @@ public class RecipeCompleteTest {
         equipmentProfileId = profileEquipmentDao.addProfileEquipmentEntity(profileEquipment);
         profileEquipment = profileEquipmentDao.getProfileEquipmentEntity(equipmentProfileId);
 
-        // CREATE A HOP COMPONENT
+        // CREATE A HOP COMPONENT - this would be done before the user creates a recipe
         // create a component and add it to the database
         componentEntity = new ComponentEntity();
         componentEntity.setName("Cascade");
@@ -86,20 +86,22 @@ public class RecipeCompleteTest {
         componentEntity.setCreateDate(ts);
 
         componentHopEntity = new ComponentHopEntity(ts, ts);
+        // ... set some other hop attributes here
+
+        // create some other component<Type> entities (grain, yeast, water, other) for testing
         componentGrainEntity = new ComponentGrainEntity(ts, ts);
         componentYeastEntity = new ComponentYeastEntity(ts, ts);
         componentWaterEntity = new ComponentWaterEntity(ts, ts);
         componentOtherEntity = new ComponentOtherEntity(ts, ts);
 
-        // ... set some other hop attributes here
-
-        // associate this component with a hop component entity
-        // and associate the hop component entity with the component
-        // this will allow Hibernate to correctly insert the ID from component
-        // into component_hop
+        // associate the ComponentEntity object with the ComponentHopEntity object
+        // and associate the ComponentHopEntity object with the ComponentEntity object
+        // this will allow Hibernate to correctly insert the ID from 'component'
+        // into 'component_hop'
         componentEntity.setComponentHop(componentHopEntity);
         componentHopEntity.setComponentEntity(componentEntity);
 
+        // do the same for the other Component<Type>Entity objects
         componentEntity.setComponentGrain(componentGrainEntity);
         componentGrainEntity.setComponentEntity(componentEntity);
 
@@ -112,38 +114,58 @@ public class RecipeCompleteTest {
         componentEntity.setComponentOther(componentOtherEntity);
         componentOtherEntity.setComponentEntity(componentEntity);
 
+        // Add the component to the database. Hibernate will create the ComponentEntity first and then
+        // will use the primary key from that entity to create the associated Component<Type>Entity object
+        // and populate the foreign key value with the primary key of the associated ComponentEntity object
         componentId = componentDao.addComponentEntity(componentEntity);
 
-        Thread.sleep(15000);
-
-        componentDao.deleteComponentEntity(componentEntity);
-
-/*
+        // CREATE A RECIPE - now that we have supporting components let's build a recipe
         // create a test recipe and add it to the database
-        testRecipe = new RecipeEntity();
-        testRecipe.setRecipeName("Recipe 1");
-        testRecipe.setBrewerName("Brewer 1");
-        testRecipe.setRecipeType(recipeType);
-        testRecipe.setBatchSize(new BigDecimal("1.0"));
-        testRecipe.setBatchSizeUom(uom);
-        testRecipe.setProfileEquipment(profileEquipment);
-        testRecipe.setUpdateDate(ts);
-        testRecipe.setCreateDate(ts);
+        recipeEntity = new RecipeEntity();
+        recipeEntity.setRecipeName("Recipe 1");
+        recipeEntity.setBrewerName("Brewer 1");
+        recipeEntity.setRecipeType(recipeType);
+        recipeEntity.setBatchSize(new BigDecimal("1.0"));
+        recipeEntity.setBatchSizeUom(uom);
+        recipeEntity.setProfileEquipment(profileEquipment);
+        recipeEntity.setUpdateDate(ts);
+        recipeEntity.setCreateDate(ts);
 
-        recipeId = me.addRecipeEntity(testRecipe);
+        /* TODO: if lazy=true on these entities I get failures.  Fix?
+        recipeType.getRecipes().add(recipeEntity);
+        recipeTypeDao.updateRecipeTypeEntity(recipeType);
+        uom.getRecipeBatchSizes().add(recipeEntity);
+        uomTypeDao.updateUomTypeEntity(uom);
+        profileEquipment.getRecipes().add(recipeEntity);
+        profileEquipmentDao.updateProfileEquipmentEntity(profileEquipment);
+        */
+
+        // add the recipe - in the web app workflow you create the recipe first and then add recipe components
+        // later.  Add the recipeId to the ArrayList of recipes so we can clean up at the end.
+        recipeId = recipeDao.addRecipeEntity(recipeEntity);
         recipeIds.add(recipeId);
 
-        // add a recipe-component relationship
-        recipeComponentEntity = new RecipeComponentEntity(recipeId, ts, ts);
-        recipeComponentEntity.setRecipeId(recipeId);
-        recipeComponentDao.addRecipeComponentEntity(recipeComponentEntity);
+        // create a recipe line (a RecipeComponentEntity object)
+        recipeComponentEntity = new RecipeComponentEntity(ts, ts);
+        recipeComponentEntity.setAmount(new BigDecimal("1.0"));
+        //recipeComponentEntity.setAmountUom();
 
+        // add a RecipeEntity > RecipeComponentEntity
+        recipeComponentEntity.setRecipeEntity(recipeEntity);
+        recipeEntity.getRecipeComponents().add(recipeComponentEntity);
+
+        // add a RecipeComponentEntity <> ComponentEntity relationship
+        recipeComponentEntity.setComponent(componentEntity);
+        //componentEntity.getRecipeComponents().add(recipeComponentEntity);
+
+        //recipeComponentDao.addRecipeComponentEntity(recipeComponentEntity);
+        recipeDao.updateRecipeEntity(recipeEntity);
+
+/*
         // associate the component with the recipe-component relationship
         recipeComponentEntity.setComponent(componentEntity);
         recipeComponentDao.updateRecipeComponentEntity(recipeComponentEntity);
-*/
 
-/*
         // create recipe components and attach them to the recipe
         set1 = new HashSet();
         recipeComponentEntity = new RecipeComponentEntity();
@@ -249,16 +271,29 @@ public class RecipeCompleteTest {
         assertTrue("equip profile name failure", profileEquipment.getName().equals("zPot and Cooler (10G)"));
 */
 
-/*
-        // clean up
-        for (int thisId : recipeIds) {
-            me.deleteRecipeEntityById(thisId);
-        }
-*/
-        profileEquipmentDao.deleteProfileEquipmentEntityById(equipmentProfileId);
+        Thread.sleep(5000);
+
+        // delete some types and make sure that the recipe record doesn't get deleted
         uomTypeDao.deleteUomTypeEntityById(uomId);
         recipeTypeDao.deleteRecipeTypeEntityById(recipeTypeId);
+        profileEquipmentDao.deleteProfileEquipmentEntityById(equipmentProfileId);
+        assertNotNull("Expected recipe to exist but it's gone", recipeDao.getRecipeEntity(recipeId));
 
+        Thread.sleep(5000);
+
+        // delete the ComponentEntity object which should cascade delete the associated ComponentHopEntity object
+        // and the associated RecipeComponentEntity object
+        componentDao.deleteComponentEntity(componentEntity);
+        assertNotNull("Expected recipe to exist but it's gone", recipeDao.getRecipeEntity(recipeId));
+        //assertNull(recipeComponentDao.getRecipeComponentEntity(recipeComponentId));
+        //assertNull(componentHopEntity.getComponentEntity(componentHopId));
+
+        Thread.sleep(5000);
+
+        // clean up
+        for (int thisId : recipeIds) {
+            recipeDao.deleteRecipeEntityById(thisId);
+        }
 
     }
 }
