@@ -8,7 +8,8 @@
         <table class="table table-hover">
             <thead>
             <tr>
-                <th>Water Name</th>
+                <th>Water</th>
+                <th>pH</th>
                 <th>Last Updated</th>
                 <th colspan=2 class="text-center">Action</th>
             </tr>
@@ -17,6 +18,7 @@
             <c:forEach items="${waterIngredients}" var="water">
                 <tr>
                     <td><c:out value="${water.name}" /></td>
+                    <td><c:out value="${water.ph}" /></td>
                     <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${water.updateDate}" /></td>
                     <td class="text-center">
                         <a href="/editWater?action=edit&componentId=<c:out value="${water.compWaterId}"/>">

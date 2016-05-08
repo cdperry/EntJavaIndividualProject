@@ -8,23 +8,27 @@
         <table class="table table-hover">
             <thead>
             <tr>
-                <th>Misc Name</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Use For</th>
                 <th>Last Updated</th>
                 <th colspan=2 class="text-center">Action</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${miscIngredients}" var="misc">
+            <c:forEach items="${otherIngredients}" var="other">
                 <tr>
-                    <td><c:out value="${misc.name}" /></td>
-                    <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${misc.updateDate}" /></td>
+                    <td><c:out value="${other.name}" /></td>
+                    <td><c:out value="${other.useType.name}" /></td>
+                    <td><c:out value="${other.useFor}" /></td>
+                    <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${other.updateDate}" /></td>
                     <td class="text-center">
-                        <a href="/editOther?action=edit&componentId=<c:out value="${misc.compMiscId}"/>">
+                        <a href="/editOther?action=edit&componentId=<c:out value="${other.compOtherId}"/>">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </a>
                     </td>
                     <td class="text-center">
-                        <a href="#" data-id="<c:out value="${misc.compMiscId}"/>"
+                        <a href="#" data-id="<c:out value="${other.compOtherId}"/>"
                            data-toggle="modal" data-target="#myModal">
                             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                         </a>
@@ -34,7 +38,7 @@
             </tbody>
         </table>
 
-        <p><a href="/addOther?action=insert">Add Misc</a></p>
+        <p><a href="/addOther?action=insert">Add Other</a></p>
 
     </div>
 

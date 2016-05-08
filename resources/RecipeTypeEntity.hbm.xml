@@ -12,7 +12,7 @@
         <property name="updateDate" column="update_date"/>
         <property name="createDate" column="create_date"/>
         <set name="recipes" table="RECIPE"
-             inverse="true" lazy="true" fetch="select"
+             inverse="true" lazy="false" fetch="select"
              cascade="save-update,refresh,replicate,persist,merge,lock,evict" >
             <key column="recipe_type_id" not-null="true" />
             <one-to-many class="com.cdperry.brewday.entity.RecipeEntity"/>

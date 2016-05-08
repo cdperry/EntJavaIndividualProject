@@ -5,6 +5,8 @@ import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 import java.util.*;
 
 /**
@@ -44,6 +46,86 @@ public class SupplierDao {
 
             session.close();
 
+        }
+
+        return suppliers;
+
+    }
+
+    /**
+     * This method returns an entity give its name.  If there are multiple entities with the same name all of those
+     * entities are returned.
+     * @param typeName The name of the type of entity that should be returned
+     * @return a list of SupplierEntity objects that match the name parameter
+     */
+    public List<SupplierEntity> getSuppliersByType(String typeName) {
+
+        List<SupplierEntity> suppliers = new ArrayList<>();
+
+        Session session = SessionFactoryProvider.getSessionFactory().openSession();
+
+        Criteria criteria = session.createCriteria(SupplierEntity.class);
+        criteria.createCriteria("supplierType").add(Restrictions.eq("name", typeName));
+
+        // Language lang = (Language)super.findByCriteria(criteria).get(0);
+
+        Transaction tx = null;
+
+        try {
+
+            tx = session.beginTransaction();
+            suppliers = criteria.list();
+
+        } catch (HibernateException e) {
+
+            if (tx != null) {
+                tx.rollback();
+            }
+
+            log.error(e.getStackTrace());
+
+        } finally {
+            session.close();
+        }
+
+        return suppliers;
+
+    }
+
+    /**
+     * This method returns an entity give its name.  If there are multiple entities with the same name all of those
+     * entities are returned.
+     * @param typeName The name of the type of entity that should be returned
+     * @return a list of SupplierEntity objects that match the name parameter
+     */
+    public List<SupplierEntity>  getSuppliersExclType(String typeName) {
+
+        List<SupplierEntity> suppliers = new ArrayList<>();
+
+        Session session = SessionFactoryProvider.getSessionFactory().openSession();
+
+        Criteria criteria = session.createCriteria(SupplierEntity.class);
+        criteria.createCriteria("supplierType").add(Restrictions.ne("name", typeName));
+
+        // Language lang = (Language)super.findByCriteria(criteria).get(0);
+
+        Transaction tx = null;
+
+        try {
+
+            tx = session.beginTransaction();
+            suppliers = criteria.list();
+
+        } catch (HibernateException e) {
+
+            if (tx != null) {
+                tx.rollback();
+            }
+
+            log.error(e.getStackTrace());
+
+        } finally {
+            session.close();
         }
 
         return suppliers;
@@ -134,6 +216,39 @@ public class SupplierDao {
             session.delete(originEntity);
             tx.commit();
             log.warn("Deleted supplier: " + originEntity + " with id of: " + originEntity.getSupplierId());
+
+        } catch (HibernateException e) {
+
+            if (tx!=null) {
+                tx.rollback();
+            }
+
+            e.printStackTrace();
+
+        } finally {
+
+            session.close();
+
+        }
+
+    }
+
+    /**
+     * This method deletes the SupplierEntity object from the database
+     * @param supplierEntityId the ID of the SupplierEntity to be deleted from the database
+     */
+    public void deleteSupplierEntityById(int supplierEntityId) {
+
+        Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+
+            tx = session.beginTransaction();
+            SupplierEntity entityToDelete = (SupplierEntity)session.get(SupplierEntity.class, supplierEntityId);
+            session.delete(entityToDelete);
+            tx.commit();
+            log.warn("Deleted supplier: " + entityToDelete + " with id of: " + supplierEntityId);
 
         } catch (HibernateException e) {
 

@@ -24,52 +24,72 @@
                 </div>
             </div>
             <div class="form-group form-group-sm">
-                <label for="originId" class="col-sm-1 control-label">Origin</label>
+                <label for="useTypeId" class="col-sm-1 control-label">Type</label>
                 <div class="col-sm-2">
-                    <select class="form-control" id="originId" name="originId">
-                        <c:forEach items="${origins}" var="origin">
-                            <option value="${origin.originId}"
-                                ${other.origin.originId == origin.originId ? 'selected' : ''}>
-                                <c:out value="${origin.name}" />
+                    <select class="form-control" id="useTypeId" name="useTypeId">
+                        <c:forEach items="${useTypes}" var="useType">
+                            <option value="${useType.useTypeId}"
+                                ${other.useType.useTypeId == useType.useTypeId ? 'selected' : ''}>
+                                <c:out value="${useType.name}" />
                             </option>
                         </c:forEach>
                     </select>
                 </div>
-                <label for="supplierId" class="col-sm-1 control-label">Supplier</label>
-                <div class="col-sm-4">
-                    <select class="form-control" id="supplierId" name="supplierId">
-                        <c:forEach items="${suppliers}" var="supplier">
-                            <option value="${supplier.supplierId}"
-                                ${other.supplier.supplierId == supplier.supplierId ? 'selected' : ''}>
-                                <c:out value="${supplier.name}" />
+                <label for="useFor" class="col-sm-1 control-label">Use For</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="useFor" name="useFor"
+                           value="<c:out value="${other.useFor}" />" />
+                </div>
+            </div>
+            <div class="form-group form-group-sm">
+                <label for="amount" class="col-sm-1 control-label">Amount</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="amount" name="amount"
+                           value="<c:out value="${other.amount}" />" />
+                </div>
+                <div class="col-sm-2">
+                    <select class="form-control" id="amountUomId" name="amountUomId">
+                        <c:forEach items="${uomTypes}" var="uomType">
+                            <option value="${uomType.uomId}"
+                                ${other.amountUom.uomId == uomType.uomId ? 'selected' : ''}>
+                                <c:out value="${uomType.name}" />
                             </option>
                         </c:forEach>
                     </select>
                 </div>
             </div>
             <div class="form-group form-group-sm">
-                <label for="otherTypeId" class="col-sm-1 control-label">Type</label>
-                <div class="col-sm-4">
-                    <select class="form-control" id="otherTypeId" name="otherTypeId">
-                        <c:forEach items="${otherTypes}" var="otherType">
-                            <option value="${otherType.otherTypeId}"
-                                ${other.otherType.otherTypeId == otherType.otherTypeId ? 'selected' : ''}>
-                                <c:out value="${otherType.name}" />
+                <label for="batchSize" class="col-sm-1 control-label">Batch Size</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="batchSize" name="batchSize"
+                           value="<c:out value="${other.batchSize}" />" />
+                </div>
+                <div class="col-sm-2">
+                    <select class="form-control" id="batchSizeUomId" name="batchSizeUomId">
+                        <c:forEach items="${uomTypes}" var="uomType">
+                            <option value="${uomType.uomId}"
+                                ${other.batchSizeUom.uomId == uomType.uomId ? 'selected' : ''}>
+                                <c:out value="${uomType.name}" />
                             </option>
                         </c:forEach>
                     </select>
                 </div>
             </div>
             <div class="form-group form-group-sm">
-                <label for="color" class="col-sm-2 control-label">Color (SRM)</label>
-                <div class="col-sm-1">
-                    <input type="text" class="form-control" id="color" name="color"
-                           value="<c:out value="${other.color}" />" />
+                <label for="time" class="col-sm-1 control-label">Time</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="time" name="time"
+                           value="<c:out value="${other.time}" />" />
                 </div>
-                <label for="potential" class="col-sm-2 control-label">Potential (SG)</label>
-                <div class="col-sm-1">
-                    <input type="text" class="form-control" id="potential" name="potential"
-                           value="<c:out value="${other.potential}" />" />
+                <div class="col-sm-2">
+                    <select class="form-control" id="timeUomId" name="timeUomId">
+                        <c:forEach items="${uomTypes}" var="uomType">
+                            <option value="${uomType.uomId}"
+                                ${other.timeUom.uomId == uomType.uomId ? 'selected' : ''}>
+                                <c:out value="${uomType.name}" />
+                            </option>
+                        </c:forEach>
+                    </select>
                 </div>
             </div>
             <div class="form-group form-group-sm">

@@ -8,7 +8,10 @@
         <table class="table table-hover">
             <thead>
             <tr>
-                <th>Hop Name</th>
+                <th>Name</th>
+                <th>Origin</th>
+                <th>Alpha %</th>
+                <th>Type</th>
                 <th>Last Updated</th>
                 <th colspan=2 class="text-center">Action</th>
             </tr>
@@ -17,6 +20,9 @@
             <c:forEach items="${hopIngredients}" var="hop">
                 <tr>
                     <td><c:out value="${hop.name}" /></td>
+                    <td><c:out value="${hop.origin.name}" /></td>
+                    <td><c:out value="${hop.alphaPct}" /></td>
+                    <td><c:out value="${hop.hopType.name}" /></td>
                     <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${hop.updateDate}" /></td>
                     <td class="text-center">
                         <a href="/editHop?action=edit&componentId=<c:out value="${hop.compHopId}"/>">

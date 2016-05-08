@@ -1,6 +1,7 @@
-package com.cdperry.brewday.controller.ingredients.other;
+package com.cdperry.brewday.controller.suppliers;
 
 import com.cdperry.brewday.persistence.*;
+import com.cdperry.brewday.entity.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,21 +13,21 @@ import java.io.IOException;
 
 /**
  *  <p>
- *  This servlet is used to display the other available for recipes
+ *  This servlet is used to display the supplier available for recipes
  *  </p>
  *  @author Chris Perry
  */
 @WebServlet(
-        name = "OtherDisplayServlet",
-        urlPatterns = { "/listAllOthers" }
+        name = "SupplierDisplayServlet",
+        urlPatterns = { "/suppliers" }
 )
-public class OtherDisplayServlet extends HttpServlet {
+public class SupplierDisplayServlet extends HttpServlet {
 
-    private ComponentOtherDao componentOtherDao;
+    private SupplierDao supplierDao;
 
-    public OtherDisplayServlet() {
+    public SupplierDisplayServlet() {
         super();
-        componentOtherDao = new ComponentOtherDao();
+        supplierDao = new SupplierDao();
     }
 
     /**
@@ -39,9 +40,9 @@ public class OtherDisplayServlet extends HttpServlet {
      */
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String url = "/jsp/listOthers.jsp";
+        String url = "/jsp/listSuppliers.jsp";
 
-        request.setAttribute("otherIngredients", componentOtherDao.getAllComponentOthers());
+        request.setAttribute("suppliers", supplierDao.getAllSuppliers());
         request.setAttribute("actionType", "list");
 
         RequestDispatcher dispatcher

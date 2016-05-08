@@ -17,17 +17,17 @@
         <property name="updateDate" column="update_date"/>
         <property name="createDate" column="create_date"/>
         <set name="recipeComponents" table="RECIPE_COMPONENT"
-             inverse="true" lazy="true" fetch="select"
+             inverse="true" lazy="false" fetch="select"
              cascade="all,delete-orphan" >
             <key column="recipe_id" not-null="true" />
             <one-to-many class="com.cdperry.brewday.entity.RecipeComponentEntity"/>
         </set>
-        <many-to-one name="batchSizeUom" class="com.cdperry.brewday.entity.UomTypeEntity" fetch="select">
-            <column name="batch_size_uom_id" not-null="false" />
-        </many-to-one>
-        <many-to-one name="recipeType" class="com.cdperry.brewday.entity.RecipeTypeEntity" fetch="select">
-            <column name="recipe_type_id" not-null="false" />
-        </many-to-one>
+        <many-to-one name="batchSizeUom" class="com.cdperry.brewday.entity.UomTypeEntity" fetch="select"
+                     column="batch_size_uom_id" unique="true" not-null="false" lazy="false"
+                     not-found="ignore" />
+        <many-to-one name="recipeType" class="com.cdperry.brewday.entity.RecipeTypeEntity" fetch="select"
+                     column="recipe_type_id" unique="true" not-null="false" lazy="false"
+                     not-found="ignore" />
         <many-to-one name="profileEquipment" class="com.cdperry.brewday.entity.ProfileEquipmentEntity" fetch="select">
             <column name="equipment_profile_id" not-null="false" />
         </many-to-one>

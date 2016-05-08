@@ -46,7 +46,7 @@
                 <a href="/equipment"><i class="fa fa-briefcase fa-fw"></i> Equipment</a>
             </li>
             <li>
-                <a href="/suppliers"><i class="fa fa-balance-scale fa-fw"></i> Suppliers</a>
+                <a href="/suppliers"><i class="fa fa-cart-arrow-down fa-fw"></i> Suppliers</a>
             </li>
             <li>
                 <a href="/utilities"><i class="fa fa-balance-scale fa-fw"></i> Utilities</a>

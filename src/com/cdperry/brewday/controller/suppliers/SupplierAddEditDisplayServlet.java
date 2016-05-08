@@ -1,4 +1,4 @@
-package com.cdperry.brewday.controller.equipment;
+package com.cdperry.brewday.controller.suppliers;
 
 import com.cdperry.brewday.entity.*;
 import com.cdperry.brewday.persistence.*;
@@ -14,23 +14,23 @@ import java.util.List;
 
 /**
  *  <p>
- *  This servlet is used to display the Add/Edit Equipment Profile page
+ *  This servlet is used to display the Add/Edit Supplier Type page
  *  </p>
  *  @author Chris Perry
  */
 @WebServlet(
-        name = "EquipmentProfileAddEditDisplayServlet",
-        urlPatterns = { "/addEquipmentProfile", "/editEquipmentProfile" }
+        name = "SupplierAddEditDisplayServlet",
+        urlPatterns = { "/addSupplier", "/editSupplier" }
 )
-public class EquipmentAddEditDisplayServlet extends HttpServlet {
+public class SupplierAddEditDisplayServlet extends HttpServlet {
 
-    private ProfileEquipmentDao equipmentProfileDao;
-    private UomTypeDao uomTypeDao;
+    private SupplierDao supplierDao;
+    private SupplierTypeDao supplierTypeDao;
 
-    public EquipmentAddEditDisplayServlet() {
+    public SupplierAddEditDisplayServlet() {
         super();
-        equipmentProfileDao = new ProfileEquipmentDao();
-        uomTypeDao = new UomTypeDao();
+        supplierDao = new SupplierDao();
+        supplierTypeDao = new SupplierTypeDao();
     }
 
     /**
@@ -43,14 +43,17 @@ public class EquipmentAddEditDisplayServlet extends HttpServlet {
      */
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String url = "/jsp/editEquipmentProfile.jsp";
-        int equipmentProfileId;
-        ProfileEquipmentEntity equipmentProfile;
-        List<UomTypeEntity> uomTypes;
+        String url = "/jsp/editSupplier.jsp";
 
-        // get all potential other types and attach them to the request
-        uomTypes = uomTypeDao.getAllUomTypes();
-        request.setAttribute("uomTypes", uomTypes);
+        SupplierEntity supplier;
+
+        List<SupplierTypeEntity> supplierTypes;
+
+        int supplierId;
+
+        // get all potential supplier types and attach them to the request
+        supplierTypes = supplierTypeDao.getAllSupplierTypes();
+        request.setAttribute("supplierTypes", supplierTypes);
 
         RequestDispatcher dispatcher
                 = getServletContext().getRequestDispatcher(url);
@@ -59,21 +62,17 @@ public class EquipmentAddEditDisplayServlet extends HttpServlet {
             request.setAttribute("actionType", "insert");
             dispatcher.forward(request, response);
         } else {
-            equipmentProfileId = Integer.parseInt(request.getParameter("profileEquipmentId"));
-            equipmentProfile = equipmentProfileDao.getProfileEquipmentEntity(equipmentProfileId);
-            if (equipmentProfile != null) {
-                request.setAttribute("equipmentProfile", equipmentProfile);
+            supplierId = Integer.parseInt(request.getParameter("supplierId"));
+            supplier = supplierDao.getSupplierEntity(supplierId);
+            if (supplier != null) {
+                request.setAttribute("supplier", supplier);
                 request.setAttribute("actionType", "edit");
                 dispatcher.forward(request, response);
             } else {
-                url = "/equipment";
+                url = "/suppliers";
                 response.sendRedirect(url);
             }
         }
-
-
-
-
 
     }
 

@@ -13,7 +13,8 @@
 
             <div id="page-wrapper">
 
-                <c:import url="components/recipe-edit-body.jsp" />
+                <c:import url="components/suppliers-body.jsp" />
+                <c:import url="components/delete-modal-dialog.jsp" />
 
             </div>
 
@@ -22,10 +23,11 @@
         <c:import url="components/main-scripts.jsp" />
 
         <script>
-            $('#modalAddGrain').on('show.bs.modal', function (event) {
+            $('#myModal').on('show.bs.modal', function (event) {
                 var docElement = $(event.relatedTarget) // Element that triggered the modal
                 var id = docElement.data('id') // Extract info from data-* attributes
-                $("#frmAddGrain").attr("action", "/editRecipe?action=edit&recipeId=" + id)
+                <%--$("#confirmedDelete").attr('href', '/deleteGrain?grainId=' + id)--%>
+                $("#frmConfirmDelete").attr("action", "/deleteSupplier?supplierId=" + id)
             })
         </script>
 

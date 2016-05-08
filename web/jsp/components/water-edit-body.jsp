@@ -106,7 +106,7 @@
                     <input type="text" class="form-control" id="batchSize" name="batchSize"
                            value="<c:out value="${water.batchSize}" />" />
                 </div>
-                <div class="col-sm-1">
+                <div class="col-sm-2">
                     <select class="form-control" id="batchSizeUomId" name="batchSizeUomId">
                         <c:forEach items="${batchSizeUomTypes}" var="batchSizeUom">
                             <option value="${batchSizeUom.uomId}"

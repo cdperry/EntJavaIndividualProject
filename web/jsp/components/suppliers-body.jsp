@@ -9,30 +9,26 @@
             <thead>
             <tr>
                 <th>Name</th>
-                <th>Origin</th>
-                <th>Type</th>
-                <th>Color (SRM)</th>
-                <th>Potential (SG)</th>
+                <th>URL</th>
+                <th>Phone</th>
                 <th>Last Updated</th>
                 <th colspan=2 class="text-center">Action</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${grainIngredients}" var="grain">
+            <c:forEach items="${suppliers}" var="supplier">
                 <tr>
-                    <td><c:out value="${grain.name}" /></td>
-                    <td><c:out value="${grain.origin.name}" /></td>
-                    <td><c:out value="${grain.grainType.name}" /></td>
-                    <td><c:out value="${grain.color}" /></td>
-                    <td><c:out value="${grain.potential}" /></td>
-                    <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${grain.updateDate}" /></td>
+                    <td><c:out value="${supplier.name}" /></td>
+                    <td><c:out value="${supplier.url}" /></td>
+                    <td><c:out value="${supplier.phone}" /></td>
+                    <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${supplier.updateDate}" /></td>
                     <td class="text-center">
-                        <a href="/editGrain?action=edit&componentId=<c:out value="${grain.compGrainId}"/>">
+                        <a href="/editSupplier?action=edit&supplierId=<c:out value="${supplier.supplierId}"/>">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </a>
                     </td>
                     <td class="text-center">
-                        <a href="#" data-id="<c:out value="${grain.compGrainId}"/>"
+                        <a href="#" data-id="<c:out value="${supplier.supplierId}"/>"
                            data-toggle="modal" data-target="#myModal">
                             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                         </a>
@@ -42,7 +38,7 @@
             </tbody>
         </table>
 
-        <p><a href="/addGrain?action=insert">Add Grain</a></p>
+        <p><a href="/editSupplier?action=insert">Add Supplier</a></p>
 
     </div>
 

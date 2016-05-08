@@ -15,8 +15,9 @@
         <table class="table table-hover">
             <thead>
             <tr>
-                <th>Recipe Name</th>
-                <th>Batch Size</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th colspan="2" class="text-left">Batch Size</th>
                 <th>Last Updated</th>
                 <th colspan=2 class="text-center">Action</th>
             </tr>
@@ -25,7 +26,9 @@
             <c:forEach items="${recipes}" var="recipe">
                 <tr>
                     <td><c:out value="${recipe.recipeName}" /></td>
+                    <td><c:out value="${recipe.recipeType.name}" /></td>
                     <td><c:out value="${recipe.batchSize}" /></td>
+                    <td><c:out value="${recipe.batchSizeUom.name}" /></td>
                     <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${recipe.updateDate}" /></td>
                     <td class="text-center">
                         <a href="/editRecipe?action=edit&recipeId=<c:out value="${recipe.recipeId}"/>">

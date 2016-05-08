@@ -20,16 +20,18 @@ import java.util.Set;
  *  @author Chris Perry
  */
 @WebServlet(
-        name = "GrainAddEditDisplayServlet",
+        name = "RecipeGrainAddEditDisplayServlet",
         urlPatterns = { "/editRecipeAddGrain", "/editRecipeEditGrain" }
 )
 public class GrainAddEditDisplayServlet extends HttpServlet {
 
+    private ComponentDao componentDao;
     private ComponentGrainDao componentGrainDao;
     private UomTypeDao uomTypeDao;
 
     public GrainAddEditDisplayServlet() {
         super();
+        componentDao = new ComponentDao();
         componentGrainDao = new ComponentGrainDao();
         uomTypeDao = new UomTypeDao();
     }
@@ -45,8 +47,12 @@ public class GrainAddEditDisplayServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String url = "/jsp/editRecipeEditGrain.jsp";
+        List<ComponentEntity> componentEntities;
         List<ComponentGrainEntity> grainEntities;
         List<UomTypeEntity> uomTypes;
+
+        componentEntities = componentDao.getComponentsByType("Grain");
+        request.setAttribute("components", componentEntities);
 
         // get any unit of measure types named "lb" and attach the first
         // one to the request
@@ -62,28 +68,15 @@ public class GrainAddEditDisplayServlet extends HttpServlet {
 
         if (request.getParameter("action").equals("insert")) {
             request.setAttribute("actionType", "insert");
-            dispatcher.forward(request, response);
+
         } else {
-
             request.setAttribute("actionType", "edit");
-            dispatcher.forward(request, response);
-
-            /*
-            recipeId = Integer.parseInt(request.getParameter("recipeId"));
-            recipe = recipeDao.getRecipeEntity(recipeId);
-            recipeComponents = recipe.getRecipeComponents();
-            request.setAttribute("recipeComponents", recipeComponents);
-            if (recipe != null) {
-                request.setAttribute("recipe", recipe);
-                request.setAttribute("actionType", "edit");
-                dispatcher.forward(request, response);
-            } else {
-                url = "/recipes";
-                response.sendRedirect(url);
-            }
-            */
 
         }
+
+        System.out.println("Recipe: " + request.getParameter("recipeId"));
+        System.out.println("Recipe Component: " + request.getParameter("recipeComponentId"));
+        dispatcher.forward(request, response);
 
     }
 

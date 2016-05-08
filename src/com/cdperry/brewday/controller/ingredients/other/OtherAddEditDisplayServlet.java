@@ -56,7 +56,7 @@ public class OtherAddEditDisplayServlet extends HttpServlet {
 
         // get all potential other types and attach them to the request
         useTypes = useTypeDao.getAllUseTypes();
-        request.setAttribute("otherTypes", useTypes);
+        request.setAttribute("useTypes", useTypes);
 
         // get all potential other types and attach them to the request
         uomTypes = uomTypeDao.getAllUomTypes();

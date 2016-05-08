@@ -1,10 +1,7 @@
 package com.cdperry.brewday.controller.recipe;
 
 import com.cdperry.brewday.entity.*;
-import com.cdperry.brewday.persistence.ProfileEquipmentDao;
-import com.cdperry.brewday.persistence.RecipeDao;
-import com.cdperry.brewday.persistence.RecipeTypeDao;
-import com.cdperry.brewday.persistence.UomTypeDao;
+import com.cdperry.brewday.persistence.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -28,6 +25,7 @@ import java.util.*;
 public class RecipeAddEditDisplayServlet extends HttpServlet {
 
     private RecipeDao recipeDao;
+    private RecipeComponentDao recipeComponentDao;
     private RecipeTypeDao recipeTypeDao;
     private UomTypeDao uomTypeDao;
     private ProfileEquipmentDao profileEquipmentDao;
@@ -35,6 +33,7 @@ public class RecipeAddEditDisplayServlet extends HttpServlet {
     public RecipeAddEditDisplayServlet() {
         super();
         recipeDao = new RecipeDao();
+        recipeComponentDao = new RecipeComponentDao();
         recipeTypeDao = new RecipeTypeDao();
         uomTypeDao = new UomTypeDao();
         profileEquipmentDao = new ProfileEquipmentDao();

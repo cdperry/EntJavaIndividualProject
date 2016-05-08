@@ -2,6 +2,7 @@ package com.cdperry.brewday.controller.equipment;
 
 import com.cdperry.brewday.entity.ProfileEquipmentEntity;
 import com.cdperry.brewday.persistence.ProfileEquipmentDao;
+import com.cdperry.brewday.persistence.UomTypeDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,10 +31,12 @@ import java.util.Date;
 public class EquipmentAddEditActionServlet extends HttpServlet {
 
     private ProfileEquipmentDao profileEquipmentDao;
+    private UomTypeDao uomTypeDao;
 
     public EquipmentAddEditActionServlet() {
         super();
         profileEquipmentDao = new ProfileEquipmentDao();
+        uomTypeDao = new UomTypeDao();
     }
 
     /**
@@ -46,7 +49,8 @@ public class EquipmentAddEditActionServlet extends HttpServlet {
      */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        ProfileEquipmentEntity equipmentProfile = new ProfileEquipmentEntity();
+        ProfileEquipmentEntity equipmentProfile;
+
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
         String url = "/equipment";
@@ -55,20 +59,50 @@ public class EquipmentAddEditActionServlet extends HttpServlet {
         String profileName = request.getParameter("profileName");
         String buttonAction = request.getParameter("buttonAction");
         String createDate = request.getParameter("createDate");
+        String batchVol = request.getParameter("batchVol");
+        String batchVolUomId = request.getParameter("batchVolUomId");
+        String boilVol = request.getParameter("boilVol");
+        String boilVolUomId = request.getParameter("boilVolUomId");
+        String bottlingVol = request.getParameter("bottlingVol");
+        String bottlingVolUomId = request.getParameter("bottlingVolUomId");
+        String notes = request.getParameter("notes");
 
-        equipmentProfile.setName(profileName);
-        equipmentProfile.setUpdateDate(ts);
-        if (createDate == null || createDate.isEmpty()) {
-            createDate = "1900-01-01 00:00:00";
+        if (batchVol == null || batchVol.isEmpty()) {
+            batchVol = "0.0";
+        }
+
+        if (boilVol == null || boilVol.isEmpty()) {
+            boilVol = "0.0";
+        }
+
+        if (bottlingVol == null || bottlingVol.isEmpty()) {
+            bottlingVol = "0.0";
         }
 
         if (buttonAction.equals("submit")) {
             if (profileId == null || profileId.isEmpty()) {
+                equipmentProfile = new ProfileEquipmentEntity();
                 equipmentProfile.setCreateDate(ts);
+                equipmentProfile.setUpdateDate(ts);
+                equipmentProfile.setName(profileName);
+                equipmentProfile.setFermBatchVol(new BigDecimal(batchVol));
+                //equipmentProfile.setBatch(uomTypeDao.getUomTypeEntity(Integer.parseInt(batchVolUomId))));
+                equipmentProfile.setBoilVol(new BigDecimal(boilVol));
+                equipmentProfile.setBottlingVol(new BigDecimal(bottlingVol));
+                equipmentProfile.setNotes(notes);
                 profileEquipmentDao.addProfileEquipmentEntity(equipmentProfile);
             } else {
-                equipmentProfile.setProfileEquipmentId(Integer.parseInt(profileId));
-                equipmentProfile.setCreateDate(Timestamp.valueOf(createDate));
+                int id = Integer.parseInt(profileId);
+
+                equipmentProfile = profileEquipmentDao.getProfileEquipmentEntity(id);
+                equipmentProfile.setName(profileName);
+                equipmentProfile.setFermBatchVol(new BigDecimal(batchVol));
+                //equipmentProfile.setBatch(uomTypeDao.getUomTypeEntity(Integer.parseInt(batchVolUomId))));
+                equipmentProfile.setBoilVol(new BigDecimal(boilVol));
+                equipmentProfile.setBottlingVol(new BigDecimal(bottlingVol));
+                equipmentProfile.setUpdateDate(ts);
+                equipmentProfile.setNotes(notes);
+
                 profileEquipmentDao.updateProfileEquipmentEntity(equipmentProfile);
             }
         }

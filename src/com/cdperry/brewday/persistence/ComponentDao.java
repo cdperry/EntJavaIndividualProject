@@ -5,6 +5,8 @@ import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 import java.util.*;
 
 /**
@@ -45,6 +47,46 @@ public class ComponentDao {
         }
 
         return components;
+
+    }
+
+    /**
+     * This method returns a ComponentEntity objects give its type.  If there are multiple entities with the same name
+     * all of those entities are returned.
+     * @param componentType The name of the type of component that should be returned
+     * @return a list of ComponentEntity objects that match the name parameter
+     */
+    public List<ComponentEntity> getComponentsByType(String componentType) {
+
+        List<ComponentEntity> suppliers = new ArrayList<>();
+
+        Session session = SessionFactoryProvider.getSessionFactory().openSession();
+
+        Criteria criteria = session.createCriteria(ComponentEntity.class);
+        criteria.createCriteria("componentType").add(Restrictions.eq("name", componentType));
+
+        // Language lang = (Language)super.findByCriteria(criteria).get(0);
+
+        Transaction tx = null;
+
+        try {
+
+            tx = session.beginTransaction();
+            suppliers = criteria.list();
+
+        } catch (HibernateException e) {
+
+            if (tx != null) {
+                tx.rollback();
+            }
+
+            log.error(e.getStackTrace());
+
+        } finally {
+            session.close();
+        }
+
+        return suppliers;
 
     }
 

@@ -76,11 +76,11 @@ public class YeastAddEditDisplayServlet extends HttpServlet {
         request.setAttribute("yeastFlocTypes", yeastFlocTypes);
 
         // get all potential suppliers and add them to the request
-        suppliers = supplierDao.getAllSuppliers();
+        suppliers = supplierDao.getSuppliersExclType("Laboratory");
         request.setAttribute("suppliers", suppliers);
 
         // get all potential suppliers and add them to the request
-        laboratories = supplierDao.getAllSuppliers();
+        laboratories = supplierDao.getSuppliersByType("Laboratory");
         request.setAttribute("laboratories", laboratories);
 
         RequestDispatcher dispatcher
