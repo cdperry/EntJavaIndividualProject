@@ -13,7 +13,7 @@
 
             <div id="page-wrapper">
 
-                <c:import url="components/misc-body.jsp" />
+                <c:import url="components/water-body.jsp" />
                 <c:import url="components/delete-modal-dialog.jsp" />
 
             </div>
@@ -26,8 +26,8 @@
             $('#myModal').on('show.bs.modal', function (event) {
                 var docElement = $(event.relatedTarget) // Element that triggered the modal
                 var id = docElement.data('id') // Extract info from data-* attributes
-                <%--$("#confirmedDelete").attr('href', '/deleteMisc?miscId=' + id)--%>
-                $("#frmConfirmDelete").attr("action", "/deleteMisc?miscId=" + id)
+                <%--$("#confirmedDelete").attr('href', '/deleteWater?waterId=' + id)--%>
+                $("#frmConfirmDelete").attr("action", "/deleteWater?componentId=" + id)
             })
         </script>
 

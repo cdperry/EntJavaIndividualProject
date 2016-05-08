@@ -1,4 +1,4 @@
-package com.cdperry.brewday.controller.ingredients.grain;
+package com.cdperry.brewday.controller.ingredients.water;
 
 import com.cdperry.brewday.entity.*;
 import com.cdperry.brewday.persistence.*;
@@ -14,27 +14,23 @@ import java.util.List;
 
 /**
  *  <p>
- *  This servlet is used to display the Add/Edit Grain Type page
+ *  This servlet is used to display the Add/Edit Water Type page
  *  </p>
  *  @author Chris Perry
  */
 @WebServlet(
-        name = "GrainAddEditDisplayServlet",
-        urlPatterns = { "/addGrain", "/editGrain" }
+        name = "WaterAddEditDisplayServlet",
+        urlPatterns = { "/addWater", "/editWater" }
 )
-public class GrainAddEditDisplayServlet extends HttpServlet {
+public class WaterAddEditDisplayServlet extends HttpServlet {
 
     private ComponentDao componentDao;
-    private OriginDao originDao;
-    private SupplierDao supplierDao;
-    private GrainTypeDao grainTypeDao;
+    private UomTypeDao uomTypeDao;
 
-    public GrainAddEditDisplayServlet() {
+    public WaterAddEditDisplayServlet() {
         super();
         componentDao = new ComponentDao();
-        originDao = new OriginDao();
-        supplierDao = new SupplierDao();
-        grainTypeDao = new GrainTypeDao();
+        uomTypeDao = new UomTypeDao();
     }
 
     /**
@@ -47,29 +43,18 @@ public class GrainAddEditDisplayServlet extends HttpServlet {
      */
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String url = "/jsp/editGrain.jsp";
+        String url = "/jsp/editWater.jsp";
 
         ComponentEntity component;
-        ComponentTypeEntity componentTypeEntity;
-        ComponentGrainEntity componentGrain;
+        ComponentWaterEntity componentWater;
 
-        List<GrainTypeEntity> grainTypes;
-        List<OriginEntity> origins;
-        List<SupplierEntity> suppliers;
+        List<UomTypeEntity> uomTypes;
 
         int componentId;
 
-        // get all potential grain types and attach them to the request
-        grainTypes = grainTypeDao.getAllGrainTypes();
-        request.setAttribute("grainTypes", grainTypes);
-
-        // get all potential origins and add them to the request
-        origins = originDao.getAllOrigins();
-        request.setAttribute("origins", origins);
-
-        // get all potential suppliers and add them to the request
-        suppliers = supplierDao.getAllSuppliers();
-        request.setAttribute("suppliers", suppliers);
+        // get all potential water types and attach them to the request
+        uomTypes = uomTypeDao.getUomTypeEntityByName("gal");
+        request.setAttribute("batchSizeUomTypes", uomTypes);
 
         RequestDispatcher dispatcher
                 = getServletContext().getRequestDispatcher(url);
@@ -82,11 +67,11 @@ public class GrainAddEditDisplayServlet extends HttpServlet {
             component = componentDao.getComponentEntity(componentId);
             if (component != null) {
                 request.setAttribute("component", component);
-                request.setAttribute("grain", component.getComponentGrain());
+                request.setAttribute("water", component.getComponentWater());
                 request.setAttribute("actionType", "edit");
                 dispatcher.forward(request, response);
             } else {
-                url = "/listAllGrains";
+                url = "/listAllWaters";
                 response.sendRedirect(url);
             }
         }

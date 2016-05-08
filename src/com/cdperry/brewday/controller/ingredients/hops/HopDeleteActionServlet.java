@@ -1,7 +1,6 @@
-package com.cdperry.brewday.controller.ingredients.grain;
+package com.cdperry.brewday.controller.ingredients.hops;
 
 import com.cdperry.brewday.persistence.*;
-import com.cdperry.brewday.entity.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,16 +16,16 @@ import java.io.IOException;
  *  @author Chris Perry
  */
 @WebServlet(
-        name = "GrainDeleteActionServlet",
-        urlPatterns = { "/deleteGrain" }
+        name = "HopDeleteActionServlet",
+        urlPatterns = { "/deleteHop" }
 )
-public class GrainDeleteActionServlet extends HttpServlet {
+public class HopDeleteActionServlet extends HttpServlet {
 
-    private ComponentGrainDao componentGrainDao;
+    private ComponentHopDao componentHopDao;
 
-    public GrainDeleteActionServlet() {
+    public HopDeleteActionServlet() {
         super();
-        componentGrainDao = new ComponentGrainDao();
+        componentHopDao = new ComponentHopDao();
     }
 
     /**
@@ -39,14 +38,14 @@ public class GrainDeleteActionServlet extends HttpServlet {
      */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String url = "/listAllGrains";
+        String url = "/listAllHops";
         int componentId = Integer.parseInt(request.getParameter("componentId"));
 
-        if (componentGrainDao.getComponentGrainEntity(componentId) != null) {
-            componentGrainDao.deleteComponentGrainEntityById(componentId);
+        if (componentHopDao.getComponentHopEntity(componentId) != null) {
+            componentHopDao.deleteComponentHopEntityById(componentId);
         }
 
-        request.setAttribute("grainIngredients", componentGrainDao.getAllComponentGrains());
+        request.setAttribute("hopIngredients", componentHopDao.getAllComponentHops());
         response.sendRedirect(url);
 
     }

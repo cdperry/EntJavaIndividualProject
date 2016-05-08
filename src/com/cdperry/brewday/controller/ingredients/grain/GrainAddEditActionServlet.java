@@ -26,14 +26,18 @@ import java.util.Date;
 )
 public class GrainAddEditActionServlet extends HttpServlet {
 
+    private ComponentDao componentDao;
     private ComponentGrainDao componentGrainDao;
+    private ComponentTypeDao componentTypeDao;
     private OriginDao originDao;
     private SupplierDao supplierDao;
     private GrainTypeDao grainTypeDao;
 
     public GrainAddEditActionServlet() {
         super();
+        componentDao = new ComponentDao();
         componentGrainDao = new ComponentGrainDao();
+        componentTypeDao = new ComponentTypeDao();
         originDao = new OriginDao();
         supplierDao = new SupplierDao();
         grainTypeDao = new GrainTypeDao();
@@ -49,43 +53,85 @@ public class GrainAddEditActionServlet extends HttpServlet {
      */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        ComponentGrainEntity grain = new ComponentGrainEntity();
+        ComponentEntity componentEntity;
+        ComponentGrainEntity componentGrainEntity;
+
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
-        String url = "/listAllGrain";
+        String url = "/listAllGrains";
 
-        /*
-        String recipeName = request.getParameter("recipeName");
-        String brewerName = request.getParameter("brewerName");
-        String recipeId = request.getParameter("recipeId");
         String buttonAction = request.getParameter("buttonAction");
-        String recipeTypeId = request.getParameter("recipeTypeId");
-        String batchSize = request.getParameter("batchSize");
-        String batchSizeUomId = request.getParameter("batchSizeUomId");
-        String equipmentProfileId = request.getParameter("equipmentProfileId");
+        String componentId = request.getParameter("componentId");
+        String grainName = request.getParameter("name");
+        String originId = request.getParameter("originId");
+        String supplierId = request.getParameter("supplierId");
+        String grainTypeId = request.getParameter("grainTypeId");
+        String color = request.getParameter("color");
+        String potential = request.getParameter("potential");
+        String notes = request.getParameter("notes");
 
-        recipe.setRecipeName(recipeName);
-        recipe.setBrewerName(brewerName);
-        recipe.setUpdateDate(ts);
-        recipe.setRecipeType(recipeTypeDao.getRecipeTypeEntity(Integer.parseInt(recipeTypeId)));
-        recipe.setBatchSize(new BigDecimal(batchSize));
-        recipe.setBatchSizeUom(uomTypeDao.getUomTypeEntity(Integer.parseInt(batchSizeUomId)));
-        recipe.setProfileEquipment(profileEquipmentDao.getProfileEquipmentEntity(Integer.parseInt(equipmentProfileId)));
+        if (color == null || color.isEmpty()) {
+            color = "0.0";
+        }
 
+        if (potential == null || potential.isEmpty()) {
+            potential = "1.0";
+        }
+
+        // TODO: address duplicate code
         if (buttonAction.equals("submit")) {
-            if (recipeId == null || recipeId.isEmpty()) {
-                recipe.setCreateDate(ts);
-                recipeDao.addRecipeEntity(recipe);
+            if (componentId == null || componentId.isEmpty()) {
+
+                componentEntity = new ComponentEntity();
+                componentGrainEntity = new ComponentGrainEntity();
+
+                componentEntity.setUpdateDate(ts);
+                componentEntity.setCreateDate(ts);
+
+                componentGrainEntity.setUpdateDate(ts);
+                componentGrainEntity.setCreateDate(ts);
+
+                componentGrainEntity.setName(grainName);
+                componentGrainEntity.setOrigin(originDao.getOriginEntity(Integer.parseInt(originId)));
+                componentGrainEntity.setSupplier(supplierDao.getSupplierEntity(Integer.parseInt(supplierId)));
+                componentGrainEntity.setGrainType(grainTypeDao.getGrainTypeEntity(Integer.parseInt(grainTypeId)));
+                componentGrainEntity.setColor(new BigDecimal(color));
+                componentGrainEntity.setPotential(new BigDecimal(potential));
+                componentGrainEntity.setNotes(notes);
+
+                // TODO: make this not hard-coded to 2 - Grain
+                componentEntity.setComponentType(componentTypeDao.getComponentTypeEntity(2));
+                // set the relationship between the ComponentEntity object and the ComponentGrainEntity object
+                componentEntity.setComponentGrain(componentGrainEntity);
+                componentGrainEntity.setComponentEntity(componentEntity);
+                // persist the ComponentEntity object which will also persist the ComponentGrainEntity object
+                componentDao.addComponentEntity(componentEntity);
             } else {
-                recipe.setRecipeId(Integer.parseInt(recipeId));
-                recipe.setCreateDate(Timestamp.valueOf(request.getParameter("createDate")));
-                recipeDao.updateRecipeEntity(recipe);
+
+                int id = Integer.parseInt(componentId);
+
+                componentEntity = componentDao.getComponentEntity(id);
+                componentGrainEntity = componentEntity.getComponentGrain();
+
+                componentEntity.setUpdateDate(ts);
+                componentGrainEntity.setUpdateDate(ts);
+                componentGrainEntity.setName(grainName);
+                componentGrainEntity.setOrigin(originDao.getOriginEntity(Integer.parseInt(originId)));
+                componentGrainEntity.setSupplier(supplierDao.getSupplierEntity(Integer.parseInt(supplierId)));
+                componentGrainEntity.setGrainType(grainTypeDao.getGrainTypeEntity(Integer.parseInt(grainTypeId)));
+                componentGrainEntity.setColor(new BigDecimal(color));
+                componentGrainEntity.setPotential(new BigDecimal(potential));
+                componentGrainEntity.setNotes(notes);
+
+                componentDao.updateComponentEntity(componentEntity);
+                componentGrainDao.updateComponentGrainEntity(componentGrainEntity);
+
             }
         }
 
-        request.setAttribute("recipes", recipeDao.getAllRecipes());
+        // TODO: Is this redundant?  Doesn't the 'list' servlet also do this?
+        request.setAttribute("grainIngredients", componentGrainDao.getAllComponentGrains());
         response.sendRedirect(url);
-        */
 
     }
 

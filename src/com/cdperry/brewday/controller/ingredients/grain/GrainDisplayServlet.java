@@ -13,13 +13,13 @@ import java.io.IOException;
 
 /**
  *  <p>
- *  This servlet is used to display the grains available for recipes
+ *  This servlet is used to display the grain available for recipes
  *  </p>
  *  @author Chris Perry
  */
 @WebServlet(
         name = "GrainDisplayServlet",
-        urlPatterns = { "/listAllGrain" }
+        urlPatterns = { "/listAllGrains" }
 )
 public class GrainDisplayServlet extends HttpServlet {
 
@@ -40,9 +40,9 @@ public class GrainDisplayServlet extends HttpServlet {
      */
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String url = "/jsp/listGrain.jsp";
+        String url = "/jsp/listGrains.jsp";
 
-        request.setAttribute("recipes", componentGrainDao.getAllComponentGrains());
+        request.setAttribute("grainIngredients", componentGrainDao.getAllComponentGrains());
         request.setAttribute("actionType", "list");
 
         RequestDispatcher dispatcher

@@ -29,21 +29,24 @@
                         <a href="/listAllHops">Hops</a>
                     </li>
                     <li>
-                        <a href="/listAllGrain">Grain</a>
+                        <a href="/listAllGrains">Grain</a>
                     </li>
                     <li>
-                        <a href="/listAllYeast">Yeast</a>
+                        <a href="/listAllYeasts">Yeast</a>
                     </li>
                     <li>
-                        <a href="/listAllWater">Water</a>
+                        <a href="/listAllWaters">Water</a>
                     </li>
                     <li>
-                        <a href="/listAllMisc">Miscellaneous</a>
+                        <a href="/listAllOthers">Miscellaneous</a>
                     </li>
                 </ul>
             </li>
             <li>
                 <a href="/equipment"><i class="fa fa-briefcase fa-fw"></i> Equipment</a>
+            </li>
+            <li>
+                <a href="/suppliers"><i class="fa fa-balance-scale fa-fw"></i> Suppliers</a>
             </li>
             <li>
                 <a href="/utilities"><i class="fa fa-balance-scale fa-fw"></i> Utilities</a>

@@ -1,4 +1,4 @@
-package com.cdperry.brewday.controller.ingredients.grain;
+package com.cdperry.brewday.controller.ingredients.other;
 
 import com.cdperry.brewday.entity.*;
 import com.cdperry.brewday.persistence.*;
@@ -14,27 +14,25 @@ import java.util.List;
 
 /**
  *  <p>
- *  This servlet is used to display the Add/Edit Grain Type page
+ *  This servlet is used to display the Add/Edit Other Type page
  *  </p>
  *  @author Chris Perry
  */
 @WebServlet(
-        name = "GrainAddEditDisplayServlet",
-        urlPatterns = { "/addGrain", "/editGrain" }
+        name = "OtherAddEditDisplayServlet",
+        urlPatterns = { "/addOther", "/editOther" }
 )
-public class GrainAddEditDisplayServlet extends HttpServlet {
+public class OtherAddEditDisplayServlet extends HttpServlet {
 
     private ComponentDao componentDao;
-    private OriginDao originDao;
-    private SupplierDao supplierDao;
-    private GrainTypeDao grainTypeDao;
+    private UseTypeDao useTypeDao;
+    private UomTypeDao uomTypeDao;
 
-    public GrainAddEditDisplayServlet() {
+    public OtherAddEditDisplayServlet() {
         super();
         componentDao = new ComponentDao();
-        originDao = new OriginDao();
-        supplierDao = new SupplierDao();
-        grainTypeDao = new GrainTypeDao();
+        useTypeDao = new UseTypeDao();
+        uomTypeDao = new UomTypeDao();
     }
 
     /**
@@ -47,29 +45,22 @@ public class GrainAddEditDisplayServlet extends HttpServlet {
      */
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String url = "/jsp/editGrain.jsp";
+        String url = "/jsp/editOther.jsp";
 
         ComponentEntity component;
-        ComponentTypeEntity componentTypeEntity;
-        ComponentGrainEntity componentGrain;
 
-        List<GrainTypeEntity> grainTypes;
-        List<OriginEntity> origins;
-        List<SupplierEntity> suppliers;
+        List<UseTypeEntity> useTypes;
+        List<UomTypeEntity> uomTypes;
 
         int componentId;
 
-        // get all potential grain types and attach them to the request
-        grainTypes = grainTypeDao.getAllGrainTypes();
-        request.setAttribute("grainTypes", grainTypes);
+        // get all potential other types and attach them to the request
+        useTypes = useTypeDao.getAllUseTypes();
+        request.setAttribute("otherTypes", useTypes);
 
-        // get all potential origins and add them to the request
-        origins = originDao.getAllOrigins();
-        request.setAttribute("origins", origins);
-
-        // get all potential suppliers and add them to the request
-        suppliers = supplierDao.getAllSuppliers();
-        request.setAttribute("suppliers", suppliers);
+        // get all potential other types and attach them to the request
+        uomTypes = uomTypeDao.getAllUomTypes();
+        request.setAttribute("uomTypes", uomTypes);
 
         RequestDispatcher dispatcher
                 = getServletContext().getRequestDispatcher(url);
@@ -82,11 +73,11 @@ public class GrainAddEditDisplayServlet extends HttpServlet {
             component = componentDao.getComponentEntity(componentId);
             if (component != null) {
                 request.setAttribute("component", component);
-                request.setAttribute("grain", component.getComponentGrain());
+                request.setAttribute("other", component.getComponentOther());
                 request.setAttribute("actionType", "edit");
                 dispatcher.forward(request, response);
             } else {
-                url = "/listAllGrains";
+                url = "/listAllOthers";
                 response.sendRedirect(url);
             }
         }

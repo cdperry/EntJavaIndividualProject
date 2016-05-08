@@ -2,7 +2,6 @@ package com.cdperry.brewday.controller.ingredients.yeast;
 
 import com.cdperry.brewday.persistence.ComponentYeastDao;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,43 +11,44 @@ import java.io.IOException;
 
 /**
  *  <p>
- *  This servlet is used to display the yeast available for recipes
+ *  This servlet is used to delete a yeast type and then display the list of remaining yeast types
  *  </p>
  *  @author Chris Perry
  */
 @WebServlet(
-        name = "YeastDisplayServlet",
-        urlPatterns = { "/listAllYeasts" }
+        name = "YeastDeleteActionServlet",
+        urlPatterns = { "/deleteYeast" }
 )
-public class YeastDisplayServlet extends HttpServlet {
+public class YeastDeleteActionServlet extends HttpServlet {
 
     private ComponentYeastDao componentYeastDao;
 
-    public YeastDisplayServlet() {
+    public YeastDeleteActionServlet() {
         super();
         componentYeastDao = new ComponentYeastDao();
     }
 
     /**
-     *  This method handles HTTP GET requests.
+     *  This method handles HTTP POST requests.
      *
      *  @param  request                   the HttpServletRequest object
      *  @param  response                   the HttpServletResponse object
      *  @exception  ServletException  if there is a Servlet failure
      *  @exception  IOException       if there is an IO failure
      */
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String url = "/jsp/listYeasts.jsp";
+        String url = "/listAllYeasts";
+        int componentId = Integer.parseInt(request.getParameter("componentId"));
+
+        if (componentYeastDao.getComponentYeastEntity(componentId) != null) {
+            componentYeastDao.deleteComponentYeastEntityById(componentId);
+        }
 
         request.setAttribute("yeastIngredients", componentYeastDao.getAllComponentYeasts());
-        request.setAttribute("actionType", "list");
-
-        RequestDispatcher dispatcher
-                = getServletContext().getRequestDispatcher(url);
-
-        dispatcher.forward(request, response);
+        response.sendRedirect(url);
 
     }
+
 
 }

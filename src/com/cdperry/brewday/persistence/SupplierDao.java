@@ -9,6 +9,8 @@ import java.util.*;
 
 /**
  * Created by cdperry on 4/3/16.
+ *
+ * TODO: Create GetAllSuppliersByCriteria to diff between labs or suppliers
  */
 public class SupplierDao {
 

@@ -1,4 +1,6 @@
-package com.cdperry.brewday.controller.ingredients.misc;
+package com.cdperry.brewday.controller.ingredients.other;
+
+import com.cdperry.brewday.persistence.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,15 +12,22 @@ import java.io.IOException;
 
 /**
  *  <p>
- *  This servlet is used to display the miscellaneous ingredients available for recipes
+ *  This servlet is used to display the other available for recipes
  *  </p>
  *  @author Chris Perry
  */
 @WebServlet(
-        name = "MiscDisplayServlet",
-        urlPatterns = { "/listAllMisc" }
+        name = "OtherDisplayServlet",
+        urlPatterns = { "/listAllOthers" }
 )
-public class MiscDisplayServlet extends HttpServlet {
+public class OtherDisplayServlet extends HttpServlet {
+
+    private ComponentOtherDao componentOtherDao;
+
+    public OtherDisplayServlet() {
+        super();
+        componentOtherDao = new ComponentOtherDao();
+    }
 
     /**
      *  This method handles HTTP GET requests.
@@ -30,7 +39,10 @@ public class MiscDisplayServlet extends HttpServlet {
      */
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String url = "/jsp/listMisc.jsp";
+        String url = "/jsp/listMiscs.jsp";
+
+        request.setAttribute("otherIngredients", componentOtherDao.getAllComponentOthers());
+        request.setAttribute("actionType", "list");
 
         RequestDispatcher dispatcher
                 = getServletContext().getRequestDispatcher(url);

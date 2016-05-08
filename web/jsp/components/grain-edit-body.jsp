@@ -9,12 +9,12 @@
 
     <div class="col-lg-12">
 
-        <form class="form-horizontal" method="POST" action='/doEditHop' name="frmAddHop">
+        <form class="form-horizontal" method="POST" action='/doEditGrain' name="frmAddGrain">
             <div class="form-group form-group-sm">
                 <label for="name" class="col-sm-1 control-label">Name</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="name" name="name"
-                           value="<c:out value="${hop.name}" />" />
+                           value="<c:out value="${grain.name}" />" />
                 </div>
                 <label for="componentId" class="col-sm-1 control-label">ID</label>
                 <div class="col-sm-1">
@@ -29,7 +29,7 @@
                     <select class="form-control" id="originId" name="originId">
                         <c:forEach items="${origins}" var="origin">
                             <option value="${origin.originId}"
-                                ${hop.origin.originId == origin.originId ? 'selected' : ''}>
+                                ${grain.origin.originId == origin.originId ? 'selected' : ''}>
                                 <c:out value="${origin.name}" />
                             </option>
                         </c:forEach>
@@ -40,7 +40,7 @@
                     <select class="form-control" id="supplierId" name="supplierId">
                         <c:forEach items="${suppliers}" var="supplier">
                             <option value="${supplier.supplierId}"
-                                ${hop.supplier.supplierId == supplier.supplierId ? 'selected' : ''}>
+                                ${grain.supplier.supplierId == supplier.supplierId ? 'selected' : ''}>
                                 <c:out value="${supplier.name}" />
                             </option>
                         </c:forEach>
@@ -48,46 +48,35 @@
                 </div>
             </div>
             <div class="form-group form-group-sm">
-                <label for="hopFormTypeId" class="col-sm-1 control-label">Form</label>
-                <div class="col-sm-2">
-                    <select class="form-control" id="hopFormTypeId" name="hopFormTypeId">
-                        <c:forEach items="${hopForms}" var="hopForm">
-                            <option value="${hopForm.hopFormTypeId}"
-                                ${hop.hopForm.hopFormTypeId == hopForm.hopFormTypeId ? 'selected' : ''}>
-                                <c:out value="${hopForm.name}" />
-                            </option>
-                        </c:forEach>
-                    </select>
-                </div>
-                <label for="hopTypeId" class="col-sm-1 control-label">Type</label>
+                <label for="grainTypeId" class="col-sm-1 control-label">Type</label>
                 <div class="col-sm-4">
-                    <select class="form-control" id="hopTypeId" name="hopTypeId">
-                        <c:forEach items="${hopTypes}" var="hopType">
-                            <option value="${hopType.hopTypeId}"
-                                ${hop.hopType.hopTypeId == hopType.hopTypeId ? 'selected' : ''}>
-                                <c:out value="${hopType.name}" />
+                    <select class="form-control" id="grainTypeId" name="grainTypeId">
+                        <c:forEach items="${grainTypes}" var="grainType">
+                            <option value="${grainType.grainTypeId}"
+                                ${grain.grainType.grainTypeId == grainType.grainTypeId ? 'selected' : ''}>
+                                <c:out value="${grainType.name}" />
                             </option>
                         </c:forEach>
                     </select>
                 </div>
             </div>
             <div class="form-group form-group-sm">
-                <label for="alphaPct" class="col-sm-1 control-label">Alpha %</label>
+                <label for="color" class="col-sm-2 control-label">Color (SRM)</label>
                 <div class="col-sm-1">
-                    <input type="text" class="form-control" id="alphaPct" name="alphaPct"
-                           value="<c:out value="${hop.alphaPct}" />" />
+                    <input type="text" class="form-control" id="color" name="color"
+                           value="<c:out value="${grain.color}" />" />
                 </div>
-                <label for="betaPct" class="col-sm-1 control-label">Beta %</label>
+                <label for="potential" class="col-sm-2 control-label">Potential (SG)</label>
                 <div class="col-sm-1">
-                    <input type="text" class="form-control" id="betaPct" name="betaPct"
-                           value="<c:out value="${hop.betaPct}" />" />
+                    <input type="text" class="form-control" id="potential" name="potential"
+                           value="<c:out value="${grain.potential}" />" />
                 </div>
             </div>
             <div class="form-group form-group-sm">
                 <label for="notes" class="col-sm-1 control-label">Notes</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="notes" name="notes"
-                           value="<c:out value="${hop.notes}" />" />
+                           value="<c:out value="${grain.notes}" />" />
                 </div>
             </div>
             <div class="form-group form-group-sm">
@@ -96,24 +85,24 @@
                     <input type="text" class="form-control" readonly="readonly" id="createDate"
                            name="createDate"
                            value="<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss"
-                                                    value="${hop.createDate}" />" />
+                                                    value="${grain.createDate}" />" />
                 </div>
                 <label for="updateDate" class="col-sm-1 control-label">Updated</label>
                 <div class="col-sm-3">
                     <input type="text" class="form-control" readonly="readonly" id="updateDate"
                            name="updateDate"
                            value="<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss"
-                                                    value="${hop.updateDate}" />" />
+                                                    value="${grain.updateDate}" />" />
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-1 col-sm-11">
                     <c:choose>
                         <c:when test="${actionType == 'edit'}">
-                            <c:set var="buttonText" scope="request" value="Update Hop"/>
+                            <c:set var="buttonText" scope="request" value="Update Grain"/>
                         </c:when>
                         <c:otherwise>
-                            <c:set var="buttonText" scope="request" value="Add Hop"/>
+                            <c:set var="buttonText" scope="request" value="Add Grain"/>
                         </c:otherwise>
                     </c:choose>
                     <%--<button type="submit" class="btn btn-default" name="button">${buttonText}</button>--%>

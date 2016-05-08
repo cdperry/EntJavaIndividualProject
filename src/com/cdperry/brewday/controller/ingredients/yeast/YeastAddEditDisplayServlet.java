@@ -1,4 +1,4 @@
-package com.cdperry.brewday.controller.ingredients.grain;
+package com.cdperry.brewday.controller.ingredients.yeast;
 
 import com.cdperry.brewday.entity.*;
 import com.cdperry.brewday.persistence.*;
@@ -14,27 +14,29 @@ import java.util.List;
 
 /**
  *  <p>
- *  This servlet is used to display the Add/Edit Grain Type page
+ *  This servlet is used to display the Add/Edit Yeast Type page
  *  </p>
  *  @author Chris Perry
  */
 @WebServlet(
-        name = "GrainAddEditDisplayServlet",
-        urlPatterns = { "/addGrain", "/editGrain" }
+        name = "YeastAddEditDisplayServlet",
+        urlPatterns = { "/addYeast", "/editYeast" }
 )
-public class GrainAddEditDisplayServlet extends HttpServlet {
+public class YeastAddEditDisplayServlet extends HttpServlet {
 
     private ComponentDao componentDao;
-    private OriginDao originDao;
     private SupplierDao supplierDao;
-    private GrainTypeDao grainTypeDao;
+    private YeastTypeDao yeastTypeDao;
+    private YeastFormDao yeastFormDao;
+    private YeastFlocTypeDao yeastFlocTypeDao;
 
-    public GrainAddEditDisplayServlet() {
+    public YeastAddEditDisplayServlet() {
         super();
         componentDao = new ComponentDao();
-        originDao = new OriginDao();
         supplierDao = new SupplierDao();
-        grainTypeDao = new GrainTypeDao();
+        yeastTypeDao = new YeastTypeDao();
+        yeastFormDao = new YeastFormDao();
+        yeastFlocTypeDao = new YeastFlocTypeDao();
     }
 
     /**
@@ -47,29 +49,39 @@ public class GrainAddEditDisplayServlet extends HttpServlet {
      */
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String url = "/jsp/editGrain.jsp";
+        String url = "/jsp/editYeast.jsp";
 
         ComponentEntity component;
         ComponentTypeEntity componentTypeEntity;
-        ComponentGrainEntity componentGrain;
+        ComponentYeastEntity componentYeast;
 
-        List<GrainTypeEntity> grainTypes;
-        List<OriginEntity> origins;
         List<SupplierEntity> suppliers;
+        List<SupplierEntity> laboratories;
+        List<YeastTypeEntity> yeastTypes;
+        List<YeastFormEntity> yeastForms;
+        List<YeastFlocTypeEntity> yeastFlocTypes;
 
         int componentId;
 
-        // get all potential grain types and attach them to the request
-        grainTypes = grainTypeDao.getAllGrainTypes();
-        request.setAttribute("grainTypes", grainTypes);
+        // get all potential yeast types and attach them to the request
+        yeastTypes = yeastTypeDao.getAllYeastTypes();
+        request.setAttribute("yeastTypes", yeastTypes);
 
-        // get all potential origins and add them to the request
-        origins = originDao.getAllOrigins();
-        request.setAttribute("origins", origins);
+        // get all potential yeast forms and attach them to the request
+        yeastForms = yeastFormDao.getAllYeastForms();
+        request.setAttribute("yeastForms", yeastForms);
+
+        // get all potential yeast flocculation types and attach them to the request
+        yeastFlocTypes = yeastFlocTypeDao.getAllYeastFlocTypes();
+        request.setAttribute("yeastFlocTypes", yeastFlocTypes);
 
         // get all potential suppliers and add them to the request
         suppliers = supplierDao.getAllSuppliers();
         request.setAttribute("suppliers", suppliers);
+
+        // get all potential suppliers and add them to the request
+        laboratories = supplierDao.getAllSuppliers();
+        request.setAttribute("laboratories", laboratories);
 
         RequestDispatcher dispatcher
                 = getServletContext().getRequestDispatcher(url);
@@ -82,11 +94,11 @@ public class GrainAddEditDisplayServlet extends HttpServlet {
             component = componentDao.getComponentEntity(componentId);
             if (component != null) {
                 request.setAttribute("component", component);
-                request.setAttribute("grain", component.getComponentGrain());
+                request.setAttribute("yeast", component.getComponentYeast());
                 request.setAttribute("actionType", "edit");
                 dispatcher.forward(request, response);
             } else {
-                url = "/listAllGrains";
+                url = "/listAllYeasts";
                 response.sendRedirect(url);
             }
         }

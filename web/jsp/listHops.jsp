@@ -27,7 +27,7 @@
                 var docElement = $(event.relatedTarget) // Element that triggered the modal
                 var id = docElement.data('id') // Extract info from data-* attributes
                 <%--$("#confirmedDelete").attr('href', '/deleteHop?hopId=' + id)--%>
-                $("#frmConfirmDelete").attr("action", "/deleteHop?hopId=" + id)
+                $("#frmConfirmDelete").attr("action", "/deleteHop?componentId=" + id)
             })
         </script>
 

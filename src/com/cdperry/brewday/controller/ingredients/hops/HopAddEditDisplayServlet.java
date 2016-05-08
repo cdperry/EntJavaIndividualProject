@@ -25,8 +25,6 @@ import java.util.List;
 public class HopAddEditDisplayServlet extends HttpServlet {
 
     private ComponentDao componentDao;
-    private ComponentTypeDao componentTypeDao;
-    private ComponentHopDao componentHopDao;
     private OriginDao originDao;
     private SupplierDao supplierDao;
     private HopTypeDao hopTypeDao;
@@ -36,8 +34,6 @@ public class HopAddEditDisplayServlet extends HttpServlet {
     public HopAddEditDisplayServlet() {
         super();
         componentDao = new ComponentDao();
-        componentTypeDao = new ComponentTypeDao();
-        componentHopDao = new ComponentHopDao();
         originDao = new OriginDao();
         supplierDao = new SupplierDao();
         hopTypeDao = new HopTypeDao();
@@ -66,10 +62,6 @@ public class HopAddEditDisplayServlet extends HttpServlet {
         List<SupplierEntity> suppliers;
 
         int componentId;
-
-        // get the 'hop' component type
-        // TODO: maybe change this to get by name instead of ID? This requires that the component types never change
-        componentTypeEntity = componentTypeDao.getComponentTypeEntity(1);
 
         // get all potential hop types and attach them to the request
         hopTypes = hopTypeDao.getAllHopTypes();
@@ -102,7 +94,7 @@ public class HopAddEditDisplayServlet extends HttpServlet {
                 request.setAttribute("actionType", "edit");
                 dispatcher.forward(request, response);
             } else {
-                url = "/hops";
+                url = "/listAllHops";
                 response.sendRedirect(url);
             }
         }

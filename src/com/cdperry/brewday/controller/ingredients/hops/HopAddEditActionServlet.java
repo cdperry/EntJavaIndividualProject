@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -31,6 +32,7 @@ public class HopAddEditActionServlet extends HttpServlet {
     private OriginDao originDao;
     private SupplierDao supplierDao;
     private HopTypeDao hopTypeDao;
+    private HopFormTypeDao hopFormTypeDao;
 
     public HopAddEditActionServlet() {
         super();
@@ -40,6 +42,7 @@ public class HopAddEditActionServlet extends HttpServlet {
         originDao = new OriginDao();
         supplierDao = new SupplierDao();
         hopTypeDao = new HopTypeDao();
+        hopFormTypeDao = new HopFormTypeDao();
     }
 
     /**
@@ -62,7 +65,23 @@ public class HopAddEditActionServlet extends HttpServlet {
         String buttonAction = request.getParameter("buttonAction");
         String componentId = request.getParameter("componentId");
         String hopName = request.getParameter("name");
+        String originId = request.getParameter("originId");
+        String supplierId = request.getParameter("supplierId");
+        String hopFormTypeId = request.getParameter("hopFormTypeId");
+        String hopTypeId = request.getParameter("hopTypeId");
+        String alphaPct = request.getParameter("alphaPct");
+        String betaPct = request.getParameter("betaPct");
+        String notes = request.getParameter("notes");
 
+        if (alphaPct == null || alphaPct.isEmpty()) {
+            alphaPct = "0.0";
+        }
+
+        if (betaPct == null || betaPct.isEmpty()) {
+            betaPct = "0.0";
+        }
+
+        // TODO: address duplicate code
         if (buttonAction.equals("submit")) {
             if (componentId == null || componentId.isEmpty()) {
 
@@ -76,6 +95,13 @@ public class HopAddEditActionServlet extends HttpServlet {
                 componentHopEntity.setCreateDate(ts);
 
                 componentHopEntity.setName(hopName);
+                componentHopEntity.setOrigin(originDao.getOriginEntity(Integer.parseInt(originId)));
+                componentHopEntity.setSupplier(supplierDao.getSupplierEntity(Integer.parseInt(supplierId)));
+                componentHopEntity.setHopForm(hopFormTypeDao.getHopFormTypeEntity(Integer.parseInt(hopFormTypeId)));
+                componentHopEntity.setHopType(hopTypeDao.getHopTypeEntity(Integer.parseInt(hopTypeId)));
+                componentHopEntity.setAlphaPct(new BigDecimal(alphaPct));
+                componentHopEntity.setBetaPct(new BigDecimal(betaPct));
+                componentHopEntity.setNotes(notes);
 
                 // TODO: make this not hard-coded to 1 - Hop
                 componentEntity.setComponentType(componentTypeDao.getComponentTypeEntity(1));
@@ -94,6 +120,13 @@ public class HopAddEditActionServlet extends HttpServlet {
                 componentEntity.setUpdateDate(ts);
                 componentHopEntity.setUpdateDate(ts);
                 componentHopEntity.setName(hopName);
+                componentHopEntity.setOrigin(originDao.getOriginEntity(Integer.parseInt(originId)));
+                componentHopEntity.setSupplier(supplierDao.getSupplierEntity(Integer.parseInt(supplierId)));
+                componentHopEntity.setHopForm(hopFormTypeDao.getHopFormTypeEntity(Integer.parseInt(hopFormTypeId)));
+                componentHopEntity.setHopType(hopTypeDao.getHopTypeEntity(Integer.parseInt(hopTypeId)));
+                componentHopEntity.setAlphaPct(new BigDecimal(alphaPct));
+                componentHopEntity.setBetaPct(new BigDecimal(betaPct));
+                componentHopEntity.setNotes(notes);
 
                 componentDao.updateComponentEntity(componentEntity);
                 componentHopDao.updateComponentHopEntity(componentHopEntity);
@@ -104,25 +137,6 @@ public class HopAddEditActionServlet extends HttpServlet {
         // TODO: Is this redundant?  Doesn't the 'list' servlet also do this?
         request.setAttribute("hopIngredients", componentHopDao.getAllComponentHops());
         response.sendRedirect(url);
-
-        /*
-        String recipeName = request.getParameter("recipeName");
-        String brewerName = request.getParameter("brewerName");
-
-        String recipeTypeId = request.getParameter("recipeTypeId");
-        String batchSize = request.getParameter("batchSize");
-        String batchSizeUomId = request.getParameter("batchSizeUomId");
-        String equipmentProfileId = request.getParameter("equipmentProfileId");
-
-        recipe.setRecipeName(recipeName);
-        recipe.setBrewerName(brewerName);
-        recipe.setUpdateDate(ts);
-        recipe.setRecipeType(recipeTypeDao.getRecipeTypeEntity(Integer.parseInt(recipeTypeId)));
-        recipe.setBatchSize(new BigDecimal(batchSize));
-        recipe.setBatchSizeUom(uomTypeDao.getUomTypeEntity(Integer.parseInt(batchSizeUomId)));
-        recipe.setProfileEquipment(profileEquipmentDao.getProfileEquipmentEntity(Integer.parseInt(equipmentProfileId)));
-
-        */
 
     }
 

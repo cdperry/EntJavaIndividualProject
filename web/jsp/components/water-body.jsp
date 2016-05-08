@@ -8,7 +8,7 @@
         <table class="table table-hover">
             <thead>
             <tr>
-                <th>Water</th>
+                <th>Water Name</th>
                 <th>Last Updated</th>
                 <th colspan=2 class="text-center">Action</th>
             </tr>
@@ -16,15 +16,15 @@
             <tbody>
             <c:forEach items="${waterIngredients}" var="water">
                 <tr>
-                    <td><c:out value="${water.waterName}" /></td>
+                    <td><c:out value="${water.name}" /></td>
                     <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${water.updateDate}" /></td>
                     <td class="text-center">
-                        <a href="/editWater?action=edit&waterId=<c:out value="${water.waterId}"/>">
+                        <a href="/editWater?action=edit&componentId=<c:out value="${water.compWaterId}"/>">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </a>
                     </td>
                     <td class="text-center">
-                        <a href="#" data-id="<c:out value="${water.waterId}"/>"
+                        <a href="#" data-id="<c:out value="${water.compWaterId}"/>"
                            data-toggle="modal" data-target="#myModal">
                             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                         </a>

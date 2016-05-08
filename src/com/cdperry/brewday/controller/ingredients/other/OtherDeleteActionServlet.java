@@ -1,7 +1,6 @@
-package com.cdperry.brewday.controller.ingredients.grain;
+package com.cdperry.brewday.controller.ingredients.other;
 
-import com.cdperry.brewday.persistence.*;
-import com.cdperry.brewday.entity.*;
+import com.cdperry.brewday.persistence.ComponentOtherDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,21 +11,21 @@ import java.io.IOException;
 
 /**
  *  <p>
- *  This servlet is used to delete a grain type and then display the list of remaining grain types
+ *  This servlet is used to delete a other type and then display the list of remaining other types
  *  </p>
  *  @author Chris Perry
  */
 @WebServlet(
-        name = "GrainDeleteActionServlet",
-        urlPatterns = { "/deleteGrain" }
+        name = "OtherDeleteActionServlet",
+        urlPatterns = { "/deleteOther" }
 )
-public class GrainDeleteActionServlet extends HttpServlet {
+public class OtherDeleteActionServlet extends HttpServlet {
 
-    private ComponentGrainDao componentGrainDao;
+    private ComponentOtherDao componentOtherDao;
 
-    public GrainDeleteActionServlet() {
+    public OtherDeleteActionServlet() {
         super();
-        componentGrainDao = new ComponentGrainDao();
+        componentOtherDao = new ComponentOtherDao();
     }
 
     /**
@@ -39,14 +38,14 @@ public class GrainDeleteActionServlet extends HttpServlet {
      */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String url = "/listAllGrains";
+        String url = "/listAllOthers";
         int componentId = Integer.parseInt(request.getParameter("componentId"));
 
-        if (componentGrainDao.getComponentGrainEntity(componentId) != null) {
-            componentGrainDao.deleteComponentGrainEntityById(componentId);
+        if (componentOtherDao.getComponentOtherEntity(componentId) != null) {
+            componentOtherDao.deleteComponentOtherEntityById(componentId);
         }
 
-        request.setAttribute("grainIngredients", componentGrainDao.getAllComponentGrains());
+        request.setAttribute("otherIngredients", componentOtherDao.getAllComponentOthers());
         response.sendRedirect(url);
 
     }
