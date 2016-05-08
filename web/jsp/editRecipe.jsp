@@ -25,7 +25,7 @@
             $('#modalAddGrain').on('show.bs.modal', function (event) {
                 var docElement = $(event.relatedTarget) // Element that triggered the modal
                 var id = docElement.data('id') // Extract info from data-* attributes
-                $("#frmAddGrain").attr("action", "/editRecipe?action=edit&recipeId=" + id)
+                $("#frmAddGrain").attr("action", "/doEditRecipeComponent?action=edit&recipeId=" + id)
             })
         </script>
 
