@@ -73,6 +73,14 @@ public class RecipeAddEditDisplayServlet extends HttpServlet {
         componentEntities = componentDao.getComponentsByType("Yeast");
         request.setAttribute("yeasts", componentEntities);
 
+        componentEntities = null;
+        componentEntities = componentDao.getComponentsByType("Water");
+        request.setAttribute("waters", componentEntities);
+
+        componentEntities = null;
+        componentEntities = componentDao.getComponentsByType("Other");
+        request.setAttribute("others", componentEntities);
+
         // get all potential recipe types and attach them to the request
         recipeTypes = recipeTypeDao.getAllRecipeTypes();
         request.setAttribute("recipeTypes", recipeTypes);
@@ -90,11 +98,9 @@ public class RecipeAddEditDisplayServlet extends HttpServlet {
                 = getServletContext().getRequestDispatcher(url);
 
         if (request.getParameter("action").equals("insert")) {
-            System.out.println("here");
             request.setAttribute("actionType", "insert");
             dispatcher.forward(request, response);
         } else {
-            System.out.println("there");
             recipeId = Integer.parseInt(request.getParameter("recipeId"));
             recipe = recipeDao.getRecipeEntity(recipeId);
             recipeComponents = recipe.getRecipeComponents();

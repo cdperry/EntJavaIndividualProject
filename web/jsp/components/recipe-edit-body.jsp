@@ -26,8 +26,8 @@
                 </div>
             </div>
             <div class="form-group form-group-sm">
-                <label for="recipeTypeId" class="col-sm-2 control-label">Recipe Type</label>
-                <div class="col-sm-4">
+                <label for="recipeTypeId" class="col-sm-1 control-label">Recipe Type</label>
+                <div class="col-sm-2">
                     <select class="form-control" id="recipeTypeId" name="recipeTypeId">
                         <c:forEach items="${recipeTypes}" var="recipeType">
                             <option value="${recipeType.recipeTypeId}"
@@ -56,7 +56,7 @@
 
             </div>
             <div class="form-group form-group-sm">
-                <label for="brewerName" class="col-sm-2 control-label">Brewer Name</label>
+                <label for="brewerName" class="col-sm-1 control-label">Brewer Name</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="brewerName" name="brewerName"
                            value="<c:out value="${recipe.brewerName}" />" />
@@ -64,7 +64,7 @@
             </div>
             <div class="form-group form-group-sm">
 
-                <label for="equipmentProfileId" class="col-sm-2 control-label">Equipment</label>
+                <label for="equipmentProfileId" class="col-sm-1 control-label">Equipment</label>
                 <div class="col-sm-4">
                     <select class="form-control" id="equipmentProfileId" name="equipmentProfileId">
                         <c:forEach items="${equipmentProfiles}" var="equipmentProfile">
@@ -121,7 +121,7 @@
         <table class="table table-hover">
             <thead>
             <tr>
-                <th>ID</th>
+                <th>Name</th>
                 <th>Amount</th>
                 <th colspan=2 class="text-center">Action</th>
             </tr>
@@ -129,7 +129,26 @@
             <tbody>
             <c:forEach items="${recipeComponents}" var="recipeComponent">
                 <tr>
-                    <td><c:out value="${recipeComponent.component.componentId}" /></td>
+                    <td>
+                        <c:choose>
+                            <c:when test="${recipeComponent.component.componentType.name == 'Grain'}">
+                                <c:out value="${recipeComponent.component.componentGrain.name}" />
+                            </c:when>
+                            <c:when test="${recipeComponent.component.componentType.name == 'Hop'}">
+                                <c:out value="${recipeComponent.component.componentHop.name}" />
+                            </c:when>
+                            <c:when test="${recipeComponent.component.componentType.name == 'Yeast'}">
+                                <c:out value="${recipeComponent.component.componentYeast.name}" />
+                            </c:when>
+                            <c:when test="${recipeComponent.component.componentType.name == 'Water'}">
+                                <c:out value="${recipeComponent.component.componentWater.name}" />
+                            </c:when>
+                            <c:when test="${recipeComponent.component.componentType.name == 'Other'}">
+                                <c:out value="${recipeComponent.component.componentOther.name}" />
+                            </c:when>
+                            <c:otherwise>Unknown</c:otherwise>
+                        </c:choose>
+                    </td>
                     <td><c:out value="${recipeComponent.amount}" /></td>
                     <td class="text-center">
                         <a href="/editRecipeComponent?action=edit&recipeId=
@@ -155,16 +174,27 @@
     <div class="col-lg-2">
 
         <div class="btn-group-vertical" role="group">
-            <%--<button type="button" class="btn btn-default"><a href="/editRecipeAddGrain?action=insert&recipeId=
-                                <c:out value="${recipe.recipeId}"/>">Add Grain</a></button>--%>
+
             <button type="button" class="btn btn-default">
                 <a href="#" data-id="<c:out value="${recipe.recipeId}"/>"
                    data-toggle="modal" data-target="#modalAddGrain">Add Grain</a>
             </button>
-            <button type="button" class="btn btn-default"><a href="/editRecipeAddHop">Add Hops</a></button>
-            <button type="button" class="btn btn-default"><a href="/editRecipeAddMisc">Add Misc</a></button>
-            <button type="button" class="btn btn-default"><a href="/editRecipeAddYeast">Add Yeast</a></button>
-            <button type="button" class="btn btn-default"><a href="/editRecipeAddWater">Add Water</a></button>
+            <button type="button" class="btn btn-default">
+                <a href="#" data-id="<c:out value="${recipe.recipeId}"/>"
+                   data-toggle="modal" data-target="#modalAddHop">Add Hop</a>
+            </button>
+            <button type="button" class="btn btn-default">
+                <a href="#" data-id="<c:out value="${recipe.recipeId}"/>"
+                   data-toggle="modal" data-target="#modalAddYeast">Add Yeast</a>
+            </button>
+            <button type="button" class="btn btn-default">
+                <a href="#" data-id="<c:out value="${recipe.recipeId}"/>"
+                   data-toggle="modal" data-target="#modalAddWater">Add Water</a>
+            </button>
+            <button type="button" class="btn btn-default">
+                <a href="#" data-id="<c:out value="${recipe.recipeId}"/>"
+                   data-toggle="modal" data-target="#modalAddOther">Add Other</a>
+            </button>
         </div>
 
     </div>
@@ -183,6 +213,7 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
+                                <th>ID</th>
                                 <th>Name</th>
                                 <th>Origin</th>
                                 <th>Type</th>
@@ -193,7 +224,9 @@
                         <tbody>
                             <div class="modal-body">
                                 <c:forEach items="${grains}" var="grain">
-                                    <tr>
+                                    <tr recipeId="<c:out value="${recipe.recipeId}"/>"
+                                        compId="<c:out value="${grain.componentId}"/>">
+                                        <td><c:out value="${grain.componentId}" /></td>
                                         <td><c:out value="${grain.componentGrain.name}" /></td>
                                         <td><c:out value="${grain.componentGrain.origin.name}" /></td>
                                         <td><c:out value="${grain.componentGrain.grainType.name}" /></td>
@@ -206,6 +239,186 @@
                     </table>
                     <div class="modal-footer">
                         <form class="form-horizontal" id="frmAddGrain" method="POST" action='#' name="frmAddGrain">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary" name="buttonAction"
+                                    value="submit">Add</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="modal fade" id="modalAddHop" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Add Hop</h4>
+                    </div>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Origin</th>
+                            <th>Type</th>
+                            <th>Alpha %</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <div class="modal-body">
+                            <c:forEach items="${hops}" var="hop">
+                                <tr recipeId="<c:out value="${recipe.recipeId}"/>"
+                                    compId="<c:out value="${hop.componentId}"/>">
+                                    <td><c:out value="${hop.componentId}" /></td>
+                                    <td><c:out value="${hop.componentHop.name}" /></td>
+                                    <td><c:out value="${hop.componentHop.origin.name}" /></td>
+                                    <td><c:out value="${hop.componentHop.hopType.name}" /></td>
+                                    <td><c:out value="${hop.componentHop.alphaPct}" /></td>
+                                </tr>
+                            </c:forEach>
+                        </div>
+                        </tbody>
+                    </table>
+                    <div class="modal-footer">
+                        <form class="form-horizontal" id="frmAddHop" method="POST" action='#' name="frmAddHop">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary" name="buttonAction"
+                                    value="submit">Add</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="modal fade" id="modalAddYeast" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Add Yeast</h4>
+                    </div>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Form</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <div class="modal-body">
+                            <c:forEach items="${yeasts}" var="yeast">
+                                <tr recipeId="<c:out value="${recipe.recipeId}"/>"
+                                    compId="<c:out value="${yeast.componentId}"/>">
+                                    <td><c:out value="${yeast.componentId}" /></td>
+                                    <td><c:out value="${yeast.componentYeast.name}" /></td>
+                                    <td><c:out value="${yeast.componentYeast.yeastType.name}" /></td>
+                                    <td><c:out value="${yeast.componentYeast.yeastForm.name}" /></td>
+                                </tr>
+                            </c:forEach>
+                        </div>
+                        </tbody>
+                    </table>
+                    <div class="modal-footer">
+                        <form class="form-horizontal" id="frmAddYeast" method="POST" action='#' name="frmAddYeast">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary" name="buttonAction"
+                                    value="submit">Add</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="modal fade" id="modalAddWater" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Add Water</h4>
+                    </div>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>pH</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <div class="modal-body">
+                            <c:forEach items="${waters}" var="water">
+                                <tr recipeId="<c:out value="${recipe.recipeId}"/>"
+                                    compId="<c:out value="${water.componentId}"/>">
+                                    <td><c:out value="${water.componentId}" /></td>
+                                    <td><c:out value="${water.componentWater.name}" /></td>
+                                    <td><c:out value="${water.componentWater.ph}" /></td>
+                                </tr>
+                            </c:forEach>
+                        </div>
+                        </tbody>
+                    </table>
+                    <div class="modal-footer">
+                        <form class="form-horizontal" id="frmAddWater" method="POST" action='#' name="frmAddWater">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary" name="buttonAction"
+                                    value="submit">Add</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="modal fade" id="modalAddOther" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Add Other Ingredient</h4>
+                    </div>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Use For</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <div class="modal-body">
+                            <c:forEach items="${others}" var="other">
+                                <tr recipeId="<c:out value="${recipe.recipeId}"/>"
+                                    compId="<c:out value="${other.componentId}"/>">
+                                    <td><c:out value="${other.componentId}" /></td>
+                                    <td><c:out value="${other.componentOther.name}" /></td>
+                                    <td><c:out value="${other.componentOther.useType.name}" /></td>
+                                    <td><c:out value="${other.componentOther.useFor}" /></td>
+                                </tr>
+                            </c:forEach>
+                        </div>
+                        </tbody>
+                    </table>
+                    <div class="modal-footer">
+                        <form class="form-horizontal" id="frmAddOther" method="POST" action='#' name="frmAddOther">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                             <button type="submit" class="btn btn-primary" name="buttonAction"
                                     value="submit">Add</button>

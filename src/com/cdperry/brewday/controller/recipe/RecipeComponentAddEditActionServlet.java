@@ -59,6 +59,8 @@ public class RecipeComponentAddEditActionServlet extends HttpServlet {
         Timestamp ts = new Timestamp(now.getTime());
 
         String recipeId = request.getParameter("recipeId");
+        String componentId = request.getParameter("componentId");
+        System.out.println("Component: " + componentId);
         String url = "/editRecipe?action=edit&recipeId=" + recipeId;
 
         recipeEntity = recipeDao.getRecipeEntity(Integer.parseInt(recipeId));
@@ -71,7 +73,7 @@ public class RecipeComponentAddEditActionServlet extends HttpServlet {
         recipeEntity.getRecipeComponents().add(recipeComponentEntity);
 
         // TODO: get this dynamically from the selected row in the table
-        componentEntity = componentDao.getComponentEntity(225);
+        componentEntity = componentDao.getComponentEntity(Integer.parseInt(componentId));
 
         // add a RecipeComponentEntity <> ComponentEntity relationship
         recipeComponentEntity.setComponent(componentEntity);
