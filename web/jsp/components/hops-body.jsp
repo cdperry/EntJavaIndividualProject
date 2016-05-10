@@ -8,15 +8,15 @@
         <table id="example" class="table table-hover">
 
             <thead>
-            <tr>
-                <th>Name</th>
-                <th>Origin</th>
-                <th>Alpha %</th>
-                <th>Type</th>
-                <th>Last Updated</th>
-                <th class="text-right">Action</th>
-                <th></th>
-            </tr>
+                <tr>
+                    <th>Name</th>
+                    <th>Origin</th>
+                    <th>Alpha %</th>
+                    <th>Type</th>
+                    <th>Last Updated</th>
+                    <th></th>
+                    <th></th>
+                </tr>
             </thead>
             <tbody>
             <c:forEach items="${hopIngredients}" var="hop">
@@ -31,7 +31,7 @@
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </a>
                     </td>
-                    <td class="text-left">
+                    <td class="text-center">
                         <a href="#" data-id="<c:out value="${hop.compHopId}"/>"
                            data-toggle="modal" data-target="#myModal">
                             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>

@@ -60,42 +60,39 @@ public class RecipeComponentAddEditActionServlet extends HttpServlet {
 
         String recipeId = request.getParameter("recipeId");
         String componentId = request.getParameter("componentId");
-        System.out.println("Component: " + componentId);
+        String buttonAction = request.getParameter("buttonAction");
+        String amount = request.getParameter("amount");
+        String amountUomId = request.getParameter("amountUomId");
         String url = "/editRecipe?action=edit&recipeId=" + recipeId;
+
+        if (amount == null || amount.isEmpty()) {
+            amount = "0";
+        }
+
+        // TODO: temporary- remove this
+        if (amountUomId == null || amountUomId.isEmpty()) {
+            amountUomId = "0";
+        }
 
         recipeEntity = recipeDao.getRecipeEntity(Integer.parseInt(recipeId));
 
         recipeComponentEntity = new RecipeComponentEntity(ts, ts);
-        recipeComponentEntity.setAmount(new BigDecimal("1.0"));
+        recipeComponentEntity.setAmount(new BigDecimal(amount));
+        recipeComponentEntity.setAmountUom(uomTypeDao.getUomTypeEntity(Integer.parseInt(amountUomId)));
 
         // add a RecipeEntity > RecipeComponentEntity
         recipeComponentEntity.setRecipeEntity(recipeEntity);
         recipeEntity.getRecipeComponents().add(recipeComponentEntity);
 
-        // TODO: get this dynamically from the selected row in the table
         componentEntity = componentDao.getComponentEntity(Integer.parseInt(componentId));
 
         // add a RecipeComponentEntity <> ComponentEntity relationship
         recipeComponentEntity.setComponent(componentEntity);
-        //componentEntity.getRecipeComponents().add(recipeComponentEntity);
 
-        //recipeComponentDao.addRecipeComponentEntity(recipeComponentEntity);
-        recipeDao.updateRecipeEntity(recipeEntity);
-
-        /*
+        // TODO: don't allow add if no row is selected - disable the Add button with jQuery?
         if (buttonAction.equals("submit")) {
-            if (recipeId == null || recipeId.isEmpty()) {
-                recipe.setCreateDate(ts);
-                recipeDao.addRecipeEntity(recipe);
-            } else {
-                recipe.setRecipeId(Integer.parseInt(recipeId));
-                recipe.setCreateDate(Timestamp.valueOf(request.getParameter("createDate")));
-                recipeDao.updateRecipeEntity(recipe);
-            }
+            recipeDao.updateRecipeEntity(recipeEntity);
         }
-
-        request.setAttribute("recipes", recipeDao.getAllRecipes());
-        */
 
         response.sendRedirect(url);
 

@@ -21,64 +21,7 @@
 
         <c:import url="components/main-scripts.jsp" />
 
-        <script>
-
-            $('#modalAddGrain tr').click(function (event) {
-                var compId = $(this).attr('compId');
-                var recipeId = $(this).attr('recipeId');
-                var url = "/doEditRecipeComponent?action=edit&recipeId=" + recipeId + "&componentId=" + compId;
-                //alert(url); //trying to alert id of the clicked row
-                $("#frmAddGrain").attr("action", url);
-                $(this).addClass('info').siblings().removeClass('info');
-            });
-
-            $('#modalAddHop tr').click(function (event) {
-                var compId = $(this).attr('compId');
-                var recipeId = $(this).attr('recipeId');
-                var url = "/doEditRecipeComponent?action=edit&recipeId=" + recipeId + "&componentId=" + compId;
-                //alert(url); //trying to alert id of the clicked row
-                $("#frmAddHop").attr("action", url);
-                $(this).addClass('info').siblings().removeClass('info');
-            });
-
-            $('#modalAddYeast tr').click(function (event) {
-                var compId = $(this).attr('compId');
-                var recipeId = $(this).attr('recipeId');
-                var url = "/doEditRecipeComponent?action=edit&recipeId=" + recipeId + "&componentId=" + compId;
-                //alert(url); //trying to alert id of the clicked row
-                $("#frmAddYeast").attr("action", url);
-                $(this).addClass('info').siblings().removeClass('info');
-            });
-
-            $('#modalAddWater tr').click(function (event) {
-                var compId = $(this).attr('compId');
-                var recipeId = $(this).attr('recipeId');
-                var url = "/doEditRecipeComponent?action=edit&recipeId=" + recipeId + "&componentId=" + compId;
-                //alert(url); //trying to alert id of the clicked row
-                $("#frmAddWater").attr("action", url);
-                $(this).addClass('info').siblings().removeClass('info');
-            });
-
-            $('#modalAddOther tr').click(function (event) {
-                var compId = $(this).attr('compId');
-                var recipeId = $(this).attr('recipeId');
-                var url = "/doEditRecipeComponent?action=edit&recipeId=" + recipeId + "&componentId=" + compId;
-                //alert(url); //trying to alert id of the clicked row
-                $("#frmAddOther").attr("action", url);
-                $(this).addClass('info').siblings().removeClass('info');
-            });
-
-            $('#deleteRecipeComponentModal').on('show.bs.modal', function (event) {
-                var docElement = $(event.relatedTarget); // Element that triggered the modal
-                var recipeId = docElement.data('recipeid');
-                var componentId = docElement.data('componentid');
-                var url = "/deleteRecipeComponent?action=edit&recipeId=" + recipeId + "&recipeComponentId="
-                        + componentId;
-                alert(url);
-                $("#frmConfirmDelete").attr("action", url)
-            });
-
-        </script>
+        <c:import url="components/recipe-edit-scripts.jsp" />
 
     </body>
 

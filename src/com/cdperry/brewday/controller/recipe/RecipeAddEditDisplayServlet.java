@@ -54,6 +54,7 @@ public class RecipeAddEditDisplayServlet extends HttpServlet {
         String url = "/jsp/editRecipe.jsp";
         List<RecipeTypeEntity> recipeTypes;
         List<UomTypeEntity> uomTypes;
+        List<UomTypeEntity> componentUomTypes;
         List<ProfileEquipmentEntity> equipmentProfiles;
         List<ComponentEntity> componentEntities;
 
@@ -93,6 +94,10 @@ public class RecipeAddEditDisplayServlet extends HttpServlet {
         // one to the request
         uomTypes = uomTypeDao.getUomTypeEntityByName("gal");
         request.setAttribute("uomTypes", uomTypes);
+
+        // get all units of measure and attach them to the request
+        componentUomTypes = uomTypeDao.getAllUomTypes();
+        request.setAttribute("componentUomTypes", componentUomTypes);
 
         RequestDispatcher dispatcher
                 = getServletContext().getRequestDispatcher(url);
