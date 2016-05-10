@@ -164,7 +164,7 @@ public class WaterAddEditActionServlet extends HttpServlet {
                 componentWaterEntity.setBatchSize(new BigDecimal(batchSize));
                 componentWaterEntity.setNotes(notes);
 
-                // TODO: make this not hard-coded to 4 - Water
+                // TODO: Perhaps put the component type for water into a property?
                 componentEntity.setComponentType(componentTypeDao.getComponentTypeEntity(4));
                 // set the relationship between the ComponentEntity object and the ComponentWaterEntity object
                 componentEntity.setComponentWater(componentWaterEntity);

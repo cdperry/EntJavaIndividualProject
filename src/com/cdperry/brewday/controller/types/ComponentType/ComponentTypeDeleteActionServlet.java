@@ -41,7 +41,9 @@ public class ComponentTypeDeleteActionServlet extends HttpServlet {
         String url = "/listComponentTypes";
         int componentTypeId = Integer.parseInt(request.getParameter("componentTypeId"));
 
-        if (componentTypeDao.getComponentTypeEntity(componentTypeId) != null) {
+        // TODO: maybe put the '100' in a .properties file?
+        // TODO: send an error message when trying to delete a system type
+        if (componentTypeDao.getComponentTypeEntity(componentTypeId) != null && componentTypeId >= 100 ) {
             componentTypeDao.deleteComponentTypeEntityById(componentTypeId);
         }
 

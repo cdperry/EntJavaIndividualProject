@@ -99,7 +99,7 @@ public class GrainAddEditActionServlet extends HttpServlet {
                 componentGrainEntity.setPotential(new BigDecimal(potential));
                 componentGrainEntity.setNotes(notes);
 
-                // TODO: make this not hard-coded to 2 - Grain
+                // TODO: Perhaps put the component type for grain into a property?
                 componentEntity.setComponentType(componentTypeDao.getComponentTypeEntity(2));
                 // set the relationship between the ComponentEntity object and the ComponentGrainEntity object
                 componentEntity.setComponentGrain(componentGrainEntity);

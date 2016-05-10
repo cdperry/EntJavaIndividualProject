@@ -41,7 +41,9 @@ public class UomTypeDeleteActionServlet extends HttpServlet {
         String url = "/listUomTypes";
         int uomId = Integer.parseInt(request.getParameter("uomId"));
 
-        if (uomTypeDao.getUomTypeEntity(uomId) != null) {
+        // TODO: maybe put the '100' in a .properties file?
+        // TODO: send an error message when trying to delete a system type
+        if (uomTypeDao.getUomTypeEntity(uomId) != null && uomId >= 100) {
             uomTypeDao.deleteUomTypeEntityById(uomId);
         }
 

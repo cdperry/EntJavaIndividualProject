@@ -20,6 +20,8 @@
 
     <!-- Datatables CSS -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.11/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.0.2/css/responsive.bootstrap.min.css">
 
     <!-- Timeline CSS -->
     <link href="../../dist/css/timeline.css" rel="stylesheet">

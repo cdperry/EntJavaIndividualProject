@@ -126,7 +126,7 @@ public class YeastAddEditActionServlet extends HttpServlet {
                 componentYeastEntity.setCellsPerPack(new BigDecimal(cellsPerPack));
                 componentYeastEntity.setNotes(notes);
 
-                // TODO: make this not hard-coded to 3 - Yeast
+                // TODO: Perhaps put the component type for yeast into a property?
                 componentEntity.setComponentType(componentTypeDao.getComponentTypeEntity(3));
                 // set the relationship between the ComponentEntity object and the ComponentYeastEntity object
                 componentEntity.setComponentYeast(componentYeastEntity);

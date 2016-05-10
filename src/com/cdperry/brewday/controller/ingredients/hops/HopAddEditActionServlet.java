@@ -103,7 +103,7 @@ public class HopAddEditActionServlet extends HttpServlet {
                 componentHopEntity.setBetaPct(new BigDecimal(betaPct));
                 componentHopEntity.setNotes(notes);
 
-                // TODO: make this not hard-coded to 1 - Hop
+                // TODO: Perhaps put the component type for hop into a property?
                 componentEntity.setComponentType(componentTypeDao.getComponentTypeEntity(1));
                 // set the relationship between the ComponentEntity object and the ComponentHopEntity object
                 componentEntity.setComponentHop(componentHopEntity);

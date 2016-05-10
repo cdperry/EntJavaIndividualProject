@@ -9,6 +9,7 @@
             <generator class="native"/>
         </id>
         <property name="amount" column="amount"/>
+        <property name="time" column="time"/>
         <property name="updateDate" column="update_date"/>
         <property name="createDate" column="create_date"/>
         <!--<property name="recipeId" column="recipe_id"/>-->
@@ -25,6 +26,9 @@
                      not-found="ignore" />-->
         <many-to-one name="amountUom" class="com.cdperry.brewday.entity.UomTypeEntity"
                      column="amount_uom_id" unique="true" not-null="false" lazy="false"
+                     not-found="ignore" />
+        <many-to-one name="timeUom" class="com.cdperry.brewday.entity.UomTypeEntity"
+                     column="time_uom_id" unique="true" not-null="false" lazy="false"
                      not-found="ignore" />
     </class>
 </hibernate-mapping>

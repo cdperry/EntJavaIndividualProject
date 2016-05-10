@@ -582,6 +582,27 @@ ALTER TABLE PROFILE_EQUIPMENT
         ON UPDATE CASCADE;
 COMMIT;
 
+ALTER TABLE UOM_TYPE
+    AUTO_INCREMENT=100;
+COMMIT;
+
+INSERT INTO UOM_TYPE(uom_id, name, update_date, create_date) VALUES (1, "gal", now(), now());
+INSERT INTO UOM_TYPE(uom_id, name, update_date, create_date) VALUES (2, "ea", now(), now());
+INSERT INTO UOM_TYPE(uom_id, name, update_date, create_date) VALUES (3, "oz", now(), now());
+INSERT INTO UOM_TYPE(uom_id, name, update_date, create_date) VALUES (4, "day", now(), now());
+INSERT INTO UOM_TYPE(uom_id, name, update_date, create_date) VALUES (5, "pkg", now(), now());
+INSERT INTO UOM_TYPE(uom_id, name, update_date, create_date) VALUES (6, "lbs", now(), now());
+INSERT INTO UOM_TYPE(uom_id, name, update_date, create_date) VALUES (7, "tsp", now(), now());
+INSERT INTO UOM_TYPE(uom_id, name, update_date, create_date) VALUES (8, "min", now(), now());
+commit;
+
+INSERT INTO COMPONENT_TYPE(component_type_id, name, update_date, create_date) VALUES (1, 'Hop', now(), now());
+INSERT INTO COMPONENT_TYPE(component_type_id, name, update_date, create_date) VALUES (2, 'Grain', now(), now());
+INSERT INTO COMPONENT_TYPE(component_type_id, name, update_date, create_date) VALUES (3, 'Yeast', now(), now());
+INSERT INTO COMPONENT_TYPE(component_type_id, name, update_date, create_date) VALUES (4, 'Water', now(), now());
+INSERT INTO COMPONENT_TYPE(component_type_id, name, update_date, create_date) VALUES (5, 'Other', now(), now());
+commit;
+
 GRANT ALL PRIVILEGES ON BREWDAY.* TO 'admin'@'localhost';
 
 COMMIT;

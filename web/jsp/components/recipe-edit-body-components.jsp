@@ -5,13 +5,15 @@
 
     <div class="col-lg-12">
 
-        <table id="recipeComponents" class="table table-hover">
+        <table id="recipeComponents" class="table table-hover dt-responsive nowrap">
             <thead>
             <tr>
                 <th>Type</th>
                 <th>Name</th>
                 <th>Amount</th>
-                <th>UOM</th>
+                <th>Amount UOM</th>
+                <th>Time</th>
+                <th>Time UOM</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -42,6 +44,8 @@
                     </td>
                     <td><c:out value="${recipeComponent.amount}" /></td>
                     <td><c:out value="${recipeComponent.amountUom.name}" /></td>
+                    <td><c:out value="${recipeComponent.time}" /></td>
+                    <td><c:out value="${recipeComponent.timeUom.name}" /></td>
                     <%--
                     <td class="text-center">
                         <a href="/editRecipeComponent?action=edit&recipeId=
@@ -54,16 +58,19 @@
                     --%>
                     <td class="text-center">
                         <a href="#" data-recipeid="<c:out value="${recipe.recipeId}"/>"
-                           data-componentid="<c:out value="${recipeComponent.recipeComponentId}"/>"
+                           data-recipecomponentid="<c:out value="${recipeComponent.recipeComponentId}"/>"
                            data-amount="<c:out value="${recipeComponent.amount}"/>"
                            data-amountuomid="<c:out value="${recipeComponent.amountUom.uomId}"/>"
+                           data-time="<c:out value="${recipeComponent.time}"/>"
+                           data-timeuomid="<c:out value="${recipeComponent.timeUom.uomId}"/>"
+                           data-componenttypename="<c:out value="${recipeComponent.component.componentType.name}"/>"
                            data-toggle="modal" data-target="#editRecipeComponentModal">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </a>
                     </td>
                     <td class="text-center">
                         <a href="#" data-recipeid="<c:out value="${recipe.recipeId}"/>"
-                           data-componentid="<c:out value="${recipeComponent.recipeComponentId}"/>"
+                           data-recipecomponentid="<c:out value="${recipeComponent.recipeComponentId}"/>"
                            data-toggle="modal" data-target="#deleteRecipeComponentModal">
                             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                         </a>

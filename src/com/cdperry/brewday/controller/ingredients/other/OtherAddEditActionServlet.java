@@ -107,7 +107,7 @@ public class OtherAddEditActionServlet extends HttpServlet {
                 componentOtherEntity.setTimeUom(uomTypeDao.getUomTypeEntity(Integer.parseInt(timeUomId)));
                 componentOtherEntity.setNotes(notes);
 
-                // TODO: make this not hard-coded to 5 - Other
+                // TODO: Perhaps put the component type for other into a property?
                 componentEntity.setComponentType(componentTypeDao.getComponentTypeEntity(5));
                 // set the relationship between the ComponentEntity object and the ComponentOtherEntity object
                 componentEntity.setComponentOther(componentOtherEntity);

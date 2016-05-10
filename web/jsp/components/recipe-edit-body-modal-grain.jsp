@@ -11,16 +11,16 @@
                         <h4 class="modal-title">Add Grain</h4>
                     </div>
                     <div class="modal-body">
-                        <table class="table table-hover">
+                        <table id="grainListTbl" class="table table-hover dt-responsive" width="100%">
                             <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Origin</th>
-                                <th>Type</th>
-                                <th>Color</th>
-                                <th>Potential</th>
-                            </tr>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Origin</th>
+                                    <th>Type</th>
+                                    <th>Color</th>
+                                    <th>Potential</th>
+                                </tr>
                             </thead>
                             <tbody>
                                 <c:forEach items="${grains}" var="grain">
@@ -39,7 +39,7 @@
                     </div>
                     <div class="modal-footer">
                         <form class="form-inline" id="frmAddGrain" method="POST" action='#' name="frmAddGrain">
-                            <div class="form-group">
+                            <div class="form-group addGrain">
                                 <label class="sr-only" for="amount">Amount</label>
                                 <input type="number" class="form-control" id="amount" name="amount"/>
                                 <select class="form-control" id="amountUomId" name="amountUomId">

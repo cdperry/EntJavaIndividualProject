@@ -73,9 +73,7 @@
                     </select>
                 </div>
             </div>
-            <div class="form-group form-group-sm">
 
-            </div>
             <div class="form-group form-group-sm">
                 <label for="createDate" class="col-sm-1 control-label">Created</label>
                 <div class="col-sm-3">
@@ -93,21 +91,6 @@
                 </div>
             </div>
             <div class="form-group form-group-sm">
-                <div class="col-sm-offset-1 col-sm-5">
-                    <c:choose>
-                        <c:when test="${actionType == 'edit'}">
-                            <c:set var="buttonText" scope="request" value="Update Recipe"/>
-                        </c:when>
-                        <c:otherwise>
-                            <c:set var="buttonText" scope="request" value="Add Recipe"/>
-                        </c:otherwise>
-                    </c:choose>
-                    <%--<button type="submit" class="btn btn-default" name="button">${buttonText}</button>--%>
-                    <button type="submit" class="btn btn-sm btn-default" name="buttonAction"
-                            value="cancel">Cancel</button>
-                    <button type="submit" class="btn btn-sm btn-primary" name="buttonAction"
-                            value="submit">${buttonText}</button>
-                </div>
 
                 <div class="btn-group btn-group-sm col-sm-6" role="group">
 
@@ -131,6 +114,22 @@
                         <a href="#" data-id="<c:out value="${recipe.recipeId}"/>"
                            data-toggle="modal" data-target="#modalAddOther">Add Other</a>
                     </button>
+                </div>
+
+                <div class="col-sm-offset-3 col-sm-3 text-right">
+                    <c:choose>
+                        <c:when test="${actionType == 'edit'}">
+                            <c:set var="buttonText" scope="request" value="Update Recipe"/>
+                        </c:when>
+                        <c:otherwise>
+                            <c:set var="buttonText" scope="request" value="Add Recipe"/>
+                        </c:otherwise>
+                    </c:choose>
+                    <%--<button type="submit" class="btn btn-default" name="button">${buttonText}</button>--%>
+                    <button type="submit" class="btn btn-sm btn-default" name="buttonAction"
+                            value="cancel">Cancel</button>
+                    <button type="submit" class="btn btn-sm btn-primary" name="buttonAction"
+                            value="submit">${buttonText}</button>
                 </div>
 
             </div>

@@ -1,0 +1,440 @@
+CREATE DATABASE BREWDAY;
+
+COMMIT;
+
+USE BREWDAY;
+
+CREATE TABLE AUTHORIZATION
+(
+    authorization_id INT(11) PRIMARY KEY NOT NULL,
+    user_id INT(11),
+    recipe_id INT(11),
+    update_date DATETIME,
+    create_date DATETIME
+);
+
+
+CREATE TABLE USER
+(
+    user_id INT(11) NOT NULL,
+    user_name VARCHAR(255) NOT NULL,
+    user_pass VARCHAR(255),
+    CONSTRAINT `PRIMARY` PRIMARY KEY (user_id, user_name)
+);
+
+
+CREATE TABLE USER_ROLES
+(
+    user_role_id INT(11) NOT NULL,
+    user_name VARCHAR(255) NOT NULL,
+    role_name VARCHAR(255) NOT NULL,
+    CONSTRAINT `PRIMARY` PRIMARY KEY (user_role_id, user_name, role_name)
+);
+
+
+CREATE TABLE SUPPLIER_TYPE
+(
+    supplier_type_id INT(11) PRIMARY KEY NOT NULL,
+    name VARCHAR(255),
+    update_date DATETIME,
+    create_date DATETIME
+);
+
+
+CREATE TABLE UOM_TYPE
+(
+    uom_id INT(11) PRIMARY KEY NOT NULL,
+    name VARCHAR(255),
+    update_date DATETIME,
+    create_date DATETIME
+);
+
+CREATE TABLE COMPONENT_TYPE
+(
+    component_type_id INT(11) PRIMARY KEY NOT NULL,
+    name VARCHAR(255),
+    update_date DATETIME,
+    create_date DATETIME
+);
+
+
+CREATE TABLE GRAIN_TYPE
+(
+    grain_type_id INT(11) PRIMARY KEY NOT NULL,
+    name VARCHAR(255),
+    update_date DATETIME,
+    create_date DATETIME
+);
+
+
+CREATE TABLE HOP_FORM_TYPE
+(
+    hop_form_type_id INT(11) PRIMARY KEY NOT NULL,
+    name VARCHAR(255),
+    update_date DATETIME,
+    create_date DATETIME
+);
+
+
+CREATE TABLE HOP_TYPE
+(
+    hop_type_id INT(11) PRIMARY KEY NOT NULL,
+    name VARCHAR(255),
+    update_date DATETIME,
+    create_date DATETIME
+);
+
+
+CREATE TABLE ORIGIN
+(
+    origin_id INT(11) PRIMARY KEY NOT NULL,
+    name VARCHAR(255),
+    update_date DATETIME,
+    create_date DATETIME
+);
+
+
+CREATE TABLE RECIPE_TYPE
+(
+    recipe_type_id INT(11) PRIMARY KEY NOT NULL,
+    name VARCHAR(255),
+    update_date DATETIME,
+    create_date DATETIME
+);
+
+
+CREATE TABLE USE_TYPE
+(
+    use_type_id INT(11) PRIMARY KEY NOT NULL,
+    name VARCHAR(255),
+    update_date DATETIME,
+    create_date DATETIME
+);
+
+
+CREATE TABLE YEAST_FLOC_TYPE
+(
+    yeast_floc_type_id INT(11) PRIMARY KEY NOT NULL,
+    name VARCHAR(255),
+    update_date DATETIME,
+    create_date DATETIME
+);
+
+
+CREATE TABLE YEAST_FORM
+(
+    yeast_form_id INT(11) PRIMARY KEY NOT NULL,
+    name VARCHAR(255),
+    update_date DATETIME,
+    create_date DATETIME
+);
+
+
+CREATE TABLE YEAST_TYPE
+(
+    yeast_type_id INT(11) PRIMARY KEY NOT NULL,
+    name VARCHAR(255),
+    update_date DATETIME,
+    create_date DATETIME
+);
+
+
+CREATE TABLE SUPPLIER
+(
+    supplier_id INT(11) PRIMARY KEY NOT NULL,
+    supplier_type_id INT(11),
+    name VARCHAR(255),
+    url VARCHAR(255),
+    email VARCHAR(255),
+    phone VARCHAR(255),
+    contact_name VARCHAR(255),
+    notes VARCHAR(255),
+    update_date DATETIME,
+    create_date DATETIME,
+    CONSTRAINT FK_SUPPLIER_SUPPLIER_TYPE_1 FOREIGN KEY (supplier_type_id) REFERENCES SUPPLIER_TYPE (supplier_type_id)
+);
+/* CREATE INDEX FK_SUPPLIER_SUPPLIER_TYPE_1 ON SUPPLIER (supplier_type_id); */
+
+
+CREATE TABLE PROFILE_EQUIPMENT
+(
+    profile_equipment_id INT(11) PRIMARY KEY NOT NULL,
+    name VARCHAR(255),
+    efficiency DECIMAL(18,2),
+    ferm_batch_vol DECIMAL(18,2),
+    batch_vol_uom_id INT(11),
+    mash_tun_vol DECIMAL(18,2),
+    mash_tun_uom_id INT(11),
+    boil_vol DECIMAL(18,2),
+    boil_vol_uom_id INT(11),
+    boil_time DECIMAL(18,2),
+    boil_time_uom_id INT(11),
+    boil_off_per_hr_vol DECIMAL(18,2),
+    boil_off_per_hr_uom_id INT(11),
+    boil_shrinkage DECIMAL(18,2),
+    boil_total_boil_off DECIMAL(18,2),
+    boil_total_boil_off_uom_id INT(11),
+    boil_post_boil_vol DECIMAL(18,2),
+    boil_post_boil_vol_uom_id INT(11),
+    ferm_loss DECIMAL(18,2),
+    ferm_loss_uom_id INT(11),
+    ferm_top_up DECIMAL(18,2),
+    ferm_top_up_uom_id INT(11),
+    ferm_loss_trub_chill DECIMAL(18,2),
+    ferm_loss_trub_chill_uom_id INT(11),
+    bottling_vol DECIMAL(18,2),
+    bottling_vol_uom_id INT(11),
+    notes VARCHAR(255),
+    update_date DATETIME,
+    create_date DATETIME,
+    CONSTRAINT FK_PROFILE_EQUIPMENT_UOM_TYPE_1 FOREIGN KEY (batch_vol_uom_id) REFERENCES UOM_TYPE (uom_id),
+    CONSTRAINT FK_PROFILE_EQUIPMENT_UOM_TYPE_10 FOREIGN KEY (ferm_loss_trub_chill_uom_id) REFERENCES UOM_TYPE (uom_id),
+    CONSTRAINT FK_PROFILE_EQUIPMENT_UOM_TYPE_11 FOREIGN KEY (bottling_vol_uom_id) REFERENCES UOM_TYPE (uom_id),
+    CONSTRAINT FK_PROFILE_EQUIPMENT_UOM_TYPE_2 FOREIGN KEY (mash_tun_uom_id) REFERENCES UOM_TYPE (uom_id),
+    CONSTRAINT FK_PROFILE_EQUIPMENT_UOM_TYPE_3 FOREIGN KEY (boil_vol_uom_id) REFERENCES UOM_TYPE (uom_id),
+    CONSTRAINT FK_PROFILE_EQUIPMENT_UOM_TYPE_4 FOREIGN KEY (boil_time_uom_id) REFERENCES UOM_TYPE (uom_id),
+    CONSTRAINT FK_PROFILE_EQUIPMENT_UOM_TYPE_5 FOREIGN KEY (boil_off_per_hr_uom_id) REFERENCES UOM_TYPE (uom_id),
+    CONSTRAINT FK_PROFILE_EQUIPMENT_UOM_TYPE_6 FOREIGN KEY (boil_total_boil_off_uom_id) REFERENCES UOM_TYPE (uom_id),
+    CONSTRAINT FK_PROFILE_EQUIPMENT_UOM_TYPE_7 FOREIGN KEY (boil_post_boil_vol_uom_id) REFERENCES UOM_TYPE (uom_id),
+    CONSTRAINT FK_PROFILE_EQUIPMENT_UOM_TYPE_8 FOREIGN KEY (ferm_loss_uom_id) REFERENCES UOM_TYPE (uom_id),
+    CONSTRAINT FK_PROFILE_EQUIPMENT_UOM_TYPE_9 FOREIGN KEY (ferm_top_up_uom_id) REFERENCES UOM_TYPE (uom_id)
+);
+/*
+CREATE INDEX FK_PROFILE_EQUIPMENT_UOM_TYPE_1 ON PROFILE_EQUIPMENT (batch_vol_uom_id);
+CREATE INDEX FK_PROFILE_EQUIPMENT_UOM_TYPE_10 ON PROFILE_EQUIPMENT (ferm_loss_trub_chill_uom_id);
+CREATE INDEX FK_PROFILE_EQUIPMENT_UOM_TYPE_11 ON PROFILE_EQUIPMENT (bottling_vol_uom_id);
+CREATE INDEX FK_PROFILE_EQUIPMENT_UOM_TYPE_2 ON PROFILE_EQUIPMENT (mash_tun_uom_id);
+CREATE INDEX FK_PROFILE_EQUIPMENT_UOM_TYPE_3 ON PROFILE_EQUIPMENT (boil_vol_uom_id);
+CREATE INDEX FK_PROFILE_EQUIPMENT_UOM_TYPE_4 ON PROFILE_EQUIPMENT (boil_time_uom_id);
+CREATE INDEX FK_PROFILE_EQUIPMENT_UOM_TYPE_5 ON PROFILE_EQUIPMENT (boil_off_per_hr_uom_id);
+CREATE INDEX FK_PROFILE_EQUIPMENT_UOM_TYPE_6 ON PROFILE_EQUIPMENT (boil_total_boil_off_uom_id);
+CREATE INDEX FK_PROFILE_EQUIPMENT_UOM_TYPE_7 ON PROFILE_EQUIPMENT (boil_post_boil_vol_uom_id);
+CREATE INDEX FK_PROFILE_EQUIPMENT_UOM_TYPE_8 ON PROFILE_EQUIPMENT (ferm_loss_uom_id);
+CREATE INDEX FK_PROFILE_EQUIPMENT_UOM_TYPE_9 ON PROFILE_EQUIPMENT (ferm_top_up_uom_id);
+*/
+
+
+CREATE TABLE COMPONENT_GRAIN
+(
+    comp_grain_id INT(11) PRIMARY KEY NOT NULL,
+    name VARCHAR(255),
+    origin_id INT(11),
+    supplier_id INT(11),
+    grain_type_id INT(11),
+    color DECIMAL(18,2),
+    potential DECIMAL(18,2),
+    notes VARCHAR(255),
+    update_date DATETIME,
+    create_date DATETIME,
+    component_id INT(11),
+    CONSTRAINT FK_COMPONENT_GRAIN_COMPONENT_TYPE_1 FOREIGN KEY (grain_type_id) REFERENCES GRAIN_TYPE (grain_type_id),
+    CONSTRAINT FK_COMPONENT_GRAIN_ORIGIN_1 FOREIGN KEY (origin_id) REFERENCES ORIGIN (origin_id),
+    CONSTRAINT FK_COMPONENT_GRAIN_SUPPLIER_1 FOREIGN KEY (supplier_id) REFERENCES SUPPLIER (supplier_id)
+);
+/*
+CREATE INDEX FK_COMPONENT_GRAIN_COMPONENT_TYPE_1 ON COMPONENT_GRAIN (grain_type_id);
+CREATE INDEX FK_COMPONENT_GRAIN_ORIGIN_1 ON COMPONENT_GRAIN (origin_id);
+CREATE INDEX FK_COMPONENT_GRAIN_SUPPLIER_1 ON COMPONENT_GRAIN (supplier_id);
+*/
+
+CREATE TABLE COMPONENT_OTHER
+(
+    comp_other_id INT(11) PRIMARY KEY NOT NULL,
+    name VARCHAR(255),
+    use_for VARCHAR(255),
+    use_type_id INT(11),
+    time DECIMAL(18,2),
+    time_uom_id INT(11),
+    amount DECIMAL(18,2),
+    amount_uom_id INT(11),
+    batch_size DECIMAL(18,2),
+    batch_size_uom_id INT(11),
+    notes VARCHAR(255),
+    update_date DATETIME,
+    create_date DATETIME,
+    component_id INT(11),
+    CONSTRAINT FK_COMPONENT_OTHER_UOM_TYPE_1 FOREIGN KEY (amount_uom_id) REFERENCES UOM_TYPE (uom_id),
+    CONSTRAINT FK_COMPONENT_OTHER_UOM_TYPE_2 FOREIGN KEY (batch_size_uom_id) REFERENCES UOM_TYPE (uom_id),
+    CONSTRAINT FK_COMPONENT_OTHER_UOM_TYPE_3 FOREIGN KEY (time_uom_id) REFERENCES UOM_TYPE (uom_id),
+    CONSTRAINT FK_COMPONENT_OTHER_USE_TYPE_1 FOREIGN KEY (use_type_id) REFERENCES USE_TYPE (use_type_id)
+);
+/*
+CREATE INDEX FK_COMPONENT_OTHER_UOM_TYPE_1 ON COMPONENT_OTHER (amount_uom_id);
+CREATE INDEX FK_COMPONENT_OTHER_UOM_TYPE_2 ON COMPONENT_OTHER (batch_size_uom_id);
+CREATE INDEX FK_COMPONENT_OTHER_UOM_TYPE_3 ON COMPONENT_OTHER (time_uom_id);
+CREATE INDEX FK_COMPONENT_OTHER_USE_TYPE_1 ON COMPONENT_OTHER (use_type_id);
+*/
+
+CREATE TABLE COMPONENT_WATER
+(
+    comp_water_id INT(11) PRIMARY KEY NOT NULL,
+    name VARCHAR(255),
+    ph DECIMAL(18,2),
+    ca_ppm DECIMAL(18,2),
+    mg_ppm DECIMAL(18,2),
+    na_ppm DECIMAL(18,2),
+    so4_ppm DECIMAL(18,2),
+    cl_ppm DECIMAL(18,2),
+    hco3_ppm DECIMAL(18,2),
+    caso4_g DECIMAL(18,2),
+    nacl_g DECIMAL(18,2),
+    mgso4_g DECIMAL(18,2),
+    cacl_g DECIMAL(18,2),
+    nahco3_g DECIMAL(18,2),
+    caco3_g DECIMAL(18,2),
+    batch_size DECIMAL(18,2),
+    batch_size_uom_id INT(11),
+    notes VARCHAR(255),
+    update_date DATETIME,
+    create_date DATETIME,
+    component_id INT(11),
+    CONSTRAINT FK_COMPONENT_WATER_UOM_TYPE_1 FOREIGN KEY (batch_size_uom_id) REFERENCES UOM_TYPE (uom_id)
+);
+/*
+CREATE INDEX FK_COMPONENT_WATER_UOM_TYPE_1 ON COMPONENT_WATER (batch_size_uom_id);
+*/
+
+CREATE TABLE COMPONENT_YEAST
+(
+    comp_yeast_id INT(11) PRIMARY KEY NOT NULL,
+    name VARCHAR(255),
+    lab_id INT(11),
+    supplier_id INT(11),
+    yeast_type_id INT(11),
+    yeast_form_id INT(11),
+    yeast_floc_type_id INT(11),
+    attenuation_min DECIMAL(18,2),
+    attenuation_max DECIMAL(18,2),
+    temperature_min DECIMAL(18,2),
+    temperature_max DECIMAL(18,2),
+    cells_per_pack DECIMAL(18,2),
+    notes VARCHAR(255),
+    update_date DATETIME,
+    create_date DATETIME,
+    component_id INT(11),
+    CONSTRAINT FK_COMPONENT_YEAST_SUPPLIER_1 FOREIGN KEY (lab_id) REFERENCES SUPPLIER (supplier_id),
+    CONSTRAINT FK_COMPONENT_YEAST_SUPPLIER_2 FOREIGN KEY (supplier_id) REFERENCES SUPPLIER (supplier_id),
+    CONSTRAINT FK_COMPONENT_YEAST_YEAST_FLOC_1 FOREIGN KEY (yeast_floc_type_id) REFERENCES YEAST_FLOC_TYPE (yeast_floc_type_id),
+    CONSTRAINT FK_COMPONENT_YEAST_YEAST_FORM_1 FOREIGN KEY (yeast_form_id) REFERENCES YEAST_FORM (yeast_form_id),
+    CONSTRAINT FK_COMPONENT_YEAST_YEAST_TYPE_1 FOREIGN KEY (yeast_type_id) REFERENCES YEAST_TYPE (yeast_type_id)
+);
+/*
+CREATE INDEX FK_COMPONENT_YEAST_SUPPLIER_1 ON COMPONENT_YEAST (lab_id);
+CREATE INDEX FK_COMPONENT_YEAST_SUPPLIER_2 ON COMPONENT_YEAST (supplier_id);
+CREATE INDEX FK_COMPONENT_YEAST_YEAST_FLOC_1 ON COMPONENT_YEAST (yeast_floc_type_id);
+CREATE INDEX FK_COMPONENT_YEAST_YEAST_FORM_1 ON COMPONENT_YEAST (yeast_form_id);
+CREATE INDEX FK_COMPONENT_YEAST_YEAST_TYPE_1 ON COMPONENT_YEAST (yeast_type_id);
+*/
+
+CREATE TABLE COMPONENT_HOP
+(
+    comp_hop_id INT(11) PRIMARY KEY NOT NULL,
+    component_id INT(11),
+    name VARCHAR(255),
+    origin_id INT(11),
+    supplier_id INT(11),
+    alpha_pct DECIMAL(18,2),
+    beta_pct DECIMAL(18,2),
+    hop_type_id INT(11),
+    hop_form_id INT(11),
+    notes VARCHAR(255),
+    update_date DATETIME,
+    create_date DATETIME,
+    CONSTRAINT FK_COMPONENT_HOP_HOP_FORM_1 FOREIGN KEY (hop_form_id) REFERENCES HOP_FORM_TYPE (hop_form_type_id),
+    CONSTRAINT FK_COMPONENT_HOP_HOP_TYPE_1 FOREIGN KEY (hop_type_id) REFERENCES HOP_TYPE (hop_type_id),
+    CONSTRAINT FK_COMPONENT_HOP_ORIGIN_1 FOREIGN KEY (origin_id) REFERENCES ORIGIN (origin_id),
+    CONSTRAINT FK_COMPONENT_HOP_SUPPLIER_1 FOREIGN KEY (supplier_id) REFERENCES SUPPLIER (supplier_id)
+);
+/*
+CREATE INDEX FK_COMPONENT_HOP_HOP_FORM_1 ON COMPONENT_HOP (hop_form_id);
+CREATE INDEX FK_COMPONENT_HOP_HOP_TYPE_1 ON COMPONENT_HOP (hop_type_id);
+CREATE INDEX FK_COMPONENT_HOP_ORIGIN_1 ON COMPONENT_HOP (origin_id);
+CREATE INDEX FK_COMPONENT_HOP_SUPPLIER_1 ON COMPONENT_HOP (supplier_id);
+*/
+
+CREATE TABLE COMPONENT
+(
+    component_id INT(11) PRIMARY KEY NOT NULL,
+    name VARCHAR(255),
+    component_type_id INT(11),
+    comp_hop_id INT(11),
+    comp_grain_id INT(11),
+    comp_yeast_id INT(11),
+    comp_water_id INT(11),
+    comp_other_id INT(11),
+    update_date DATETIME,
+    create_date DATETIME,
+    CONSTRAINT FK_COMPONENT_GRAIN FOREIGN KEY (comp_grain_id) REFERENCES COMPONENT_GRAIN (comp_grain_id),
+    CONSTRAINT FK_COMPONENT_HOP FOREIGN KEY (comp_hop_id) REFERENCES COMPONENT_HOP (comp_hop_id),
+    CONSTRAINT FK_COMPONENT_OTHER FOREIGN KEY (comp_other_id) REFERENCES COMPONENT_OTHER (comp_other_id),
+    CONSTRAINT FK_COMPONENT_WATER FOREIGN KEY (comp_water_id) REFERENCES COMPONENT_WATER (comp_water_id),
+    CONSTRAINT FK_COMPONENT_YEAST FOREIGN KEY (comp_yeast_id) REFERENCES COMPONENT_YEAST (comp_yeast_id)
+);
+/*
+CREATE INDEX FK_COMPONENT_GRAIN ON COMPONENT (comp_grain_id);
+CREATE INDEX FK_COMPONENT_HOP ON COMPONENT (comp_hop_id);
+CREATE INDEX FK_COMPONENT_OTHER ON COMPONENT (comp_other_id);
+CREATE INDEX FK_COMPONENT_WATER ON COMPONENT (comp_water_id);
+CREATE INDEX FK_COMPONENT_YEAST ON COMPONENT (comp_yeast_id);
+*/
+
+CREATE TABLE RECIPE
+(
+    recipe_id INT(11) PRIMARY KEY NOT NULL,
+    recipe_name VARCHAR(255),
+    brewer_name VARCHAR(255),
+    recipe_type_id INT(11),
+    batch_size DECIMAL(18,2),
+    batch_size_uom_id INT(11),
+    equipment_profile_id INT(11),
+    update_date DATETIME,
+    create_date DATETIME,
+    CONSTRAINT FK_RECIPE_PROFILE_EQUIPMENT_1 FOREIGN KEY (equipment_profile_id) REFERENCES PROFILE_EQUIPMENT (profile_equipment_id),
+    CONSTRAINT FK_RECIPE_RECIPE_TYPE_1 FOREIGN KEY (recipe_type_id) REFERENCES RECIPE_TYPE (recipe_type_id),
+    CONSTRAINT FK_RECIPE_UOM_TYPE_1 FOREIGN KEY (batch_size_uom_id) REFERENCES UOM_TYPE (uom_id)
+);
+/*
+CREATE INDEX FK_RECIPE_PROFILE_EQUIPMENT_1 ON RECIPE (equipment_profile_id);
+CREATE INDEX FK_RECIPE_RECIPE_TYPE_1 ON RECIPE (recipe_type_id);
+CREATE INDEX FK_RECIPE_UOM_TYPE_1 ON RECIPE (batch_size_uom_id);
+*/
+
+CREATE TABLE RECIPE_COMPONENT
+(
+    recipe_component_id INT(11) PRIMARY KEY NOT NULL,
+    recipe_id INT(11),
+    component_id INT(11),
+    amount DECIMAL(18,2),
+    amount_uom_id INT(11),
+    time INT(11),
+    time_uom_id INT(11),
+    update_date DATETIME,
+    create_date DATETIME,
+    CONSTRAINT FK_COMPONENT FOREIGN KEY (component_id) REFERENCES COMPONENT (component_id),
+    CONSTRAINT FK_RECIPE FOREIGN KEY (recipe_id) REFERENCES RECIPE (recipe_id),
+    CONSTRAINT FK_RECIPE_COMPONENT_UOM_TYPE_1 FOREIGN KEY (amount_uom_id) REFERENCES UOM_TYPE (uom_id),
+    CONSTRAINT FK_RECIPE_COMPONENT_UOM_TYPE_2 FOREIGN KEY (time_uom_id) REFERENCES UOM_TYPE (uom_id)
+);
+/*
+CREATE INDEX FK_COMPONENT ON RECIPE_COMPONENT (component_id);
+CREATE INDEX FK_RECIPE ON RECIPE_COMPONENT (recipe_id);
+CREATE INDEX FK_RECIPE_COMPONENT_UOM_TYPE_1 ON RECIPE_COMPONENT (amount_uom_id);
+CREATE INDEX FK_RECIPE_COMPONENT_UOM_TYPE_2 ON RECIPE_COMPONENT (time_uom_id);
+*/
+
+INSERT INTO UOM_TYPE(uom_id, name, update_date, create_date) VALUES (1, "gal", now(), now());
+INSERT INTO UOM_TYPE(uom_id, name, update_date, create_date) VALUES (2, "ea", now(), now());
+INSERT INTO UOM_TYPE(uom_id, name, update_date, create_date) VALUES (3, "oz", now(), now());
+INSERT INTO UOM_TYPE(uom_id, name, update_date, create_date) VALUES (4, "day", now(), now());
+INSERT INTO UOM_TYPE(uom_id, name, update_date, create_date) VALUES (5, "pkg", now(), now());
+INSERT INTO UOM_TYPE(uom_id, name, update_date, create_date) VALUES (6, "lbs", now(), now());
+INSERT INTO UOM_TYPE(uom_id, name, update_date, create_date) VALUES (7, "tsp", now(), now());
+INSERT INTO UOM_TYPE(uom_id, name, update_date, create_date) VALUES (8, "min", now(), now());
+commit;
+
+INSERT INTO COMPONENT_TYPE(component_type_id, name, update_date, create_date) VALUES (1, 'Hop', now(), now());
+INSERT INTO COMPONENT_TYPE(component_type_id, name, update_date, create_date) VALUES (2, 'Grain', now(), now());
+INSERT INTO COMPONENT_TYPE(component_type_id, name, update_date, create_date) VALUES (3, 'Yeast', now(), now());
+INSERT INTO COMPONENT_TYPE(component_type_id, name, update_date, create_date) VALUES (4, 'Water', now(), now());
+INSERT INTO COMPONENT_TYPE(component_type_id, name, update_date, create_date) VALUES (5, 'Other', now(), now());
+commit;

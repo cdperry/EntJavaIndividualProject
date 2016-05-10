@@ -12,6 +12,7 @@ public class RecipeComponentEntity {
     private Integer recipeId;
     //private Integer componentId;
     private BigDecimal amount;
+    private BigDecimal time;
     //private Integer amountUomId;
     private Timestamp updateDate;
     private Timestamp createDate;
@@ -19,6 +20,10 @@ public class RecipeComponentEntity {
     // a many-to-one relationship; many RecipeComponentEntity objects can be related to a single
     // UomTypeEntity object
     private UomTypeEntity amountUom;
+
+    // a many-to-one relationship; many RecipeComponentEntity objects can be related to a single
+    // UomTypeEntity object
+    private UomTypeEntity timeUom;
 
     // a many-to-one relationship; many RecipeComponentEntity objects can be related to a single
     // ComponentEntity object
@@ -92,6 +97,22 @@ public class RecipeComponentEntity {
 
     public void setAmountUom(UomTypeEntity amountUom) {
         this.amountUom = amountUom;
+    }
+
+    public BigDecimal getTime() {
+        return time;
+    }
+
+    public void setTime(BigDecimal time) {
+        this.time = time;
+    }
+
+    public UomTypeEntity getTimeUom() {
+        return timeUom;
+    }
+
+    public void setTimeUom(UomTypeEntity timeUom) {
+        this.timeUom = timeUom;
     }
 
     public Timestamp getUpdateDate() {

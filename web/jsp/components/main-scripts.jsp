@@ -9,6 +9,9 @@
 
 <!-- Datatables -->
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.0.2/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.0.2/js/responsive.bootstrap.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <!--<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>-->
