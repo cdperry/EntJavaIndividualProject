@@ -5,6 +5,8 @@ import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.*;
 import java.util.*;
 
 /**
@@ -22,12 +24,21 @@ public class RecipeComponentDao {
 
         List<RecipeComponentEntity> recipeComponents = new ArrayList<RecipeComponentEntity>();
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        Criteria criteria = session.createCriteria(RecipeComponentEntity.class);
+
         Transaction tx = null;
 
         try {
 
             tx = session.beginTransaction();
-            recipeComponents = session.createQuery("FROM RecipeComponentEntity ORDER BY recipeComponentId").list();
+            //recipeComponents = session.createQuery("FROM RecipeComponentEntity ORDER BY recipeComponentId").list();
+            System.out.println("GRRR");
+            recipeComponents =
+                    criteria.createCriteria("component")
+                            .createCriteria("componentType")
+                                .add(Restrictions.eq("name", "Grain"))
+                            .list();
+
             tx.commit();
 
         } catch (HibernateException e) {
@@ -148,6 +159,41 @@ public class RecipeComponentDao {
         }
 
     }
+
+    /**
+     * This method deletes the RecipeComponentEntity object from the database
+     * @param recipeComponentId the ID of the RecipeComponentEntity to be deleted from the database
+     */
+    public void deleteRecipeComponentEntityById(int recipeComponentId) {
+
+        Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+
+            tx = session.beginTransaction();
+            RecipeComponentEntity entityToDelete = (RecipeComponentEntity)session.get(RecipeComponentEntity.class,
+                    recipeComponentId);
+            session.delete(entityToDelete);
+            tx.commit();
+            log.warn("Deleted recipe component: " + entityToDelete + " with id of: " + recipeComponentId);
+
+        } catch (HibernateException e) {
+
+            if (tx!=null) {
+                tx.rollback();
+            }
+
+            e.printStackTrace();
+
+        } finally {
+
+            session.close();
+
+        }
+
+    }
+
 
     /**
      * This method adds an recipeComponentEntity to the database and returns the ID associated with the new record

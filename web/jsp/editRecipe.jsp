@@ -68,6 +68,16 @@
                 $(this).addClass('info').siblings().removeClass('info');
             });
 
+            $('#deleteRecipeComponentModal').on('show.bs.modal', function (event) {
+                var docElement = $(event.relatedTarget); // Element that triggered the modal
+                var recipeId = docElement.data('recipeid');
+                var componentId = docElement.data('componentid');
+                var url = "/deleteRecipeComponent?action=edit&recipeId=" + recipeId + "&recipeComponentId="
+                        + componentId;
+                alert(url);
+                $("#frmConfirmDelete").attr("action", url)
+            });
+
         </script>
 
     </body>

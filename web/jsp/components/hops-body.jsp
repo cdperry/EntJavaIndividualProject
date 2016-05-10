@@ -5,7 +5,8 @@
 
     <div class="col-lg-12">
 
-        <table class="table table-hover">
+        <table id="example" class="table table-hover">
+
             <thead>
             <tr>
                 <th>Name</th>
@@ -13,7 +14,8 @@
                 <th>Alpha %</th>
                 <th>Type</th>
                 <th>Last Updated</th>
-                <th colspan=2 class="text-center">Action</th>
+                <th class="text-right">Action</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -29,7 +31,7 @@
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </a>
                     </td>
-                    <td class="text-center">
+                    <td class="text-left">
                         <a href="#" data-id="<c:out value="${hop.compHopId}"/>"
                            data-toggle="modal" data-target="#myModal">
                             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
@@ -38,6 +40,7 @@
                 </tr>
             </c:forEach>
             </tbody>
+
         </table>
 
         <p><a href="/addHop?action=insert">Add Hop</a></p>

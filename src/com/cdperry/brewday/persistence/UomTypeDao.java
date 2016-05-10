@@ -57,7 +57,7 @@ public class UomTypeDao {
      * @param name The name of the entity that should be returned
      * @return a list of UomTypeEntity objects that match the name parameter
      */
-    public List<UomTypeEntity>  getUomTypeEntityByName(String name) {
+    public List<UomTypeEntity> getUomTypeEntityByName(String name) {
 
         List<UomTypeEntity> uomTypes = new ArrayList<>();
 

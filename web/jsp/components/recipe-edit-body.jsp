@@ -118,54 +118,57 @@
 
     <div class="col-lg-10">
 
-        <table class="table table-hover">
+        <table id="example" class="table table-hover">
             <thead>
-            <tr>
-                <th>Name</th>
-                <th>Amount</th>
-                <th colspan=2 class="text-center">Action</th>
-            </tr>
+                <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Amount</th>
+                    <th colspan=2 class="text-center">Action</th>
+                </tr>
             </thead>
             <tbody>
-            <c:forEach items="${recipeComponents}" var="recipeComponent">
-                <tr>
-                    <td>
-                        <c:choose>
-                            <c:when test="${recipeComponent.component.componentType.name == 'Grain'}">
-                                <c:out value="${recipeComponent.component.componentGrain.name}" />
-                            </c:when>
-                            <c:when test="${recipeComponent.component.componentType.name == 'Hop'}">
-                                <c:out value="${recipeComponent.component.componentHop.name}" />
-                            </c:when>
-                            <c:when test="${recipeComponent.component.componentType.name == 'Yeast'}">
-                                <c:out value="${recipeComponent.component.componentYeast.name}" />
-                            </c:when>
-                            <c:when test="${recipeComponent.component.componentType.name == 'Water'}">
-                                <c:out value="${recipeComponent.component.componentWater.name}" />
-                            </c:when>
-                            <c:when test="${recipeComponent.component.componentType.name == 'Other'}">
-                                <c:out value="${recipeComponent.component.componentOther.name}" />
-                            </c:when>
-                            <c:otherwise>Unknown</c:otherwise>
-                        </c:choose>
-                    </td>
-                    <td><c:out value="${recipeComponent.amount}" /></td>
-                    <td class="text-center">
-                        <a href="/editRecipeComponent?action=edit&recipeId=
-                                <c:out value="${recipe.recipeId}"/>
-                                &recipeComponentId=
-                                <c:out value="${recipeComponent.component.componentId}"/>">
-                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                        </a>
-                    </td>
-                    <td class="text-center">
-                        <a href="#" data-id="<c:out value="${recipeComponent.component.componentId}"/>"
-                           data-toggle="modal" data-target="#myModal">
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                        </a>
-                    </td>
-                </tr>
-            </c:forEach>
+                <c:forEach items="${recipeComponents}" var="recipeComponent">
+                    <tr>
+                        <td>${recipeComponent.component.componentType.name}</td>
+                        <td>
+                            <c:choose>
+                                <c:when test="${recipeComponent.component.componentType.name == 'Grain'}">
+                                    <c:out value="${recipeComponent.component.componentGrain.name}" />
+                                </c:when>
+                                <c:when test="${recipeComponent.component.componentType.name == 'Hop'}">
+                                    <c:out value="${recipeComponent.component.componentHop.name}" />
+                                </c:when>
+                                <c:when test="${recipeComponent.component.componentType.name == 'Yeast'}">
+                                    <c:out value="${recipeComponent.component.componentYeast.name}" />
+                                </c:when>
+                                <c:when test="${recipeComponent.component.componentType.name == 'Water'}">
+                                    <c:out value="${recipeComponent.component.componentWater.name}" />
+                                </c:when>
+                                <c:when test="${recipeComponent.component.componentType.name == 'Other'}">
+                                    <c:out value="${recipeComponent.component.componentOther.name}" />
+                                </c:when>
+                                <c:otherwise>Unknown</c:otherwise>
+                            </c:choose>
+                        </td>
+                        <td><c:out value="${recipeComponent.amount}" /></td>
+                        <td class="text-center">
+                            <a href="/editRecipeComponent?action=edit&recipeId=
+                                    <c:out value="${recipe.recipeId}"/>
+                                    &recipeComponentId=
+                                    <c:out value="${recipeComponent.component.componentId}"/>">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                            </a>
+                        </td>
+                        <td class="text-center">
+                            <a href="#" data-recipeid="<c:out value="${recipe.recipeId}"/>"
+                               data-componentid="<c:out value="${recipeComponent.recipeComponentId}"/>"
+                               data-toggle="modal" data-target="#deleteRecipeComponentModal">
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                            </a>
+                        </td>
+                    </tr>
+                </c:forEach>
             </tbody>
         </table>
 
@@ -422,6 +425,31 @@
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                             <button type="submit" class="btn btn-primary" name="buttonAction"
                                     value="submit">Add</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="modal fade" id="deleteRecipeComponentModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete this ingredient?  This action is irreversible.
+                    </div>
+                    <div class="modal-footer">
+                        <form class="form-horizontal" id="frmConfirmDelete" method="POST" action='#' name="frmConfirmDelete">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" name="buttonAction"
+                                    value="submit">Delete</button>
                         </form>
                     </div>
                 </div>

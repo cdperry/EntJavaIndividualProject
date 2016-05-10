@@ -1,5 +1,6 @@
-package com.cdperry.brewday.controller.recipe.grain;
+package com.cdperry.brewday.controller.recipe;
 
+import com.cdperry.brewday.persistence.RecipeComponentDao;
 import com.cdperry.brewday.persistence.RecipeDao;
 
 import javax.servlet.ServletException;
@@ -16,16 +17,18 @@ import java.io.IOException;
  *  @author Chris Perry
  */
 @WebServlet(
-        name = "RecipeGrainDeleteActionServlet",
-        urlPatterns = { "/editRecipeDeleteGrain" }
+        name = "RecipeComponentDeleteActionServlet",
+        urlPatterns = { "/deleteRecipeComponent" }
 )
-public class GrainDeleteActionServlet extends HttpServlet {
+public class RecipeComponentDeleteActionServlet extends HttpServlet {
 
     private RecipeDao recipeDao;
+    private RecipeComponentDao recipeComponentDao;
 
-    public GrainDeleteActionServlet() {
+    public RecipeComponentDeleteActionServlet() {
         super();
         recipeDao = new RecipeDao();
+        recipeComponentDao = new RecipeComponentDao();
     }
 
     /**
@@ -38,14 +41,15 @@ public class GrainDeleteActionServlet extends HttpServlet {
      */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String url = "/recipes";
         int recipeId = Integer.parseInt(request.getParameter("recipeId"));
+        int recipeComponentId = Integer.parseInt(request.getParameter("recipeComponentId"));
+        String url = "/editRecipe?action=edit&recipeId=" + recipeId;
 
-        if (recipeDao.getRecipeEntity(recipeId) != null) {
-            recipeDao.deleteRecipeEntityById(recipeId);
+        if (recipeComponentDao.getRecipeComponentEntity(recipeComponentId) != null) {
+            recipeComponentDao.deleteRecipeComponentEntityById(recipeComponentId);
         }
 
-        request.setAttribute("recipes", recipeDao.getAllRecipes());
+        //request.setAttribute("recipes", recipeDao.getAllRecipes());
 
         response.sendRedirect(url);
 

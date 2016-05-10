@@ -18,6 +18,9 @@
     <!--<link href="../../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/metisMenu/2.5.0/metisMenu.css">
 
+    <!-- Datatables CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css">
+
     <!-- Timeline CSS -->
     <link href="../../dist/css/timeline.css" rel="stylesheet">
 
