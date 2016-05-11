@@ -32,6 +32,7 @@ public class MainDisplayServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         ChuckNorrisJoke joke = new ChuckNorrisJoke();
+
         String url = "/jsp/main.jsp";
 
         request.setAttribute("chuckNorrisJoke", joke);
