@@ -37,11 +37,7 @@ Logging will be done via log4j and jUnit will be used for testing.
 ## Design Documents
 - [Data Model](/DesignDocuments/DataModel/brewday_data_model.pdf)
 - [Data Model Diagram (simplified)](/DesignDocuments/DataModel/brewday_data_model_diagram.pdf)
-- UI Sketches
--- [1](/DesignDocuments/UI_Sketch/UI 1.JPG)
--- [2](/DesignDocuments/UI_Sketch/UI 2.JPG)
--- [3](/DesignDocuments/UI_Sketch/UI 3.JPG)
--- [4](/DesignDocuments/UI_Sketch/UI 4.JPG)
+- UI Sketches ([1](/DesignDocuments/UI_Sketch/UI 1.JPG), [2](/DesignDocuments/UI_Sketch/UI 2.JPG), [3](/DesignDocuments/UI_Sketch/UI 3.JPG), [4](/DesignDocuments/UI_Sketch/UI 4.JPG))
 
 ## [Project Plan](ProjectPlan.md)
 
