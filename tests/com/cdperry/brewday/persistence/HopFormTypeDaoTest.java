@@ -1,10 +1,9 @@
 package com.cdperry.brewday.persistence;
 
 import com.cdperry.brewday.entity.HopFormTypeEntity;
-import org.junit.Test;
+import org.junit.*;
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.sql.Timestamp;
 import static org.junit.Assert.*;
 
@@ -13,179 +12,121 @@ import static org.junit.Assert.*;
  */
 public class HopFormTypeDaoTest {
 
-    @Test
-    public void testGetAllHopFormTypes() throws Exception {
+    private HopFormTypeDao me;
+    private HopFormTypeEntity testEntity;
+    private List<HopFormTypeEntity> entities;
 
-        HopFormTypeDao me = new HopFormTypeDao();
-        HopFormTypeEntity testHopFormType;
-        List<HopFormTypeEntity> hopFormTypes;
+    @Before
+    public void setup() {
+
+        me = new HopFormTypeDao();
+
         int hopFormTypeEntityID;
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
 
-        // create a test grain and add them to the database
-        testHopFormType = new HopFormTypeEntity();
-        testHopFormType.setName("Hop Form Type 1");
-        testHopFormType.setUpdateDate(ts);
-        testHopFormType.setCreateDate(ts);
+        entities = new ArrayList<HopFormTypeEntity>();
 
-        hopFormTypeEntityID = me.addHopFormTypeEntity(testHopFormType);
+        for (int iteration = 1; iteration < 4; iteration++) {
+            testEntity = new HopFormTypeEntity();
+            testEntity.setName("zHopForm Type " + iteration);
+            testEntity.setUpdateDate(ts);
+            testEntity.setCreateDate(ts);
 
-        // create a test grain and add them to the database
-        testHopFormType = new HopFormTypeEntity();
-        testHopFormType.setName("Hop Form Type 2");
-        testHopFormType.setUpdateDate(ts);
-        testHopFormType.setCreateDate(ts);
+            hopFormTypeEntityID = me.addHopFormTypeEntity(testEntity);
+            entities.add(testEntity);
+        }
 
-        hopFormTypeEntityID = me.addHopFormTypeEntity(testHopFormType);
+    }
 
-        hopFormTypes = me.getAllHopFormTypes();
-        assertTrue(hopFormTypes.size() > 0);
+    @After
+    public void teardown() {
+
+        // delete the HopFormEntity entities which will cascade and delete the HopFormGrainEntity entities
+        for (HopFormTypeEntity thisEntity : entities) {
+            me.deleteHopFormTypeEntity(thisEntity);
+        }
 
         // clean up
-        for (HopFormTypeEntity component : hopFormTypes) {
-            me.deleteHopFormTypeEntity(component);
-        }
+        me = null;
+        testEntity = null;
+        entities = null;
+
+    }
+
+    @Test
+    public void testGetAllHopFormTypes() throws Exception {
+
+        List<HopFormTypeEntity> results;
+        results = me.getAllHopFormTypes();
+        assertTrue("Expected non-zero ArrayList size, got zero.", results.size() > 0);
 
     }
 
     @Test
     public void testGetHopFormTypeEntity() throws Exception {
 
-        HopFormTypeDao me = new HopFormTypeDao();
-        HopFormTypeEntity testHopFormType = new HopFormTypeEntity();
-        int hopFormTypeEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
+        int id = entities.get(0).getHopFormTypeId();
 
-        // create a test grain and add them to the database
-        testHopFormType = new HopFormTypeEntity();
-        testHopFormType.setName("Hop Form Type 1");
-        testHopFormType.setUpdateDate(ts);
-        testHopFormType.setCreateDate(ts);
-
-        hopFormTypeEntityID = me.addHopFormTypeEntity(testHopFormType);
-
-        // confirm that a non-zero component ID was returned (indicator of success)
-        assertTrue("Expected a non-zero hop form type ID, got " + hopFormTypeEntityID, hopFormTypeEntityID > 0);
-
-        // confirm that the component can be retrieved from the database
-        testHopFormType = me.getHopFormTypeEntity(hopFormTypeEntityID);
-        assertNotNull(testHopFormType);
-
-        // clean up
-        me.deleteHopFormTypeEntity(testHopFormType);
+        // confirm that the entity can be retrieved from the database
+        testEntity = null;
+        testEntity = me.getHopFormTypeEntity(id);
+        assertNotNull("Expected non-null entity, got null", testEntity);
 
     }
 
     @Test
     public void testUpdateHopFormTypeEntity() throws Exception {
 
-        HopFormTypeDao me = new HopFormTypeDao();
-        HopFormTypeEntity testHopFormType = new HopFormTypeEntity();
-        int hopFormTypeEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
+        int id = entities.get(0).getHopFormTypeId();
 
-        // create a test component and add them to the database
-        testHopFormType = new HopFormTypeEntity();
-        testHopFormType.setName("Hop Form Type 1");
-        testHopFormType.setUpdateDate(ts);
-        testHopFormType.setCreateDate(ts);
+        // retrieve the test HopFormGrainEntity from the database and change its name
+        testEntity = null;
+        testEntity = me.getHopFormTypeEntity(id);
+        testEntity.setName("New Name");
+        me.updateHopFormTypeEntity(testEntity);
 
-        hopFormTypeEntityID = me.addHopFormTypeEntity(testHopFormType);
+        // retrieve the updated HopFormGrainEntity and test that the update took place
+        testEntity = null;
+        testEntity = me.getHopFormTypeEntity(id);
 
-        // retrieve the test component from the database and change its name
-        testHopFormType = me.getHopFormTypeEntity(hopFormTypeEntityID);
-        testHopFormType.setName("New Name");
-        me.updateHopFormTypeEntity(testHopFormType);
-
-        // retrieve the updated employee and test that the update took place
-        testHopFormType = me.getHopFormTypeEntity(hopFormTypeEntityID);
-
-        assertEquals("Expected New Name, got " + testHopFormType.getName(),
-                "New Name", testHopFormType.getName());
-
-        // clean up
-        me.deleteHopFormTypeEntity(testHopFormType);
+        assertEquals("Expected New Name, got " + testEntity.getName(),
+                "New Name", testEntity.getName());
 
     }
 
     @Test
     public void testDeleteHopFormTypeEntity() throws Exception {
 
-        HopFormTypeDao me = new HopFormTypeDao();
-        HopFormTypeEntity testHopFormType = new HopFormTypeEntity();
-        int hopFormTypeEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
+        int id = entities.get(0).getHopFormTypeId();
 
-        // create a test component and add them to the database
-        testHopFormType = new HopFormTypeEntity();
-        testHopFormType.setName("Hop Form Type 1");
-        testHopFormType.setUpdateDate(ts);
-        testHopFormType.setCreateDate(ts);
+        // delete the entity and verify that it is no longer in the database
+        me.deleteHopFormTypeEntity(me.getHopFormTypeEntity(id));
+        assertNull("Expected a null entity, got a real entity", me.getHopFormTypeEntity(id));
 
-        hopFormTypeEntityID = me.addHopFormTypeEntity(testHopFormType);
-
-        // make sure the employee was added before proceeding
-        assertTrue("Expected a non-zero hop form type ID, got " + hopFormTypeEntityID, hopFormTypeEntityID > 0);
-
-        // delete the employee and verify that they are no longer in the database
-        me.deleteHopFormTypeEntity(me.getHopFormTypeEntity(hopFormTypeEntityID));
-        assertNull(me.getHopFormTypeEntity(hopFormTypeEntityID));
+        // remove the deleted entity from the ArrayList so that Hibernate doesn't get sad
+        // during the teardown() method
+        entities.remove(0);
 
     }
 
     @Test
     public void testAddHopFormTypeEntity() throws Exception {
 
-        HopFormTypeDao me = new HopFormTypeDao();
-        HopFormTypeEntity testHopFormType = new HopFormTypeEntity();
-        int hopFormTypeEntityID;
+        int id;
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
 
-        // create a test component and add them to the database
-        testHopFormType = new HopFormTypeEntity();
-        testHopFormType.setName("Hop Form Type 1");
-        testHopFormType.setUpdateDate(ts);
-        testHopFormType.setCreateDate(ts);
+        testEntity = new HopFormTypeEntity();
+        testEntity.setName("zHopForm Type for Add test");
+        testEntity.setUpdateDate(ts);
+        testEntity.setCreateDate(ts);
 
-        hopFormTypeEntityID = me.addHopFormTypeEntity(testHopFormType);
+        id = me.addHopFormTypeEntity(testEntity);
+        entities.add(testEntity);
 
-        // confirm that a non-zero employee ID was returned (indicator of success)
-        assertTrue("Expected a non-zero hop form type ID, got " + hopFormTypeEntityID, hopFormTypeEntityID > 0);
-
-        // clean up
-        testHopFormType = me.getHopFormTypeEntity(hopFormTypeEntityID);
-        me.deleteHopFormTypeEntity(testHopFormType);
-
-    }
-
-    @Test
-    public void testDeleteHopFormTypeEntityById() throws Exception {
-
-        HopFormTypeDao me = new HopFormTypeDao();
-        HopFormTypeEntity testHopFormType = new HopFormTypeEntity();
-        int hopFormTypeEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
-
-        // create a test component and add them to the database
-        testHopFormType = new HopFormTypeEntity();
-        testHopFormType.setName("Hop Form Type 1");
-        testHopFormType.setUpdateDate(ts);
-        testHopFormType.setCreateDate(ts);
-
-        hopFormTypeEntityID = me.addHopFormTypeEntity(testHopFormType);
-
-        // make sure the employee was added before proceeding
-        assertTrue("Expected a non-zero hop form type ID, got " + hopFormTypeEntityID, hopFormTypeEntityID > 0);
-
-        // delete the employee and verify that they are no longer in the database
-        me.deleteHopFormTypeEntityById(hopFormTypeEntityID);
-        assertNull(me.getHopFormTypeEntity(hopFormTypeEntityID));
+        // confirm that a non-zero ID was returned (indicator of success)
+        assertTrue("Expected a non-zero entity ID, got " + id, id > 0);
 
     }
     

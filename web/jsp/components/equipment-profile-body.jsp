@@ -5,7 +5,7 @@
 
     <div class="col-lg-12">
 
-        <table class="table table-hover">
+        <table id="example" class="table table-hover">
             <thead>
             <tr>
                 <th>Profile Name</th>
@@ -13,7 +13,8 @@
                 <th>Boil Volume</th>
                 <th>Bottle Volume</th>
                 <th>Last Updated</th>
-                <th colspan=2 class="text-center">Action</th>
+                <th></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>

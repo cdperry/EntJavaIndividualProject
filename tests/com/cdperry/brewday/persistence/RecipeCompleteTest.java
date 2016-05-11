@@ -79,7 +79,7 @@ public class RecipeCompleteTest {
         // CREATE A HOP COMPONENT - this would be done before the user creates a recipe
         // create a component and add it to the database
         componentEntity = new ComponentEntity();
-        componentEntity.setName("Cascade");
+        componentEntity.setName("zCascade");
         componentEntity.setComponentType(componentTypeDao.getComponentTypeEntity(1));
         componentEntity.setUpdateDate(ts);
         componentEntity.setCreateDate(ts);
@@ -121,8 +121,8 @@ public class RecipeCompleteTest {
         // CREATE A RECIPE - now that we have supporting components let's build a recipe
         // create a test recipe and add it to the database
         recipeEntity = new RecipeEntity();
-        recipeEntity.setRecipeName("Recipe 1");
-        recipeEntity.setBrewerName("Brewer 1");
+        recipeEntity.setRecipeName("zRecipe 1");
+        recipeEntity.setBrewerName("zBrewer 1");
         recipeEntity.setRecipeType(recipeType);
         recipeEntity.setBatchSize(new BigDecimal("1.0"));
         recipeEntity.setBatchSizeUom(uom);
@@ -270,7 +270,7 @@ public class RecipeCompleteTest {
         assertTrue("equip profile name failure", profileEquipment.getName().equals("zPot and Cooler (10G)"));
 */
 
-        Thread.sleep(5000);
+        //Thread.sleep(5000);
 
         // delete some types and make sure that the recipe record doesn't get deleted
         uomTypeDao.deleteUomTypeEntityById(uomId);
@@ -278,7 +278,7 @@ public class RecipeCompleteTest {
         profileEquipmentDao.deleteProfileEquipmentEntityById(equipmentProfileId);
         assertNotNull("Expected recipe to exist but it's gone", recipeDao.getRecipeEntity(recipeId));
 
-        Thread.sleep(5000);
+        //Thread.sleep(5000);
 
         // delete the ComponentEntity object which should cascade delete the associated ComponentHopEntity object
         // and the associated RecipeComponentEntity object
@@ -287,7 +287,7 @@ public class RecipeCompleteTest {
         //assertNull(recipeComponentDao.getRecipeComponentEntity(recipeComponentId));
         //assertNull(componentHopEntity.getComponentEntity(componentHopId));
 
-        Thread.sleep(5000);
+        //Thread.sleep(5000);
 
         // clean up
         for (int thisId : recipeIds) {

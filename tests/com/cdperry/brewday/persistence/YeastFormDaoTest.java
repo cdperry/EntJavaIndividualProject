@@ -1,10 +1,9 @@
 package com.cdperry.brewday.persistence;
 
 import com.cdperry.brewday.entity.YeastFormEntity;
-import org.junit.Test;
+import org.junit.*;
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.sql.Timestamp;
 import static org.junit.Assert.*;
 
@@ -13,180 +12,122 @@ import static org.junit.Assert.*;
  */
 public class YeastFormDaoTest {
 
-    @Test
-    public void testGetAllYeastForms() throws Exception {
+    private YeastFormDao me;
+    private YeastFormEntity testEntity;
+    private List<YeastFormEntity> entities;
 
-        YeastFormDao me = new YeastFormDao();
-        YeastFormEntity testYeastForm;
-        List<YeastFormEntity> yeastForms;
+    @Before
+    public void setup() {
+
+        me = new YeastFormDao();
+
         int yeastFormEntityID;
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
 
-        // create a test grain and add them to the database
-        testYeastForm = new YeastFormEntity();
-        testYeastForm.setName("Yeast Form 1");
-        testYeastForm.setUpdateDate(ts);
-        testYeastForm.setCreateDate(ts);
+        entities = new ArrayList<YeastFormEntity>();
 
-        yeastFormEntityID = me.addYeastFormEntity(testYeastForm);
+        for (int iteration = 1; iteration < 4; iteration++) {
+            testEntity = new YeastFormEntity();
+            testEntity.setName("zComponent Type " + iteration);
+            testEntity.setUpdateDate(ts);
+            testEntity.setCreateDate(ts);
 
-        // create a test grain and add them to the database
-        testYeastForm = new YeastFormEntity();
-        testYeastForm.setName("Yeast Form 2");
-        testYeastForm.setUpdateDate(ts);
-        testYeastForm.setCreateDate(ts);
+            yeastFormEntityID = me.addYeastFormEntity(testEntity);
+            entities.add(testEntity);
+        }
 
-        yeastFormEntityID = me.addYeastFormEntity(testYeastForm);
+    }
 
-        yeastForms = me.getAllYeastForms();
-        assertTrue(yeastForms.size() > 0);
+    @After
+    public void teardown() {
+
+        // delete the ComponentEntity entities which will cascade and delete the ComponentGrainEntity entities
+        for (YeastFormEntity thisEntity : entities) {
+            me.deleteYeastFormEntity(thisEntity);
+        }
 
         // clean up
-        for (YeastFormEntity component : yeastForms) {
-            me.deleteYeastFormEntity(component);
-        }
+        me = null;
+        testEntity = null;
+        entities = null;
+
+    }
+
+    @Test
+    public void testGetAllYeastForms() throws Exception {
+
+        List<YeastFormEntity> results;
+        results = me.getAllYeastForms();
+        assertTrue("Expected non-zero ArrayList size, got zero.", results.size() > 0);
 
     }
 
     @Test
     public void testGetYeastFormEntity() throws Exception {
 
-        YeastFormDao me = new YeastFormDao();
-        YeastFormEntity testYeastForm = new YeastFormEntity();
-        int yeastFormEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
+        int id = entities.get(0).getYeastFormId();
 
-        // create a test grain and add them to the database
-        testYeastForm = new YeastFormEntity();
-        testYeastForm.setName("Yeast Form 1");
-        testYeastForm.setUpdateDate(ts);
-        testYeastForm.setCreateDate(ts);
-
-        yeastFormEntityID = me.addYeastFormEntity(testYeastForm);
-
-        // confirm that a non-zero component ID was returned (indicator of success)
-        assertTrue("Expected a non-zero yeast form ID, got " + yeastFormEntityID, yeastFormEntityID > 0);
-
-        // confirm that the component can be retrieved from the database
-        testYeastForm = me.getYeastFormEntity(yeastFormEntityID);
-        assertNotNull(testYeastForm);
-
-        // clean up
-        me.deleteYeastFormEntity(testYeastForm);
+        // confirm that the entity can be retrieved from the database
+        testEntity = null;
+        testEntity = me.getYeastFormEntity(id);
+        assertNotNull("Expected non-null entity, got null", testEntity);
 
     }
 
     @Test
     public void testUpdateYeastFormEntity() throws Exception {
 
-        YeastFormDao me = new YeastFormDao();
-        YeastFormEntity testYeastForm = new YeastFormEntity();
-        int yeastFormEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
+        int id = entities.get(0).getYeastFormId();
 
-        // create a test component and add them to the database
-        testYeastForm = new YeastFormEntity();
-        testYeastForm.setName("Yeast Form 1");
-        testYeastForm.setUpdateDate(ts);
-        testYeastForm.setCreateDate(ts);
+        // retrieve the test ComponentGrainEntity from the database and change its name
+        testEntity = null;
+        testEntity = me.getYeastFormEntity(id);
+        testEntity.setName("New Name");
+        me.updateYeastFormEntity(testEntity);
 
-        yeastFormEntityID = me.addYeastFormEntity(testYeastForm);
+        // retrieve the updated ComponentGrainEntity and test that the update took place
+        testEntity = null;
+        testEntity = me.getYeastFormEntity(id);
 
-        // retrieve the test component from the database and change its name
-        testYeastForm = me.getYeastFormEntity(yeastFormEntityID);
-        testYeastForm.setName("New Name");
-        me.updateYeastFormEntity(testYeastForm);
-
-        // retrieve the updated employee and test that the update took place
-        testYeastForm = me.getYeastFormEntity(yeastFormEntityID);
-
-        assertEquals("Expected New Name, got " + testYeastForm.getName(),
-                "New Name", testYeastForm.getName());
-
-        // clean up
-        me.deleteYeastFormEntity(testYeastForm);
+        assertEquals("Expected New Name, got " + testEntity.getName(),
+                "New Name", testEntity.getName());
 
     }
 
     @Test
     public void testDeleteYeastFormEntity() throws Exception {
 
-        YeastFormDao me = new YeastFormDao();
-        YeastFormEntity testYeastForm = new YeastFormEntity();
-        int yeastFormEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
+        int id = entities.get(0).getYeastFormId();
 
-        // create a test component and add them to the database
-        testYeastForm = new YeastFormEntity();
-        testYeastForm.setName("Yeast Form 1");
-        testYeastForm.setUpdateDate(ts);
-        testYeastForm.setCreateDate(ts);
+        // delete the entity and verify that it is no longer in the database
+        me.deleteYeastFormEntity(me.getYeastFormEntity(id));
+        assertNull("Expected a null entity, got a real entity", me.getYeastFormEntity(id));
 
-        yeastFormEntityID = me.addYeastFormEntity(testYeastForm);
-
-        // make sure the employee was added before proceeding
-        assertTrue("Expected a non-zero yeast form ID, got " + yeastFormEntityID, yeastFormEntityID > 0);
-
-        // delete the employee and verify that they are no longer in the database
-        me.deleteYeastFormEntity(me.getYeastFormEntity(yeastFormEntityID));
-        assertNull(me.getYeastFormEntity(yeastFormEntityID));
+        // remove the deleted entity from the ArrayList so that Hibernate doesn't get sad
+        // during the teardown() method
+        entities.remove(0);
 
     }
 
     @Test
     public void testAddYeastFormEntity() throws Exception {
 
-        YeastFormDao me = new YeastFormDao();
-        YeastFormEntity testYeastForm = new YeastFormEntity();
-        int yeastFormEntityID;
+        int id;
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
 
-        // create a test component and add them to the database
-        testYeastForm = new YeastFormEntity();
-        testYeastForm.setName("Yeast Form 1");
-        testYeastForm.setUpdateDate(ts);
-        testYeastForm.setCreateDate(ts);
+        testEntity = new YeastFormEntity();
+        testEntity.setName("zComponent Type for Add test");
+        testEntity.setUpdateDate(ts);
+        testEntity.setCreateDate(ts);
 
-        yeastFormEntityID = me.addYeastFormEntity(testYeastForm);
+        id = me.addYeastFormEntity(testEntity);
+        entities.add(testEntity);
 
-        // confirm that a non-zero employee ID was returned (indicator of success)
-        assertTrue("Expected a non-zero yeast form ID, got " + yeastFormEntityID, yeastFormEntityID > 0);
-
-        // clean up
-        testYeastForm = me.getYeastFormEntity(yeastFormEntityID);
-        me.deleteYeastFormEntity(testYeastForm);
+        // confirm that a non-zero ID was returned (indicator of success)
+        assertTrue("Expected a non-zero entity ID, got " + id, id > 0);
 
     }
 
-    @Test
-    public void testDeleteYeastFormEntityById() throws Exception {
-
-        YeastFormDao me = new YeastFormDao();
-        YeastFormEntity testYeastForm = new YeastFormEntity();
-        int yeastFormEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
-
-        // create a test component and add them to the database
-        testYeastForm = new YeastFormEntity();
-        testYeastForm.setName("Yeast Type 1");
-        testYeastForm.setUpdateDate(ts);
-        testYeastForm.setCreateDate(ts);
-
-        yeastFormEntityID = me.addYeastFormEntity(testYeastForm);
-
-        // make sure the employee was added before proceeding
-        assertTrue("Expected a non-zero yeast type ID, got " + yeastFormEntityID, yeastFormEntityID > 0);
-
-        // delete the employee and verify that they are no longer in the database
-        me.deleteYeastFormEntityById(yeastFormEntityID);
-        assertNull(me.getYeastFormEntity(yeastFormEntityID));
-
-    }
-    
 }

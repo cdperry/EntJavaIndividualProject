@@ -1,10 +1,9 @@
 package com.cdperry.brewday.persistence;
 
 import com.cdperry.brewday.entity.YeastTypeEntity;
-import org.junit.Test;
+import org.junit.*;
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.sql.Timestamp;
 import static org.junit.Assert.*;
 
@@ -13,180 +12,122 @@ import static org.junit.Assert.*;
  */
 public class YeastTypeDaoTest {
 
-    @Test
-    public void testGetAllYeastTypes() throws Exception {
+    private YeastTypeDao me;
+    private YeastTypeEntity testEntity;
+    private List<YeastTypeEntity> entities;
 
-        YeastTypeDao me = new YeastTypeDao();
-        YeastTypeEntity testYeastType;
-        List<YeastTypeEntity> yeastTypes;
+    @Before
+    public void setup() {
+
+        me = new YeastTypeDao();
+
         int yeastTypeEntityID;
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
 
-        // create a test yeast and add them to the database
-        testYeastType = new YeastTypeEntity();
-        testYeastType.setName("Yeast Type 1");
-        testYeastType.setUpdateDate(ts);
-        testYeastType.setCreateDate(ts);
+        entities = new ArrayList<YeastTypeEntity>();
 
-        yeastTypeEntityID = me.addYeastTypeEntity(testYeastType);
+        for (int iteration = 1; iteration < 4; iteration++) {
+            testEntity = new YeastTypeEntity();
+            testEntity.setName("zYeast Type " + iteration);
+            testEntity.setUpdateDate(ts);
+            testEntity.setCreateDate(ts);
 
-        // create a test yeast and add them to the database
-        testYeastType = new YeastTypeEntity();
-        testYeastType.setName("Yeast Type 2");
-        testYeastType.setUpdateDate(ts);
-        testYeastType.setCreateDate(ts);
+            yeastTypeEntityID = me.addYeastTypeEntity(testEntity);
+            entities.add(testEntity);
+        }
 
-        yeastTypeEntityID = me.addYeastTypeEntity(testYeastType);
+    }
 
-        yeastTypes = me.getAllYeastTypes();
-        assertTrue(yeastTypes.size() > 0);
+    @After
+    public void teardown() {
+
+        // delete the YeastEntity entities which will cascade and delete the YeastGrainEntity entities
+        for (YeastTypeEntity thisEntity : entities) {
+            me.deleteYeastTypeEntity(thisEntity);
+        }
 
         // clean up
-        for (YeastTypeEntity component : yeastTypes) {
-            me.deleteYeastTypeEntity(component);
-        }
+        me = null;
+        testEntity = null;
+        entities = null;
+
+    }
+
+    @Test
+    public void testGetAllYeastTypes() throws Exception {
+
+        List<YeastTypeEntity> results;
+        results = me.getAllYeastTypes();
+        assertTrue("Expected non-zero ArrayList size, got zero.", results.size() > 0);
 
     }
 
     @Test
     public void testGetYeastTypeEntity() throws Exception {
 
-        YeastTypeDao me = new YeastTypeDao();
-        YeastTypeEntity testYeastType = new YeastTypeEntity();
-        int yeastTypeEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
+        int id = entities.get(0).getYeastTypeId();
 
-        // create a test yeast and add them to the database
-        testYeastType = new YeastTypeEntity();
-        testYeastType.setName("Yeast Type 1");
-        testYeastType.setUpdateDate(ts);
-        testYeastType.setCreateDate(ts);
-
-        yeastTypeEntityID = me.addYeastTypeEntity(testYeastType);
-
-        // confirm that a non-zero component ID was returned (indicator of success)
-        assertTrue("Expected a non-zero yeast type ID, got " + yeastTypeEntityID, yeastTypeEntityID > 0);
-
-        // confirm that the component can be retrieved from the database
-        testYeastType = me.getYeastTypeEntity(yeastTypeEntityID);
-        assertNotNull(testYeastType);
-
-        // clean up
-        me.deleteYeastTypeEntity(testYeastType);
+        // confirm that the entity can be retrieved from the database
+        testEntity = null;
+        testEntity = me.getYeastTypeEntity(id);
+        assertNotNull("Expected non-null entity, got null", testEntity);
 
     }
 
     @Test
     public void testUpdateYeastTypeEntity() throws Exception {
 
-        YeastTypeDao me = new YeastTypeDao();
-        YeastTypeEntity testYeastType = new YeastTypeEntity();
-        int yeastTypeEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
+        int id = entities.get(0).getYeastTypeId();
 
-        // create a test component and add them to the database
-        testYeastType = new YeastTypeEntity();
-        testYeastType.setName("Yeast Type 1");
-        testYeastType.setUpdateDate(ts);
-        testYeastType.setCreateDate(ts);
+        // retrieve the test YeastGrainEntity from the database and change its name
+        testEntity = null;
+        testEntity = me.getYeastTypeEntity(id);
+        testEntity.setName("New Name");
+        me.updateYeastTypeEntity(testEntity);
 
-        yeastTypeEntityID = me.addYeastTypeEntity(testYeastType);
+        // retrieve the updated YeastGrainEntity and test that the update took place
+        testEntity = null;
+        testEntity = me.getYeastTypeEntity(id);
 
-        // retrieve the test component from the database and change its name
-        testYeastType = me.getYeastTypeEntity(yeastTypeEntityID);
-        testYeastType.setName("New Name");
-        me.updateYeastTypeEntity(testYeastType);
-
-        // retrieve the updated employee and test that the update took place
-        testYeastType = me.getYeastTypeEntity(yeastTypeEntityID);
-
-        assertEquals("Expected New Name, got " + testYeastType.getName(),
-                "New Name", testYeastType.getName());
-
-        // clean up
-        me.deleteYeastTypeEntity(testYeastType);
+        assertEquals("Expected New Name, got " + testEntity.getName(),
+                "New Name", testEntity.getName());
 
     }
 
     @Test
     public void testDeleteYeastTypeEntity() throws Exception {
 
-        YeastTypeDao me = new YeastTypeDao();
-        YeastTypeEntity testYeastType = new YeastTypeEntity();
-        int yeastTypeEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
+        int id = entities.get(0).getYeastTypeId();
 
-        // create a test component and add them to the database
-        testYeastType = new YeastTypeEntity();
-        testYeastType.setName("Yeast Type 1");
-        testYeastType.setUpdateDate(ts);
-        testYeastType.setCreateDate(ts);
+        // delete the entity and verify that it is no longer in the database
+        me.deleteYeastTypeEntity(me.getYeastTypeEntity(id));
+        assertNull("Expected a null entity, got a real entity", me.getYeastTypeEntity(id));
 
-        yeastTypeEntityID = me.addYeastTypeEntity(testYeastType);
-
-        // make sure the employee was added before proceeding
-        assertTrue("Expected a non-zero yeast type ID, got " + yeastTypeEntityID, yeastTypeEntityID > 0);
-
-        // delete the employee and verify that they are no longer in the database
-        me.deleteYeastTypeEntity(me.getYeastTypeEntity(yeastTypeEntityID));
-        assertNull(me.getYeastTypeEntity(yeastTypeEntityID));
+        // remove the deleted entity from the ArrayList so that Hibernate doesn't get sad
+        // during the teardown() method
+        entities.remove(0);
 
     }
 
     @Test
     public void testAddYeastTypeEntity() throws Exception {
 
-        YeastTypeDao me = new YeastTypeDao();
-        YeastTypeEntity testYeastType = new YeastTypeEntity();
-        int yeastTypeEntityID;
+        int id;
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
 
-        // create a test component and add them to the database
-        testYeastType = new YeastTypeEntity();
-        testYeastType.setName("Yeast Type 1");
-        testYeastType.setUpdateDate(ts);
-        testYeastType.setCreateDate(ts);
+        testEntity = new YeastTypeEntity();
+        testEntity.setName("zYeast Type for Add test");
+        testEntity.setUpdateDate(ts);
+        testEntity.setCreateDate(ts);
 
-        yeastTypeEntityID = me.addYeastTypeEntity(testYeastType);
+        id = me.addYeastTypeEntity(testEntity);
+        entities.add(testEntity);
 
-        // confirm that a non-zero employee ID was returned (indicator of success)
-        assertTrue("Expected a non-zero yeast type ID, got " + yeastTypeEntityID, yeastTypeEntityID > 0);
-
-        // clean up
-        testYeastType = me.getYeastTypeEntity(yeastTypeEntityID);
-        me.deleteYeastTypeEntity(testYeastType);
+        // confirm that a non-zero ID was returned (indicator of success)
+        assertTrue("Expected a non-zero entity ID, got " + id, id > 0);
 
     }
 
-    @Test
-    public void testDeleteYeastTypeEntityById() throws Exception {
-
-        YeastTypeDao me = new YeastTypeDao();
-        YeastTypeEntity testYeastType = new YeastTypeEntity();
-        int yeastTypeEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
-
-        // create a test component and add them to the database
-        testYeastType = new YeastTypeEntity();
-        testYeastType.setName("Yeast Type 1");
-        testYeastType.setUpdateDate(ts);
-        testYeastType.setCreateDate(ts);
-
-        yeastTypeEntityID = me.addYeastTypeEntity(testYeastType);
-
-        // make sure the employee was added before proceeding
-        assertTrue("Expected a non-zero yeast type ID, got " + yeastTypeEntityID, yeastTypeEntityID > 0);
-
-        // delete the employee and verify that they are no longer in the database
-        me.deleteYeastTypeEntityById(yeastTypeEntityID);
-        assertNull(me.getYeastTypeEntity(yeastTypeEntityID));
-
-    }
-    
 }

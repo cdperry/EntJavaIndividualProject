@@ -1,10 +1,9 @@
 package com.cdperry.brewday.persistence;
 
 import com.cdperry.brewday.entity.YeastFlocTypeEntity;
-import org.junit.Test;
+import org.junit.*;
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.sql.Timestamp;
 import static org.junit.Assert.*;
 
@@ -13,180 +12,122 @@ import static org.junit.Assert.*;
  */
 public class YeastFlocTypeDaoTest {
 
-    @Test
-    public void testGetAllYeastFlocTypes() throws Exception {
+    private YeastFlocTypeDao me;
+    private YeastFlocTypeEntity testEntity;
+    private List<YeastFlocTypeEntity> entities;
 
-        YeastFlocTypeDao me = new YeastFlocTypeDao();
-        YeastFlocTypeEntity testYeastFlocType;
-        List<YeastFlocTypeEntity> yeastFlocTypes;
+    @Before
+    public void setup() {
+
+        me = new YeastFlocTypeDao();
+
         int yeastFlocTypeEntityID;
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
 
-        // create a test yeastFloc and add them to the database
-        testYeastFlocType = new YeastFlocTypeEntity();
-        testYeastFlocType.setName("YeastFloc Type 1");
-        testYeastFlocType.setUpdateDate(ts);
-        testYeastFlocType.setCreateDate(ts);
+        entities = new ArrayList<YeastFlocTypeEntity>();
 
-        yeastFlocTypeEntityID = me.addYeastFlocTypeEntity(testYeastFlocType);
+        for (int iteration = 1; iteration < 4; iteration++) {
+            testEntity = new YeastFlocTypeEntity();
+            testEntity.setName("zYeastFloc Type " + iteration);
+            testEntity.setUpdateDate(ts);
+            testEntity.setCreateDate(ts);
 
-        // create a test yeastFloc and add them to the database
-        testYeastFlocType = new YeastFlocTypeEntity();
-        testYeastFlocType.setName("YeastFloc Type 2");
-        testYeastFlocType.setUpdateDate(ts);
-        testYeastFlocType.setCreateDate(ts);
+            yeastFlocTypeEntityID = me.addYeastFlocTypeEntity(testEntity);
+            entities.add(testEntity);
+        }
 
-        yeastFlocTypeEntityID = me.addYeastFlocTypeEntity(testYeastFlocType);
+    }
 
-        yeastFlocTypes = me.getAllYeastFlocTypes();
-        assertTrue(yeastFlocTypes.size() > 0);
+    @After
+    public void teardown() {
+
+        // delete the YeastFlocEntity entities which will cascade and delete the YeastFlocGrainEntity entities
+        for (YeastFlocTypeEntity thisEntity : entities) {
+            me.deleteYeastFlocTypeEntity(thisEntity);
+        }
 
         // clean up
-        for (YeastFlocTypeEntity component : yeastFlocTypes) {
-            me.deleteYeastFlocTypeEntity(component);
-        }
+        me = null;
+        testEntity = null;
+        entities = null;
+
+    }
+
+    @Test
+    public void testGetAllYeastFlocTypes() throws Exception {
+
+        List<YeastFlocTypeEntity> results;
+        results = me.getAllYeastFlocTypes();
+        assertTrue("Expected non-zero ArrayList size, got zero.", results.size() > 0);
 
     }
 
     @Test
     public void testGetYeastFlocTypeEntity() throws Exception {
 
-        YeastFlocTypeDao me = new YeastFlocTypeDao();
-        YeastFlocTypeEntity testYeastFlocType = new YeastFlocTypeEntity();
-        int yeastFlocTypeEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
+        int id = entities.get(0).getYeastFlocTypeId();
 
-        // create a test yeastFloc and add them to the database
-        testYeastFlocType = new YeastFlocTypeEntity();
-        testYeastFlocType.setName("YeastFloc Type 1");
-        testYeastFlocType.setUpdateDate(ts);
-        testYeastFlocType.setCreateDate(ts);
-
-        yeastFlocTypeEntityID = me.addYeastFlocTypeEntity(testYeastFlocType);
-
-        // confirm that a non-zero component ID was returned (indicator of success)
-        assertTrue("Expected a non-zero yeastFloc type ID, got " + yeastFlocTypeEntityID, yeastFlocTypeEntityID > 0);
-
-        // confirm that the component can be retrieved from the database
-        testYeastFlocType = me.getYeastFlocTypeEntity(yeastFlocTypeEntityID);
-        assertNotNull(testYeastFlocType);
-
-        // clean up
-        me.deleteYeastFlocTypeEntity(testYeastFlocType);
+        // confirm that the entity can be retrieved from the database
+        testEntity = null;
+        testEntity = me.getYeastFlocTypeEntity(id);
+        assertNotNull("Expected non-null entity, got null", testEntity);
 
     }
 
     @Test
     public void testUpdateYeastFlocTypeEntity() throws Exception {
 
-        YeastFlocTypeDao me = new YeastFlocTypeDao();
-        YeastFlocTypeEntity testYeastFlocType = new YeastFlocTypeEntity();
-        int yeastFlocTypeEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
+        int id = entities.get(0).getYeastFlocTypeId();
 
-        // create a test component and add them to the database
-        testYeastFlocType = new YeastFlocTypeEntity();
-        testYeastFlocType.setName("YeastFloc Type 1");
-        testYeastFlocType.setUpdateDate(ts);
-        testYeastFlocType.setCreateDate(ts);
+        // retrieve the test YeastFlocGrainEntity from the database and change its name
+        testEntity = null;
+        testEntity = me.getYeastFlocTypeEntity(id);
+        testEntity.setName("New Name");
+        me.updateYeastFlocTypeEntity(testEntity);
 
-        yeastFlocTypeEntityID = me.addYeastFlocTypeEntity(testYeastFlocType);
+        // retrieve the updated YeastFlocGrainEntity and test that the update took place
+        testEntity = null;
+        testEntity = me.getYeastFlocTypeEntity(id);
 
-        // retrieve the test component from the database and change its name
-        testYeastFlocType = me.getYeastFlocTypeEntity(yeastFlocTypeEntityID);
-        testYeastFlocType.setName("New Name");
-        me.updateYeastFlocTypeEntity(testYeastFlocType);
-
-        // retrieve the updated employee and test that the update took place
-        testYeastFlocType = me.getYeastFlocTypeEntity(yeastFlocTypeEntityID);
-
-        assertEquals("Expected New Name, got " + testYeastFlocType.getName(),
-                "New Name", testYeastFlocType.getName());
-
-        // clean up
-        me.deleteYeastFlocTypeEntity(testYeastFlocType);
+        assertEquals("Expected New Name, got " + testEntity.getName(),
+                "New Name", testEntity.getName());
 
     }
 
     @Test
     public void testDeleteYeastFlocTypeEntity() throws Exception {
 
-        YeastFlocTypeDao me = new YeastFlocTypeDao();
-        YeastFlocTypeEntity testYeastFlocType = new YeastFlocTypeEntity();
-        int yeastFlocTypeEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
+        int id = entities.get(0).getYeastFlocTypeId();
 
-        // create a test component and add them to the database
-        testYeastFlocType = new YeastFlocTypeEntity();
-        testYeastFlocType.setName("YeastFloc Type 1");
-        testYeastFlocType.setUpdateDate(ts);
-        testYeastFlocType.setCreateDate(ts);
+        // delete the entity and verify that it is no longer in the database
+        me.deleteYeastFlocTypeEntity(me.getYeastFlocTypeEntity(id));
+        assertNull("Expected a null entity, got a real entity", me.getYeastFlocTypeEntity(id));
 
-        yeastFlocTypeEntityID = me.addYeastFlocTypeEntity(testYeastFlocType);
-
-        // make sure the employee was added before proceeding
-        assertTrue("Expected a non-zero yeastFloc type ID, got " + yeastFlocTypeEntityID, yeastFlocTypeEntityID > 0);
-
-        // delete the employee and verify that they are no longer in the database
-        me.deleteYeastFlocTypeEntity(me.getYeastFlocTypeEntity(yeastFlocTypeEntityID));
-        assertNull(me.getYeastFlocTypeEntity(yeastFlocTypeEntityID));
+        // remove the deleted entity from the ArrayList so that Hibernate doesn't get sad
+        // during the teardown() method
+        entities.remove(0);
 
     }
 
     @Test
     public void testAddYeastFlocTypeEntity() throws Exception {
 
-        YeastFlocTypeDao me = new YeastFlocTypeDao();
-        YeastFlocTypeEntity testYeastFlocType = new YeastFlocTypeEntity();
-        int yeastFlocTypeEntityID;
+        int id;
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
 
-        // create a test component and add them to the database
-        testYeastFlocType = new YeastFlocTypeEntity();
-        testYeastFlocType.setName("YeastFloc Type 1");
-        testYeastFlocType.setUpdateDate(ts);
-        testYeastFlocType.setCreateDate(ts);
+        testEntity = new YeastFlocTypeEntity();
+        testEntity.setName("zYeastFloc Type for Add test");
+        testEntity.setUpdateDate(ts);
+        testEntity.setCreateDate(ts);
 
-        yeastFlocTypeEntityID = me.addYeastFlocTypeEntity(testYeastFlocType);
+        id = me.addYeastFlocTypeEntity(testEntity);
+        entities.add(testEntity);
 
-        // confirm that a non-zero employee ID was returned (indicator of success)
-        assertTrue("Expected a non-zero yeastFloc type ID, got " + yeastFlocTypeEntityID, yeastFlocTypeEntityID > 0);
-
-        // clean up
-        testYeastFlocType = me.getYeastFlocTypeEntity(yeastFlocTypeEntityID);
-        me.deleteYeastFlocTypeEntity(testYeastFlocType);
+        // confirm that a non-zero ID was returned (indicator of success)
+        assertTrue("Expected a non-zero entity ID, got " + id, id > 0);
 
     }
 
-    @Test
-    public void testDeleteYeastFlocTypeEntityById() throws Exception {
-
-        YeastFlocTypeDao me = new YeastFlocTypeDao();
-        YeastFlocTypeEntity testYeastFlocType = new YeastFlocTypeEntity();
-        int yeastFlocTypeEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
-
-        // create a test component and add them to the database
-        testYeastFlocType = new YeastFlocTypeEntity();
-        testYeastFlocType.setName("YeastFloc Type 1");
-        testYeastFlocType.setUpdateDate(ts);
-        testYeastFlocType.setCreateDate(ts);
-
-        yeastFlocTypeEntityID = me.addYeastFlocTypeEntity(testYeastFlocType);
-
-        // make sure the employee was added before proceeding
-        assertTrue("Expected a non-zero yeast flocculation type ID, got " + yeastFlocTypeEntityID, yeastFlocTypeEntityID > 0);
-
-        // delete the employee and verify that they are no longer in the database
-        me.deleteYeastFlocTypeEntityById(yeastFlocTypeEntityID);
-        assertNull(me.getYeastFlocTypeEntity(yeastFlocTypeEntityID));
-
-    }
-    
 }

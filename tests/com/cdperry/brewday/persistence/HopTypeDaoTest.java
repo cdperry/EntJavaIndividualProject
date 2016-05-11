@@ -1,10 +1,9 @@
 package com.cdperry.brewday.persistence;
 
 import com.cdperry.brewday.entity.HopTypeEntity;
-import org.junit.Test;
+import org.junit.*;
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.sql.Timestamp;
 import static org.junit.Assert.*;
 
@@ -13,179 +12,121 @@ import static org.junit.Assert.*;
  */
 public class HopTypeDaoTest {
 
-    @Test
-    public void testGetAllHopTypes() throws Exception {
+    private HopTypeDao me;
+    private HopTypeEntity testEntity;
+    private List<HopTypeEntity> entities;
 
-        HopTypeDao me = new HopTypeDao();
-        HopTypeEntity testHopType;
-        List<HopTypeEntity> hopTypes;
+    @Before
+    public void setup() {
+
+        me = new HopTypeDao();
+
         int hopTypeEntityID;
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
 
-        // create a test hop and add them to the database
-        testHopType = new HopTypeEntity();
-        testHopType.setName("Hop Type 1");
-        testHopType.setUpdateDate(ts);
-        testHopType.setCreateDate(ts);
+        entities = new ArrayList<HopTypeEntity>();
 
-        hopTypeEntityID = me.addHopTypeEntity(testHopType);
+        for (int iteration = 1; iteration < 4; iteration++) {
+            testEntity = new HopTypeEntity();
+            testEntity.setName("zHop Type " + iteration);
+            testEntity.setUpdateDate(ts);
+            testEntity.setCreateDate(ts);
 
-        // create a test hop and add them to the database
-        testHopType = new HopTypeEntity();
-        testHopType.setName("Hop Type 2");
-        testHopType.setUpdateDate(ts);
-        testHopType.setCreateDate(ts);
+            hopTypeEntityID = me.addHopTypeEntity(testEntity);
+            entities.add(testEntity);
+        }
 
-        hopTypeEntityID = me.addHopTypeEntity(testHopType);
+    }
 
-        hopTypes = me.getAllHopTypes();
-        assertTrue(hopTypes.size() > 0);
+    @After
+    public void teardown() {
+
+        // delete the HopEntity entities which will cascade and delete the HopGrainEntity entities
+        for (HopTypeEntity thisEntity : entities) {
+            me.deleteHopTypeEntity(thisEntity);
+        }
 
         // clean up
-        for (HopTypeEntity component : hopTypes) {
-            me.deleteHopTypeEntity(component);
-        }
+        me = null;
+        testEntity = null;
+        entities = null;
+
+    }
+
+    @Test
+    public void testGetAllHopTypes() throws Exception {
+
+        List<HopTypeEntity> results;
+        results = me.getAllHopTypes();
+        assertTrue("Expected non-zero ArrayList size, got zero.", results.size() > 0);
 
     }
 
     @Test
     public void testGetHopTypeEntity() throws Exception {
 
-        HopTypeDao me = new HopTypeDao();
-        HopTypeEntity testHopType = new HopTypeEntity();
-        int hopTypeEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
+        int id = entities.get(0).getHopTypeId();
 
-        // create a test hop and add them to the database
-        testHopType = new HopTypeEntity();
-        testHopType.setName("Hop Type 1");
-        testHopType.setUpdateDate(ts);
-        testHopType.setCreateDate(ts);
-
-        hopTypeEntityID = me.addHopTypeEntity(testHopType);
-
-        // confirm that a non-zero component ID was returned (indicator of success)
-        assertTrue("Expected a non-zero hop type ID, got " + hopTypeEntityID, hopTypeEntityID > 0);
-
-        // confirm that the component can be retrieved from the database
-        testHopType = me.getHopTypeEntity(hopTypeEntityID);
-        assertNotNull(testHopType);
-
-        // clean up
-        me.deleteHopTypeEntity(testHopType);
+        // confirm that the entity can be retrieved from the database
+        testEntity = null;
+        testEntity = me.getHopTypeEntity(id);
+        assertNotNull("Expected non-null entity, got null", testEntity);
 
     }
 
     @Test
     public void testUpdateHopTypeEntity() throws Exception {
 
-        HopTypeDao me = new HopTypeDao();
-        HopTypeEntity testHopType = new HopTypeEntity();
-        int hopTypeEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
+        int id = entities.get(0).getHopTypeId();
 
-        // create a test component and add them to the database
-        testHopType = new HopTypeEntity();
-        testHopType.setName("Hop Type 1");
-        testHopType.setUpdateDate(ts);
-        testHopType.setCreateDate(ts);
+        // retrieve the test HopGrainEntity from the database and change its name
+        testEntity = null;
+        testEntity = me.getHopTypeEntity(id);
+        testEntity.setName("New Name");
+        me.updateHopTypeEntity(testEntity);
 
-        hopTypeEntityID = me.addHopTypeEntity(testHopType);
+        // retrieve the updated HopGrainEntity and test that the update took place
+        testEntity = null;
+        testEntity = me.getHopTypeEntity(id);
 
-        // retrieve the test component from the database and change its name
-        testHopType = me.getHopTypeEntity(hopTypeEntityID);
-        testHopType.setName("New Name");
-        me.updateHopTypeEntity(testHopType);
-
-        // retrieve the updated employee and test that the update took place
-        testHopType = me.getHopTypeEntity(hopTypeEntityID);
-
-        assertEquals("Expected New Name, got " + testHopType.getName(),
-                "New Name", testHopType.getName());
-
-        // clean up
-        me.deleteHopTypeEntity(testHopType);
+        assertEquals("Expected New Name, got " + testEntity.getName(),
+                "New Name", testEntity.getName());
 
     }
 
     @Test
     public void testDeleteHopTypeEntity() throws Exception {
 
-        HopTypeDao me = new HopTypeDao();
-        HopTypeEntity testHopType = new HopTypeEntity();
-        int hopTypeEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
+        int id = entities.get(0).getHopTypeId();
 
-        // create a test component and add them to the database
-        testHopType = new HopTypeEntity();
-        testHopType.setName("Hop Type 1");
-        testHopType.setUpdateDate(ts);
-        testHopType.setCreateDate(ts);
+        // delete the entity and verify that it is no longer in the database
+        me.deleteHopTypeEntity(me.getHopTypeEntity(id));
+        assertNull("Expected a null entity, got a real entity", me.getHopTypeEntity(id));
 
-        hopTypeEntityID = me.addHopTypeEntity(testHopType);
-
-        // make sure the employee was added before proceeding
-        assertTrue("Expected a non-zero hop type ID, got " + hopTypeEntityID, hopTypeEntityID > 0);
-
-        // delete the employee and verify that they are no longer in the database
-        me.deleteHopTypeEntity(me.getHopTypeEntity(hopTypeEntityID));
-        assertNull(me.getHopTypeEntity(hopTypeEntityID));
+        // remove the deleted entity from the ArrayList so that Hibernate doesn't get sad
+        // during the teardown() method
+        entities.remove(0);
 
     }
 
     @Test
     public void testAddHopTypeEntity() throws Exception {
 
-        HopTypeDao me = new HopTypeDao();
-        HopTypeEntity testHopType = new HopTypeEntity();
-        int hopTypeEntityID;
+        int id;
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
 
-        // create a test component and add them to the database
-        testHopType = new HopTypeEntity();
-        testHopType.setName("Hop Type 1");
-        testHopType.setUpdateDate(ts);
-        testHopType.setCreateDate(ts);
+        testEntity = new HopTypeEntity();
+        testEntity.setName("zHop Type for Add test");
+        testEntity.setUpdateDate(ts);
+        testEntity.setCreateDate(ts);
 
-        hopTypeEntityID = me.addHopTypeEntity(testHopType);
+        id = me.addHopTypeEntity(testEntity);
+        entities.add(testEntity);
 
-        // confirm that a non-zero employee ID was returned (indicator of success)
-        assertTrue("Expected a non-zero hop type ID, got " + hopTypeEntityID, hopTypeEntityID > 0);
-
-        // clean up
-        testHopType = me.getHopTypeEntity(hopTypeEntityID);
-        me.deleteHopTypeEntity(testHopType);
-
-    }
-
-    @Test
-    public void testDeleteHopTypeEntityById() throws Exception {
-
-        HopTypeDao me = new HopTypeDao();
-        HopTypeEntity testHopType = new HopTypeEntity();
-        int hopTypeEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
-
-        // create a test component and add them to the database
-        testHopType = new HopTypeEntity();
-        testHopType.setName("Hop Type 1");
-        testHopType.setUpdateDate(ts);
-        testHopType.setCreateDate(ts);
-
-        hopTypeEntityID = me.addHopTypeEntity(testHopType);
-
-        // make sure the employee was added before proceeding
-        assertTrue("Expected a non-zero hop type ID, got " + hopTypeEntityID, hopTypeEntityID > 0);
-
-        // delete the employee and verify that they are no longer in the database
-        me.deleteHopTypeEntityById(hopTypeEntityID);
-        assertNull(me.getHopTypeEntity(hopTypeEntityID));
+        // confirm that a non-zero ID was returned (indicator of success)
+        assertTrue("Expected a non-zero entity ID, got " + id, id > 0);
 
     }
 

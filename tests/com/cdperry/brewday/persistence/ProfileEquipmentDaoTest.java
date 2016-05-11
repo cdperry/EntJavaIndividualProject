@@ -1,10 +1,10 @@
 package com.cdperry.brewday.persistence;
 
 import com.cdperry.brewday.entity.ProfileEquipmentEntity;
-import org.junit.Test;
+import com.cdperry.brewday.entity.UomTypeEntity;
+import org.junit.*;
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.sql.Timestamp;
 import static org.junit.Assert.*;
 
@@ -13,303 +13,152 @@ import static org.junit.Assert.*;
  */
 public class ProfileEquipmentDaoTest {
 
-    @Test
-    public void testGetAllProfileEquipments() throws Exception {
+    private ProfileEquipmentDao me;
+    private ProfileEquipmentEntity testEntity;
+    private UomTypeDao uomTypeDao;
+    private UomTypeEntity uomTypeEntity;
+    private List<ProfileEquipmentEntity> entities;
 
-        ProfileEquipmentDao me = new ProfileEquipmentDao();
-        ProfileEquipmentEntity testProfileEquipment;
-        List<ProfileEquipmentEntity> profileEquipments;
-        int profileEquipmentEntityID;
+    @Before
+    public void setup() {
+
+        me = new ProfileEquipmentDao();
+        uomTypeDao = new UomTypeDao();
+        uomTypeEntity = uomTypeDao.getUomTypeEntity(1);
+
+        int id;
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
 
-        // create a test grain and add them to the database
-        testProfileEquipment = new ProfileEquipmentEntity();
-        testProfileEquipment.setName("Equipment Profile 1");
-        testProfileEquipment.setEfficiency(new BigDecimal("1.0"));
-        testProfileEquipment.setFermBatchVol(new BigDecimal("1.0"));
-        testProfileEquipment.setBatchVolUomId(1);
-        testProfileEquipment.setMashTunVol(new BigDecimal("1.0"));
-        testProfileEquipment.setMashTunUomId(1);
-        testProfileEquipment.setBoilVol(new BigDecimal("1.0"));
-        testProfileEquipment.setBoilVolUomId(1);
-        testProfileEquipment.setBoilTime(new BigDecimal("1.0"));
-        testProfileEquipment.setBoilTimeUomId(1);
-        testProfileEquipment.setBoilOffPerHrVol(new BigDecimal("1.0"));
-        testProfileEquipment.setBoilOffPerHrUomId(1);
-        testProfileEquipment.setBoilShrinkage(new BigDecimal("1.0"));
-        testProfileEquipment.setBoilTotalBoilOff(new BigDecimal("1.0"));
-        testProfileEquipment.setBoilTotalBoilOffUomId(1);
-        testProfileEquipment.setBoilPostBoilVol(new BigDecimal("1.0"));
-        testProfileEquipment.setBoilPostBoilVolUomId(1);
-        testProfileEquipment.setFermLoss(new BigDecimal("1.0"));
-        testProfileEquipment.setFermLossUomId(1);
-        testProfileEquipment.setFermTopUp(new BigDecimal("1.0"));
-        testProfileEquipment.setFermTopUpUomId(1);
-        testProfileEquipment.setFermLossTrubChill(new BigDecimal("1.0"));
-        testProfileEquipment.setFermLossTrubChillUomId(1);
-        testProfileEquipment.setBottlingVol(new BigDecimal("1.0"));
-        testProfileEquipment.setBottlingVolUomId(1);
-        testProfileEquipment.setNotes("This is a note.");
-        testProfileEquipment.setUpdateDate(ts);
-        testProfileEquipment.setCreateDate(ts);
+        entities = new ArrayList<ProfileEquipmentEntity>();
 
-        profileEquipmentEntityID = me.addProfileEquipmentEntity(testProfileEquipment);
+        for (int iteration = 1; iteration < 4; iteration++) {
 
-        // create a test grain and add them to the database
-        testProfileEquipment = new ProfileEquipmentEntity();
-        testProfileEquipment.setName("Equipment Profile 2");
-        testProfileEquipment.setEfficiency(new BigDecimal("1.0"));
-        testProfileEquipment.setFermBatchVol(new BigDecimal("1.0"));
-        testProfileEquipment.setBatchVolUomId(1);
-        testProfileEquipment.setMashTunVol(new BigDecimal("1.0"));
-        testProfileEquipment.setMashTunUomId(1);
-        testProfileEquipment.setBoilVol(new BigDecimal("1.0"));
-        testProfileEquipment.setBoilVolUomId(1);
-        testProfileEquipment.setBoilTime(new BigDecimal("1.0"));
-        testProfileEquipment.setBoilTimeUomId(1);
-        testProfileEquipment.setBoilOffPerHrVol(new BigDecimal("1.0"));
-        testProfileEquipment.setBoilOffPerHrUomId(1);
-        testProfileEquipment.setBoilShrinkage(new BigDecimal("1.0"));
-        testProfileEquipment.setBoilTotalBoilOff(new BigDecimal("1.0"));
-        testProfileEquipment.setBoilTotalBoilOffUomId(1);
-        testProfileEquipment.setBoilPostBoilVol(new BigDecimal("1.0"));
-        testProfileEquipment.setBoilPostBoilVolUomId(1);
-        testProfileEquipment.setFermLoss(new BigDecimal("1.0"));
-        testProfileEquipment.setFermLossUomId(1);
-        testProfileEquipment.setFermTopUp(new BigDecimal("1.0"));
-        testProfileEquipment.setFermTopUpUomId(1);
-        testProfileEquipment.setFermLossTrubChill(new BigDecimal("1.0"));
-        testProfileEquipment.setFermLossTrubChillUomId(1);
-        testProfileEquipment.setBottlingVol(new BigDecimal("1.0"));
-        testProfileEquipment.setBottlingVolUomId(1);
-        testProfileEquipment.setNotes("This is a note.");
-        testProfileEquipment.setUpdateDate(ts);
-        testProfileEquipment.setCreateDate(ts);
+            testEntity = new ProfileEquipmentEntity();
+            testEntity.setName("Equipment Profile " + iteration);
+            testEntity.setEfficiency(new BigDecimal("1.0"));
+            testEntity.setFermBatchVol(new BigDecimal("1.0"));
+            testEntity.setBatchVolUomId(1);
+            testEntity.setMashTunVol(new BigDecimal("1.0"));
+            testEntity.setMashTunUomId(1);
+            testEntity.setBoilVol(new BigDecimal("1.0"));
+            testEntity.setBoilVolUomId(1);
+            testEntity.setBoilTime(new BigDecimal("1.0"));
+            testEntity.setBoilTimeUomId(1);
+            testEntity.setBoilOffPerHrVol(new BigDecimal("1.0"));
+            testEntity.setBoilOffPerHrUomId(1);
+            testEntity.setBoilShrinkage(new BigDecimal("1.0"));
+            testEntity.setBoilTotalBoilOff(new BigDecimal("1.0"));
+            testEntity.setBoilTotalBoilOffUomId(1);
+            testEntity.setBoilPostBoilVol(new BigDecimal("1.0"));
+            testEntity.setBoilPostBoilVolUomId(1);
+            testEntity.setFermLoss(new BigDecimal("1.0"));
+            testEntity.setFermLossUomId(1);
+            testEntity.setFermTopUp(new BigDecimal("1.0"));
+            testEntity.setFermTopUpUomId(1);
+            testEntity.setFermLossTrubChill(new BigDecimal("1.0"));
+            testEntity.setFermLossTrubChillUomId(1);
+            testEntity.setBottlingVol(new BigDecimal("1.0"));
+            testEntity.setBottlingVolUomId(1);
+            testEntity.setNotes("This is a note.");
+            testEntity.setUpdateDate(ts);
+            testEntity.setCreateDate(ts);
 
-        profileEquipmentEntityID = me.addProfileEquipmentEntity(testProfileEquipment);
+            id = me.addProfileEquipmentEntity(testEntity);
+            entities.add(testEntity);
+        }
 
-        profileEquipments = me.getAllProfileEquipment();
-        assertTrue(profileEquipments.size() > 0);
+    }
+
+    @After
+    public void teardown() {
+
+        // delete the ComponentEntity entities which will cascade and delete the ComponentGrainEntity entities
+        for (ProfileEquipmentEntity thisEntity : entities) {
+            me.deleteProfileEquipmentEntity(thisEntity);
+        }
 
         // clean up
-        for (ProfileEquipmentEntity component : profileEquipments) {
-            me.deleteProfileEquipmentEntity(component);
-        }
+        me = null;
+        uomTypeDao = null;
+        uomTypeEntity = null;
+        testEntity = null;
+        entities = null;
+
+    }
+
+    @Test
+    public void testGetAllProfileEquipments() throws Exception {
+
+        List<ProfileEquipmentEntity> results;
+        results = me.getAllProfileEquipment();
+        assertTrue("Expected non-zero ArrayList size, got zero.", results.size() > 0);
 
     }
 
     @Test
     public void testGetProfileEquipmentEntity() throws Exception {
 
-        ProfileEquipmentDao me = new ProfileEquipmentDao();
-        ProfileEquipmentEntity testProfileEquipment = new ProfileEquipmentEntity();
-        int profileEquipmentEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
+        int id = entities.get(0).getProfileEquipmentId();
 
-        // create a test grain and add them to the database
-        testProfileEquipment = new ProfileEquipmentEntity();
-        testProfileEquipment.setName("Equipment Profile 1");
-        testProfileEquipment.setEfficiency(new BigDecimal("1.0"));
-        testProfileEquipment.setFermBatchVol(new BigDecimal("1.0"));
-        testProfileEquipment.setBatchVolUomId(1);
-        testProfileEquipment.setMashTunVol(new BigDecimal("1.0"));
-        testProfileEquipment.setMashTunUomId(1);
-        testProfileEquipment.setBoilVol(new BigDecimal("1.0"));
-        testProfileEquipment.setBoilVolUomId(1);
-        testProfileEquipment.setBoilTime(new BigDecimal("1.0"));
-        testProfileEquipment.setBoilTimeUomId(1);
-        testProfileEquipment.setBoilOffPerHrVol(new BigDecimal("1.0"));
-        testProfileEquipment.setBoilOffPerHrUomId(1);
-        testProfileEquipment.setBoilShrinkage(new BigDecimal("1.0"));
-        testProfileEquipment.setBoilTotalBoilOff(new BigDecimal("1.0"));
-        testProfileEquipment.setBoilTotalBoilOffUomId(1);
-        testProfileEquipment.setBoilPostBoilVol(new BigDecimal("1.0"));
-        testProfileEquipment.setBoilPostBoilVolUomId(1);
-        testProfileEquipment.setFermLoss(new BigDecimal("1.0"));
-        testProfileEquipment.setFermLossUomId(1);
-        testProfileEquipment.setFermTopUp(new BigDecimal("1.0"));
-        testProfileEquipment.setFermTopUpUomId(1);
-        testProfileEquipment.setFermLossTrubChill(new BigDecimal("1.0"));
-        testProfileEquipment.setFermLossTrubChillUomId(1);
-        testProfileEquipment.setBottlingVol(new BigDecimal("1.0"));
-        testProfileEquipment.setBottlingVolUomId(1);
-        testProfileEquipment.setNotes("This is a note.");
-        testProfileEquipment.setUpdateDate(ts);
-        testProfileEquipment.setCreateDate(ts);
-
-        profileEquipmentEntityID = me.addProfileEquipmentEntity(testProfileEquipment);
-
-        // confirm that a non-zero component ID was returned (indicator of success)
-        assertTrue("Expected a non-zero equipment profile ID, got " + profileEquipmentEntityID, profileEquipmentEntityID > 0);
-
-        // confirm that the component can be retrieved from the database
-        testProfileEquipment = me.getProfileEquipmentEntity(profileEquipmentEntityID);
-        assertNotNull(testProfileEquipment);
-
-        // clean up
-        me.deleteProfileEquipmentEntity(testProfileEquipment);
+        // confirm that the entity can be retrieved from the database
+        testEntity = null;
+        testEntity = me.getProfileEquipmentEntity(id);
+        assertNotNull("Expected non-null entity, got null", testEntity);
 
     }
 
     @Test
     public void testUpdateProfileEquipmentEntity() throws Exception {
 
-        ProfileEquipmentDao me = new ProfileEquipmentDao();
-        ProfileEquipmentEntity testProfileEquipment = new ProfileEquipmentEntity();
-        int profileEquipmentEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
+        int id = entities.get(0).getProfileEquipmentId();
 
-        // create a test component and add them to the database
-        testProfileEquipment = new ProfileEquipmentEntity();
-        testProfileEquipment.setName("Equipment Profile 1");
-        testProfileEquipment.setEfficiency(new BigDecimal("1.0"));
-        testProfileEquipment.setFermBatchVol(new BigDecimal("1.0"));
-        testProfileEquipment.setBatchVolUomId(1);
-        testProfileEquipment.setMashTunVol(new BigDecimal("1.0"));
-        testProfileEquipment.setMashTunUomId(1);
-        testProfileEquipment.setBoilVol(new BigDecimal("1.0"));
-        testProfileEquipment.setBoilVolUomId(1);
-        testProfileEquipment.setBoilTime(new BigDecimal("1.0"));
-        testProfileEquipment.setBoilTimeUomId(1);
-        testProfileEquipment.setBoilOffPerHrVol(new BigDecimal("1.0"));
-        testProfileEquipment.setBoilOffPerHrUomId(1);
-        testProfileEquipment.setBoilShrinkage(new BigDecimal("1.0"));
-        testProfileEquipment.setBoilTotalBoilOff(new BigDecimal("1.0"));
-        testProfileEquipment.setBoilTotalBoilOffUomId(1);
-        testProfileEquipment.setBoilPostBoilVol(new BigDecimal("1.0"));
-        testProfileEquipment.setBoilPostBoilVolUomId(1);
-        testProfileEquipment.setFermLoss(new BigDecimal("1.0"));
-        testProfileEquipment.setFermLossUomId(1);
-        testProfileEquipment.setFermTopUp(new BigDecimal("1.0"));
-        testProfileEquipment.setFermTopUpUomId(1);
-        testProfileEquipment.setFermLossTrubChill(new BigDecimal("1.0"));
-        testProfileEquipment.setFermLossTrubChillUomId(1);
-        testProfileEquipment.setBottlingVol(new BigDecimal("1.0"));
-        testProfileEquipment.setBottlingVolUomId(1);
-        testProfileEquipment.setNotes("This is a note.");
-        testProfileEquipment.setUpdateDate(ts);
-        testProfileEquipment.setCreateDate(ts);
+        // retrieve the test ComponentGrainEntity from the database and change its name
+        testEntity = null;
+        testEntity = me.getProfileEquipmentEntity(id);
+        testEntity.setName("New Name");
+        me.updateProfileEquipmentEntity(testEntity);
 
-        profileEquipmentEntityID = me.addProfileEquipmentEntity(testProfileEquipment);
+        // retrieve the updated ComponentGrainEntity and test that the update took place
+        testEntity = null;
+        testEntity = me.getProfileEquipmentEntity(id);
 
-        // retrieve the test component from the database and change its name
-        testProfileEquipment = me.getProfileEquipmentEntity(profileEquipmentEntityID);
-        testProfileEquipment.setName("New Name");
-        me.updateProfileEquipmentEntity(testProfileEquipment);
-
-        // retrieve the updated employee and test that the update took place
-        testProfileEquipment = me.getProfileEquipmentEntity(profileEquipmentEntityID);
-
-        assertEquals("Expected New Name, got " + testProfileEquipment.getName(),
-                "New Name", testProfileEquipment.getName());
-
-        // clean up
-        me.deleteProfileEquipmentEntity(testProfileEquipment);
-
+        assertEquals("Expected New Name, got " + testEntity.getName(),
+                "New Name", testEntity.getName());
     }
 
     @Test
     public void testDeleteProfileEquipmentEntity() throws Exception {
 
-        ProfileEquipmentDao me = new ProfileEquipmentDao();
-        ProfileEquipmentEntity testProfileEquipment = new ProfileEquipmentEntity();
-        int profileEquipmentEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
+        int id = entities.get(0).getProfileEquipmentId();
 
-        // create a test component and add them to the database
-        testProfileEquipment = new ProfileEquipmentEntity();
-        testProfileEquipment.setName("Equipment Profile 1");
-        testProfileEquipment.setEfficiency(new BigDecimal("1.0"));
-        testProfileEquipment.setFermBatchVol(new BigDecimal("1.0"));
-        testProfileEquipment.setBatchVolUomId(1);
-        testProfileEquipment.setMashTunVol(new BigDecimal("1.0"));
-        testProfileEquipment.setMashTunUomId(1);
-        testProfileEquipment.setBoilVol(new BigDecimal("1.0"));
-        testProfileEquipment.setBoilVolUomId(1);
-        testProfileEquipment.setBoilTime(new BigDecimal("1.0"));
-        testProfileEquipment.setBoilTimeUomId(1);
-        testProfileEquipment.setBoilOffPerHrVol(new BigDecimal("1.0"));
-        testProfileEquipment.setBoilOffPerHrUomId(1);
-        testProfileEquipment.setBoilShrinkage(new BigDecimal("1.0"));
-        testProfileEquipment.setBoilTotalBoilOff(new BigDecimal("1.0"));
-        testProfileEquipment.setBoilTotalBoilOffUomId(1);
-        testProfileEquipment.setBoilPostBoilVol(new BigDecimal("1.0"));
-        testProfileEquipment.setBoilPostBoilVolUomId(1);
-        testProfileEquipment.setFermLoss(new BigDecimal("1.0"));
-        testProfileEquipment.setFermLossUomId(1);
-        testProfileEquipment.setFermTopUp(new BigDecimal("1.0"));
-        testProfileEquipment.setFermTopUpUomId(1);
-        testProfileEquipment.setFermLossTrubChill(new BigDecimal("1.0"));
-        testProfileEquipment.setFermLossTrubChillUomId(1);
-        testProfileEquipment.setBottlingVol(new BigDecimal("1.0"));
-        testProfileEquipment.setBottlingVolUomId(1);
-        testProfileEquipment.setNotes("This is a note.");
-        testProfileEquipment.setUpdateDate(ts);
-        testProfileEquipment.setCreateDate(ts);
+        // delete the entity and verify that it is no longer in the database
+        me.deleteProfileEquipmentEntity(me.getProfileEquipmentEntity(id));
+        assertNull("Expected a null entity, got a real entity", me.getProfileEquipmentEntity(id));
 
-        profileEquipmentEntityID = me.addProfileEquipmentEntity(testProfileEquipment);
-
-        // make sure the employee was added before proceeding
-        assertTrue("Expected a non-zero equipment profile ID, got " + profileEquipmentEntityID, profileEquipmentEntityID > 0);
-
-        // delete the employee and verify that they are no longer in the database
-        me.deleteProfileEquipmentEntity(me.getProfileEquipmentEntity(profileEquipmentEntityID));
-        assertNull(me.getProfileEquipmentEntity(profileEquipmentEntityID));
+        // remove the deleted entity from the ArrayList so that Hibernate doesn't get sad
+        // during the teardown() method
+        entities.remove(0);
 
     }
 
     @Test
     public void testAddProfileEquipmentEntity() throws Exception {
 
-        ProfileEquipmentDao me = new ProfileEquipmentDao();
-        ProfileEquipmentEntity testProfileEquipment = new ProfileEquipmentEntity();
-        int profileEquipmentEntityID;
+        int id;
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
 
-        // create a test component and add them to the database
-        testProfileEquipment = new ProfileEquipmentEntity();
-        testProfileEquipment.setName("Equipment Profile 1");
-        testProfileEquipment.setEfficiency(new BigDecimal("1.0"));
-        testProfileEquipment.setFermBatchVol(new BigDecimal("1.0"));
-        testProfileEquipment.setBatchVolUomId(1);
-        testProfileEquipment.setMashTunVol(new BigDecimal("1.0"));
-        testProfileEquipment.setMashTunUomId(1);
-        testProfileEquipment.setBoilVol(new BigDecimal("1.0"));
-        testProfileEquipment.setBoilVolUomId(1);
-        testProfileEquipment.setBoilTime(new BigDecimal("1.0"));
-        testProfileEquipment.setBoilTimeUomId(1);
-        testProfileEquipment.setBoilOffPerHrVol(new BigDecimal("1.0"));
-        testProfileEquipment.setBoilOffPerHrUomId(1);
-        testProfileEquipment.setBoilShrinkage(new BigDecimal("1.0"));
-        testProfileEquipment.setBoilTotalBoilOff(new BigDecimal("1.0"));
-        testProfileEquipment.setBoilTotalBoilOffUomId(1);
-        testProfileEquipment.setBoilPostBoilVol(new BigDecimal("1.0"));
-        testProfileEquipment.setBoilPostBoilVolUomId(1);
-        testProfileEquipment.setFermLoss(new BigDecimal("1.0"));
-        testProfileEquipment.setFermLossUomId(1);
-        testProfileEquipment.setFermTopUp(new BigDecimal("1.0"));
-        testProfileEquipment.setFermTopUpUomId(1);
-        testProfileEquipment.setFermLossTrubChill(new BigDecimal("1.0"));
-        testProfileEquipment.setFermLossTrubChillUomId(1);
-        testProfileEquipment.setBottlingVol(new BigDecimal("1.0"));
-        testProfileEquipment.setBottlingVolUomId(1);
-        testProfileEquipment.setNotes("This is a note.");
-        testProfileEquipment.setUpdateDate(ts);
-        testProfileEquipment.setCreateDate(ts);
+        testEntity = new ProfileEquipmentEntity();
+        testEntity.setName("zProfile for Add test");
+        testEntity.setUpdateDate(ts);
+        testEntity.setCreateDate(ts);
 
-        profileEquipmentEntityID = me.addProfileEquipmentEntity(testProfileEquipment);
+        id = me.addProfileEquipmentEntity(testEntity);
+        entities.add(testEntity);
 
-        // confirm that a non-zero employee ID was returned (indicator of success)
-        assertTrue("Expected a non-zero equipment profile ID, got " + profileEquipmentEntityID, profileEquipmentEntityID > 0);
-
-        // clean up
-        testProfileEquipment = me.getProfileEquipmentEntity(profileEquipmentEntityID);
-        me.deleteProfileEquipmentEntity(testProfileEquipment);
+        // confirm that a non-zero ID was returned (indicator of success)
+        assertTrue("Expected a non-zero entity ID, got " + id, id > 0);
 
     }
 }

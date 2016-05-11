@@ -12,14 +12,15 @@
 
     <div class="col-lg-12">
 
-        <table class="table table-hover">
+        <table id="example" class="table table-hover">
             <thead>
             <tr>
                 <th>Name</th>
                 <th>Type</th>
                 <th colspan="2" class="text-left">Batch Size</th>
                 <th>Last Updated</th>
-                <th colspan=2 class="text-center">Action</th>
+                <th></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>

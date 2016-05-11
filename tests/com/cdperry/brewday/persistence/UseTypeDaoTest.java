@@ -1,10 +1,9 @@
 package com.cdperry.brewday.persistence;
 
 import com.cdperry.brewday.entity.UseTypeEntity;
-import org.junit.Test;
+import org.junit.*;
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.sql.Timestamp;
 import static org.junit.Assert.*;
 
@@ -13,180 +12,122 @@ import static org.junit.Assert.*;
  */
 public class UseTypeDaoTest {
 
-    @Test
-    public void testGetAllUseTypes() throws Exception {
+    private UseTypeDao me;
+    private UseTypeEntity testEntity;
+    private List<UseTypeEntity> entities;
 
-        UseTypeDao me = new UseTypeDao();
-        UseTypeEntity testUseType;
-        List<UseTypeEntity> useTypes;
+    @Before
+    public void setup() {
+
+        me = new UseTypeDao();
+
         int useTypeEntityID;
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
 
-        // create a test use and add them to the database
-        testUseType = new UseTypeEntity();
-        testUseType.setName("Use Type 1");
-        testUseType.setUpdateDate(ts);
-        testUseType.setCreateDate(ts);
+        entities = new ArrayList<UseTypeEntity>();
 
-        useTypeEntityID = me.addUseTypeEntity(testUseType);
+        for (int iteration = 1; iteration < 4; iteration++) {
+            testEntity = new UseTypeEntity();
+            testEntity.setName("zUse Type " + iteration);
+            testEntity.setUpdateDate(ts);
+            testEntity.setCreateDate(ts);
 
-        // create a test use and add them to the database
-        testUseType = new UseTypeEntity();
-        testUseType.setName("Use Type 2");
-        testUseType.setUpdateDate(ts);
-        testUseType.setCreateDate(ts);
+            useTypeEntityID = me.addUseTypeEntity(testEntity);
+            entities.add(testEntity);
+        }
 
-        useTypeEntityID = me.addUseTypeEntity(testUseType);
+    }
 
-        useTypes = me.getAllUseTypes();
-        assertTrue(useTypes.size() > 0);
+    @After
+    public void teardown() {
+
+        // delete the UseEntity entities which will cascade and delete the UseGrainEntity entities
+        for (UseTypeEntity thisEntity : entities) {
+            me.deleteUseTypeEntity(thisEntity);
+        }
 
         // clean up
-        for (UseTypeEntity component : useTypes) {
-            me.deleteUseTypeEntity(component);
-        }
+        me = null;
+        testEntity = null;
+        entities = null;
+
+    }
+
+    @Test
+    public void testGetAllUseTypes() throws Exception {
+
+        List<UseTypeEntity> results;
+        results = me.getAllUseTypes();
+        assertTrue("Expected non-zero ArrayList size, got zero.", results.size() > 0);
 
     }
 
     @Test
     public void testGetUseTypeEntity() throws Exception {
 
-        UseTypeDao me = new UseTypeDao();
-        UseTypeEntity testUseType = new UseTypeEntity();
-        int useTypeEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
+        int id = entities.get(0).getUseTypeId();
 
-        // create a test use and add them to the database
-        testUseType = new UseTypeEntity();
-        testUseType.setName("Use Type 1");
-        testUseType.setUpdateDate(ts);
-        testUseType.setCreateDate(ts);
-
-        useTypeEntityID = me.addUseTypeEntity(testUseType);
-
-        // confirm that a non-zero component ID was returned (indicator of success)
-        assertTrue("Expected a non-zero use type ID, got " + useTypeEntityID, useTypeEntityID > 0);
-
-        // confirm that the component can be retrieved from the database
-        testUseType = me.getUseTypeEntity(useTypeEntityID);
-        assertNotNull(testUseType);
-
-        // clean up
-        me.deleteUseTypeEntity(testUseType);
+        // confirm that the entity can be retrieved from the database
+        testEntity = null;
+        testEntity = me.getUseTypeEntity(id);
+        assertNotNull("Expected non-null entity, got null", testEntity);
 
     }
 
     @Test
     public void testUpdateUseTypeEntity() throws Exception {
 
-        UseTypeDao me = new UseTypeDao();
-        UseTypeEntity testUseType = new UseTypeEntity();
-        int useTypeEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
+        int id = entities.get(0).getUseTypeId();
 
-        // create a test component and add them to the database
-        testUseType = new UseTypeEntity();
-        testUseType.setName("Use Type 1");
-        testUseType.setUpdateDate(ts);
-        testUseType.setCreateDate(ts);
+        // retrieve the test UseGrainEntity from the database and change its name
+        testEntity = null;
+        testEntity = me.getUseTypeEntity(id);
+        testEntity.setName("New Name");
+        me.updateUseTypeEntity(testEntity);
 
-        useTypeEntityID = me.addUseTypeEntity(testUseType);
+        // retrieve the updated UseGrainEntity and test that the update took place
+        testEntity = null;
+        testEntity = me.getUseTypeEntity(id);
 
-        // retrieve the test component from the database and change its name
-        testUseType = me.getUseTypeEntity(useTypeEntityID);
-        testUseType.setName("New Name");
-        me.updateUseTypeEntity(testUseType);
-
-        // retrieve the updated employee and test that the update took place
-        testUseType = me.getUseTypeEntity(useTypeEntityID);
-
-        assertEquals("Expected New Name, got " + testUseType.getName(),
-                "New Name", testUseType.getName());
-
-        // clean up
-        me.deleteUseTypeEntity(testUseType);
+        assertEquals("Expected New Name, got " + testEntity.getName(),
+                "New Name", testEntity.getName());
 
     }
 
     @Test
     public void testDeleteUseTypeEntity() throws Exception {
 
-        UseTypeDao me = new UseTypeDao();
-        UseTypeEntity testUseType = new UseTypeEntity();
-        int useTypeEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
+        int id = entities.get(0).getUseTypeId();
 
-        // create a test component and add them to the database
-        testUseType = new UseTypeEntity();
-        testUseType.setName("Use Type 1");
-        testUseType.setUpdateDate(ts);
-        testUseType.setCreateDate(ts);
+        // delete the entity and verify that it is no longer in the database
+        me.deleteUseTypeEntity(me.getUseTypeEntity(id));
+        assertNull("Expected a null entity, got a real entity", me.getUseTypeEntity(id));
 
-        useTypeEntityID = me.addUseTypeEntity(testUseType);
-
-        // make sure the employee was added before proceeding
-        assertTrue("Expected a non-zero use type ID, got " + useTypeEntityID, useTypeEntityID > 0);
-
-        // delete the employee and verify that they are no longer in the database
-        me.deleteUseTypeEntity(me.getUseTypeEntity(useTypeEntityID));
-        assertNull(me.getUseTypeEntity(useTypeEntityID));
+        // remove the deleted entity from the ArrayList so that Hibernate doesn't get sad
+        // during the teardown() method
+        entities.remove(0);
 
     }
 
     @Test
     public void testAddUseTypeEntity() throws Exception {
 
-        UseTypeDao me = new UseTypeDao();
-        UseTypeEntity testUseType = new UseTypeEntity();
-        int useTypeEntityID;
+        int id;
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
 
-        // create a test component and add them to the database
-        testUseType = new UseTypeEntity();
-        testUseType.setName("Use Type 1");
-        testUseType.setUpdateDate(ts);
-        testUseType.setCreateDate(ts);
+        testEntity = new UseTypeEntity();
+        testEntity.setName("zUse Type for Add test");
+        testEntity.setUpdateDate(ts);
+        testEntity.setCreateDate(ts);
 
-        useTypeEntityID = me.addUseTypeEntity(testUseType);
+        id = me.addUseTypeEntity(testEntity);
+        entities.add(testEntity);
 
-        // confirm that a non-zero employee ID was returned (indicator of success)
-        assertTrue("Expected a non-zero use type ID, got " + useTypeEntityID, useTypeEntityID > 0);
-
-        // clean up
-        testUseType = me.getUseTypeEntity(useTypeEntityID);
-        me.deleteUseTypeEntity(testUseType);
+        // confirm that a non-zero ID was returned (indicator of success)
+        assertTrue("Expected a non-zero entity ID, got " + id, id > 0);
 
     }
 
-    @Test
-    public void testDeleteUseTypeEntityById() throws Exception {
-
-        UseTypeDao me = new UseTypeDao();
-        UseTypeEntity testUseType = new UseTypeEntity();
-        int useTypeEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
-
-        // create a test component and add them to the database
-        testUseType = new UseTypeEntity();
-        testUseType.setName("Use Type 1");
-        testUseType.setUpdateDate(ts);
-        testUseType.setCreateDate(ts);
-
-        useTypeEntityID = me.addUseTypeEntity(testUseType);
-
-        // make sure the employee was added before proceeding
-        assertTrue("Expected a non-zero use type ID, got " + useTypeEntityID, useTypeEntityID > 0);
-
-        // delete the employee and verify that they are no longer in the database
-        me.deleteUseTypeEntityById(useTypeEntityID);
-        assertNull(me.getUseTypeEntity(useTypeEntityID));
-
-    }
-    
 }

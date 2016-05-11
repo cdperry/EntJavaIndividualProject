@@ -1,5 +1,6 @@
 package com.cdperry.brewday.controller.recipe;
 
+import com.cdperry.brewday.entity.RecipeEntity;
 import com.cdperry.brewday.persistence.RecipeDao;
 
 import java.io.*;
@@ -40,7 +41,12 @@ public class RecipeDeleteActionServlet extends HttpServlet {
         int recipeId = Integer.parseInt(request.getParameter("recipeId"));
 
         if (recipeDao.getRecipeEntity(recipeId) != null) {
-            recipeDao.deleteRecipeEntityById(recipeId);
+            RecipeEntity entity = recipeDao.getRecipeEntity(recipeId);
+            // TODO: Take a look at this, without setting these to null was getting a weird cascade error from Hibernate
+            entity.setBatchSizeUom(null);
+            entity.setProfileEquipment(null);
+            recipeDao.updateRecipeEntity(entity);
+            recipeDao.deleteRecipeEntity(entity);
         }
 
         request.setAttribute("recipes", recipeDao.getAllRecipes());

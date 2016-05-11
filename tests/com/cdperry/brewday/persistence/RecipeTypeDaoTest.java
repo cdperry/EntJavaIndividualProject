@@ -1,10 +1,9 @@
 package com.cdperry.brewday.persistence;
 
 import com.cdperry.brewday.entity.RecipeTypeEntity;
-import org.junit.Test;
+import org.junit.*;
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.sql.Timestamp;
 import static org.junit.Assert.*;
 
@@ -13,181 +12,122 @@ import static org.junit.Assert.*;
  */
 public class RecipeTypeDaoTest {
 
-    @Test
-    public void testGetAllRecipeTypes() throws Exception {
+    private RecipeTypeDao me;
+    private RecipeTypeEntity testEntity;
+    private List<RecipeTypeEntity> entities;
 
-        RecipeTypeDao me = new RecipeTypeDao();
-        RecipeTypeEntity testRecipeType;
-        List<RecipeTypeEntity> recipeTypes;
+    @Before
+    public void setup() {
+
+        me = new RecipeTypeDao();
+
         int recipeTypeEntityID;
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
 
-        // create a test recipe and add them to the database
-        testRecipeType = new RecipeTypeEntity();
-        testRecipeType.setName("Recipe Type 1");
+        entities = new ArrayList<RecipeTypeEntity>();
 
-        testRecipeType.setUpdateDate(ts);
-        testRecipeType.setCreateDate(ts);
+        for (int iteration = 1; iteration < 4; iteration++) {
+            testEntity = new RecipeTypeEntity();
+            testEntity.setName("zRecipe Type " + iteration);
+            testEntity.setUpdateDate(ts);
+            testEntity.setCreateDate(ts);
 
-        recipeTypeEntityID = me.addRecipeTypeEntity(testRecipeType);
+            recipeTypeEntityID = me.addRecipeTypeEntity(testEntity);
+            entities.add(testEntity);
+        }
 
-        // create a test recipe and add them to the database
-        testRecipeType = new RecipeTypeEntity();
-        testRecipeType.setName("Recipe Type 2");
-        testRecipeType.setUpdateDate(ts);
-        testRecipeType.setCreateDate(ts);
+    }
 
-        recipeTypeEntityID = me.addRecipeTypeEntity(testRecipeType);
+    @After
+    public void teardown() {
 
-        recipeTypes = me.getAllRecipeTypes();
-        assertTrue(recipeTypes.size() > 0);
+        // delete the RecipeEntity entities which will cascade and delete the RecipeGrainEntity entities
+        for (RecipeTypeEntity thisEntity : entities) {
+            me.deleteRecipeTypeEntity(thisEntity);
+        }
 
         // clean up
-        for (RecipeTypeEntity component : recipeTypes) {
-            me.deleteRecipeTypeEntity(component);
-        }
+        me = null;
+        testEntity = null;
+        entities = null;
+
+    }
+
+    @Test
+    public void testGetAllRecipeTypes() throws Exception {
+
+        List<RecipeTypeEntity> results;
+        results = me.getAllRecipeTypes();
+        assertTrue("Expected non-zero ArrayList size, got zero.", results.size() > 0);
 
     }
 
     @Test
     public void testGetRecipeTypeEntity() throws Exception {
 
-        RecipeTypeDao me = new RecipeTypeDao();
-        RecipeTypeEntity testRecipeType = new RecipeTypeEntity();
-        int recipeTypeEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
+        int id = entities.get(0).getRecipeTypeId();
 
-        // create a test recipe and add them to the database
-        testRecipeType = new RecipeTypeEntity();
-        testRecipeType.setName("Recipe Type 1");
-        testRecipeType.setUpdateDate(ts);
-        testRecipeType.setCreateDate(ts);
-
-        recipeTypeEntityID = me.addRecipeTypeEntity(testRecipeType);
-
-        // confirm that a non-zero component ID was returned (indicator of success)
-        assertTrue("Expected a non-zero recipe type ID, got " + recipeTypeEntityID, recipeTypeEntityID > 0);
-
-        // confirm that the component can be retrieved from the database
-        testRecipeType = me.getRecipeTypeEntity(recipeTypeEntityID);
-        assertNotNull(testRecipeType);
-
-        // clean up
-        me.deleteRecipeTypeEntity(testRecipeType);
+        // confirm that the entity can be retrieved from the database
+        testEntity = null;
+        testEntity = me.getRecipeTypeEntity(id);
+        assertNotNull("Expected non-null entity, got null", testEntity);
 
     }
 
     @Test
     public void testUpdateRecipeTypeEntity() throws Exception {
 
-        RecipeTypeDao me = new RecipeTypeDao();
-        RecipeTypeEntity testRecipeType = new RecipeTypeEntity();
-        int recipeTypeEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
+        int id = entities.get(0).getRecipeTypeId();
 
-        // create a test component and add them to the database
-        testRecipeType = new RecipeTypeEntity();
-        testRecipeType.setName("Recipe Type 1");
-        testRecipeType.setUpdateDate(ts);
-        testRecipeType.setCreateDate(ts);
+        // retrieve the test RecipeGrainEntity from the database and change its name
+        testEntity = null;
+        testEntity = me.getRecipeTypeEntity(id);
+        testEntity.setName("New Name");
+        me.updateRecipeTypeEntity(testEntity);
 
-        recipeTypeEntityID = me.addRecipeTypeEntity(testRecipeType);
+        // retrieve the updated RecipeGrainEntity and test that the update took place
+        testEntity = null;
+        testEntity = me.getRecipeTypeEntity(id);
 
-        // retrieve the test component from the database and change its name
-        testRecipeType = me.getRecipeTypeEntity(recipeTypeEntityID);
-        testRecipeType.setName("New Name");
-        me.updateRecipeTypeEntity(testRecipeType);
-
-        // retrieve the updated employee and test that the update took place
-        testRecipeType = me.getRecipeTypeEntity(recipeTypeEntityID);
-
-        assertEquals("Expected New Name, got " + testRecipeType.getName(),
-                "New Name", testRecipeType.getName());
-
-        // clean up
-        me.deleteRecipeTypeEntity(testRecipeType);
+        assertEquals("Expected New Name, got " + testEntity.getName(),
+                "New Name", testEntity.getName());
 
     }
 
     @Test
     public void testDeleteRecipeTypeEntity() throws Exception {
 
-        RecipeTypeDao me = new RecipeTypeDao();
-        RecipeTypeEntity testRecipeType = new RecipeTypeEntity();
-        int recipeTypeEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
+        int id = entities.get(0).getRecipeTypeId();
 
-        // create a test component and add them to the database
-        testRecipeType = new RecipeTypeEntity();
-        testRecipeType.setName("Recipe Type 1");
-        testRecipeType.setUpdateDate(ts);
-        testRecipeType.setCreateDate(ts);
+        // delete the entity and verify that it is no longer in the database
+        me.deleteRecipeTypeEntity(me.getRecipeTypeEntity(id));
+        assertNull("Expected a null entity, got a real entity", me.getRecipeTypeEntity(id));
 
-        recipeTypeEntityID = me.addRecipeTypeEntity(testRecipeType);
-
-        // make sure the employee was added before proceeding
-        assertTrue("Expected a non-zero recipe type ID, got " + recipeTypeEntityID, recipeTypeEntityID > 0);
-
-        // delete the employee and verify that they are no longer in the database
-        me.deleteRecipeTypeEntity(me.getRecipeTypeEntity(recipeTypeEntityID));
-        assertNull(me.getRecipeTypeEntity(recipeTypeEntityID));
+        // remove the deleted entity from the ArrayList so that Hibernate doesn't get sad
+        // during the teardown() method
+        entities.remove(0);
 
     }
 
     @Test
     public void testAddRecipeTypeEntity() throws Exception {
 
-        RecipeTypeDao me = new RecipeTypeDao();
-        RecipeTypeEntity testRecipeType = new RecipeTypeEntity();
-        int recipeTypeEntityID;
+        int id;
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
 
-        // create a test component and add them to the database
-        testRecipeType = new RecipeTypeEntity();
-        testRecipeType.setName("Recipe Type 1");
-        testRecipeType.setUpdateDate(ts);
-        testRecipeType.setCreateDate(ts);
+        testEntity = new RecipeTypeEntity();
+        testEntity.setName("zRecipe Type for Add test");
+        testEntity.setUpdateDate(ts);
+        testEntity.setCreateDate(ts);
 
-        recipeTypeEntityID = me.addRecipeTypeEntity(testRecipeType);
+        id = me.addRecipeTypeEntity(testEntity);
+        entities.add(testEntity);
 
-        // confirm that a non-zero employee ID was returned (indicator of success)
-        assertTrue("Expected a non-zero recipe type ID, got " + recipeTypeEntityID, recipeTypeEntityID > 0);
-
-        // clean up
-        testRecipeType = me.getRecipeTypeEntity(recipeTypeEntityID);
-        me.deleteRecipeTypeEntity(testRecipeType);
+        // confirm that a non-zero ID was returned (indicator of success)
+        assertTrue("Expected a non-zero entity ID, got " + id, id > 0);
 
     }
 
-    @Test
-    public void testDeleteRecipeTypeEntityById() throws Exception {
-
-        RecipeTypeDao me = new RecipeTypeDao();
-        RecipeTypeEntity testRecipeType = new RecipeTypeEntity();
-        int recipeTypeEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
-
-        // create a test component and add them to the database
-        testRecipeType = new RecipeTypeEntity();
-        testRecipeType.setName("Recipe Type 1");
-        testRecipeType.setUpdateDate(ts);
-        testRecipeType.setCreateDate(ts);
-
-        recipeTypeEntityID = me.addRecipeTypeEntity(testRecipeType);
-
-        // make sure the employee was added before proceeding
-        assertTrue("Expected a non-zero recipe type ID, got " + recipeTypeEntityID, recipeTypeEntityID > 0);
-
-        // delete the employee and verify that they are no longer in the database
-        me.deleteRecipeTypeEntityById(recipeTypeEntityID);
-        assertNull(me.getRecipeTypeEntity(recipeTypeEntityID));
-
-    }
-    
 }

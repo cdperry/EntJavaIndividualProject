@@ -31,6 +31,25 @@
             })
         </script>
 
+        <script>
+            $(document).ready(function() {
+                $('#example').DataTable(
+                        {
+                            "lengthChange": false,
+                            "pageLength": 10,
+                            "aoColumns": [
+                                null,
+                                null,
+                                null,
+                                null,
+                                { "bSortable": false },
+                                { "bSortable": false }
+                            ]
+                        }
+                );
+            } );
+        </script>
+
     </body>
 
 </html>

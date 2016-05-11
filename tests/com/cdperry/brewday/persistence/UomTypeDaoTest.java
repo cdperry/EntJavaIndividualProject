@@ -1,10 +1,9 @@
 package com.cdperry.brewday.persistence;
 
 import com.cdperry.brewday.entity.UomTypeEntity;
-import org.junit.Test;
+import org.junit.*;
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.sql.Timestamp;
 import static org.junit.Assert.*;
 
@@ -13,198 +12,122 @@ import static org.junit.Assert.*;
  */
 public class UomTypeDaoTest {
 
-    @Test
-    public void testGetAllUomTypes() throws Exception {
+    private UomTypeDao me;
+    private UomTypeEntity testEntity;
+    private List<UomTypeEntity> entities;
 
-        UomTypeDao me = new UomTypeDao();
-        UomTypeEntity testUomType;
-        List<UomTypeEntity> uomTypes;
+    @Before
+    public void setup() {
+
+        me = new UomTypeDao();
+
         int uomTypeEntityID;
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
 
-        // create a test uom and add them to the database
-        testUomType = new UomTypeEntity();
-        testUomType.setName("Uom Type 1");
-        testUomType.setUpdateDate(ts);
-        testUomType.setCreateDate(ts);
+        entities = new ArrayList<UomTypeEntity>();
 
-        uomTypeEntityID = me.addUomTypeEntity(testUomType);
+        for (int iteration = 1; iteration < 4; iteration++) {
+            testEntity = new UomTypeEntity();
+            testEntity.setName("zUom Type " + iteration);
+            testEntity.setUpdateDate(ts);
+            testEntity.setCreateDate(ts);
 
-        // create a test uom and add them to the database
-        testUomType = new UomTypeEntity();
-        testUomType.setName("Uom Type 2");
-        testUomType.setUpdateDate(ts);
-        testUomType.setCreateDate(ts);
+            uomTypeEntityID = me.addUomTypeEntity(testEntity);
+            entities.add(testEntity);
+        }
 
-        uomTypeEntityID = me.addUomTypeEntity(testUomType);
+    }
 
-        uomTypes = me.getAllUomTypes();
-        assertTrue(uomTypes.size() > 0);
+    @After
+    public void teardown() {
+
+        // delete the UomEntity entities which will cascade and delete the UomGrainEntity entities
+        for (UomTypeEntity thisEntity : entities) {
+            me.deleteUomTypeEntity(thisEntity);
+        }
 
         // clean up
-        for (UomTypeEntity component : uomTypes) {
-            me.deleteUomTypeEntity(component);
-        }
+        me = null;
+        testEntity = null;
+        entities = null;
+
+    }
+
+    @Test
+    public void testGetAllUomTypes() throws Exception {
+
+        List<UomTypeEntity> results;
+        results = me.getAllUomTypes();
+        assertTrue("Expected non-zero ArrayList size, got zero.", results.size() > 0);
 
     }
 
     @Test
     public void testGetUomTypeEntity() throws Exception {
 
-        UomTypeDao me = new UomTypeDao();
-        UomTypeEntity testUomType = new UomTypeEntity();
-        int uomTypeEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
+        int id = entities.get(0).getUomId();
 
-        // create a test uom and add them to the database
-        testUomType = new UomTypeEntity();
-        testUomType.setName("Uom Type 1");
-        testUomType.setUpdateDate(ts);
-        testUomType.setCreateDate(ts);
-
-        uomTypeEntityID = me.addUomTypeEntity(testUomType);
-
-        // confirm that a non-zero component ID was returned (indicator of success)
-        assertTrue("Expected a non-zero uom type ID, got " + uomTypeEntityID, uomTypeEntityID > 0);
-
-        // confirm that the component can be retrieved from the database
-        testUomType = me.getUomTypeEntity(uomTypeEntityID);
-        assertNotNull(testUomType);
-
-        // clean up
-        me.deleteUomTypeEntity(testUomType);
+        // confirm that the entity can be retrieved from the database
+        testEntity = null;
+        testEntity = me.getUomTypeEntity(id);
+        assertNotNull("Expected non-null entity, got null", testEntity);
 
     }
 
     @Test
     public void testUpdateUomTypeEntity() throws Exception {
 
-        UomTypeDao me = new UomTypeDao();
-        UomTypeEntity testUomType = new UomTypeEntity();
-        int uomTypeEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
+        int id = entities.get(0).getUomId();
 
-        // create a test component and add them to the database
-        testUomType = new UomTypeEntity();
-        testUomType.setName("Uom Type 1");
-        testUomType.setUpdateDate(ts);
-        testUomType.setCreateDate(ts);
+        // retrieve the test UomGrainEntity from the database and change its name
+        testEntity = null;
+        testEntity = me.getUomTypeEntity(id);
+        testEntity.setName("New Name");
+        me.updateUomTypeEntity(testEntity);
 
-        uomTypeEntityID = me.addUomTypeEntity(testUomType);
+        // retrieve the updated UomGrainEntity and test that the update took place
+        testEntity = null;
+        testEntity = me.getUomTypeEntity(id);
 
-        // retrieve the test component from the database and change its name
-        testUomType = me.getUomTypeEntity(uomTypeEntityID);
-        testUomType.setName("New Name");
-        me.updateUomTypeEntity(testUomType);
-
-        // retrieve the updated employee and test that the update took place
-        testUomType = me.getUomTypeEntity(uomTypeEntityID);
-
-        assertEquals("Expected New Name, got " + testUomType.getName(),
-                "New Name", testUomType.getName());
-
-        // clean up
-        me.deleteUomTypeEntity(testUomType);
+        assertEquals("Expected New Name, got " + testEntity.getName(),
+                "New Name", testEntity.getName());
 
     }
 
     @Test
     public void testDeleteUomTypeEntity() throws Exception {
 
-        UomTypeDao me = new UomTypeDao();
-        UomTypeEntity testUomType = new UomTypeEntity();
-        int uomTypeEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
+        int id = entities.get(0).getUomId();
 
-        // create a test component and add them to the database
-        testUomType = new UomTypeEntity();
-        testUomType.setName("Uom Type 1");
-        testUomType.setUpdateDate(ts);
-        testUomType.setCreateDate(ts);
+        // delete the entity and verify that it is no longer in the database
+        me.deleteUomTypeEntity(me.getUomTypeEntity(id));
+        assertNull("Expected a null entity, got a real entity", me.getUomTypeEntity(id));
 
-        uomTypeEntityID = me.addUomTypeEntity(testUomType);
-
-        // make sure the employee was added before proceeding
-        assertTrue("Expected a non-zero uom type ID, got " + uomTypeEntityID, uomTypeEntityID > 0);
-
-        // delete the employee and verify that they are no longer in the database
-        me.deleteUomTypeEntity(me.getUomTypeEntity(uomTypeEntityID));
-        assertNull(me.getUomTypeEntity(uomTypeEntityID));
+        // remove the deleted entity from the ArrayList so that Hibernate doesn't get sad
+        // during the teardown() method
+        entities.remove(0);
 
     }
 
     @Test
     public void testAddUomTypeEntity() throws Exception {
 
-        UomTypeDao me = new UomTypeDao();
-        UomTypeEntity testUomType = new UomTypeEntity();
-        int uomTypeEntityID;
+        int id;
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
 
-        // create a test component and add them to the database
-        testUomType = new UomTypeEntity();
-        testUomType.setName("Uom Type 1");
-        testUomType.setUpdateDate(ts);
-        testUomType.setCreateDate(ts);
+        testEntity = new UomTypeEntity();
+        testEntity.setName("zUom Type for Add test");
+        testEntity.setUpdateDate(ts);
+        testEntity.setCreateDate(ts);
 
-        uomTypeEntityID = me.addUomTypeEntity(testUomType);
+        id = me.addUomTypeEntity(testEntity);
+        entities.add(testEntity);
 
-        // confirm that a non-zero employee ID was returned (indicator of success)
-        assertTrue("Expected a non-zero uom type ID, got " + uomTypeEntityID, uomTypeEntityID > 0);
-
-        // clean up
-        testUomType = me.getUomTypeEntity(uomTypeEntityID);
-        me.deleteUomTypeEntity(testUomType);
+        // confirm that a non-zero ID was returned (indicator of success)
+        assertTrue("Expected a non-zero entity ID, got " + id, id > 0);
 
     }
 
-    @Test
-    public void testDeleteUomTypeEntityById() throws Exception {
-
-        UomTypeDao me = new UomTypeDao();
-        UomTypeEntity testUomType = new UomTypeEntity();
-        int uomTypeEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
-
-        // create a test component and add them to the database
-        testUomType = new UomTypeEntity();
-        testUomType.setName("Uom Type 1");
-        testUomType.setUpdateDate(ts);
-        testUomType.setCreateDate(ts);
-
-        uomTypeEntityID = me.addUomTypeEntity(testUomType);
-
-        // make sure the employee was added before proceeding
-        assertTrue("Expected a non-zero uom type ID, got " + uomTypeEntityID, uomTypeEntityID > 0);
-
-        // delete the employee and verify that they are no longer in the database
-        me.deleteUomTypeEntityById(uomTypeEntityID);
-        assertNull(me.getUomTypeEntity(uomTypeEntityID));
-
-    }
-
-    @Test
-    public void testGetUomTypeEntityByName() throws Exception {
-
-        UomTypeDao me = new UomTypeDao();
-        List<UomTypeEntity> uomTypes;
-        UomTypeEntity uomType = null;
-        String uomName = null;
-
-        uomTypes = me.getUomTypeEntityByName("gal");
-        assertTrue("Expected non zero-length list, got zero results", uomTypes.size() > 0);
-
-        uomType = uomTypes.get(0);
-        assertNotNull("Expected a non-null object, got a null", uomType);
-
-        uomName = uomType.getName();
-        assertEquals("Expected gal, got " + uomName, "gal", uomName);
-
-    }
 }

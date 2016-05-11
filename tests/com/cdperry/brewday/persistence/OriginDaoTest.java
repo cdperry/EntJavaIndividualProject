@@ -1,10 +1,9 @@
 package com.cdperry.brewday.persistence;
 
 import com.cdperry.brewday.entity.OriginEntity;
-import org.junit.Test;
+import org.junit.*;
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.sql.Timestamp;
 import static org.junit.Assert.*;
 
@@ -13,180 +12,122 @@ import static org.junit.Assert.*;
  */
 public class OriginDaoTest {
 
-    @Test
-    public void testGetAllOrigins() throws Exception {
+    private OriginDao me;
+    private OriginEntity testEntity;
+    private List<OriginEntity> entities;
 
-        OriginDao me = new OriginDao();
-        OriginEntity testOrigin;
-        List<OriginEntity> origins;
+    @Before
+    public void setup() {
+
+        me = new OriginDao();
+
         int originEntityID;
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
 
-        // create a test origin and add them to the database
-        testOrigin = new OriginEntity();
-        testOrigin.setName("Origin 1");
-        testOrigin.setUpdateDate(ts);
-        testOrigin.setCreateDate(ts);
+        entities = new ArrayList<OriginEntity>();
 
-        originEntityID = me.addOriginEntity(testOrigin);
+        for (int iteration = 1; iteration < 4; iteration++) {
+            testEntity = new OriginEntity();
+            testEntity.setName("zOrigin Type " + iteration);
+            testEntity.setUpdateDate(ts);
+            testEntity.setCreateDate(ts);
 
-        // create a test origin and add them to the database
-        testOrigin = new OriginEntity();
-        testOrigin.setName("Origin 2");
-        testOrigin.setUpdateDate(ts);
-        testOrigin.setCreateDate(ts);
+            originEntityID = me.addOriginEntity(testEntity);
+            entities.add(testEntity);
+        }
 
-        originEntityID = me.addOriginEntity(testOrigin);
+    }
 
-        origins = me.getAllOrigins();
-        assertTrue(origins.size() > 0);
+    @After
+    public void teardown() {
+
+        // delete the ComponentEntity entities which will cascade and delete the ComponentGrainEntity entities
+        for (OriginEntity thisEntity : entities) {
+            me.deleteOriginEntity(thisEntity);
+        }
 
         // clean up
-        for (OriginEntity component : origins) {
-            me.deleteOriginEntity(component);
-        }
+        me = null;
+        testEntity = null;
+        entities = null;
+
+    }
+
+    @Test
+    public void testGetAllOrigins() throws Exception {
+
+        List<OriginEntity> results;
+        results = me.getAllOrigins();
+        assertTrue("Expected non-zero ArrayList size, got zero.", results.size() > 0);
 
     }
 
     @Test
     public void testGetOriginEntity() throws Exception {
 
-        OriginDao me = new OriginDao();
-        OriginEntity testOrigin = new OriginEntity();
-        int originEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
+        int id = entities.get(0).getOriginId();
 
-        // create a test origin and add them to the database
-        testOrigin = new OriginEntity();
-        testOrigin.setName("Origin 1");
-        testOrigin.setUpdateDate(ts);
-        testOrigin.setCreateDate(ts);
-
-        originEntityID = me.addOriginEntity(testOrigin);
-
-        // confirm that a non-zero component ID was returned (indicator of success)
-        assertTrue("Expected a non-zero origin ID, got " + originEntityID, originEntityID > 0);
-
-        // confirm that the component can be retrieved from the database
-        testOrigin = me.getOriginEntity(originEntityID);
-        assertNotNull(testOrigin);
-
-        // clean up
-        me.deleteOriginEntity(testOrigin);
+        // confirm that the entity can be retrieved from the database
+        testEntity = null;
+        testEntity = me.getOriginEntity(id);
+        assertNotNull("Expected non-null entity, got null", testEntity);
 
     }
 
     @Test
     public void testUpdateOriginEntity() throws Exception {
 
-        OriginDao me = new OriginDao();
-        OriginEntity testOrigin = new OriginEntity();
-        int originEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
+        int id = entities.get(0).getOriginId();
 
-        // create a test component and add them to the database
-        testOrigin = new OriginEntity();
-        testOrigin.setName("Origin 1");
-        testOrigin.setUpdateDate(ts);
-        testOrigin.setCreateDate(ts);
+        // retrieve the test ComponentGrainEntity from the database and change its name
+        testEntity = null;
+        testEntity = me.getOriginEntity(id);
+        testEntity.setName("New Name");
+        me.updateOriginEntity(testEntity);
 
-        originEntityID = me.addOriginEntity(testOrigin);
+        // retrieve the updated ComponentGrainEntity and test that the update took place
+        testEntity = null;
+        testEntity = me.getOriginEntity(id);
 
-        // retrieve the test component from the database and change its name
-        testOrigin = me.getOriginEntity(originEntityID);
-        testOrigin.setName("New Name");
-        me.updateOriginEntity(testOrigin);
-
-        // retrieve the updated employee and test that the update took place
-        testOrigin = me.getOriginEntity(originEntityID);
-
-        assertEquals("Expected New Name, got " + testOrigin.getName(),
-                "New Name", testOrigin.getName());
-
-        // clean up
-        me.deleteOriginEntity(testOrigin);
+        assertEquals("Expected New Name, got " + testEntity.getName(),
+                "New Name", testEntity.getName());
 
     }
 
     @Test
     public void testDeleteOriginEntity() throws Exception {
 
-        OriginDao me = new OriginDao();
-        OriginEntity testOrigin = new OriginEntity();
-        int originEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
+        int id = entities.get(0).getOriginId();
 
-        // create a test component and add them to the database
-        testOrigin = new OriginEntity();
-        testOrigin.setName("Origin 1");
-        testOrigin.setUpdateDate(ts);
-        testOrigin.setCreateDate(ts);
+        // delete the entity and verify that it is no longer in the database
+        me.deleteOriginEntity(me.getOriginEntity(id));
+        assertNull("Expected a null entity, got a real entity", me.getOriginEntity(id));
 
-        originEntityID = me.addOriginEntity(testOrigin);
-
-        // make sure the employee was added before proceeding
-        assertTrue("Expected a non-zero origin ID, got " + originEntityID, originEntityID > 0);
-
-        // delete the employee and verify that they are no longer in the database
-        me.deleteOriginEntity(me.getOriginEntity(originEntityID));
-        assertNull(me.getOriginEntity(originEntityID));
+        // remove the deleted entity from the ArrayList so that Hibernate doesn't get sad
+        // during the teardown() method
+        entities.remove(0);
 
     }
 
     @Test
     public void testAddOriginEntity() throws Exception {
 
-        OriginDao me = new OriginDao();
-        OriginEntity testOrigin = new OriginEntity();
-        int originEntityID;
+        int id;
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
 
-        // create a test component and add them to the database
-        testOrigin = new OriginEntity();
-        testOrigin.setName("Origin 1");
-        testOrigin.setUpdateDate(ts);
-        testOrigin.setCreateDate(ts);
+        testEntity = new OriginEntity();
+        testEntity.setName("zOrigin Type for Add test");
+        testEntity.setUpdateDate(ts);
+        testEntity.setCreateDate(ts);
 
-        originEntityID = me.addOriginEntity(testOrigin);
+        id = me.addOriginEntity(testEntity);
+        entities.add(testEntity);
 
-        // confirm that a non-zero employee ID was returned (indicator of success)
-        assertTrue("Expected a non-zero origin ID, got " + originEntityID, originEntityID > 0);
-
-        // clean up
-        testOrigin = me.getOriginEntity(originEntityID);
-        me.deleteOriginEntity(testOrigin);
+        // confirm that a non-zero ID was returned (indicator of success)
+        assertTrue("Expected a non-zero entity ID, got " + id, id > 0);
 
     }
 
-    @Test
-    public void testDeleteOriginEntityById() throws Exception {
-
-        OriginDao me = new OriginDao();
-        OriginEntity testOrigin = new OriginEntity();
-        int originEntityID;
-        Date now = new Date();
-        Timestamp ts = new Timestamp(now.getTime());
-
-        // create a test component and add them to the database
-        testOrigin = new OriginEntity();
-        testOrigin.setName("Origin Type 1");
-        testOrigin.setUpdateDate(ts);
-        testOrigin.setCreateDate(ts);
-
-        originEntityID = me.addOriginEntity(testOrigin);
-
-        // make sure the employee was added before proceeding
-        assertTrue("Expected a non-zero origin type ID, got " + originEntityID, originEntityID > 0);
-
-        // delete the employee and verify that they are no longer in the database
-        me.deleteOriginEntityById(originEntityID);
-        assertNull(me.getOriginEntity(originEntityID));
-
-    }
-    
 }
