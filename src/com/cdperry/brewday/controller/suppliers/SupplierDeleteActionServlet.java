@@ -39,7 +39,7 @@ public class SupplierDeleteActionServlet extends HttpServlet {
      */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String url = "/suppliers";
+        String url = "suppliers";
         int supplierId = Integer.parseInt(request.getParameter("supplierId"));
 
         if (supplierDao.getSupplierEntity(supplierId) != null) {

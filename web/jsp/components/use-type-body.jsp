@@ -23,7 +23,7 @@
                     <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${useType.createDate}" /></td>
                     <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${useType.updateDate}" /></td>
                     <td class="text-center">
-                        <a href="/editUseType?action=edit&useTypeId=<c:out value="${useType.useTypeId}"/>">
+                        <a href="editUseType?action=edit&useTypeId=<c:out value="${useType.useTypeId}"/>">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </a>
                     </td>
@@ -37,7 +37,7 @@
             </c:forEach>
             </tbody>
         </table>
-        <p><a href="/addUseType?action=insert">Add Use Type</a></p>
+        <p><a href="addUseType?action=insert">Add Use Type</a></p>
     </div>
 
 </div>

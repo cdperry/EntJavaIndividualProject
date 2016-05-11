@@ -24,10 +24,10 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.0.2/css/responsive.bootstrap.min.css">
 
     <!-- Timeline CSS -->
-    <link href="../../dist/css/timeline.css" rel="stylesheet">
+    <link href="dist/css/timeline.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="../../dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
     <!--<link href="../../bower_components/morrisjs/morris.css" rel="stylesheet">-->

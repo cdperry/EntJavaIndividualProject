@@ -5,7 +5,7 @@
 
     <div class="col-lg-12">
 
-        <form class="form-horizontal" method="POST" action='/doEditYeastType' name="frmAddYeastType">
+        <form class="form-horizontal" method="POST" action='doEditYeastType' name="frmAddYeastType">
             <div class="form-group">
                 <label for="yeastTypeId" class="col-sm-2 control-label">ID</label>
                 <div class="col-sm-10">

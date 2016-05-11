@@ -38,7 +38,7 @@ public class OriginDeleteActionServlet extends HttpServlet {
      */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String url = "/listOrigins";
+        String url = "listOrigins";
         int originId = Integer.parseInt(request.getParameter("originId"));
 
         if (originDao.getOriginEntity(originId) != null) {

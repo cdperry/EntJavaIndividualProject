@@ -45,7 +45,7 @@ public class OriginAddEditActionServlet extends HttpServlet {
         OriginEntity origin = new OriginEntity();
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
-        String url = "/listOrigins";
+        String url = "listOrigins";
 
         String name = request.getParameter("name");
         String originId = request.getParameter("originId");

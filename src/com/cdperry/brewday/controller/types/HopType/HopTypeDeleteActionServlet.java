@@ -38,7 +38,7 @@ public class HopTypeDeleteActionServlet extends HttpServlet {
      */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String url = "/listHopTypes";
+        String url = "listHopTypes";
         int hopTypeId = Integer.parseInt(request.getParameter("hopTypeId"));
 
         if (hopTypeDao.getHopTypeEntity(hopTypeId) != null) {

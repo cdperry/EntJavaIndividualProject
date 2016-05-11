@@ -23,7 +23,7 @@
                     <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${uomType.createDate}" /></td>
                     <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${uomType.updateDate}" /></td>
                     <td class="text-center">
-                        <a href="/editUomType?action=edit&uomId=<c:out value="${uomType.uomId}"/>">
+                        <a href="editUomType?action=edit&uomId=<c:out value="${uomType.uomId}"/>">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </a>
                     </td>
@@ -37,7 +37,7 @@
             </c:forEach>
             </tbody>
         </table>
-        <p><a href="/addUomType?action=insert">Add Unit of Measure</a></p>
+        <p><a href="addUomType?action=insert">Add Unit of Measure</a></p>
     </div>
 
 </div>

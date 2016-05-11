@@ -45,7 +45,7 @@ public class RecipeTypeAddEditActionServlet extends HttpServlet {
         RecipeTypeEntity recipeType = new RecipeTypeEntity();
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
-        String url = "/listRecipeTypes";
+        String url = "listRecipeTypes";
 
         String name = request.getParameter("name");
         String recipeTypeId = request.getParameter("recipeTypeId");

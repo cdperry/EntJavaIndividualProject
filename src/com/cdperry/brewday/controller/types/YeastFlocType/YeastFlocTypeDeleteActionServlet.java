@@ -38,7 +38,7 @@ public class YeastFlocTypeDeleteActionServlet extends HttpServlet {
      */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String url = "/listYeastFlocTypes";
+        String url = "listYeastFlocTypes";
         int yeastFlocTypeId = Integer.parseInt(request.getParameter("yeastFlocTypeId"));
 
         if (yeastFlocTypeDao.getYeastFlocTypeEntity(yeastFlocTypeId) != null) {

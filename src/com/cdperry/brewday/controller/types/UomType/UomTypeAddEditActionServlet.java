@@ -45,7 +45,7 @@ public class UomTypeAddEditActionServlet extends HttpServlet {
         UomTypeEntity uomType = new UomTypeEntity();
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
-        String url = "/listUomTypes";
+        String url = "listUomTypes";
 
         String name = request.getParameter("name");
         String uomId = request.getParameter("uomId");

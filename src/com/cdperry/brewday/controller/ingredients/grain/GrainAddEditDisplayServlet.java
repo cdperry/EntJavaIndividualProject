@@ -86,7 +86,7 @@ public class GrainAddEditDisplayServlet extends HttpServlet {
                 request.setAttribute("actionType", "edit");
                 dispatcher.forward(request, response);
             } else {
-                url = "/listAllGrains";
+                url = "listAllGrains";
                 response.sendRedirect(url);
             }
         }

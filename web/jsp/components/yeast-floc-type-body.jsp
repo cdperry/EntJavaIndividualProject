@@ -23,7 +23,7 @@
                     <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${yeastFlocType.createDate}" /></td>
                     <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${yeastFlocType.updateDate}" /></td>
                     <td class="text-center">
-                        <a href="/editYeastFlocType?action=edit&yeastFlocTypeId=<c:out value="${yeastFlocType.yeastFlocTypeId}"/>">
+                        <a href="editYeastFlocType?action=edit&yeastFlocTypeId=<c:out value="${yeastFlocType.yeastFlocTypeId}"/>">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </a>
                     </td>
@@ -37,7 +37,7 @@
             </c:forEach>
             </tbody>
         </table>
-        <p><a href="/addYeastFlocType?action=insert">Add Yeast Flocculation Type</a></p>
+        <p><a href="addYeastFlocType?action=insert">Add Yeast Flocculation Type</a></p>
     </div>
 
 </div>

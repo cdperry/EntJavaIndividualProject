@@ -25,7 +25,7 @@
                     <td><c:out value="${equipmentProfile.bottlingVol}" /></td>
                     <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${equipmentProfile.updateDate}" /></td>
                     <td class="text-center">
-                        <a href="/editEquipmentProfile?action=edit&profileEquipmentId=<c:out
+                        <a href="editEquipmentProfile?action=edit&profileEquipmentId=<c:out
                                 value="${equipmentProfile.profileEquipmentId}"/>">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </a>
@@ -41,7 +41,7 @@
             </tbody>
         </table>
 
-        <p><a href="/addEquipmentProfile?action=insert">Add Equipment Profile</a></p>
+        <p><a href="addEquipmentProfile?action=insert">Add Equipment Profile</a></p>
 
     </div>
 

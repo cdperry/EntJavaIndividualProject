@@ -1,9 +1,8 @@
 package com.cdperry.brewday.persistence;
 
 import com.cdperry.brewday.entity.*;
-import com.sun.tools.javac.jvm.Profile;
-import org.junit.Test;
 
+import org.junit.Test;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.*;

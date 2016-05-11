@@ -23,7 +23,7 @@
                     <td><c:out value="${supplier.phone}" /></td>
                     <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${supplier.updateDate}" /></td>
                     <td class="text-center">
-                        <a href="/editSupplier?action=edit&supplierId=<c:out value="${supplier.supplierId}"/>">
+                        <a href="editSupplier?action=edit&supplierId=<c:out value="${supplier.supplierId}"/>">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </a>
                     </td>
@@ -38,7 +38,7 @@
             </tbody>
         </table>
 
-        <p><a href="/editSupplier?action=insert">Add Supplier</a></p>
+        <p><a href="editSupplier?action=insert">Add Supplier</a></p>
 
     </div>
 

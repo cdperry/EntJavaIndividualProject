@@ -71,7 +71,7 @@ public class WaterAddEditDisplayServlet extends HttpServlet {
                 request.setAttribute("actionType", "edit");
                 dispatcher.forward(request, response);
             } else {
-                url = "/listAllWaters";
+                url = "listAllWaters";
                 response.sendRedirect(url);
             }
         }

@@ -56,7 +56,7 @@ public class SupplierTypeAddEditDisplayServlet extends HttpServlet {
                 request.setAttribute("actionType", "edit");
                 dispatcher.forward(request, response);
             } else {
-                url = "/listSupplierTypes";
+                url = "listSupplierTypes";
                 response.sendRedirect(url);
             }
         }

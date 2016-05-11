@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="com.cdperry.brewday.entity.UserEntity" table="USER" schema="BREWDAY">
+    <class name="com.cdperry.brewday.entity.UserEntity" table="USERS" schema="BREWDAY">
         <composite-id mapped="true" class="com.cdperry.brewday.entity.UserEntityPK">
             <key-property name="userId" column="user_id"/>
             <key-property name="userName" column="user_name"/>

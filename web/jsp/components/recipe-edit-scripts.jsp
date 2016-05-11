@@ -5,7 +5,7 @@
     $('#modalAddGrain tr').click(function (event) {
         var compId = $(this).attr('compId');
         var recipeId = $(this).attr('recipeId');
-        var url = "/doEditRecipeComponent?action=insert&recipeId=" + recipeId + "&componentId=" + compId;
+        var url = "doEditRecipeComponent?action=insert&recipeId=" + recipeId + "&componentId=" + compId;
         //alert(url); //trying to alert id of the clicked row
         $("#frmAddGrain").attr("action", url);
         $(this).addClass('info').siblings().removeClass('info');
@@ -22,7 +22,7 @@
     $('#modalAddHop tr').click(function (event) {
         var compId = $(this).attr('compId');
         var recipeId = $(this).attr('recipeId');
-        var url = "/doEditRecipeComponent?action=insert&recipeId=" + recipeId + "&componentId=" + compId;
+        var url = "doEditRecipeComponent?action=insert&recipeId=" + recipeId + "&componentId=" + compId;
         //alert(url); //trying to alert id of the clicked row
         $("#frmAddHop").attr("action", url);
         $(this).addClass('info').siblings().removeClass('info');
@@ -38,7 +38,7 @@
     $('#modalAddYeast tr').click(function (event) {
         var compId = $(this).attr('compId');
         var recipeId = $(this).attr('recipeId');
-        var url = "/doEditRecipeComponent?action=insert&recipeId=" + recipeId + "&componentId=" + compId;
+        var url = "doEditRecipeComponent?action=insert&recipeId=" + recipeId + "&componentId=" + compId;
         //alert(url); //trying to alert id of the clicked row
 
         $("#frmAddYeast").attr("action", url);
@@ -53,7 +53,7 @@
     $('#modalAddWater tr').click(function (event) {
         var compId = $(this).attr('compId');
         var recipeId = $(this).attr('recipeId');
-        var url = "/doEditRecipeComponent?action=insert&recipeId=" + recipeId + "&componentId=" + compId;
+        var url = "doEditRecipeComponent?action=insert&recipeId=" + recipeId + "&componentId=" + compId;
         //alert(url); //trying to alert id of the clicked row
         $("#frmAddWater").attr("action", url);
         $(this).addClass('info').siblings().removeClass('info');
@@ -67,7 +67,7 @@
     $('#modalAddOther tr').click(function (event) {
         var compId = $(this).attr('compId');
         var recipeId = $(this).attr('recipeId');
-        var url = "/doEditRecipeComponent?action=insert&recipeId=" + recipeId + "&componentId=" + compId;
+        var url = "doEditRecipeComponent?action=insert&recipeId=" + recipeId + "&componentId=" + compId;
         //alert(url); //trying to alert id of the clicked row
         $("#frmAddOther").attr("action", url);
         $(this).addClass('info').siblings().removeClass('info');
@@ -87,7 +87,7 @@
         var time = docElement.data('time');
         var timeUomId = docElement.data('timeuomid');
         var componentTypeName = docElement.data('componenttypename');
-        var url = "/doEditRecipeComponent?action=edit&recipeId=" + recipeId + "&recipeComponentId="
+        var url = "doEditRecipeComponent?action=edit&recipeId=" + recipeId + "&recipeComponentId="
                 + recipeComponentId;
 
         if (componentTypeName == "Hop" || componentTypeName == "Hop") {
@@ -107,7 +107,7 @@
         var docElement = $(event.relatedTarget); // Element that triggered the modal
         var recipeId = docElement.data('recipeid');
         var recipeComponentId = docElement.data('recipecomponentid');
-        var url = "/deleteRecipeComponent?action=delete&recipeId=" + recipeId + "&recipeComponentId="
+        var url = "deleteRecipeComponent?action=delete&recipeId=" + recipeId + "&recipeComponentId="
                 + recipeComponentId;
         //alert(url);
         $("#frmConfirmDelete").attr("action", url)

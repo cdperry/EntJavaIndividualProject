@@ -43,7 +43,7 @@ public class GrainTypeAddEditActionServlet extends HttpServlet {
         GrainTypeEntity grainType = new GrainTypeEntity();
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
-        String url = "/listGrainTypes";
+        String url = "listGrainTypes";
 
         String name = request.getParameter("name");
         String grainTypeId = request.getParameter("grainTypeId");

@@ -56,7 +56,7 @@ public class YeastFormTypeAddEditDisplayServlet extends HttpServlet {
                 request.setAttribute("actionType", "edit");
                 dispatcher.forward(request, response);
             } else {
-                url = "/listYeastFormTypes";
+                url = "listYeastFormTypes";
                 response.sendRedirect(url);
             }
         }

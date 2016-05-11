@@ -8,40 +8,40 @@
         </a>
         <ul class="dropdown-menu">
             <li>
-                <a href="/listComponentTypes">Component Types</a>
+                <a href="listComponentTypes">Component Types</a>
             </li>
             <li>
-                <a href="/listGrainTypes">Grain Types</a>
+                <a href="listGrainTypes">Grain Types</a>
             </li>
             <li>
-                <a href="/listHopTypes">Hop Types</a>
+                <a href="listHopTypes">Hop Types</a>
             </li>
             <li>
-                <a href="/listHopFormTypes">Hop Forms</a>
+                <a href="listHopFormTypes">Hop Forms</a>
             </li>
             <li>
-                <a href="/listOrigins">Origins</a>
+                <a href="listOrigins">Origins</a>
             </li>
             <li>
-                <a href="/listRecipeTypes">Recipe Types</a>
+                <a href="listRecipeTypes">Recipe Types</a>
             </li>
             <li>
-                <a href="/listSupplierTypes">Supplier Types</a>
+                <a href="listSupplierTypes">Supplier Types</a>
             </li>
             <li>
-                <a href="/listUomTypes">Units of Measure</a>
+                <a href="listUomTypes">Units of Measure</a>
             </li>
             <li>
-                <a href="/listUseTypes">Use Types</a>
+                <a href="listUseTypes">Use Types</a>
             </li>
             <li>
-                <a href="/listYeastFlocTypes">Flocculation Types</a>
+                <a href="listYeastFlocTypes">Flocculation Types</a>
             </li>
             <li>
-                <a href="/listYeastFormTypes">Yeast Forms</a>
+                <a href="listYeastFormTypes">Yeast Forms</a>
             </li>
             <li>
-                <a href="/listYeastTypes">Yeast Types</a>
+                <a href="listYeastTypes">Yeast Types</a>
             </li>
         </ul>
     </li>

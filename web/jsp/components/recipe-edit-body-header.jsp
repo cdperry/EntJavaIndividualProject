@@ -11,7 +11,7 @@
 
     <div class="col-lg-12">
 
-        <form class="form-horizontal" method="POST" action='/doEditRecipe' name="frmAddEditRecipe">
+        <form class="form-horizontal" method="POST" action='doEditRecipe' name="frmAddEditRecipe">
             <div class="form-group form-group-sm">
                 <label for="recipeName" class="col-sm-1 control-label">Name</label>
                 <div class="col-sm-9">

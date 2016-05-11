@@ -58,7 +58,7 @@ public class GrainAddEditActionServlet extends HttpServlet {
 
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
-        String url = "/listAllGrains";
+        String url = "listAllGrains";
 
         String buttonAction = request.getParameter("buttonAction");
         String componentId = request.getParameter("componentId");

@@ -45,7 +45,7 @@ public class UseTypeAddEditActionServlet extends HttpServlet {
         UseTypeEntity useType = new UseTypeEntity();
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
-        String url = "/listUseTypes";
+        String url = "listUseTypes";
 
         String name = request.getParameter("name");
         String useTypeId = request.getParameter("useTypeId");

@@ -71,7 +71,7 @@ public class RecipeComponentAddEditActionServlet extends HttpServlet {
         String time = request.getParameter("time");
         String newTime = request.getParameter("newTime");
         String timeUomId = request.getParameter("timeUomId");
-        String url = "/editRecipe?action=edit&recipeId=" + recipeId;
+        String url = "editRecipe?action=edit&recipeId=" + recipeId;
 
         if (amount == null || amount.isEmpty()) {
             amount = "0";

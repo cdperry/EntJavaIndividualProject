@@ -43,7 +43,7 @@ public class RecipeComponentDeleteActionServlet extends HttpServlet {
 
         int recipeId = Integer.parseInt(request.getParameter("recipeId"));
         int recipeComponentId = Integer.parseInt(request.getParameter("recipeComponentId"));
-        String url = "/editRecipe?action=edit&recipeId=" + recipeId;
+        String url = "editRecipe?action=edit&recipeId=" + recipeId;
 
         if (recipeComponentDao.getRecipeComponentEntity(recipeComponentId) != null) {
             recipeComponentDao.deleteRecipeComponentEntityById(recipeComponentId);

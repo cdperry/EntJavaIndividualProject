@@ -9,6 +9,7 @@
         </property>
         <property name="connection.url">
             jdbc:mysql://localhost:3306/BREWDAY
+            <!--jdbc:mysql://127.4.252.130:3306/BREWDAY-->
         </property>
         <property name="connection.driver_class">
             com.mysql.jdbc.Driver

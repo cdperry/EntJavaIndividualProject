@@ -56,7 +56,7 @@ public class ComponentTypeAddEditDisplayServlet extends HttpServlet {
                 request.setAttribute("actionType", "edit");
                 dispatcher.forward(request, response);
             } else {
-                url = "/listComponentTypes";
+                url = "listComponentTypes";
                 response.sendRedirect(url);
             }
         }

@@ -5,7 +5,7 @@
 
     <div class="col-lg-12">
 
-        <form class="form-horizontal" method="POST" action='/doEditGrainType' name="frmAddGrainType">
+        <form class="form-horizontal" method="POST" action='doEditGrainType' name="frmAddGrainType">
             <div class="form-group">
                 <label for="grainTypeId" class="col-sm-2 control-label">ID</label>
                 <div class="col-sm-10">

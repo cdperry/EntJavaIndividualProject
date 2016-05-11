@@ -45,7 +45,7 @@ public class YeastFormTypeAddEditActionServlet extends HttpServlet {
         YeastFormEntity yeastForm = new YeastFormEntity();
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
-        String url = "/listYeastFormTypes";
+        String url = "listYeastFormTypes";
 
         String name = request.getParameter("name");
         String yeastFormId = request.getParameter("yeastFormId");

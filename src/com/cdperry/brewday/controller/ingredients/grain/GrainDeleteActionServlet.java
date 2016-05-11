@@ -39,7 +39,7 @@ public class GrainDeleteActionServlet extends HttpServlet {
      */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String url = "/listAllGrains";
+        String url = "listAllGrains";
         int componentId = Integer.parseInt(request.getParameter("componentId"));
 
         if (componentGrainDao.getComponentGrainEntity(componentId) != null) {

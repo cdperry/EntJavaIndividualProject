@@ -55,7 +55,7 @@ public class WaterAddEditActionServlet extends HttpServlet {
 
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
-        String url = "/listAllWaters";
+        String url = "listAllWaters";
 
         String buttonAction = request.getParameter("buttonAction");
         String componentId = request.getParameter("componentId");

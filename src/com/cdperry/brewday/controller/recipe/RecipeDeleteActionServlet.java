@@ -36,7 +36,7 @@ public class RecipeDeleteActionServlet extends HttpServlet {
      */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String url = "/recipes";
+        String url = "recipes";
         int recipeId = Integer.parseInt(request.getParameter("recipeId"));
 
         if (recipeDao.getRecipeEntity(recipeId) != null) {

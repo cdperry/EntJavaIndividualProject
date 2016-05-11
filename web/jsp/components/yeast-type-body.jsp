@@ -23,7 +23,7 @@
                     <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${yeastType.createDate}" /></td>
                     <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${yeastType.updateDate}" /></td>
                     <td class="text-center">
-                        <a href="/editYeastType?action=edit&yeastTypeId=<c:out value="${yeastType.yeastTypeId}"/>">
+                        <a href="editYeastType?action=edit&yeastTypeId=<c:out value="${yeastType.yeastTypeId}"/>">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </a>
                     </td>
@@ -37,7 +37,7 @@
             </c:forEach>
             </tbody>
         </table>
-        <p><a href="/addYeastType?action=insert">Add Yeast Type</a></p>
+        <p><a href="addYeastType?action=insert">Add Yeast Type</a></p>
     </div>
 
 </div>

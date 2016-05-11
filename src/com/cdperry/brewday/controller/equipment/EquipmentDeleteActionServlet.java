@@ -38,7 +38,7 @@ public class EquipmentDeleteActionServlet extends HttpServlet {
      */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String url = "/equipment";
+        String url = "equipment";
         int equipmentProfileId = Integer.parseInt(request.getParameter("profileEquipmentId"));
 
         if (equipmentProfileDao.getProfileEquipmentEntity(equipmentProfileId) != null) {

@@ -56,7 +56,7 @@ public class OtherAddEditActionServlet extends HttpServlet {
 
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
-        String url = "/listAllOthers";
+        String url = "listAllOthers";
 
         String buttonAction = request.getParameter("buttonAction");
         String componentId = request.getParameter("componentId");

@@ -38,7 +38,7 @@ public class OtherDeleteActionServlet extends HttpServlet {
      */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String url = "/listAllOthers";
+        String url = "listAllOthers";
         int componentId = Integer.parseInt(request.getParameter("componentId"));
 
         if (componentOtherDao.getComponentOtherEntity(componentId) != null) {

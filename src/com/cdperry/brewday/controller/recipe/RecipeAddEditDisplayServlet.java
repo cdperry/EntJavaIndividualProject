@@ -115,7 +115,7 @@ public class RecipeAddEditDisplayServlet extends HttpServlet {
                 request.setAttribute("actionType", "edit");
                 dispatcher.forward(request, response);
             } else {
-                url = "/recipes";
+                url = "recipes";
                 response.sendRedirect(url);
             }
         }

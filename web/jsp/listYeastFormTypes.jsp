@@ -27,7 +27,7 @@
                 var docElement = $(event.relatedTarget) // Element that triggered the modal
                 var id = docElement.data('id') // Extract info from data-* attributes
                 <%--$("#confirmedDelete").attr('href', '/deleteYeastFormType?yeastFormId=' + id)--%>
-                $("#frmConfirmDelete").attr("action", "/deleteYeastFormType?yeastFormId=" + id)
+                $("#frmConfirmDelete").attr("action", "deleteYeastFormType?yeastFormId=" + id)
             })
         </script>
 

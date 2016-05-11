@@ -2,7 +2,6 @@ package com.cdperry.brewday.controller.suppliers;
 
 import com.cdperry.brewday.entity.*;
 import com.cdperry.brewday.persistence.*;
-import sun.text.resources.ro.JavaTimeSupplementary_ro;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -50,7 +49,7 @@ public class SupplierAddEditActionServlet extends HttpServlet {
 
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
-        String url = "/suppliers";
+        String url = "suppliers";
 
         String buttonAction = request.getParameter("buttonAction");
         String supplierId = request.getParameter("supplierId");

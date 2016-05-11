@@ -5,7 +5,7 @@
 
     <div class="col-lg-12">
 
-            <form class="form-horizontal" method="POST" action='/doEditComponentType' name="frmAddComponentType">
+            <form class="form-horizontal" method="POST" action='doEditComponentType' name="frmAddComponentType">
             <div class="form-group">
                 <label for="componentTypeId" class="col-sm-2 control-label">ID</label>
                 <div class="col-sm-10">

@@ -56,7 +56,7 @@ public class HopTypeAddEditDisplayServlet extends HttpServlet {
                 request.setAttribute("actionType", "edit");
                 dispatcher.forward(request, response);
             } else {
-                url = "/listHopTypes";
+                url = "listHopTypes";
                 response.sendRedirect(url);
             }
         }

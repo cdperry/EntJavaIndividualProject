@@ -38,7 +38,7 @@ public class YeastFormTypeDeleteActionServlet extends HttpServlet {
      */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String url = "/listYeastFormTypes";
+        String url = "listYeastFormTypes";
         int yeastFormId = Integer.parseInt(request.getParameter("yeastFormId"));
 
         if (yeastFormDao.getYeastFormEntity(yeastFormId) != null) {

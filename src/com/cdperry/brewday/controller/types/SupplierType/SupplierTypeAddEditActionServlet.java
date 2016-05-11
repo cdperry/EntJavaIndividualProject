@@ -45,7 +45,7 @@ public class SupplierTypeAddEditActionServlet extends HttpServlet {
         SupplierTypeEntity supplierType = new SupplierTypeEntity();
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
-        String url = "/listSupplierTypes";
+        String url = "listSupplierTypes";
 
         String name = request.getParameter("name");
         String supplierTypeId = request.getParameter("supplierTypeId");

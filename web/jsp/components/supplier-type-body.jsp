@@ -23,7 +23,7 @@
                     <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${supplierType.createDate}" /></td>
                     <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${supplierType.updateDate}" /></td>
                     <td class="text-center">
-                        <a href="/editSupplierType?action=edit&supplierTypeId=<c:out value="${supplierType.supplierTypeId}"/>">
+                        <a href="editSupplierType?action=edit&supplierTypeId=<c:out value="${supplierType.supplierTypeId}"/>">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </a>
                     </td>
@@ -37,7 +37,7 @@
             </c:forEach>
             </tbody>
         </table>
-        <p><a href="/addSupplierType?action=insert">Add Supplier Type</a></p>
+        <p><a href="addSupplierType?action=insert">Add Supplier Type</a></p>
     </div>
 
 </div>

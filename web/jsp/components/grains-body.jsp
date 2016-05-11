@@ -27,7 +27,7 @@
                     <td><c:out value="${grain.potential}" /></td>
                     <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${grain.updateDate}" /></td>
                     <td class="text-center">
-                        <a href="/editGrain?action=edit&componentId=<c:out value="${grain.compGrainId}"/>">
+                        <a href="editGrain?action=edit&componentId=<c:out value="${grain.compGrainId}"/>">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </a>
                     </td>
@@ -42,7 +42,7 @@
             </tbody>
         </table>
 
-        <p><a href="/addGrain?action=insert">Add Grain</a></p>
+        <p><a href="addGrain?action=insert">Add Grain</a></p>
 
     </div>
 

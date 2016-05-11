@@ -5,14 +5,14 @@
 <html>
     <head>
 
-        <c:import url="components/main-head-tag.jsp" />
+        <c:import url="../components/main-head-tag.jsp" />
 
     </head>
     <body>
 
     <div id="wrapper">
 
-        <c:import url="components/main-navigation.jsp" />
+        <c:import url="../components/main-navigation.jsp" />
 
         <div id="page-wrapper">
 
@@ -49,7 +49,7 @@
 
     </div>
 
-        <c:import url="components/main-scripts.jsp" />
+        <c:import url="../components/main-scripts.jsp" />
 
         <script type="text/javascript">
             $(document).ready( function () {

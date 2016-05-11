@@ -38,7 +38,7 @@ public class HopDeleteActionServlet extends HttpServlet {
      */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String url = "/listAllHops";
+        String url = "listAllHops";
         int componentId = Integer.parseInt(request.getParameter("componentId"));
 
         if (componentHopDao.getComponentHopEntity(componentId) != null) {

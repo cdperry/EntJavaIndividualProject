@@ -45,7 +45,7 @@ public class ComponentTypeAddEditActionServlet extends HttpServlet {
         ComponentTypeEntity componentType = new ComponentTypeEntity();
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
-        String url = "/listComponentTypes";
+        String url = "listComponentTypes";
 
         String name = request.getParameter("name");
         String componentTypeId = request.getParameter("componentTypeId");

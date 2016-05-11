@@ -53,7 +53,7 @@ public class RecipeAddEditActionServlet extends HttpServlet {
         RecipeEntity recipe = new RecipeEntity();
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
-        String url = "/recipes";
+        String url = "recipes";
 
         String recipeName = request.getParameter("recipeName");
         String brewerName = request.getParameter("brewerName");

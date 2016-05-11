@@ -25,7 +25,7 @@
                     <td><c:out value="${yeast.yeastForm.name}" /></td>
                     <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${yeast.updateDate}" /></td>
                     <td class="text-center">
-                        <a href="/editYeast?action=edit&componentId=<c:out value="${yeast.compYeastId}"/>">
+                        <a href="editYeast?action=edit&componentId=<c:out value="${yeast.compYeastId}"/>">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </a>
                     </td>
@@ -40,7 +40,7 @@
             </tbody>
         </table>
 
-        <p><a href="/addYeast?action=insert">Add Yeast</a></p>
+        <p><a href="addYeast?action=insert">Add Yeast</a></p>
 
     </div>
 

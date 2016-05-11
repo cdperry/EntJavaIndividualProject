@@ -5,7 +5,7 @@
 
     <div class="col-lg-12">
 
-        <form class="form-horizontal" method="POST" action='/doEditEquipmentProfile' name="frmAddEditEquipmentProfile">
+        <form class="form-horizontal" method="POST" action='doEditEquipmentProfile' name="frmAddEditEquipmentProfile">
             <div class="form-group form-group-sm">
                 <label for="profileName" class="col-sm-1 control-label">Name</label>
                 <div class="col-sm-9">

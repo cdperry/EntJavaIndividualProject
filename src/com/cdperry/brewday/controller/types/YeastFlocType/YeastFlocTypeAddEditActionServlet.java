@@ -45,7 +45,7 @@ public class YeastFlocTypeAddEditActionServlet extends HttpServlet {
         YeastFlocTypeEntity yeastFlocType = new YeastFlocTypeEntity();
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
-        String url = "/listYeastFlocTypes";
+        String url = "listYeastFlocTypes";
 
         String name = request.getParameter("name");
         String yeastFlocTypeId = request.getParameter("yeastFlocTypeId");

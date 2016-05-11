@@ -45,7 +45,7 @@ public class YeastTypeAddEditActionServlet extends HttpServlet {
         YeastTypeEntity yeastType = new YeastTypeEntity();
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
-        String url = "/listYeastTypes";
+        String url = "listYeastTypes";
 
         String name = request.getParameter("name");
         String yeastTypeId = request.getParameter("yeastTypeId");

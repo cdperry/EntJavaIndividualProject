@@ -56,7 +56,7 @@ public class HopFormTypeAddEditDisplayServlet extends HttpServlet {
                 request.setAttribute("actionType", "edit");
                 dispatcher.forward(request, response);
             } else {
-                url = "/listHopFormTypes";
+                url = "listHopFormTypes";
                 response.sendRedirect(url);
             }
         }

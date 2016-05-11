@@ -38,7 +38,7 @@ public class UomTypeDeleteActionServlet extends HttpServlet {
      */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String url = "/listUomTypes";
+        String url = "listUomTypes";
         int uomId = Integer.parseInt(request.getParameter("uomId"));
 
         // TODO: maybe put the '100' in a .properties file?

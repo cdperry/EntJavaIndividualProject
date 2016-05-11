@@ -31,7 +31,7 @@
                     <td><c:out value="${recipe.batchSizeUom.name}" /></td>
                     <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${recipe.updateDate}" /></td>
                     <td class="text-center">
-                        <a href="/editRecipe?action=edit&recipeId=<c:out value="${recipe.recipeId}"/>">
+                        <a href="editRecipe?action=edit&recipeId=<c:out value="${recipe.recipeId}"/>">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </a>
                     </td>
@@ -46,7 +46,7 @@
             </tbody>
         </table>
 
-        <p><a href="/addRecipe?action=insert">Add Recipe</a></p>
+        <p><a href="addRecipe?action=insert">Add Recipe</a></p>
 
     </div>
 

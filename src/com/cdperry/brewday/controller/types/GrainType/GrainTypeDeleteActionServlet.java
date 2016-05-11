@@ -36,7 +36,7 @@ public class GrainTypeDeleteActionServlet extends HttpServlet {
      */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String url = "/listGrainTypes";
+        String url = "listGrainTypes";
         int grainTypeId = Integer.parseInt(request.getParameter("grainTypeId"));
 
         if (grainTypeDao.getGrainTypeEntity(grainTypeId) != null) {

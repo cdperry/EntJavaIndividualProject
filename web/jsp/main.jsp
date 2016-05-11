@@ -21,13 +21,15 @@
 
         <c:import url="components/main-scripts.jsp" />
 
+        <%--
         <script>
             $('#myModal').on('show.bs.modal', function (event) {
                 var docElement = $(event.relatedTarget) // Element that triggered the modal
                 var id = docElement.data('id') // Extract info from data-* attributes
-                $("#confirmedDelete").attr('href', '/deleteGrainType?grainTypeId=' + id)
+                $("#confirmedDelete").attr('href', 'deleteGrainType?grainTypeId=' + id)
             })
         </script>
+        --%>
 
     </body>
 

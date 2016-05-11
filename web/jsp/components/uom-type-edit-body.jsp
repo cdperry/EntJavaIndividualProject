@@ -5,7 +5,7 @@
 
     <div class="col-lg-12">
 
-        <form class="form-horizontal" method="POST" action='/doEditUomType' name="frmAddUomType">
+        <form class="form-horizontal" method="POST" action='doEditUomType' name="frmAddUomType">
             <div class="form-group">
                 <label for="uomId" class="col-sm-2 control-label">ID</label>
                 <div class="col-sm-10">

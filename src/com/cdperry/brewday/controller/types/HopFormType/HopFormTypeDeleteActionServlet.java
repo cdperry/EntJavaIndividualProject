@@ -38,7 +38,7 @@ public class HopFormTypeDeleteActionServlet extends HttpServlet {
      */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String url = "/listHopFormTypes";
+        String url = "listHopFormTypes";
         int hopFormTypeId = Integer.parseInt(request.getParameter("hopFormTypeId"));
 
         if (hopFormTypeDao.getHopFormTypeEntity(hopFormTypeId) != null) {

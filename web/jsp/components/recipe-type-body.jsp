@@ -23,7 +23,7 @@
                     <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${recipeType.createDate}" /></td>
                     <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${recipeType.updateDate}" /></td>
                     <td class="text-center">
-                        <a href="/editRecipeType?action=edit&recipeTypeId=<c:out value="${recipeType.recipeTypeId}"/>">
+                        <a href="editRecipeType?action=edit&recipeTypeId=<c:out value="${recipeType.recipeTypeId}"/>">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </a>
                     </td>
@@ -37,7 +37,7 @@
             </c:forEach>
             </tbody>
         </table>
-        <p><a href="/addRecipeType?action=insert">Add Recipe Type</a></p>
+        <p><a href="addRecipeType?action=insert">Add Recipe Type</a></p>
     </div>
 
 </div>

@@ -38,7 +38,7 @@ public class YeastTypeDeleteActionServlet extends HttpServlet {
      */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String url = "/listYeastTypes";
+        String url = "listYeastTypes";
         int yeastTypeId = Integer.parseInt(request.getParameter("yeastTypeId"));
 
         if (yeastTypeDao.getYeastTypeEntity(yeastTypeId) != null) {

@@ -5,7 +5,7 @@
 
     <div class="col-lg-12">
 
-        <form class="form-horizontal" method="POST" action='/doEditOrigin' name="frmAddOrigin">
+        <form class="form-horizontal" method="POST" action='doEditOrigin' name="frmAddOrigin">
             <div class="form-group">
                 <label for="originId" class="col-sm-2 control-label">ID</label>
                 <div class="col-sm-10">

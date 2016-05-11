@@ -66,7 +66,7 @@ public class EquipmentAddEditDisplayServlet extends HttpServlet {
                 request.setAttribute("actionType", "edit");
                 dispatcher.forward(request, response);
             } else {
-                url = "/equipment";
+                url = "equipment";
                 response.sendRedirect(url);
             }
         }

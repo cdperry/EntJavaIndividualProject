@@ -56,7 +56,7 @@ public class OriginAddEditDisplayServlet extends HttpServlet {
                 request.setAttribute("actionType", "edit");
                 dispatcher.forward(request, response);
             } else {
-                url = "/listOrigins";
+                url = "listOrigins";
                 response.sendRedirect(url);
             }
         }

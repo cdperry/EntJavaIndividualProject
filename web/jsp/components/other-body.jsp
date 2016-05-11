@@ -23,7 +23,7 @@
                     <td><c:out value="${other.useFor}" /></td>
                     <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${other.updateDate}" /></td>
                     <td class="text-center">
-                        <a href="/editOther?action=edit&componentId=<c:out value="${other.compOtherId}"/>">
+                        <a href="editOther?action=edit&componentId=<c:out value="${other.compOtherId}"/>">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </a>
                     </td>
@@ -38,7 +38,7 @@
             </tbody>
         </table>
 
-        <p><a href="/addOther?action=insert">Add Other</a></p>
+        <p><a href="addOther?action=insert">Add Other</a></p>
 
     </div>
 

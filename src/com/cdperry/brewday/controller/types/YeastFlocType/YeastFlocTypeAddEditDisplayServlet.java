@@ -56,7 +56,7 @@ public class YeastFlocTypeAddEditDisplayServlet extends HttpServlet {
                 request.setAttribute("actionType", "edit");
                 dispatcher.forward(request, response);
             } else {
-                url = "/listYeastFlocTypes";
+                url = "listYeastFlocTypes";
                 response.sendRedirect(url);
             }
         }

@@ -43,10 +43,10 @@ public class Database {
         } catch (ClassNotFoundException e) {
             throw new Exception("Error: MySQL Driver not found");
         }
-        //TODO: update with your database connection info
-        String url = "jdbc:mysql://localhost:3306/brewday";
 
-        //TODO: update with your database connection info
+        //String url = "jdbc:mysql://localhost:3306/brewday";
+        String url = "jdbc:mysql://127.4.252.130:3306/brewday";
+
         connection = DriverManager.getConnection(url, "admin", "admin");
     }
 

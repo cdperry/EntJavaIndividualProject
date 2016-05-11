@@ -38,7 +38,7 @@ public class SupplierTypeDeleteActionServlet extends HttpServlet {
      */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String url = "/listSupplierTypes";
+        String url = "listSupplierTypes";
         int supplierTypeId = Integer.parseInt(request.getParameter("supplierTypeId"));
 
         if (supplierTypeDao.getSupplierTypeEntity(supplierTypeId) != null) {

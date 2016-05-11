@@ -3,4 +3,32 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
+
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>main</welcome-file>
+    </welcome-file-list>
+
+    <!-- protect everything -->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>main</web-resource-name>
+            <url-pattern>/recipes</url-pattern>
+            <url-pattern>/equipment</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>administrator</role-name>
+            <role-name>registeredUser</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <form-login-config>
+            <form-login-page>/jsp/login.jsp</form-login-page>
+            <form-error-page>/jsp/failedLogin.jsp</form-error-page>
+        </form-login-config>
+    </login-config>
+
+
 </web-app>

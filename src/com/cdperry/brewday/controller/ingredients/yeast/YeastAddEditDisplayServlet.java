@@ -98,7 +98,7 @@ public class YeastAddEditDisplayServlet extends HttpServlet {
                 request.setAttribute("actionType", "edit");
                 dispatcher.forward(request, response);
             } else {
-                url = "/listAllYeasts";
+                url = "listAllYeasts";
                 response.sendRedirect(url);
             }
         }

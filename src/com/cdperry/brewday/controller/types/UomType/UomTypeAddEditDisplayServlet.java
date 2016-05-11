@@ -56,7 +56,7 @@ public class UomTypeAddEditDisplayServlet extends HttpServlet {
                 request.setAttribute("actionType", "edit");
                 dispatcher.forward(request, response);
             } else {
-                url = "/listUomTypes";
+                url = "listUomTypes";
                 response.sendRedirect(url);
             }
         }

@@ -60,7 +60,7 @@ public class HopAddEditActionServlet extends HttpServlet {
 
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
-        String url = "/listAllHops";
+        String url = "listAllHops";
 
         String buttonAction = request.getParameter("buttonAction");
         String componentId = request.getParameter("componentId");

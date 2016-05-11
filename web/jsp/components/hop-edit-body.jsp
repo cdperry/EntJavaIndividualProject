@@ -9,7 +9,7 @@
 
     <div class="col-lg-12">
 
-        <form class="form-horizontal" method="POST" action='/doEditHop' name="frmAddHop">
+        <form class="form-horizontal" method="POST" action='doEditHop' name="frmAddHop">
             <div class="form-group form-group-sm">
                 <label for="name" class="col-sm-1 control-label">Name</label>
                 <div class="col-sm-9">

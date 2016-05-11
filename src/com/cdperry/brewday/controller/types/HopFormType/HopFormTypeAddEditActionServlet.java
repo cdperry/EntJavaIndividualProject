@@ -45,7 +45,7 @@ public class HopFormTypeAddEditActionServlet extends HttpServlet {
         HopFormTypeEntity hopFormType = new HopFormTypeEntity();
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
-        String url = "/listHopFormTypes";
+        String url = "listHopFormTypes";
 
         String name = request.getParameter("name");
         String hopFormTypeId = request.getParameter("hopFormTypeId");

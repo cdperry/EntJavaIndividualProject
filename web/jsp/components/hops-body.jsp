@@ -27,7 +27,7 @@
                     <td><c:out value="${hop.hopType.name}" /></td>
                     <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${hop.updateDate}" /></td>
                     <td class="text-center">
-                        <a href="/editHop?action=edit&componentId=<c:out value="${hop.compHopId}"/>">
+                        <a href="editHop?action=edit&componentId=<c:out value="${hop.compHopId}"/>">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </a>
                     </td>
@@ -43,7 +43,7 @@
 
         </table>
 
-        <p><a href="/addHop?action=insert">Add Hop</a></p>
+        <p><a href="addHop?action=insert">Add Hop</a></p>
 
     </div>
 

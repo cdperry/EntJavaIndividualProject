@@ -17,39 +17,39 @@
             </li>
             --%>
             <li>
-                <a href="/main"><i class="fa fa-beer fa-fw"></i> Home</a>
+                <a href="main"><i class="fa fa-beer fa-fw"></i> Home</a>
             </li>
             <li>
-                <a href="/recipes"><i class="fa fa-edit fa-fw"></i> Recipes</a>
+                <a href="recipes"><i class="fa fa-edit fa-fw"></i> Recipes</a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-cutlery fa-fw"></i> Ingredients<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="/listAllHops">Hops</a>
+                        <a href="listAllHops">Hops</a>
                     </li>
                     <li>
-                        <a href="/listAllGrains">Grain</a>
+                        <a href="listAllGrains">Grain</a>
                     </li>
                     <li>
-                        <a href="/listAllYeasts">Yeast</a>
+                        <a href="listAllYeasts">Yeast</a>
                     </li>
                     <li>
-                        <a href="/listAllWaters">Water</a>
+                        <a href="listAllWaters">Water</a>
                     </li>
                     <li>
-                        <a href="/listAllOthers">Miscellaneous</a>
+                        <a href="listAllOthers">Miscellaneous</a>
                     </li>
                 </ul>
             </li>
             <li>
-                <a href="/equipment"><i class="fa fa-briefcase fa-fw"></i> Equipment</a>
+                <a href="equipment"><i class="fa fa-briefcase fa-fw"></i> Equipment</a>
             </li>
             <li>
-                <a href="/suppliers"><i class="fa fa-cart-arrow-down fa-fw"></i> Suppliers</a>
+                <a href="suppliers"><i class="fa fa-cart-arrow-down fa-fw"></i> Suppliers</a>
             </li>
             <li>
-                <a href="/utilities"><i class="fa fa-balance-scale fa-fw"></i> Utilities</a>
+                <a href="utilities"><i class="fa fa-balance-scale fa-fw"></i> Utilities</a>
             </li>
             <%--
             <li>

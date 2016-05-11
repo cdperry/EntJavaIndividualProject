@@ -63,7 +63,7 @@ public class YeastAddEditActionServlet extends HttpServlet {
 
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
-        String url = "/listAllYeasts";
+        String url = "listAllYeasts";
 
         String buttonAction = request.getParameter("buttonAction");
         String componentId = request.getParameter("componentId");

@@ -23,7 +23,7 @@
                     <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${origin.createDate}" /></td>
                     <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${origin.updateDate}" /></td>
                     <td class="text-center">
-                        <a href="/editOrigin?action=edit&originId=<c:out value="${origin.originId}"/>">
+                        <a href="editOrigin?action=edit&originId=<c:out value="${origin.originId}"/>">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </a>
                     </td>
@@ -37,7 +37,7 @@
             </c:forEach>
             </tbody>
         </table>
-        <p><a href="/addOrigin?action=insert">Add Origin</a></p>
+        <p><a href="addOrigin?action=insert">Add Origin</a></p>
     </div>
 
 </div>

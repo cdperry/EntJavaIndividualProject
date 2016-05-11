@@ -38,7 +38,7 @@ public class ComponentTypeDeleteActionServlet extends HttpServlet {
      */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String url = "/listComponentTypes";
+        String url = "listComponentTypes";
         int componentTypeId = Integer.parseInt(request.getParameter("componentTypeId"));
 
         // TODO: maybe put the '100' in a .properties file?

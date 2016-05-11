@@ -21,7 +21,7 @@
                     <td><c:out value="${water.ph}" /></td>
                     <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${water.updateDate}" /></td>
                     <td class="text-center">
-                        <a href="/editWater?action=edit&componentId=<c:out value="${water.compWaterId}"/>">
+                        <a href="editWater?action=edit&componentId=<c:out value="${water.compWaterId}"/>">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </a>
                     </td>
@@ -36,7 +36,7 @@
             </tbody>
         </table>
 
-        <p><a href="/addWater?action=insert">Add Water</a></p>
+        <p><a href="addWater?action=insert">Add Water</a></p>
 
     </div>
 

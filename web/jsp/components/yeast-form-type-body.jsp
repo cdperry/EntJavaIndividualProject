@@ -23,7 +23,7 @@
                     <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${yeastFormType.createDate}" /></td>
                     <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${yeastFormType.updateDate}" /></td>
                     <td class="text-center">
-                        <a href="/editYeastFormType?action=edit&yeastFormId=<c:out value="${yeastFormType.yeastFormId}"/>">
+                        <a href="editYeastFormType?action=edit&yeastFormId=<c:out value="${yeastFormType.yeastFormId}"/>">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </a>
                     </td>
@@ -37,7 +37,7 @@
             </c:forEach>
             </tbody>
         </table>
-        <p><a href="/addYeastFormType?action=insert">Add Yeast Form</a></p>
+        <p><a href="addYeastFormType?action=insert">Add Yeast Form</a></p>
     </div>
 
 </div>

@@ -38,7 +38,7 @@ public class UseTypeDeleteActionServlet extends HttpServlet {
      */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String url = "/listUseTypes";
+        String url = "listUseTypes";
         int useTypeId = Integer.parseInt(request.getParameter("useTypeId"));
 
         if (useTypeDao.getUseTypeEntity(useTypeId) != null) {

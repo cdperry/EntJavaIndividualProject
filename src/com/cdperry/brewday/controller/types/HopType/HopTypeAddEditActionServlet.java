@@ -45,7 +45,7 @@ public class HopTypeAddEditActionServlet extends HttpServlet {
         HopTypeEntity hopType = new HopTypeEntity();
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
-        String url = "/listHopTypes";
+        String url = "listHopTypes";
 
         String name = request.getParameter("name");
         String hopTypeId = request.getParameter("hopTypeId");

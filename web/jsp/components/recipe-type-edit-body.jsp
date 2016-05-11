@@ -5,7 +5,7 @@
 
     <div class="col-lg-12">
 
-        <form class="form-horizontal" method="POST" action='/doEditRecipeType' name="frmAddRecipeType">
+        <form class="form-horizontal" method="POST" action='doEditRecipeType' name="frmAddRecipeType">
             <div class="form-group">
                 <label for="recipeTypeId" class="col-sm-2 control-label">ID</label>
                 <div class="col-sm-10">

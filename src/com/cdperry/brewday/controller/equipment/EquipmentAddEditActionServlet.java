@@ -53,7 +53,7 @@ public class EquipmentAddEditActionServlet extends HttpServlet {
 
         Date now = new Date();
         Timestamp ts = new Timestamp(now.getTime());
-        String url = "/equipment";
+        String url = "equipment";
 
         String profileId = request.getParameter("equipmentProfileId");
         String profileName = request.getParameter("profileName");

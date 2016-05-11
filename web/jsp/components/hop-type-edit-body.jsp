@@ -5,7 +5,7 @@
 
     <div class="col-lg-12">
 
-        <form class="form-horizontal" method="POST" action='/doEditHopType' name="frmAddHopType">
+        <form class="form-horizontal" method="POST" action='doEditHopType' name="frmAddHopType">
             <div class="form-group">
                 <label for="hopTypeId" class="col-sm-2 control-label">ID</label>
                 <div class="col-sm-10">
