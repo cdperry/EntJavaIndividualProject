@@ -14,6 +14,7 @@ import static org.junit.Assert.*;
  */
 public class RecipeComponentDaoTest {
 
+    /*
     @Test
     public void testGetAllRecipeComponents() throws Exception {
 
@@ -181,4 +182,6 @@ public class RecipeComponentDaoTest {
         me.deleteRecipeComponentEntity(testRecipeComponent);
 
     }
+    */
+
 }

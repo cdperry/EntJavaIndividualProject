@@ -15,6 +15,7 @@ import static org.junit.Assert.*;
  */
 public class RecipeComponentOneToManyTest {
 
+    /*
     @Test
     public void testOneToMany() throws Exception {
 
@@ -81,5 +82,7 @@ public class RecipeComponentOneToManyTest {
         }
 
     }
+    */
+
 }
 
