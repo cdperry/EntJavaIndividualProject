@@ -8,18 +8,7 @@ Home brewers face a common issue.  They're inspired to create a recipe which mig
 
 As far as web service integration goes I plan ot utilize existing brewing ingredient databases that are made accessible from the web.  
 
-Potential web services include: 
-- [openbeer.db](http://openbeer.github.io)
-- [brewerydb.com](http://www.brewerydb.com)
-
 The user interface design will be based upon the free [Start Bootstrap Admin template](http://startbootstrap.com/template-overviews/sb-admin-2/).
-
-Other UIs considered are below:
-- [DesignModo.com](http://designmodo.com/flat#buy)
-- [Designscrazed.org](http://designscrazed.org/free-html-css3-ui-kits/)
-- [Freebiesbug.com](http://freebiesbug.com/code-stuff/html-ui-kits/)
-- [Opendesigns.org](http://www.opendesigns.org/design/leather-coffee/)
-- [ui-cloud.com](http://ui-cloud.com/free-ui-elements/)
 
 ## Project Technologies/Techniques
 This project will make extensive use of Hibernate to more easily deal with the numerous one-to-many foreign key relationships present in a data model such as this one (recipes with many lines, ingredients that can be shared across many recipes, etc.)

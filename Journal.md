@@ -62,7 +62,7 @@ Tasks Completed:
 - Wasn't able to attend class on 2/24 due to a late-running meeting at the new job
 - Completed exercises and caught up on in-class materials over the weekend
 
-## Week 6
+## Week 7
 
 02/29/2016
 - Completed readings and in-class exercises
@@ -70,44 +70,51 @@ Tasks Completed:
 - Started working on a project plan which I am very behind on
 - Wrote up the problem statement for our team project (Fat Yeti - Snow Depth Web Service)
 - Started sketching out the database design for the project, creating the DAOs and connecting the bits and pieces of the project together
-
-## Week 7
-03/07/2016
-- Completed readings, attended class and completed in-class exercises
 - Need to make sure I have some things to show for the code review next week
 
 ## Week 8
-03/14/2016
+
+03/07/2016
 - Completed readings, attended class and completed in-class exercises
 - Code review
 
+## Week 8.5
+- Spring Break!  Didn't go to Mexico ...
+
 ## Week 9
+
 03/21/2016
 - Completed readings, missed class due to work
 
 ## Week 10
+
 03/28/2016
 - Completed readings, attended class and completed in-class exercises
 - Worked on team project (FatYeti), got frustrated by RESTful web services.
 - Started using Maven for the team project as it greatly simplified managing dependencies.
 
 ## Week 11
+
 04/04/2016
 - Completed readings, attended class and completed in-class exercises
 - Worked on team project (FatYeti). No longer frustrated by RESTful web services thanks to the Jackson demo.
 
 ## Week 12
+
+04/11/2016
 - Completed readings, attended class and completed in-class exercises
 - Completed team project (FatYeti)
 - Decided that I'll be doing another research topic for my second extracurricular presentation.  There are a number of tutorials that I have found online (free) and through Udemy (paid) that will be helpful for this.
 
-04/11/2016
-- The calendar shows I've got about a month left.  While the entity/persistence (DAO) and DAO testing are pretty much done I have not made adequate progress on the controller portion.  I need to get moving on that.
-- continued learning about design patterns for my second extracurricular presentation
-
 ## Week 13
 
 04/18/2016
+- The calendar shows I've got about a month left.  While the entity/persistence (DAO) and DAO testing are pretty much done I have not made adequate progress on the controller portion.  I need to get moving on that.
+- continued learning about design patterns for my second extracurricular presentation
+
+## Week 14
+
+04/25/2016
 - Continuing to make progress on the UI, starting to dabble a bit in jQuery to help with modals.  I was having trouble getting JSP variables into my modal based on selected table rows.  Using HTML data-* attributes and jQuery I was able to get past this issue. 
 - Continued work on controllers and the persistence layer
 - Did my second extracurricular presentation on design patterns
