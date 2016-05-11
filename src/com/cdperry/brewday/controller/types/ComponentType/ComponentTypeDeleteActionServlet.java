@@ -45,6 +45,9 @@ public class ComponentTypeDeleteActionServlet extends HttpServlet {
         // TODO: send an error message when trying to delete a system type
         if (componentTypeDao.getComponentTypeEntity(componentTypeId) != null && componentTypeId >= 100 ) {
             componentTypeDao.deleteComponentTypeEntityById(componentTypeId);
+        } else if (componentTypeId < 100) {
+            System.out.println("argh!");
+            request.getSession().setAttribute("errorMessage", "Unable to delete protected component type");
         }
 
         request.setAttribute("componentTypes", componentTypeDao.getAllComponentTypes());

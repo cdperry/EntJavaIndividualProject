@@ -7,11 +7,22 @@
     </div>
 </div>
 
+<%--
 <div class="row">
 
     <div class="col-lg-12 text-info">
         <h3>Select an option from the left to begin</h3>
     </div>
 
+</div>
+--%>
+
+<div class="row">
+    <div class="col-lg-12 text-info">
+        <h3>Did You Know ...</h3>
+        <blockquote>
+            ${chuckNorrisJoke.joke}
+        </blockquote>
+    </div>
 </div>
 

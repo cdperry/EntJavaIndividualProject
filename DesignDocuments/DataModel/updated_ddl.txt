@@ -456,16 +456,93 @@ COMMIT;
 INSERT INTO UOM_TYPE(uom_id, name, update_date, create_date) VALUES (1, "gal", now(), now());
 INSERT INTO UOM_TYPE(uom_id, name, update_date, create_date) VALUES (2, "ea", now(), now());
 INSERT INTO UOM_TYPE(uom_id, name, update_date, create_date) VALUES (3, "oz", now(), now());
-INSERT INTO UOM_TYPE(uom_id, name, update_date, create_date) VALUES (4, "day", now(), now());
+INSERT INTO UOM_TYPE(uom_id, name, update_date, create_date) VALUES (4, "days", now(), now());
 INSERT INTO UOM_TYPE(uom_id, name, update_date, create_date) VALUES (5, "pkg", now(), now());
 INSERT INTO UOM_TYPE(uom_id, name, update_date, create_date) VALUES (6, "lbs", now(), now());
 INSERT INTO UOM_TYPE(uom_id, name, update_date, create_date) VALUES (7, "tsp", now(), now());
 INSERT INTO UOM_TYPE(uom_id, name, update_date, create_date) VALUES (8, "min", now(), now());
-commit;
+COMMIT;
 
 INSERT INTO COMPONENT_TYPE(component_type_id, name, update_date, create_date) VALUES (1, 'Hop', now(), now());
 INSERT INTO COMPONENT_TYPE(component_type_id, name, update_date, create_date) VALUES (2, 'Grain', now(), now());
 INSERT INTO COMPONENT_TYPE(component_type_id, name, update_date, create_date) VALUES (3, 'Yeast', now(), now());
 INSERT INTO COMPONENT_TYPE(component_type_id, name, update_date, create_date) VALUES (4, 'Water', now(), now());
 INSERT INTO COMPONENT_TYPE(component_type_id, name, update_date, create_date) VALUES (5, 'Other', now(), now());
+COMMIT;
+
+INSERT INTO GRAIN_TYPE(grain_type_id, name, update_date, create_date) VALUES (1, 'Grain', now(), now());
+INSERT INTO GRAIN_TYPE(grain_type_id, name, update_date, create_date) VALUES (2, 'Extract', now(), now());
+INSERT INTO GRAIN_TYPE(grain_type_id, name, update_date, create_date) VALUES (3, 'Sugar', now(), now());
+INSERT INTO GRAIN_TYPE(grain_type_id, name, update_date, create_date) VALUES (4, 'Adjunct', now(), now());
+COMMIT;
+
+INSERT INTO HOP_TYPE(hop_type_id, name, update_date, create_date) VALUES (1, 'Bittering', now(), now());
+INSERT INTO HOP_TYPE(hop_type_id, name, update_date, create_date) VALUES (2, 'Aroma', now(), now());
+COMMIT;
+
+INSERT INTO HOP_FORM_TYPE (hop_form_type_id, name, update_date, create_date) VALUES (1, 'Pellet', now(), now());
+INSERT INTO HOP_FORM_TYPE (hop_form_type_id, name, update_date, create_date) VALUES (2, 'Plug', now(), now());
+INSERT INTO HOP_FORM_TYPE (hop_form_type_id, name, update_date, create_date) VALUES (3, 'Leaf', now(), now());
+INSERT INTO HOP_FORM_TYPE (hop_form_type_id, name, update_date, create_date) VALUES (4, 'Oil', now(), now());
+COMMIT;
+
+INSERT INTO ORIGIN (origin_id, name, update_date, create_date) VALUES (1, 'USA', now(), now());
+INSERT INTO ORIGIN (origin_id, name, update_date, create_date) VALUES (2, 'United Kingdom', now(), now());
+INSERT INTO ORIGIN (origin_id, name, update_date, create_date) VALUES (3, 'New Zealand', now(), now());
+COMMIT;
+
+INSERT INTO RECIPE_TYPE (recipe_type_id, name, update_date, create_date) VALUES (1, 'All Grain', now(), now());
+INSERT INTO RECIPE_TYPE (recipe_type_id, name, update_date, create_date) VALUES (2, 'Extract', now(), now());
+INSERT INTO RECIPE_TYPE (recipe_type_id, name, update_date, create_date) VALUES (3, 'BIAB', now(), now());
+COMMIT;
+
+INSERT INTO SUPPLIER_TYPE (supplier_type_id, name, update_date, create_date) VALUES (1, 'Retail', now(), now());
+INSERT INTO SUPPLIER_TYPE (supplier_type_id, name, update_date, create_date) VALUES (2, 'Web Store', now(), now());
+INSERT INTO SUPPLIER_TYPE (supplier_type_id, name, update_date, create_date) VALUES (3, 'Wholesale', now(), now());
+INSERT INTO SUPPLIER_TYPE (supplier_type_id, name, update_date, create_date) VALUES (4, 'Laboratory', now(), now());
+COMMIT;
+
+INSERT INTO USE_TYPE (use_type_id, name, update_date, create_date) VALUES (1, 'Spice', now(), now());
+INSERT INTO USE_TYPE (use_type_id, name, update_date, create_date) VALUES (2, 'Fining', now(), now());
+INSERT INTO USE_TYPE (use_type_id, name, update_date, create_date) VALUES (3, 'Herb', now(), now());
+INSERT INTO USE_TYPE (use_type_id, name, update_date, create_date) VALUES (4, 'Flavor', now(), now());
+INSERT INTO USE_TYPE (use_type_id, name, update_date, create_date) VALUES (5, 'Other', now(), now());
+INSERT INTO USE_TYPE (use_type_id, name, update_date, create_date) VALUES (6, 'Water Agent', now(), now());
+INSERT INTO USE_TYPE (use_type_id, name, update_date, create_date) VALUES (7, 'Boil', now(), now());
+INSERT INTO USE_TYPE (use_type_id, name, update_date, create_date) VALUES (8, 'Mash', now(), now());
+INSERT INTO USE_TYPE (use_type_id, name, update_date, create_date) VALUES (9, 'Primary Fermentation', now(), now());
+INSERT INTO USE_TYPE (use_type_id, name, update_date, create_date) VALUES (10, 'Secondary Fermentation', now(), now());
+INSERT INTO USE_TYPE (use_type_id, name, update_date, create_date) VALUES (11, 'Bottling', now(), now());
+COMMIT;
+
+INSERT INTO YEAST_FLOC_TYPE (yeast_floc_type_id, name, update_date, create_date) VALUES (1, 'Low', now(), now());
+INSERT INTO YEAST_FLOC_TYPE (yeast_floc_type_id, name, update_date, create_date) VALUES (2, 'Medium', now(), now());
+INSERT INTO YEAST_FLOC_TYPE (yeast_floc_type_id, name, update_date, create_date) VALUES (3, 'High', now(), now());
+INSERT INTO YEAST_FLOC_TYPE (yeast_floc_type_id, name, update_date, create_date) VALUES (4, 'Very High', now(), now());
+COMMIT;
+
+INSERT INTO YEAST_FORM (yeast_form_id, name, update_date, create_date) VALUES (1, 'Liquid', now(), now());
+INSERT INTO YEAST_FORM (yeast_form_id, name, update_date, create_date) VALUES (2, 'Dry', now(), now());
+INSERT INTO YEAST_FORM (yeast_form_id, name, update_date, create_date) VALUES (3, 'Slant', now(), now());
+INSERT INTO YEAST_FORM (yeast_form_id, name, update_date, create_date) VALUES (4, 'Culture', now(), now());
+COMMIT;
+
+INSERT INTO YEAST_TYPE (yeast_type_id, name, update_date, create_date) VALUES (1, 'Ale', now(), now());
+INSERT INTO YEAST_TYPE (yeast_type_id, name, update_date, create_date) VALUES (2, 'Lager', now(), now());
+INSERT INTO YEAST_TYPE (yeast_type_id, name, update_date, create_date) VALUES (3, 'Wine', now(), now());
+INSERT INTO YEAST_TYPE (yeast_type_id, name, update_date, create_date) VALUES (4, 'Champagne', now(), now());
+INSERT INTO YEAST_TYPE (yeast_type_id, name, update_date, create_date) VALUES (5, 'Wheat', now(), now());
+COMMIT;
+
+INSERT INTO USERS (user_name, user_pass) values ('admin', 'admin');
+INSERT INTO USERS (user_name, user_pass) values ('user', 'user');
 commit;
+
+insert into USER_ROLES (user_name, role_name) values ('admin', 'administrator');
+insert into USER_ROLES (user_name, role_name) values ('user', 'registeredUser');
+commit;
+
+ALTER TABLE UOM_TYPE AUTO_INCREMENT=100;
+COMMIT;
+ALTER TABLE COMPONENT_TYPE AUTO_INCREMENT=100;
+COMMIT;

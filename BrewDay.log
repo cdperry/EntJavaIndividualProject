@@ -3038,3 +3038,4 @@
 2016-05-08 17:33:07,766 10147 [main] WARN  com.cdperry.brewday.persistence.ComponentDao  - Deleted component: com.cdperry.brewday.entity.ComponentEntity@844abaea with id of: 234
 2016-05-08 17:33:07,770 10151 [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Retrieved recipe: com.cdperry.brewday.entity.RecipeEntity@abbfa78f with id of: 110
 2016-05-08 17:33:12,785 15166 [main] WARN  com.cdperry.brewday.persistence.RecipeDao  - Deleted recipe: com.cdperry.brewday.entity.RecipeEntity@abbfa78f with id of: 110
+2016-05-11 04:03:31,743 0    [main] WARN  com.cdperry.brewday.helpers.chucknorris.ChuckNorrisJoke  - The pie scene in &quot;American Pie&quot; is based on a dare Chuck Norris took when he was younger. However, in Chuck Norris' case, the &quot;pie&quot; was the molten crater of an active volcano.

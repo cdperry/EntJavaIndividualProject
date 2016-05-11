@@ -37,6 +37,8 @@
             </c:forEach>
             </tbody>
         </table>
+        <p class="text-danger"><c:out value="${errorMessage}"/></p>
+        <c:remove var="errorMessage" scope="session"/>
         <p><a href="addComponentType?action=insert">Add Component Type</a></p>
     </div>
 

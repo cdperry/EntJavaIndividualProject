@@ -45,6 +45,8 @@ public class UomTypeDeleteActionServlet extends HttpServlet {
         // TODO: send an error message when trying to delete a system type
         if (uomTypeDao.getUomTypeEntity(uomId) != null && uomId >= 100) {
             uomTypeDao.deleteUomTypeEntityById(uomId);
+        } else if (uomId < 100) {
+            request.getSession().setAttribute("errorMessage", "Unable to delete protected unit of measure");
         }
 
         request.setAttribute("uomTypes", uomTypeDao.getAllUomTypes());

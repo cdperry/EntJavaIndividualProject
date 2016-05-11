@@ -1,5 +1,6 @@
 package com.cdperry.brewday.controller;
 
+import com.cdperry.brewday.helpers.chucknorris.*;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,7 +31,10 @@ public class MainDisplayServlet extends HttpServlet {
      */
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        ChuckNorrisJoke joke = new ChuckNorrisJoke();
         String url = "/jsp/main.jsp";
+
+        request.setAttribute("chuckNorrisJoke", joke);
 
         RequestDispatcher dispatcher
                 = getServletContext().getRequestDispatcher(url);
